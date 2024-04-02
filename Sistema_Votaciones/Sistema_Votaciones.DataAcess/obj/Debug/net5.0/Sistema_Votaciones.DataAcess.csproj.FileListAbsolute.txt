@@ -1,0 +1,15 @@
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.deps.json
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.AssemblyReference.cache
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfoInputs.cache
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfo.cs
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CoreCompileInputs.cache
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CopyComplete
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb

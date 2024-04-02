@@ -1,0 +1,12 @@
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.deps.json
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\ref\Sistema_Votaciones.Common.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.pdb
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.csproj.AssemblyReference.cache
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.AssemblyInfoInputs.cache
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.AssemblyInfo.cs
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.csproj.CoreCompileInputs.cache
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\ref\Sistema_Votaciones.Common.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.pdb
