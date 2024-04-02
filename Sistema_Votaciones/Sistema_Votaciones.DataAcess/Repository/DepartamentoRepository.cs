@@ -26,7 +26,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Dept_Codigo", Dept_Codigo);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Eliminar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus(result.Resultado);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
 
@@ -46,7 +46,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Dept_FechaCreacion", DateTime.Now);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Insertar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus(result.Resultado);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
 
@@ -73,7 +73,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Dept_FechaModifica", DateTime.Now);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Editar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus(result.Resultado);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
     }
