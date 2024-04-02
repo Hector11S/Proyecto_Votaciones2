@@ -4,11 +4,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Frontend_Sistema_Votaciones.Servicios;
+using Frontend_Sistema_Votaciones.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
     public class DepartamentosController : Controller
     {
+        public DepartamentosServicios _departamentosServicios;
+        public DepartamentosController(DepartamentosServicios departamentosServicios)
+        {
+            _departamentosServicios = departamentosServicios;
+        }
+        // GET: DepartamentosController
+        public async Task<IActionResult> Index()
+        {
+            try
+            {
+                //string token = HttpContext.User.FindFirst("Token").Value;
+                var type = await _departamentosServicios.DepartamentosList();
+                IEnumerable<DepartamentoViewModel> departamentos = (IEnumerable<DepartamentoViewModel>)type.Data;
+                ViewBag.DepartamentosSelectList = new SelectList(departamentos, "Codigo", "Nombre");
+                var model = new List<DepartamentoViewModel>();
+                //var list = await _departamentosServicios.DepartamentosList(token);
+                var list = await _departamentosServicios.DepartamentosList();
+                return View(list.Data);
+            }
+            catch (Exception ex)
+            {
+                RedirectToAction("Index", "Home");
+            }
+        }
         // GET: DepartamentosController
         public ActionResult Index()
         {
