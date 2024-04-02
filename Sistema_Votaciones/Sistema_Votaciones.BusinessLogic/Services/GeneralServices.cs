@@ -9,7 +9,7 @@ using Sistema_Votaciones.Entities.Entities;
 
 namespace Sistema_Votaciones.BusinessLogic.Services
 {
-   public  class GeneralServices
+   public class GeneralServices
     {
 
         private readonly DepartamentoRepository _departamentosRepository;
@@ -17,10 +17,10 @@ namespace Sistema_Votaciones.BusinessLogic.Services
 
         public GeneralServices(
                DepartamentoRepository departamentosRepository)
-           
+
         {
-            _departamentosRepository = departamentosRepository;     
-         
+            _departamentosRepository = departamentosRepository;
+
         }
 
 
@@ -36,7 +36,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             }
             catch (Exception ex)
             {
-                return result.Error(ex.Message);
+                return result.Error("Error de capa 8");
             }
         }
         public ServiceResult CrearDepto(tbDepartamentos item)
@@ -51,17 +51,57 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "401 Error de consulta" : list.MessageStatus;
+                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe ese departamento" : list.MessageStatus;
                     return result.Error(list);
                 }
             }
             catch (Exception ex)
             {
-                return result.Error(ex.Message);
+                return result.Error("Error de capa 8");
             }
         }
-
-
+        public ServiceResult EditarDepto(tbDepartamentos item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _departamentosRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un departamento con ese nombre" : list.MessageStatus;
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult EliminarDepto(string Dept_Codigo)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _departamentosRepository.Delete(Dept_Codigo);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el departamento a eliminar" : list.MessageStatus;
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
         //public IEnumerable<tbMunicipios> ObtenerDeptoID(string Dept_Id)
         //{
         //    return _departamentosRepository.GetMunicipiosPorDepartamento(Dept_Id);

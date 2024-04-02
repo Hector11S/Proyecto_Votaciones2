@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zWqQOlVPcLKi4zdcEIQpolKzPFWQXiAV2bRgiMYcxZ6Hebc2sV6ELdWrG/1Gb5w9ZJfjX3brkWlvIEY7kdCR/g==",
+  "dgSpecHash": "1kB5lGPrMLQFXYgnIkQVqyHK72MJk9oCp9gd600GGW12W2v+PsjJuO3JEOOM0Az/uE4BZ1KpIMWwXGoTpBgjLg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAB1\\source\\repos\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj",
+  "projectFilePath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB1\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\LAB1\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

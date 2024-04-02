@@ -18,6 +18,17 @@ namespace Sistema_Votaciones.DataAcess.Repository
         {
             throw new NotImplementedException();
         }
+        public RequestStatus Delete(string Dept_Codigo)
+        {
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Dept_Codigo", Dept_Codigo);
+
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Eliminar, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus(result.Resultado);
+            }
+        }
 
         public tbDepartamentos Find(int? id)
         {
@@ -34,8 +45,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Dept_UsuarioCreacion", 2);
                 parameter.Add("Dept_FechaCreacion", DateTime.Now);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Insertar,parameter, commandType: CommandType.StoredProcedure);
-                return result;
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Insertar, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus(result.Resultado);
             }
         }
 
@@ -53,7 +64,17 @@ namespace Sistema_Votaciones.DataAcess.Repository
 
         public RequestStatus Update(tbDepartamentos item)
         {
-            throw new NotImplementedException();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Dept_Codigo", item.Dept_Codigo);
+                parameter.Add("Dept_Descripcion", item.Dept_Descripcion);
+                parameter.Add("Dept_UsuarioModifica", 2);
+                parameter.Add("Dept_FechaModifica", DateTime.Now);
+
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Editar, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus(result.Resultado);
+            }
         }
     }
 }

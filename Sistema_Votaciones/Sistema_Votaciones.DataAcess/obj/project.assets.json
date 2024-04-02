@@ -5751,11 +5751,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj",
+      "projectUniqueName": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj",
       "projectName": "Sistema_Votaciones.DataAcess",
-      "projectPath": "C:\\Users\\LAB1\\source\\repos\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj",
+      "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj",
       "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LAB1\\source\\repos\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\obj\\",
+      "outputPath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5772,8 +5772,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\LAB1\\source\\repos\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj": {
-              "projectPath": "C:\\Users\\LAB1\\source\\repos\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj"
+            "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj": {
+              "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj"
             }
           }
         }

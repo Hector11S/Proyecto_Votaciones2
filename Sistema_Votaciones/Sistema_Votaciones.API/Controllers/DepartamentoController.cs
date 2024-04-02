@@ -16,7 +16,7 @@ namespace Sistema_Votaciones.API.Controllers
         private readonly GeneralServices _generalServices;
         private readonly IMapper _mapper;
 
-    public DepartamentoController(GeneralServices GeneralServices, IMapper mapper)
+        public DepartamentoController(GeneralServices GeneralServices, IMapper mapper)
 
         {
 
@@ -27,7 +27,7 @@ namespace Sistema_Votaciones.API.Controllers
 
         [HttpGet("List")]
 
-       public IActionResult List ()
+        public IActionResult List()
         {
 
             var list = _generalServices.ListDepto();
@@ -46,6 +46,31 @@ namespace Sistema_Votaciones.API.Controllers
                 Dept_FechaCreacion = DateTime.Now
             };
             var list = _generalServices.CrearDepto(modelo);
+            return Ok(list);
+        }
+        [HttpPut("Update")]
+        public IActionResult Update(DepartamentoViewModel json)
+        {
+            _mapper.Map<tbDepartamentos>(json);
+            var modelo = new tbDepartamentos()
+            {
+                Dept_Codigo = json.Dept_Codigo,
+                Dept_Descripcion = json.Dept_Descripcion,
+                Dept_UsuarioModifica = 2,
+                Dept_FechaModifica = DateTime.Now
+            };
+            var list = _generalServices.EditarDepto(modelo);
+            return Ok(list);
+        }
+        [HttpDelete("Delete")]
+        public IActionResult Delete(DepartamentoViewModel json)
+        {
+            _mapper.Map<tbDepartamentos>(json);
+            var modelo = new tbDepartamentos()
+            {
+                Dept_Codigo = json.Dept_Codigo
+            };
+            var list = _generalServices.EliminarDepto(modelo.Dept_Codigo);
             return Ok(list);
         }
     }

@@ -8,6 +8,10 @@ namespace Sistema_Votaciones.BusinessLogic
 {
     public class RequestStatus
     {
+        public RequestStatus(int _CodeStatus)
+        {
+            CodeStatus = _CodeStatus;
+        }
         public int CodeStatus { get; set; }
         public string MessageStatus { get; set; }
     }

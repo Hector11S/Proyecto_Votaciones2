@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LAB1\\source\\repos\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
+      "projectUniqueName": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
       "projectName": "Sistema_Votaciones.Common",
-      "projectPath": "C:\\Users\\LAB1\\source\\repos\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
+      "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
       "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LAB1\\source\\repos\\Sistema_Votaciones\\Sistema_Votaciones.Common\\obj\\",
+      "outputPath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",

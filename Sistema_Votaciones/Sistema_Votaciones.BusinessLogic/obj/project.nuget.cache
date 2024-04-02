@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qbtRGAEb2cWJRH8msfIYl2sFF0MUZFN2vNs9Wc8ZqWAb0D6V/ApmQjIu0n1WRFHUXNPseX05aJ53b5YlEVuvSw==",
+  "dgSpecHash": "9nokH/kRtwO5Bd/dTKUiKoC5CRwIo7Dfr1SuM+dp9Zk5oy9adBoDYXBAujaDNBPa6PfHqkCVNTxcoVfXEsmlNg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAB1\\source\\repos\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj",
+  "projectFilePath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB1\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\LAB1\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
