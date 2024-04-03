@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AtQyS73sjk0xOQUEUtDPoPXQIOVcC7mfOSGXMfYfzs2FP8E6LKJh2HR1USGUQ9pzuW+sDKbMhvWY2/mbfA7mDA==",
+  "dgSpecHash": "uUfINTWKn/eAHxgxOQNxGVAqrFFAlN7Rq8EGudzXSPo3eI4xEZErLPq4zKyfC8fJtEM4JGnnH5Jt6vpldoXcLw==",
   "success": true,
-  "projectFilePath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj",
+  "projectFilePath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB1\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\LAB1\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

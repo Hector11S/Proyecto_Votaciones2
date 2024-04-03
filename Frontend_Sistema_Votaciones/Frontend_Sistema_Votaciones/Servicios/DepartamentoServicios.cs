@@ -138,8 +138,5 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 return result.Error(Helpers.GetMessage(ex));
             }
         }
-
-
-
     }
 }

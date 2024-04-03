@@ -32,6 +32,7 @@ namespace Frontend_Sistema_Votaciones
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddControllersWithViews();
             services.AddScoped<DepartamentoServicios>();
+            services.AddScoped<AlcaldeServicios>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
