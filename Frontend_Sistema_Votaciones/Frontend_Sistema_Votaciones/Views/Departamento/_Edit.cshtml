@@ -9,13 +9,13 @@
 <hr />
 <div>
     <div>
-        <form asp-action="@ViewData["ViewName"]">
+        <form asp-action="@ViewData["ViewName"]" asp-controller="Departamento" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="d-flex flex-wrap justify-content-around">
                 <input type="hidden" id="Dept_Codigo" />
                 <div class="form-group col-sm-5 mb-4">
                     <label for="Dept_Descripcion" class="control-label"></label>
-                    <input id="Dept_Descripcion" name="Dept_Descripcion" class="form-control" value="@Model.Dept_Descripcion" />
+                    <input id="Dept_Descripcion" name="Dept_Descripcion" class="form-control" @*value="@Model.Dept_Descripcion"*@ />
                     <span asp-validation-for="Dept_Descripcion" class="text-danger"></span>
                 </div>
             </div>

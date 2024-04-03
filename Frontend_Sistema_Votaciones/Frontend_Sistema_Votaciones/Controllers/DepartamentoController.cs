@@ -80,7 +80,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             try
             {
                 var model = await _departamentoServicios.ObtenerDepartamento(Dept_Codigo);
-                return View(model.Data);
+                return Json(model.Data);
             }
             catch (Exception ex)
             {
@@ -91,19 +91,19 @@ namespace Frontend_Sistema_Votaciones.Controllers
 
 
         // POST: DepartamentosController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         //GET: DepartamentosController/Delete/5
         //public ActionResult Delete()

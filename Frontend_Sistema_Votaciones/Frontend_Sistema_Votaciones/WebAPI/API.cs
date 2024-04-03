@@ -51,6 +51,7 @@ namespace Frontend_Sistema_Votaciones.WebAPI
                 {
                     result.Path = config.Path;
                     result.StatusCode = response.StatusCode;
+                    result.Type = ApiResultType.Success;
                 }
             }
             catch (Exception ex)
