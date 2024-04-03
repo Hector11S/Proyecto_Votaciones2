@@ -17,8 +17,8 @@ namespace Sistema_Votaciones.BusinessLogic
         public static void DataAcces(this IServiceCollection service, string conn)
         {
             service.AddScoped<DepartamentoRepository>();
-            //service.AddScoped<RolRepository>();
-            //service.AddScoped<AreaEmpresaRepository>();
+            service.AddScoped<AlcaldeRepository>();
+            service.AddScoped<VotosPorMesasRepository>();
             //service.AddScoped<ColaboradorRepository>();
             //service.AddScoped<PantallaRepository>();
             //service.AddScoped<PantallaPorRolRepository>();
@@ -39,8 +39,8 @@ namespace Sistema_Votaciones.BusinessLogic
         {
             service.AddScoped<GeneralServices>();
             service.AddScoped<AccesoServices>();
-            //service.AddScoped<GestionServices>();
-            //service.AddScoped<ServiciosServices>();
+            service.AddScoped<VotacionesServices>();
+          
 
         }
     }

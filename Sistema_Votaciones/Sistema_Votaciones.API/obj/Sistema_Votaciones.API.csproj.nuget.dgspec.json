@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj": {}
+    "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj": {
+    "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj",
+        "projectUniqueName": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj",
         "projectName": "Sistema_Votaciones.API",
-        "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj",
-        "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\obj\\",
+        "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj",
+        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+        "outputPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,14 +28,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj": {
-                "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj"
+              "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj": {
+                "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj"
               },
-              "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj": {
-                "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj"
+              "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj": {
+                "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj"
               },
-              "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj": {
-                "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj"
+              "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj": {
+                "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj"
               }
             }
           }
@@ -99,17 +99,17 @@
         }
       }
     },
-    "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj": {
+    "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj",
+        "projectUniqueName": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj",
         "projectName": "Sistema_Votaciones.BusinessLogic",
-        "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj",
-        "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\obj\\",
+        "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj",
+        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+        "outputPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -123,8 +123,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj": {
-                "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj"
+              "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj": {
+                "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj"
               }
             }
           }
@@ -157,17 +157,17 @@
         }
       }
     },
-    "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj": {
+    "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
+        "projectUniqueName": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
         "projectName": "Sistema_Votaciones.Common",
-        "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
-        "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\obj\\",
+        "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
+        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+        "outputPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -211,17 +211,17 @@
         }
       }
     },
-    "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj": {
+    "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj",
+        "projectUniqueName": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj",
         "projectName": "Sistema_Votaciones.DataAcess",
-        "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj",
-        "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\obj\\",
+        "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj",
+        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+        "outputPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -235,8 +235,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj": {
-                "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj"
+              "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj": {
+                "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj"
               }
             }
           }
@@ -283,17 +283,17 @@
         }
       }
     },
-    "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj": {
+    "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj",
+        "projectUniqueName": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj",
         "projectName": "Sistema_Votaciones.Entities",
-        "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj",
-        "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\obj\\",
+        "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj",
+        "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+        "outputPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
