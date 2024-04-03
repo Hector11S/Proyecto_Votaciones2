@@ -38,7 +38,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 var parameter = new DynamicParameters();
                 parameter.Add("Alca_Id", item.Alca_Id);
                 parameter.Add("Alca_Imagen", item.Alca_Imagen);
-                parameter.Add("Alca_Imagen", item.Part_Id);
+                parameter.Add("Part_Id", item.Part_Id);
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
                 parameter.Add("Alca_UsuarioCreacion", 2);
                 parameter.Add("Alca_FechaCreacion", DateTime.Now);
@@ -68,7 +68,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 var parameter = new DynamicParameters();
                 parameter.Add("Alca_Id", item.Alca_Id);
                 parameter.Add("Alca_Imagen", item.Alca_Imagen);
-                parameter.Add("Alca_Imagen", item.Part_Id);
+                parameter.Add("Part_Id", item.Part_Id);
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
                 parameter.Add("Alca_UsuarioModifica", 2);
                 parameter.Add("Alca_FechaModifica", DateTime.Now);
