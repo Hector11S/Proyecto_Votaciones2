@@ -25,12 +25,40 @@ namespace Sistema_Votaciones.BusinessLogic.Services
 
 
         #region Departamentos
+        //public ServiceResult ObtenerDepto()
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var list = _departamentosRepository.List();
+
+        //        return result.Ok(list);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return result.Error("Error de capa 8");
+        //    }
+        //}
         public ServiceResult ListDepto()
         {
             var result = new ServiceResult();
             try
             {
                 var list = _departamentosRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult ListDepto(string Dept_Codigo)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _departamentosRepository.List(Dept_Codigo);
 
                 return result.Ok(list);
             }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -45,9 +46,12 @@ namespace Frontend_Sistema_Votaciones.WebAPI
                 if (Content == null)
                     return null;
 
-                return new StringContent(JsonConvert.SerializeObject(Content), Encoding.UTF8, "application/json");
+                var serializedJson = JsonConvert.SerializeObject(Content);
+                var stringContent = new StringContent(serializedJson, Encoding.UTF8, "application/json");
+                return stringContent;
             }
         }
+
 
         public ApiCallConfiguration()
         {

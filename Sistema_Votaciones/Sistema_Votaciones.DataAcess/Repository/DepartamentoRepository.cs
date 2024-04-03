@@ -42,14 +42,25 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 var parameter = new DynamicParameters();
                 parameter.Add("Dept_Codigo", item.Dept_Codigo);
                 parameter.Add("Dept_Descripcion", item.Dept_Descripcion);
-                parameter.Add("Dept_UsuarioCreacion", 2);
-                parameter.Add("Dept_FechaCreacion", DateTime.Now);
+                parameter.Add("Dept_UsuarioCreacion", item.Dept_UsuarioCreacion);
+                parameter.Add("Dept_FechaCreacion", item.Dept_FechaCreacion);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Insertar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
 
+        //public IEnumerable<tbDepartamentos> List(string Dept_Codigo)
+        //{
+
+        //    List<tbDepartamentos> result = new List<tbDepartamentos>();
+        //    using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+        //    {
+        //        result = db.Query<tbDepartamentos>(ScriptsBaseDeDatos.Depa_Listar, commandType: CommandType.Text).ToList();
+        //        return result;
+        //    }
+
+        //}
         public IEnumerable<tbDepartamentos> List()
         {
 
@@ -57,6 +68,19 @@ namespace Sistema_Votaciones.DataAcess.Repository
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
                 result = db.Query<tbDepartamentos>(ScriptsBaseDeDatos.Depa_Listar, commandType: CommandType.Text).ToList();
+                return result;
+            }
+
+        }
+        public tbDepartamentos List(string Dept_Codigo)
+        {
+
+            tbDepartamentos result = new tbDepartamentos();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Dept_Codigo", Dept_Codigo);
+                result = db.QueryFirst<tbDepartamentos>(ScriptsBaseDeDatos.Depa_Llenar, parameter, commandType: CommandType.StoredProcedure);
                 return result;
             }
 

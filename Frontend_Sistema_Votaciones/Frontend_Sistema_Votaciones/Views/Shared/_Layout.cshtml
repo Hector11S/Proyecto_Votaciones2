@@ -97,7 +97,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="components-accordion.html">
+                        <a asp-controller="Departamento" asp-action="Index">
                             <i class="bi bi-circle"></i><span>Departamentos</span>
                         </a>
                     </li>
@@ -178,19 +178,26 @@
 
                 </ul>
             </li><!-- End Tables Nav -->
-
-
-
-
-
         </ul>
-
     </aside><!-- End Sidebar-->
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+
+    <!-- Vendor JS Files -->
+    <script src="~/NiceAdmin/assets/vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/NiceAdmin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/NiceAdmin/assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/NiceAdmin/assets/vendor/chart.js/chart.umd.js"></script>
+    <script src="~/NiceAdmin/assets/vendor/echarts/echarts.min.js"></script>
+    <script src="~/NiceAdmin/assets/vendor/quill/quill.min.js"></script>
+    <script src="~/NiceAdmin/assets/vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/NiceAdmin/assets/vendor/php-email-form/validate.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/NiceAdmin/assets/js/main.js"></script>
+
+    <main id="main" role="main" style="margin-top: 12vh;">
+        @RenderBody()
+    </main>
 
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
@@ -203,24 +210,11 @@
     </footer><!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-    
-    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>*@
+
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>*@
 
 
-    <!-- Vendor JS Files -->
-    <script src="~/NiceAdmin/assets/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="~/NiceAdmin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/NiceAdmin/assets/vendor/chart.js/chart.umd.js"></script>
-    <script src="~/NiceAdmin/assets/vendor/echarts/echarts.min.js"></script>
-    <script src="~/NiceAdmin/assets/vendor/quill/quill.min.js"></script>
-    <script src="~/NiceAdmin/assets/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="~/NiceAdmin/assets/vendor/tinymce/tinymce.min.js"></script>
-    <script src="~/NiceAdmin/assets/vendor/php-email-form/validate.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="~/NiceAdmin/assets/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

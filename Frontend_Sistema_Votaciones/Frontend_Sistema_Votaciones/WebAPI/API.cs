@@ -7,12 +7,12 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Frontend_Sistema_Votaciones.Configuration;
+//using Frontend_Sistema_Votaciones.Configuration;
 using Frontend_Sistema_Votaciones.Models;
 using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Frontend_Sistema_Votaciones.Services;
+//using Frontend_Sistema_Votaciones.Services;
 
 namespace Frontend_Sistema_Votaciones.WebAPI
 {
@@ -20,11 +20,8 @@ namespace Frontend_Sistema_Votaciones.WebAPI
     {
         private readonly HttpClient _client;
         private readonly IHttpContextAccessor _httpContext;
-        private readonly appSettings _appSettings;
-        public API(
-                IHttpContextAccessor httpContext,
-                IOptions<appSettings> appSettings
-        )
+        private readonly AppSettings _appSettings; 
+        public API(IHttpContextAccessor httpContext, IOptions<AppSettings> appSettings)
         {
             var httpClientHandler = new HttpClientHandler();
             httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
@@ -32,10 +29,9 @@ namespace Frontend_Sistema_Votaciones.WebAPI
                 return true;
             };
             _client = new HttpClient(httpClientHandler);
-
             _httpContext = httpContext;
             _appSettings = appSettings.Value;
-            _client.BaseAddress = new Uri("https://apitotaltravel.azurewebsites.net");
+            _client.BaseAddress = new Uri(_appSettings.BaseAddress);
             _client.Timeout = TimeSpan.FromSeconds(10);
         }
 
@@ -47,7 +43,8 @@ namespace Frontend_Sistema_Votaciones.WebAPI
             {
                 _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 action(config);
-                var response = await _client.GetAsync(config.PathWithQueryStrings);
+                var requestUrl = new Uri(_client.BaseAddress, config.PathWithQueryStrings);
+                var response = await _client.GetAsync(requestUrl);
                 var content = await response.Content.ReadAsStringAsync();
                 result = JsonConvert.DeserializeObject<ApiResult<B>>(content);
                 if (result != null)
@@ -72,16 +69,17 @@ namespace Frontend_Sistema_Votaciones.WebAPI
             {
                 _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 action(config);
-                var responseData = await _client.PostAsync(config.PathWithQueryStrings, config.ContentJson);
+                var requestUrl = new Uri(_client.BaseAddress, config.PathWithQueryStrings);
+                var responseData = await _client.PostAsync(requestUrl, config.ContentJson);
                 var content = await responseData.Content.ReadAsStringAsync();
                 result = JsonConvert.DeserializeObject<ApiResult<B>>(content);
                 result.Path = config.Path;
-                result.StatusCode = responseData.StatusCode;
+                //result.StatusCode = responseData.StatusCode;
 
-                if (responseData.StatusCode == HttpStatusCode.OK)
-                    result.Success = true;
-                else
-                    result.Success = false;
+                //if (responseData.StatusCode == HttpStatusCode.OK)
+                //    result.Success = true;
+                //else
+                //    result.Success = false;
             }
             catch (Exception ex)
             {
@@ -99,8 +97,8 @@ namespace Frontend_Sistema_Votaciones.WebAPI
             {
                 _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 action(config);
-
-                var response = await _client.PutAsync(config.PathWithQueryStrings, config.ContentJson);
+                var requestUrl = new Uri(_client.BaseAddress, config.PathWithQueryStrings);
+                var response = await _client.PutAsync(requestUrl, config.ContentJson);
                 var content = await response.Content.ReadAsStringAsync();
                 result = JsonConvert.DeserializeObject<ApiResult<B>>(content);
                 result.Path = config.Path;
@@ -123,8 +121,9 @@ namespace Frontend_Sistema_Votaciones.WebAPI
             {
                 _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 action(config);
+                var requestUrl = new Uri(_client.BaseAddress, config.PathWithQueryStrings);
 
-                var response = await _client.DeleteAsync(config.PathWithQueryStrings);
+                var response = await _client.DeleteAsync(requestUrl);
                 var content = await response.Content.ReadAsStringAsync();
                 result = JsonConvert.DeserializeObject<ApiResult<B>>(content);
                 result.Path = config.Path;
