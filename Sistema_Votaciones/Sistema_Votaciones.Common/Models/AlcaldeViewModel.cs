@@ -8,12 +8,10 @@ namespace Sistema_Votaciones.Common.Models
 {
    public class AlcaldeViewModel
     {
-        public string Alca_Id { get; set; }
-
-
-        public string Part_Id { get; set; }
-
-        public string Muni_Codigo { get; set; }
         public string Alca_Imagen { get; set; }
+        public string Muni_Codigo { get; set; }
+        public int Part_Id { get; set; }
+ 
+        public int Alca_Id { get; set; }
     }
 }

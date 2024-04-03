@@ -26,7 +26,7 @@ namespace Sistema_Votaciones.API.Controllers
         }
 
 
-        [HttpGet("List")]
+        [HttpGet("API/[controller]/List")]
         public IActionResult List()
         {
 
@@ -34,7 +34,7 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
-        [HttpPost("Insert")]
+        [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(AlcaldeViewModel json)
         {
             _mapper.Map<tbAlcaldes>(json);
@@ -50,7 +50,8 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _votacionesServices.CrearAlcalde(modelo);
             return Ok(list);
         }
-        [HttpPut("Update")]
+
+        [HttpPut("API/[controller]/Update")]
         public IActionResult Update(AlcaldeViewModel json)
         {
             _mapper.Map<tbAlcaldes>(json);
@@ -66,7 +67,8 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _votacionesServices.EditarAlcalde(modelo);
             return Ok(list);
         }
-        [HttpDelete("Delete")]
+
+        [HttpDelete("API/[controller]/Delete")]
         public IActionResult Delete(AlcaldeViewModel json)
         {
             _mapper.Map<tbAlcaldes>(json);

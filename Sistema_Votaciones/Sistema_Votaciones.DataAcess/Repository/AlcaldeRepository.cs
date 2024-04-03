@@ -43,8 +43,9 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Alca_UsuarioCreacion", 2);
                 parameter.Add("Alca_FechaCreacion", DateTime.Now);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Alca_Insertar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+                var result = db.Execute(ScriptsBaseDeDatos.Alca_Insertar, parameter, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
         }
 
@@ -72,8 +73,9 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Alca_UsuarioModifica", 2);
                 parameter.Add("Alca_FechaModifica", DateTime.Now);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Alca_Editar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+                var result = db.Execute(ScriptsBaseDeDatos.Alca_Editar, parameter, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
         }
     }
