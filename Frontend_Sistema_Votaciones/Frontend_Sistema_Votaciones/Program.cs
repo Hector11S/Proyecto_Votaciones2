@@ -24,5 +24,6 @@ namespace Frontend_Sistema_Votaciones
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
     }
 }
