@@ -22,26 +22,15 @@ C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_V
 C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.dll
 C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\ref\Sistema_Votaciones.Common.dll
 C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.pdb
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.deps.json
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.dll
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\ref\Sistema_Votaciones.Common.dll
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.pdb
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.csproj.AssemblyReference.cache
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.AssemblyInfoInputs.cache
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.AssemblyInfo.cs
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.csproj.CoreCompileInputs.cache
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.dll
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\ref\Sistema_Votaciones.Common.dll
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.pdb
-C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.deps.json
-C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.dll
-C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\ref\Sistema_Votaciones.Common.dll
-C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.pdb
-C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.GeneratedMSBuildEditorConfig.editorconfig
-C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.AssemblyInfoInputs.cache
-C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.AssemblyInfo.cs
-C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.csproj.CoreCompileInputs.cache
-C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.dll
-C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\ref\Sistema_Votaciones.Common.dll
-C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.pdb
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.deps.json
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\ref\Sistema_Votaciones.Common.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\bin\Debug\net5.0\Sistema_Votaciones.Common.pdb
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.csproj.AssemblyReference.cache
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.AssemblyInfoInputs.cache
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.AssemblyInfo.cs
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.csproj.CoreCompileInputs.cache
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\ref\Sistema_Votaciones.Common.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Common\obj\Debug\net5.0\Sistema_Votaciones.Common.pdb

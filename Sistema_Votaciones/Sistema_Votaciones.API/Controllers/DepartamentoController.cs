@@ -25,7 +25,7 @@ namespace Sistema_Votaciones.API.Controllers
 
         }
 
-        [HttpGet("List")]
+        [HttpGet("API/[controller]/List")]
 
         public IActionResult List()
         {
@@ -33,8 +33,16 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _generalServices.ListDepto();
             return Ok(list);
         }
+        [HttpGet("API/[controller]/Fill")]
 
-        [HttpPost("Insert")]
+        public IActionResult Fill(string Dept_Codigo)
+        {
+
+            var list = _generalServices.ListDepto(Dept_Codigo);
+            return Ok(list);
+        }
+
+        [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(DepartamentoViewModel json)
         {
             _mapper.Map<tbDepartamentos>(json);
@@ -42,13 +50,13 @@ namespace Sistema_Votaciones.API.Controllers
             {
                 Dept_Codigo = json.Dept_Codigo,
                 Dept_Descripcion = json.Dept_Descripcion,
-                Dept_UsuarioCreacion = 2,
-                Dept_FechaCreacion = DateTime.Now
+                Dept_UsuarioCreacion = json.Dept_UsuarioCreacion,
+                Dept_FechaCreacion = json.Dept_FechaCreacion
             };
             var list = _generalServices.CrearDepto(modelo);
             return Ok(list);
         }
-        [HttpPut("Update")]
+        [HttpPut("API/[controller]/Update")]
         public IActionResult Update(DepartamentoViewModel json)
         {
             _mapper.Map<tbDepartamentos>(json);
@@ -62,15 +70,10 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _generalServices.EditarDepto(modelo);
             return Ok(list);
         }
-        [HttpDelete("Delete")]
-        public IActionResult Delete(DepartamentoViewModel json)
+        [HttpDelete("API/[controller]/Delete")]
+        public IActionResult Delete(string Dept_Codigo)
         {
-            _mapper.Map<tbDepartamentos>(json);
-            var modelo = new tbDepartamentos()
-            {
-                Dept_Codigo = json.Dept_Codigo
-            };
-            var list = _generalServices.EliminarDepto(modelo.Dept_Codigo);
+            var list = _generalServices.EliminarDepto(Dept_Codigo);
             return Ok(list);
         }
     }
