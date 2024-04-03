@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\LAB1\\.nuget\\packages\\": {}
+    "C:\\Users\\test\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
+      "projectUniqueName": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
       "projectName": "Sistema_Votaciones.Common",
-      "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
-      "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\obj\\",
+      "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj",
+      "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
