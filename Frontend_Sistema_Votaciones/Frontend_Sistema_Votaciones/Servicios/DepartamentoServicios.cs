@@ -88,6 +88,31 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+        public async Task<ServiceResult> EditarDepartamento(DepartamentoViewModel item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Put<DepartamentoViewModel, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Departamento/Update";
+                    req.Content = item;
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
 
         public async Task<ServiceResult> EliminarDepartamento(string Dept_Codigo)
         {

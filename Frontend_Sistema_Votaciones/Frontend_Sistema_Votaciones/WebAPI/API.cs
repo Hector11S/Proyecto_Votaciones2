@@ -49,6 +49,7 @@ namespace Frontend_Sistema_Votaciones.WebAPI
                 result = JsonConvert.DeserializeObject<ApiResult<B>>(content);
                 if (result != null)
                 {
+                    //TempData["Exito"] = content.message;
                     result.Path = config.Path;
                     result.StatusCode = response.StatusCode;
                     result.Type = ApiResultType.Success;
@@ -75,12 +76,16 @@ namespace Frontend_Sistema_Votaciones.WebAPI
                 var content = await responseData.Content.ReadAsStringAsync();
                 result = JsonConvert.DeserializeObject<ApiResult<B>>(content);
                 result.Path = config.Path;
-                //result.StatusCode = responseData.StatusCode;
-
-                //if (responseData.StatusCode == HttpStatusCode.OK)
-                //    result.Success = true;
-                //else
-                //    result.Success = false;
+                if ((int)result.StatusCode == 1)
+                {
+                    result.StatusCode = HttpStatusCode.OK;
+                    result.Success = true;
+                }
+                else
+                {
+                    result.Success = false;
+                    result.StatusCode = HttpStatusCode.Forbidden;
+                }
             }
             catch (Exception ex)
             {

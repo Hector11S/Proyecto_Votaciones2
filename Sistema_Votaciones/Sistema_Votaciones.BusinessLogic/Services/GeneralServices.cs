@@ -25,20 +25,6 @@ namespace Sistema_Votaciones.BusinessLogic.Services
 
 
         #region Departamentos
-        //public ServiceResult ObtenerDepto()
-        //{
-        //    var result = new ServiceResult();
-        //    try
-        //    {
-        //        var list = _departamentosRepository.List();
-
-        //        return result.Ok(list);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return result.Error("Error de capa 8");
-        //    }
-        //}
         public ServiceResult ListDepto()
         {
             var result = new ServiceResult();
@@ -75,12 +61,11 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 var list = _departamentosRepository.Insert(item);
                 if (list.CodeStatus > 0)
                 {
-                    return result.Ok(list);
+                    return result.Ok("Departamento creado con exito", list);
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe ese departamento" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un departamento con ese codigo o con ese nombre");
                 }
             }
             catch (Exception ex)
@@ -96,12 +81,11 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 var list = _departamentosRepository.Update(item);
                 if (list.CodeStatus > 0)
                 {
-                    return result.Ok(list);
+                    return result.Ok($"Departamento {item.Dept_Codigo} editado con éxito", list);
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un departamento con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un departamento con ese nombre");
                 }
             }
             catch (Exception ex)
@@ -117,12 +101,11 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 var list = _departamentosRepository.Delete(Dept_Codigo);
                 if (list.CodeStatus > 0)
                 {
-                    return result.Ok(list);
+                    return result.Ok($"Departamento {Dept_Codigo} eliminado con éxito", list);
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el departamento a eliminar" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("No se encontró el departamento a eliminar");
                 }
             }
             catch (Exception ex)
@@ -130,36 +113,6 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-        //public IEnumerable<tbMunicipios> ObtenerDeptoID(string Dept_Id)
-        //{
-        //    return _departamentosRepository.GetMunicipiosPorDepartamento(Dept_Id);
-        //}
-
-        //public tbDepartamentos ObtenerDetallesDepto(string Dept_Id)
-        //{
-        //    return _departamentosRepository.GetById(Dept_Id);
-        //}
-
-
-        //public IEnumerable<tbMunicipios> ObtenerMunicipiosPorDepartamento(string Dept_Id)
-        //{
-        //    return _departamentosRepository.GetMunicipiosPorDepartamento(Dept_Id);
-        //}
-
-
-        //public IEnumerable<tbMunicipios> ObtenerMunicipiosPorDepartamento(string Dept_Id)
-        //{
-        //    try
-        //    {
-
-        //        return _municipioRepository.ObtenerMunicipiosPorDepartamento(Dept_Id);
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        return Enumerable.Empty<tbMunicipios>();
-        //    }
-        //}
         #endregion
 
     }

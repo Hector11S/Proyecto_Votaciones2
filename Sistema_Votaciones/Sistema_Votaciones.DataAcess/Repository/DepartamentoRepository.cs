@@ -50,17 +50,6 @@ namespace Sistema_Votaciones.DataAcess.Repository
             }
         }
 
-        //public IEnumerable<tbDepartamentos> List(string Dept_Codigo)
-        //{
-
-        //    List<tbDepartamentos> result = new List<tbDepartamentos>();
-        //    using (var db = new SqlConnection(VotacionesContext.ConnectionString))
-        //    {
-        //        result = db.Query<tbDepartamentos>(ScriptsBaseDeDatos.Depa_Listar, commandType: CommandType.Text).ToList();
-        //        return result;
-        //    }
-
-        //}
         public IEnumerable<tbDepartamentos> List()
         {
 
