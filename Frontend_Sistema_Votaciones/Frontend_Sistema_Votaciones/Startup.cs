@@ -34,6 +34,7 @@ namespace Frontend_Sistema_Votaciones
             services.AddScoped<DepartamentoServicios>();
             services.AddScoped<AlcaldeServicios>();
             services.AddScoped<VotanteServicios>();
+            services.AddScoped<BlobStorage>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -24,16 +24,16 @@ namespace Frontend_Sistema_Votaciones.Servicios
             var result = new ServiceResult();
             try
             {
-                var response = await _blobStorage.UploadFromBinaryDataAsync(localFilePath);
-                //if (!response.Success)
-                //{
-                //    return result.FromApi(response);
-                //}
-                //else
-                //{
-                //    return result.Ok(response.Data);
-                //}
-                return result.Ok("Testing blob storage");
+                var response = await _blobStorage.SubirImagen(localFilePath);
+                var statusCode = response.GetRawResponse().Status;
+                if (statusCode != 201)
+                {
+                    return result.Error("Error, no se pudo guardar la imagen");
+                }
+                else
+                {
+                    return result.Ok("Imagen guardada", _blobStorage.ObtenerUrlImagen(localFilePath));
+                }
             }
             catch (Exception ex)
             {
@@ -48,7 +48,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<AlcaldeViewModel>, IEnumerable<AlcaldeViewModel>>(req =>
                 {
-                    req.Path = $"API/Alcalde/List";
+                    req.Path = $"API/ALcalde/List";
                 });
                 if (!response.Success)
                 {

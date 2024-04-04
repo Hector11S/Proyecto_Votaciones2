@@ -49,7 +49,6 @@ namespace Frontend_Sistema_Votaciones.WebAPI
                 result = JsonConvert.DeserializeObject<ApiResult<B>>(content);
                 if (result != null)
                 {
-                    //TempData["Exito"] = content.message;
                     result.Path = config.Path;
                     result.StatusCode = response.StatusCode;
                     result.Type = ApiResultType.Success;

@@ -8,6 +8,6 @@ namespace Frontend_Sistema_Votaciones.Models
     public class AppSettings
     {
         public string BaseAddress { get; set; }
-        public string AzureBlobStorageAddress { get; set; }
+        public string AzureBlobStorageConnectionString { get; set; }
     }
 }

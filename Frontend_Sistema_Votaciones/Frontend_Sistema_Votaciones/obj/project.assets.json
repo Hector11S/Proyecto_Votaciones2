@@ -6513,19 +6513,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP GAMING JAFET\\.nuget\\packages\\": {}
+    "C:\\Users\\LAB1\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
+      "projectUniqueName": "C:\\repositorio\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
       "projectName": "Frontend_Sistema_Votaciones",
-      "projectPath": "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
-      "packagesPath": "C:\\Users\\HP GAMING JAFET\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\obj\\",
+      "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
+      "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
+      "outputPath": "C:\\repositorio\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HP GAMING JAFET\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6533,7 +6533,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

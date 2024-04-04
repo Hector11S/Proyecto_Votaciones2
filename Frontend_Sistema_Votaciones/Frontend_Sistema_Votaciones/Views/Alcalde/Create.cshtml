@@ -2,6 +2,7 @@
 
 @{
     var departamentos = ViewBag.Departamentos;
+    var partidos = ViewBag.Partidos;
     ViewData["Title"] = "Create";
 }
 
@@ -17,22 +18,22 @@
         <div class="col">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="form-group col">
-                        <label class="control-label">Buscar por numero de identidad:</label>
+                        <label class="mb-2" style="color: #3dbdd9">Buscar por numero de identidad:</label>
                         <input asp-for="Alca_Id" type="hidden" class="form-control" />
                         <input id="txtDNI" type="text" class="form-control" />
                         <span asp-validation-for="Alca_Id" class="text-danger"></span>
                     </div>
                     <div class="form-group col">
-                        <label class="control-label">Nombre completo:</label>
+                        <label class="mb-2" style="color: #3dbdd9">Nombre completo:</label>
                         <input id="txtNombreVotante" class="form-control" disabled/>
                         <span class="text-danger"></span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="form-group col">
-                        <label class="control-label">Departamento: </label>
+                        <label class="mb-2" style="color: #3dbdd9">Departamento: </label>
                         <select id="ddlDepartamentos" class="form-select">
                             <option value="">-- Departamento --</option>
                             @foreach (var item in departamentos)
@@ -43,27 +44,35 @@
                         <span class="text-danger"></span>
                     </div>
                     <div class="form-group col">
-                        <label asp-for="Muni_Codigo" class="control-label">Municipio al que se postula:</label>
+                        <label asp-for="Muni_Codigo" class="mb-2" style="color: #3dbdd9">Municipio al que se postula:</label>
                         <select class="form-select" asp-for="Muni_Codigo">
                             <option>-- Municipio --</option>
                         </select>
                         <span asp-validation-for="Muni_Codigo" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-3">
                     <div class="form-group col">
-                        <label class="control-label">Partido al que pertenece:</label>
-                        <input asp-for="Part_Id" class="form-control" />
-                        <span asp-validation-for="Part_Id" class="text-danger"></span>
+                        <label class="mb-2" style="color: #3dbdd9">Partido al que pertenece:</label>
+                        <select class="form-select" asp-for="Part_Id">
+                            <option>-- Partido --</option>
+                            @*@foreach (var item in partidos)
+                            {
+                                <option value="@item.Part_Id">@item.Part_Descripcion</option>
+                            }*@
+                        </select>
                     </div>
                     <div class="form-group col">
-                        <label class="control-label">Fototografia del candidato: </label>
+                        <label class="mb-2" style="color: #3dbdd9">Fototografia del candidato: </label>
                         <input asp-for="Alca_Imagen" type="hidden" class="form-control" />
-                        <input type="file" class="form-control" />
+                        <input id="inputAlcalde" type="file" class="form-control" />
                         <span asp-validation-for="Alca_Imagen" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="d-flex justify-content-around mt-4 align-items-center">
+                <div class="d-flex justify-content-end mt-4 align-items-center">
+                    <img id="imgAlca_Imagen" src="" class="d-none rounded" style="max-width: 400px"/>
+                </div>
+                <div class="d-flex justify-content-end mt-4 align-items-center" style="gap: 10px;">
                     <a asp-action="Index" class="btn btn-outline-primary"><i class="bi bi-x"></i> Cancelar</a>
                     <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar</button>
                 </div>
@@ -113,6 +122,41 @@
                     console.error(`Error al cargar los municipios del departamento:${ddlDepartamentos.value}`, errorThrown);
                 }
             });
+        })
+
+        const inputAlcalde = document.getElementById("inputAlcalde");
+        const Alca_Id = document.getElementById("Alca_Id");
+        const Alca_Imagen = document.getElementById("Alca_Imagen");
+        const imgAlca_Imagen = document.getElementById("imgAlca_Imagen");
+        inputAlcalde.addEventListener("change", () => {
+            if (Alca_Id.value && inputAlcalde.files[0]) {
+                const formData = new FormData();
+                formData.append("Imagen", inputAlcalde.files[0])
+                formData.append("Alca_Id", Alca_Id.value)
+                $.ajax({
+                    url: `/Alcalde/SubirImagen`,
+                    method: "POST",
+                    contentType: false,
+                    data: formData,
+                    processData: false,
+                    success: function (response) {
+                        console.log(response, "response");
+                        iziToast.success({
+                            title: 'Éxito',
+                            message: response.message,
+                            position: 'topRight',
+                            transitionIn: 'flipInX',
+                            transitionOut: 'flipOutX'
+                        });
+                        Alca_Imagen.value = response.urlImagen;
+                        imgAlca_Imagen.setAttribute("src", response.urlImagen);
+                        imgAlca_Imagen.classList.remove("d-none");
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error(`Error al cargar la imagen del alcalde`, errorThrown);
+                    }
+                });
+            }
         })
     </script>
     @section Scripts {

@@ -4,22 +4,55 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
     public class AlcaldeController : Controller
     {
-        public AlcaldeServicios _alcaldeServicios;
-        public VotanteServicios _votanteServicios;
-        public DepartamentoServicios _departamentoServicios;
-        
-        public AlcaldeController(AlcaldeServicios alcaldeServicios, VotanteServicios votanteServicios, DepartamentoServicios departamentoServicios)
+        private readonly AlcaldeServicios _alcaldeServicios;
+        private readonly VotanteServicios _votanteServicios;
+        private readonly DepartamentoServicios _departamentoServicios;
+        private readonly IWebHostEnvironment _hostingEnviroment;
+
+
+        public AlcaldeController(AlcaldeServicios alcaldeServicios, VotanteServicios votanteServicios, DepartamentoServicios departamentoServicios, IWebHostEnvironment hostingEnviroment)
         {
             _alcaldeServicios = alcaldeServicios;
             _votanteServicios = votanteServicios;
             _departamentoServicios = departamentoServicios;
+            _hostingEnviroment = hostingEnviroment;
+        }
+        [HttpPost]
+        public async Task<IActionResult> SubirImagen(IFormCollection formData, IFormFile imagen)
+        {
+            try
+            {
+                if (imagen != null && imagen.Length > 0)
+                {
+                    var Alca_Id = formData["Alca_Id"];
+                    var nombreDeLaImagen = $"Alcalde_{Alca_Id}.jpg";
+                    var rutaCarpeta = Path.Combine(_hostingEnviroment.WebRootPath, "assets", "alcaldes");
+                    var rutaImagen = Path.Combine(rutaCarpeta, nombreDeLaImagen);
+                    using (var fileStream = new FileStream(rutaImagen,FileMode.Create))
+                    {
+                        await imagen.CopyToAsync(fileStream);
+                    }
+                    var result = await _alcaldeServicios.SubirImagen(rutaImagen);
+                    return Json( new { message= result.Message, urlImagen= result.Data });
+                }
+                else
+                {
+                    return Json("No se recibió ninguna imagen");
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json("Error de capa 8");
+            }
         }
         [HttpGet("[controller]/ObtenerVotantePorDNI/{Vota_DNI}")]
         public async Task<IActionResult> ObtenerVotantePorDNI(string Vota_DNI)
