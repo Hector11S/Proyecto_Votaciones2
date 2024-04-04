@@ -193,7 +193,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         var result = new ServiceResult();
         try
         {
-            var votante = _votanteRepository.BuscarVotantePorDNI(dni); 
+            var votante = _votanteRepository.BuscarPorDNI(dni); 
             if (votante == null)
             {
                 return result.Ok(false); 
