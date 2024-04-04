@@ -88,5 +88,8 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _generalServices.EliminarVotante(modelo.Vota_Id);
             return Ok(list);
         }
+
+   
+
     }
 }
