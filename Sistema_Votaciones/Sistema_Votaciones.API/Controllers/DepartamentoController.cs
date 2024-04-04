@@ -17,16 +17,12 @@ namespace Sistema_Votaciones.API.Controllers
         private readonly IMapper _mapper;
 
         public DepartamentoController(GeneralServices GeneralServices, IMapper mapper)
-
         {
-
             _generalServices = GeneralServices;
             _mapper = mapper;
-
         }
 
         [HttpGet("API/[controller]/List")]
-
         public IActionResult List()
         {
 

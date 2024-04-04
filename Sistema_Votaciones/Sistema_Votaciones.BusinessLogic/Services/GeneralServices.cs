@@ -13,14 +13,15 @@ namespace Sistema_Votaciones.BusinessLogic.Services
     {
 
         private readonly DepartamentoRepository _departamentosRepository;
-
+        private readonly VotanteRepository _votanteRepository;
 
         public GeneralServices(
-               DepartamentoRepository departamentosRepository)
+               DepartamentoRepository departamentosRepository,
+               VotanteRepository votanteRepository)
 
         {
             _departamentosRepository = departamentosRepository;
-
+            _votanteRepository = votanteRepository;
         }
 
 
@@ -114,6 +115,21 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             }
         }
         #endregion
+        #region Votantes
+        public ServiceResult FindVotante(string Vota_DNI)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var votante = _votanteRepository.Find(Vota_DNI);
 
+                return result.Ok(votante);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        #endregion
     }
 }

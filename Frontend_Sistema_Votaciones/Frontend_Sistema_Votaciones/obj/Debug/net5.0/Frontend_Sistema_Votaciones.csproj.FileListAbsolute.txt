@@ -366,3 +366,13 @@ C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\
 C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Frontend_Sistema_Votaciones.genruntimeconfig.cache
 C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Alcalde\Create.cshtml.g.cs
 C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Alcalde\Index.cshtml.g.cs
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\bin\Debug\net5.0\Azure.Core.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\bin\Debug\net5.0\Azure.Storage.Blobs.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\bin\Debug\net5.0\Azure.Storage.Common.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\bin\Debug\net5.0\System.IO.Hashing.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\bin\Debug\net5.0\System.Memory.Data.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Frontend_Sistema_Votaciones.csproj.AssemblyReference.cache
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Alcalde\Create.cshtml.g.cs
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Alcalde\Index.cshtml.g.cs

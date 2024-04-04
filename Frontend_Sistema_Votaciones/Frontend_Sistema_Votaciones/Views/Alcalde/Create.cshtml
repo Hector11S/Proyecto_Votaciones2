@@ -1,6 +1,7 @@
 ﻿@model Frontend_Sistema_Votaciones.Models.AlcaldeViewModel
 
 @{
+    var departamentos = ViewBag.Departamentos;
     ViewData["Title"] = "Create";
 }
 
@@ -14,44 +15,52 @@
 <div class="card m-2 mt-4 p-3" style="overflow-x: auto">
     <div class="row">
         <div class="col">
-            <form asp-action="Create" class="row">
+            <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="col">
-                    <div class="form-group">
+                <div class="row">
+                    <div class="form-group col">
                         <label class="control-label">Buscar por numero de identidad:</label>
-                        <input asp-for="Alca_Id" class="form-control" />
+                        <input asp-for="Alca_Id" type="hidden" class="form-control" />
+                        <input id="txtDNI" type="text" class="form-control" />
                         <span asp-validation-for="Alca_Id" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label">Partido al que pertenece:</label>
-                        <input asp-for="Part_Id" class="form-control" />
-                        <span asp-validation-for="Part_Id" class="text-danger"></span>
+                    <div class="form-group col">
+                        <label class="control-label">Nombre completo:</label>
+                        <input id="txtNombreVotante" class="form-control" disabled/>
+                        <span class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-group">
+                <div class="row">
+                    <div class="form-group col">
                         <label class="control-label">Departamento: </label>
-                        <select class="form-control">
-                            <option>-- Departamento --</option>
+                        <select id="ddlDepartamentos" class="form-select">
+                            <option value="">-- Departamento --</option>
+                            @foreach (var item in departamentos)
+                            {
+                                <option value="@item.Dept_Codigo">@item.Dept_Descripcion</option>
+                            }
                         </select>
                         <span class="text-danger"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col">
                         <label asp-for="Muni_Codigo" class="control-label">Municipio al que se postula:</label>
-                        <select class="form-control" asp-for="Muni_Codigo">
-                            <option>-- Departamento --</option>
+                        <select class="form-select" asp-for="Muni_Codigo">
+                            <option>-- Municipio --</option>
                         </select>
                         <span asp-validation-for="Muni_Codigo" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label class="control-label">Fototografia del candidato: </label>
-                            <input asp-for="Alca_Imagen" type="hidden" class="form-control" />
-                            <input type="file" class="form-control" />
-                            <span asp-validation-for="Alca_Imagen" class="text-danger"></span>
-                        </div>
+                    <div class="form-group col">
+                        <label class="control-label">Partido al que pertenece:</label>
+                        <input asp-for="Part_Id" class="form-control" />
+                        <span asp-validation-for="Part_Id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col">
+                        <label class="control-label">Fototografia del candidato: </label>
+                        <input asp-for="Alca_Imagen" type="hidden" class="form-control" />
+                        <input type="file" class="form-control" />
+                        <span asp-validation-for="Alca_Imagen" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="d-flex justify-content-around mt-4 align-items-center">
@@ -62,6 +71,50 @@
         </div>
     </div>
 
+    <script>
+        const txtNombreVotante = document.getElementById("txtNombreVotante");
+
+        const txtDNI = document.getElementById("txtDNI");
+        txtDNI.addEventListener("input", () => {
+            const val = txtDNI.value.replace(/[^0-9]/g, '');
+            console.log(txtDNI.value.length);
+            if (txtDNI.value.length === 13) {
+                $.ajax({
+                    url: `/Alcalde/ObtenerVotantePorDNI/${txtDNI.value}`,
+                    method: "GET",
+                    success: function (votante) {
+                        console.log(votante, "votante")
+                        $('#Alca_Id').val(votante.vota_Id);
+                        txtNombreVotante.value = votante.vota_Nombre + " " + votante.vota_Apellidos;
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error("Error al cargar los datos del votante:", errorThrown);
+                    }
+                });
+            }
+        })
+
+        const ddlDepartamentos = document.getElementById("ddlDepartamentos");
+        const ddlMunicipios = document.getElementById("ddlMunicipios");
+        ddlDepartamentos.addEventListener("change", () => {
+            console.log(ddlDepartamentos.value);
+            $.ajax({
+                url: `/Alcalde/ObtenerMunicipiosPorDept/${ddlDepartamentos.value}`,
+                method: "GET",
+                success: function (municipios) {
+                    console.log(municipios, "municipios");
+                    municipios.foreach(muni => {
+                        const newOptionElement = document.createElement("option");
+                        newOptionElement.value = muni.muni_Codigo;
+                        newOptionElement.textContent = muni.muni_Descripcion;
+                    })
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(`Error al cargar los municipios del departamento:${ddlDepartamentos.value}`, errorThrown);
+                }
+            });
+        })
+    </script>
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }

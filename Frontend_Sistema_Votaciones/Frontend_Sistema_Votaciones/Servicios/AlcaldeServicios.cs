@@ -1,7 +1,9 @@
-﻿using Frontend_Sistema_Votaciones.Models;
+﻿using Azure.Storage.Blobs;
+using Frontend_Sistema_Votaciones.Models;
 using Frontend_Sistema_Votaciones.WebAPI;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,10 +12,34 @@ namespace Frontend_Sistema_Votaciones.Servicios
     public class AlcaldeServicios
     {
         private readonly API _api;
+        private readonly BlobStorage _blobStorage;
 
-        public AlcaldeServicios(API api)
+        public AlcaldeServicios(API api, BlobStorage blobStorage)
         {
             _api = api;
+            _blobStorage = blobStorage;
+        }
+        public async Task<ServiceResult> SubirImagen(string localFilePath)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _blobStorage.UploadFromBinaryDataAsync(localFilePath);
+                //if (!response.Success)
+                //{
+                //    return result.FromApi(response);
+                //}
+                //else
+                //{
+                //    return result.Ok(response.Data);
+                //}
+                return result.Ok("Testing blob storage");
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
         }
         public async Task<ServiceResult> ObtenerAlcaldeList()
         {

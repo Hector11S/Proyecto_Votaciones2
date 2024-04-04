@@ -12,9 +12,27 @@ namespace Frontend_Sistema_Votaciones.Controllers
     public class AlcaldeController : Controller
     {
         public AlcaldeServicios _alcaldeServicios;
-        public AlcaldeController(AlcaldeServicios alcaldeServicios)
+        public VotanteServicios _votanteServicios;
+        public DepartamentoServicios _departamentoServicios;
+        
+        public AlcaldeController(AlcaldeServicios alcaldeServicios, VotanteServicios votanteServicios, DepartamentoServicios departamentoServicios)
         {
             _alcaldeServicios = alcaldeServicios;
+            _votanteServicios = votanteServicios;
+            _departamentoServicios = departamentoServicios;
+        }
+        [HttpGet("[controller]/ObtenerVotantePorDNI/{Vota_DNI}")]
+        public async Task<IActionResult> ObtenerVotantePorDNI(string Vota_DNI)
+        {
+            try
+            {
+                var model = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
+                return Json(model.Data);
+            }
+            catch (Exception ex)
+            {
+                return Json("Error de capa 8");
+            }
         }
         public async Task<IActionResult> Index()
         {
@@ -45,8 +63,17 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
         }
 
-        public ActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            try
+            {
+                var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
+                ViewBag.Departamentos = departamentosList.Data;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
             return View();
         }
 

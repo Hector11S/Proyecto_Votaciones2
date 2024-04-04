@@ -30,5 +30,9 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string VotosPorMesas_Editar = "[Vota].[SP_VotosPorMesas_Editar]";
         public static string VotosPorMesas_Eliminar = "[Vota].[SP_VotosPorMesas_Eliminar]";
         #endregion
+
+        #region Votantes
+        public static string Vota_Llenar = "[Gral].[SP_Votantes_Llenar]";
+        #endregion
     }
 }
