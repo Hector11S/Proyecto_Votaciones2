@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GnaVOtDfU61KpF+KO5a3BYfnzM+fFTyL29W6GyVThWcI0ISXtGdy0iNlVg/IH9y75ODvh+Mq02KL9aomdZIsNg==",
+  "dgSpecHash": "ykfztCDndM504Y3pZhrnVPdlpKvGYD8HH9yV8dvqcp8GPVteYiX6u4hZkK91I5hPXKIgY79gDxrsVtONmiUlCw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
+  "projectFilePath": "C:\\Users\\test\\OneDrive\\Escritorio\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\test\\.nuget\\packages\\humanizer.core\\2.2.0\\humanizer.core.2.2.0.nupkg.sha512",
     "C:\\Users\\test\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
