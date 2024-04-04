@@ -35,6 +35,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Votantes_Insertar = "[Gral].[SP_Votantes_Insertar]";
         public static string Votantes_Editar = "[Gral].[SP_Votantes_Editar]";
         public static string Votantes_Eliminar = "[Gral].[SP_Votantes_Eliminar]";
+        public static string Votante_BuscarPorDNI = "[Gral].[SP_Votantes_BuscarPorDNI]";
         #endregion
     }
 }

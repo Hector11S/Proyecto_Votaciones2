@@ -188,6 +188,28 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             }
         }
 
+         public ServiceResult BuscarVotantePorDNI(string dni)
+    {
+        var result = new ServiceResult();
+        try
+        {
+            var votante = _votanteRepository.BuscarVotantePorDNI(dni); 
+            if (votante == null)
+            {
+                return result.Ok(false); 
+            }
+            else
+            {
+                return result.Ok(votante.Vota_YaVoto);
+            }
+        }
+        catch (Exception ex)
+        {
+            return result.Error("Error al buscar el votante por DNI");
+        }
+    }
+
+
         #endregion
     }
 }

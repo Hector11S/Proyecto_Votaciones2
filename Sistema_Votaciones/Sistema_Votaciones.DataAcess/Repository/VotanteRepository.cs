@@ -87,5 +87,18 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
         }
+
+
+        public int BuscarVotantePorDNI(string dni)
+        {
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@Vota_DNI", dni);
+
+                return db.ExecuteScalar<int>(ScriptsBaseDeDatos.Votante_BuscarPorDNI, parameter, commandType: CommandType.StoredProcedure);
+            }
+        }
+
     }
 }

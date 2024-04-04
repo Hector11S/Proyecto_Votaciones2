@@ -89,37 +89,6 @@ namespace Frontend_Sistema_Votaciones.Controllers
         }
 
 
-
-        // POST: DepartamentosController/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //GET: DepartamentosController/Delete/5
-        //public ActionResult Delete()
-        //{
-        //    try
-        //    {
-        //        return View();
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        return RedirectToAction("Index");
-        //    }
-        //}
-
-
         // POST: DepartamentosController/DeleteConfirmed
         [HttpPost("/Departamento/DeleteConfirmed")]
         [ValidateAntiForgeryToken]
@@ -148,6 +117,29 @@ namespace Frontend_Sistema_Votaciones.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<IActionResult> BuscarVotante(string dni)
+        {
+            try
+            {
+                var existeVotante = await _departamentoServicios.ExisteVotante(dni);
+                if (existeVotante)
+                {
+
+                    return Json(new { redirectUrl = Url.Action("Votar", "Votacion", new { dni = dni }) });
+                }
+                else
+                {
+
+                    return Json(new { redirectUrl = Url.Action("Registro", "Votante", new { dni = dni }) });
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return Json(new { error = ex.Message });
+            }
+        }
 
 
     }

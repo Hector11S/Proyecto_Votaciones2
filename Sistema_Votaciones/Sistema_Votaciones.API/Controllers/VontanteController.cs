@@ -17,7 +17,6 @@ namespace Sistema_Votaciones.API.Controllers
         private readonly IMapper _mapper;
 
         public VontanteController(GeneralServices GeneralServices, IMapper mapper)
-
         {
 
             _generalServices = GeneralServices;
@@ -89,7 +88,11 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
-   
-
+        [HttpGet("API/[controller]/Buscar")]
+        public IActionResult BuscarVotantePorDNI(string dni)
+        {
+            var result = _generalServices.BuscarVotantePorDNI(dni);
+            return Ok(result);
+        }
     }
 }

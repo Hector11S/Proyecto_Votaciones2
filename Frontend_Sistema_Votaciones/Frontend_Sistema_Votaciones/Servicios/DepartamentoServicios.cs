@@ -115,6 +115,22 @@ namespace Frontend_Sistema_Votaciones.Servicios
         }
 
 
+        public async Task<bool> ExisteVotante(string dni)
+        {
+            try
+            {
+                var response = await _api.Get<bool, bool>(req =>
+                {
+                    req.Path = $"API/Votante/ExisteVotante?dni={dni}";
+                });
+                return response.Data;
+            }
+            catch (Exception ex)
+            {  
+                throw;
+            }
+        }
+
 
     }
 }
