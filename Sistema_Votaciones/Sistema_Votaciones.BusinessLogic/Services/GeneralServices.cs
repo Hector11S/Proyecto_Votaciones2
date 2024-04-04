@@ -13,13 +13,16 @@ namespace Sistema_Votaciones.BusinessLogic.Services
     {
 
         private readonly DepartamentoRepository _departamentosRepository;
+        private readonly VotanteRepository _votanteRepository;
 
 
         public GeneralServices(
-               DepartamentoRepository departamentosRepository)
+               DepartamentoRepository departamentosRepository,
+               VotanteRepository votanteRepository)
 
         {
             _departamentosRepository = departamentosRepository;
+            _votanteRepository = votanteRepository;
 
         }
 
@@ -102,37 +105,89 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-        //public IEnumerable<tbMunicipios> ObtenerDeptoID(string Dept_Id)
-        //{
-        //    return _departamentosRepository.GetMunicipiosPorDepartamento(Dept_Id);
-        //}
 
-        //public tbDepartamentos ObtenerDetallesDepto(string Dept_Id)
-        //{
-        //    return _departamentosRepository.GetById(Dept_Id);
-        //}
-
-
-        //public IEnumerable<tbMunicipios> ObtenerMunicipiosPorDepartamento(string Dept_Id)
-        //{
-        //    return _departamentosRepository.GetMunicipiosPorDepartamento(Dept_Id);
-        //}
-
-
-        //public IEnumerable<tbMunicipios> ObtenerMunicipiosPorDepartamento(string Dept_Id)
-        //{
-        //    try
-        //    {
-
-        //        return _municipioRepository.ObtenerMunicipiosPorDepartamento(Dept_Id);
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        return Enumerable.Empty<tbMunicipios>();
-        //    }
-        //}
         #endregion
 
+
+        #region Votantes
+        public ServiceResult ListVotante()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votanteRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult CrearVotante(tbVotantes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votanteRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe ese Votante" : list.MessageStatus;
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult EditarVotante(tbVotantes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votanteRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un vontante con ese nombre" : list.MessageStatus;
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult EliminarVotante(int Vota_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votanteRepository.Delete(Vota_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Vontante a eliminar" : list.MessageStatus;
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        #endregion
     }
 }
