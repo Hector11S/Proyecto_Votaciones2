@@ -10,18 +10,6 @@ C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\De
 C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.dll
 C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\ref\Sistema_Votaciones.Entities.dll
 C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.pdb
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\bin\Debug\net5.0\Sistema_Votaciones.Entities.deps.json
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\bin\Debug\net5.0\ref\Sistema_Votaciones.Entities.dll
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.csproj.AssemblyReference.cache
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.AssemblyInfoInputs.cache
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.AssemblyInfo.cs
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.csproj.CoreCompileInputs.cache
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.dll
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\ref\Sistema_Votaciones.Entities.dll
-C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.pdb
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\bin\Debug\net5.0\Sistema_Votaciones.Entities.deps.json
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\bin\Debug\net5.0\ref\Sistema_Votaciones.Entities.dll
@@ -46,3 +34,14 @@ C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entiti
 C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.dll
 C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\ref\Sistema_Votaciones.Entities.dll
 C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\bin\Debug\net5.0\Sistema_Votaciones.Entities.deps.json
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\bin\Debug\net5.0\ref\Sistema_Votaciones.Entities.dll
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.AssemblyInfoInputs.cache
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.AssemblyInfo.cs
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.csproj.CoreCompileInputs.cache
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\ref\Sistema_Votaciones.Entities.dll
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.Entities\obj\Debug\net5.0\Sistema_Votaciones.Entities.pdb

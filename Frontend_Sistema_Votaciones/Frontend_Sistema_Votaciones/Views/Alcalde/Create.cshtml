@@ -22,7 +22,7 @@
                     <div class="form-group col">
                         <label class="mb-2" style="color: #3dbdd9">Buscar por numero de identidad:</label>
                         <input asp-for="Alca_Id" type="hidden" class="form-control" />
-                        <input id="txtDNI" type="text" class="form-control" />
+                        <input id="txtDNI" type="text" class="form-control" placeholder="0501200504202"/>
                         <span asp-validation-for="Alca_Id" class="text-danger"></span>
                     </div>
                     <div class="form-group col">
@@ -69,12 +69,12 @@
                         <span asp-validation-for="Alca_Imagen" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="d-flex justify-content-end mt-4 align-items-center">
+                <div class="d-flex justify-content-center mt-4 align-items-center">
                     <img id="imgAlca_Imagen" src="" class="d-none rounded" style="max-width: 400px"/>
                 </div>
-                <div class="d-flex justify-content-end mt-4 align-items-center" style="gap: 10px;">
-                    <a asp-action="Index" class="btn btn-outline-primary"><i class="bi bi-x"></i> Cancelar</a>
+                <div class="d-flex justify-content-end mt-4 align-items-center">
                     <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar</button>
+                    <a asp-action="Index" class="btn btn-outline-primary ml-3"><i class="bi bi-x"></i> Cancelar</a>
                 </div>
             </form>
         </div>
@@ -86,15 +86,27 @@
         const txtDNI = document.getElementById("txtDNI");
         txtDNI.addEventListener("input", () => {
             const val = txtDNI.value.replace(/[^0-9]/g, '');
-            console.log(txtDNI.value.length);
+            txtDNI.value = val;
             if (txtDNI.value.length === 13) {
                 $.ajax({
                     url: `/Alcalde/ObtenerVotantePorDNI/${txtDNI.value}`,
                     method: "GET",
-                    success: function (votante) {
-                        console.log(votante, "votante")
-                        $('#Alca_Id').val(votante.vota_Id);
-                        txtNombreVotante.value = votante.vota_Nombre + " " + votante.vota_Apellidos;
+                    success: function (response) {
+                        console.log(response, "ObtenerVotantePorDNI");
+                        if (response.votante) {
+                            $('#Alca_Id').val(response.votante.vota_Id);
+                            txtNombreVotante.value = response.votante.vota_Nombre + " " + response.votante.vota_Apellidos;
+                        } else {
+                            iziToast.warning({
+                                title: 'No encontrado',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                            $('#Alca_Id').val("");
+                            txtNombreVotante.value =" ";
+                        }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.error("Error al cargar los datos del votante:", errorThrown);
@@ -104,19 +116,29 @@
         })
 
         const ddlDepartamentos = document.getElementById("ddlDepartamentos");
-        const ddlMunicipios = document.getElementById("ddlMunicipios");
+        const ddlMunicipios = document.getElementById("Muni_Codigo");
         ddlDepartamentos.addEventListener("change", () => {
-            console.log(ddlDepartamentos.value);
             $.ajax({
                 url: `/Alcalde/ObtenerMunicipiosPorDept/${ddlDepartamentos.value}`,
                 method: "GET",
-                success: function (municipios) {
-                    console.log(municipios, "municipios");
-                    municipios.foreach(muni => {
-                        const newOptionElement = document.createElement("option");
-                        newOptionElement.value = muni.muni_Codigo;
-                        newOptionElement.textContent = muni.muni_Descripcion;
-                    })
+                success: function (response) {
+                    console.log(response, "ObtenerMunicipiosPorDept");
+                    if (response.municipios) {
+                        response.municipios.forEach(muni => {
+                            const newOptionElement = document.createElement("option");
+                            newOptionElement.value = muni.muni_Codigo;
+                            newOptionElement.textContent = muni.muni_Descripcion;
+                            ddlMunicipios.append(newOptionElement);
+                        })
+                    } else {
+                        iziToast.warning({
+                            title: 'No encontrado',
+                            message: response.message,
+                            position: 'topRight',
+                            transitionIn: 'flipInX',
+                            transitionOut: 'flipOutX'
+                        });
+                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.error(`Error al cargar los municipios del departamento:${ddlDepartamentos.value}`, errorThrown);

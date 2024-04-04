@@ -32,6 +32,7 @@ namespace Frontend_Sistema_Votaciones
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddControllersWithViews();
             services.AddScoped<DepartamentoServicios>();
+            services.AddScoped<MunicipioServicios>();
             services.AddScoped<AlcaldeServicios>();
             services.AddScoped<VotanteServicios>();
             services.AddScoped<BlobStorage>();

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj": {}
+    "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj": {}
   },
   "projects": {
-    "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj": {
+    "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj",
+        "projectUniqueName": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj",
         "projectName": "Sistema_Votaciones.Entities",
-        "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj",
+        "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\Sistema_Votaciones.Entities.csproj",
         "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-        "outputPath": "C:\\repositorio\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\obj\\",
+        "outputPath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AYIjSJAYRTeuhfVwbQ9GZeNj0JEG3UtbgBh98XR2PF308kGKcZJJ8MrIBv5wsl+bOMWavnp1fpbWvLpFogFf9w==",
+  "dgSpecHash": "sOD+tlrsGec9jOBQwA//iICTiQZlMYA9wNcmCQ6+dBcPap2BblQ00SnwpC0wUEUNIi+7ZLRvgl4LrkDzpcDA3g==",
   "success": true,
-  "projectFilePath": "C:\\repositorio\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
+  "projectFilePath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAB1\\.nuget\\packages\\azure.core\\1.36.0\\azure.core.1.36.0.nupkg.sha512",
     "C:\\Users\\LAB1\\.nuget\\packages\\azure.storage.blobs\\12.19.1\\azure.storage.blobs.12.19.1.nupkg.sha512",

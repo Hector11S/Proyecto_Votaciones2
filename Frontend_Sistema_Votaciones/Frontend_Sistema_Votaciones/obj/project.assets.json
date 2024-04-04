@@ -6518,11 +6518,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\repositorio\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
+      "projectUniqueName": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
       "projectName": "Frontend_Sistema_Votaciones",
-      "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
+      "projectPath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
       "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-      "outputPath": "C:\\repositorio\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\obj\\",
+      "outputPath": "C:\\Users\\LAB1\\Documents\\GitHub\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",

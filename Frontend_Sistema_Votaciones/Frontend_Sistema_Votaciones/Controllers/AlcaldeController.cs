@@ -16,14 +16,23 @@ namespace Frontend_Sistema_Votaciones.Controllers
         private readonly AlcaldeServicios _alcaldeServicios;
         private readonly VotanteServicios _votanteServicios;
         private readonly DepartamentoServicios _departamentoServicios;
+        private readonly MunicipioServicios _municipioServicios;
+        private readonly PartidoServicios _partidoServicios;
         private readonly IWebHostEnvironment _hostingEnviroment;
 
 
-        public AlcaldeController(AlcaldeServicios alcaldeServicios, VotanteServicios votanteServicios, DepartamentoServicios departamentoServicios, IWebHostEnvironment hostingEnviroment)
+        public AlcaldeController(
+            AlcaldeServicios alcaldeServicios, 
+            VotanteServicios votanteServicios, 
+            DepartamentoServicios departamentoServicios,
+            MunicipioServicios municipioServicios,
+            PartidoServicios partidoServicios,
+            IWebHostEnvironment hostingEnviroment)
         {
             _alcaldeServicios = alcaldeServicios;
             _votanteServicios = votanteServicios;
             _departamentoServicios = departamentoServicios;
+            _municipioServicios = municipioServicios;
             _hostingEnviroment = hostingEnviroment;
         }
         [HttpPost]
@@ -59,8 +68,21 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                var model = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
-                return Json(model.Data);
+                var reponse = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
+                return Json( new { votante = reponse.Data, message= reponse.Message });
+            }
+            catch (Exception ex)
+            {
+                return Json("Error de capa 8");
+            }
+        }
+        [HttpGet("[controller]/ObtenerMunicipiosPorDept/{Dept_Codigo}")]
+        public async Task<IActionResult> ObtenerMunicipios(string Dept_Codigo)
+        {
+            try
+            {
+                var response = await _municipioServicios.ObtenerMunicipiosList(Dept_Codigo);
+                return Json(new { municipios = response.Data, message = response.Message });
             }
             catch (Exception ex)
             {
@@ -101,7 +123,9 @@ namespace Frontend_Sistema_Votaciones.Controllers
             try
             {
                 var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
+                var partidosList = await _partidoServicios.ObtenerPartidoList();
                 ViewBag.Departamentos = departamentosList.Data;
+                ViewBag.Partidos = partidosList.Data;
             }
             catch (Exception ex)
             {
