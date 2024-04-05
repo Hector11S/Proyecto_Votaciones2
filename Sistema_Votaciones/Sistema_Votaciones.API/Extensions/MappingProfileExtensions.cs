@@ -13,6 +13,7 @@ namespace Sistema_Votaciones.API.Extensions
         public MappingProfileExtensions()
         {
             CreateMap<DepartamentoViewModel, tbDepartamentos>().ReverseMap();
+            CreateMap<MunicipioViewModel, tbMunicipios>().ReverseMap();
 
             CreateMap<AlcaldeViewModel, tbAlcaldes>().ReverseMap();
 

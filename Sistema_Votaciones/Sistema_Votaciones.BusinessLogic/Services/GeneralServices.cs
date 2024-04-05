@@ -218,18 +218,78 @@ namespace Sistema_Votaciones.BusinessLogic.Services
 
 
         #region Votantes
-        public ServiceResult FindVotante(string Vota_DNI)
+        public ServiceResult ListVotante()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votanteRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult BuscarVotantePorDNI(string Vota_DNI)
         {
             var result = new ServiceResult();
             try
             {
                 var votante = _votanteRepository.Find(Vota_DNI);
-                
-                return result.Ok(votante);
+                if (votante != null)
+                {
+                    return result.Ok(votante);
+                }
+                else
+                {
+                    return result.Error("No se encontró una persona con ese DNI");
+                }
             }
             catch (Exception ex)
             {
                 return result.Error("No se encontró una persona con ese DNI");
+            }
+        }
+        public ServiceResult CrearVotante(tbVotantes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _votanteRepository.Insert(item);
+                if (response.CodeStatus > 0)
+                {
+                    return result.Ok("Persona agregada con exito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe un registro de esta persona");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult EditarVotante(tbVotantes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _votanteRepository.Update(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok($"Persona {item.Muni_Codigo} editada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe una persona con ese DNI");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
             }
         }
         #endregion

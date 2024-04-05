@@ -23,7 +23,7 @@ namespace Sistema_Votaciones.API.Controllers
         public IActionResult Find(string Vota_DNI)
         {
 
-            var list = _generalServices.FindVotante(Vota_DNI);
+            var list = _generalServices.BuscarVotantePorDNI(Vota_DNI);
             return Ok(list);
         }
     }
