@@ -160,7 +160,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             try
             {
                 var response = _municipioRepository.Insert(item);
-                if (response.CodeStatus > 0)
+                if (response.CodeStatus == 1)
                 {
                     return result.Ok("Municipio creado con exito", response);
                 }

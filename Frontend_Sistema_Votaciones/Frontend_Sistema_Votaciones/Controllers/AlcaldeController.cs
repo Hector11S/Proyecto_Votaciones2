@@ -33,6 +33,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             _votanteServicios = votanteServicios;
             _departamentoServicios = departamentoServicios;
             _municipioServicios = municipioServicios;
+            _partidoServicios = partidoServicios;
             _hostingEnviroment = hostingEnviroment;
         }
         [HttpPost]
@@ -43,7 +44,8 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 if (imagen != null && imagen.Length > 0)
                 {
                     var Alca_Id = formData["Alca_Id"];
-                    var nombreDeLaImagen = $"Alcalde_{Alca_Id}.jpg";
+                    var extensionDeLaImagen = imagen.FileName.Split('.')[1];
+                    var nombreDeLaImagen = $"Alcalde_{Alca_Id}.{extensionDeLaImagen}";
                     var rutaCarpeta = Path.Combine(_hostingEnviroment.WebRootPath, "assets", "alcaldes");
                     var rutaImagen = Path.Combine(rutaCarpeta, nombreDeLaImagen);
                     using (var fileStream = new FileStream(rutaImagen,FileMode.Create))
