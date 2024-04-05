@@ -15,6 +15,7 @@ namespace Frontend_Sistema_Votaciones.WebAPI
         public string Message { get; set; }
     }
 
+
     public class ApiResult<T> : IApiResult
     {
         public HttpStatusCode StatusCode { get; set; }
