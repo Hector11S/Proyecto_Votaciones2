@@ -10,7 +10,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
 {
     public class VotanteController : Controller
     {
-        public VotanteServicios _votanteServicios;
+        private readonly VotanteServicios _votanteServicios;
         public VotanteController(VotanteServicios votanteServicios)
         {
             _votanteServicios = votanteServicios;

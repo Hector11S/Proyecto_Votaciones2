@@ -7463,19 +7463,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP GAMING JAFET\\.nuget\\packages\\": {}
+    "C:\\Users\\test\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj",
+      "projectUniqueName": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj",
       "projectName": "Sistema_Votaciones.API",
-      "projectPath": "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj",
-      "packagesPath": "C:\\Users\\HP GAMING JAFET\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\obj\\",
+      "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\Sistema_Votaciones.API.csproj",
+      "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HP GAMING JAFET\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7483,21 +7483,20 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj": {
-              "projectPath": "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj"
+            "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj": {
+              "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.BusinessLogic\\Sistema_Votaciones.BusinessLogic.csproj"
             },
-            "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj": {
-              "projectPath": "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj"
+            "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj": {
+              "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.Common\\Sistema_Votaciones.Common.csproj"
             },
-            "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj": {
-              "projectPath": "C:\\Users\\HP GAMING JAFET\\Documents\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj"
+            "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj": {
+              "projectPath": "C:\\Users\\test\\OneDrive\\Documentos\\GitHub\\Proyecto_Votaciones2\\Sistema_Votaciones\\Sistema_Votaciones.DataAcess\\Sistema_Votaciones.DataAcess.csproj"
             }
           }
         }

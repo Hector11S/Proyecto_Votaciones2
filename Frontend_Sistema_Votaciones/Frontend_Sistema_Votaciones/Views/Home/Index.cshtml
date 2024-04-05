@@ -1,8 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Verificar Voto";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<header class="w-100 d-flex justify-content-center align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
+    <h2>Votar</h2>
+</header>
+<div class="card mt-4 mx-3 p-4">
+    <form asp-action="ObtenerVotantePorDNI" method="get">
+        <div class="form-group">
+            <label for="Vota_DNI">Ingrese su DNI:</label>
+            <input type="text" class="form-control my-3" id="Vota_DNI" name="Vota_DNI">
+        </div>
+        <button type="submit" class="btn btn-primary">Verificar</button>
+    </form>
 </div>

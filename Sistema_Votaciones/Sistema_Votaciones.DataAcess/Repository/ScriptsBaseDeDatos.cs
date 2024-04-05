@@ -25,14 +25,14 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Muni_Eliminar = "[Gral].[SP_Municipios_Eliminar]";
         #endregion
 
-        #region Partidos
+        #region Alcaldes
         public static string Alca_Listar = "[Vota].[SP_Alcaldes_Mostrar]";
         public static string Alca_Insertar = "[Vota].[SP_Alca_Insertar]";
         public static string Alca_Editar = "[Vota].[SP_Alca_Editar]";
         public static string Alca_Eliminar = "[Vota].[SP_Alca_Eliminar]";
         #endregion
 
-        #region Alcaldes
+        #region Partidos
         public static string Part_Listar = "[Vota].[SP_Partidos_Mostrar]";
         public static string Part_Insertar = "[Vota].[SP_Partidos_Insertar]";
         public static string Part_Editar = "[Vota].[SP_Partidos_Editar]";

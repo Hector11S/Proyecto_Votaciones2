@@ -238,6 +238,18 @@
                 });
             </text>
         }
+        @if (TempData["Advertencia"] != null)
+        {
+            <text>
+                iziToast.warning({
+                    title: 'Error',
+                    message: '@TempData["Advertencia"]',
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            </text>
+        }
     });
 
     $(document).ready(function () {

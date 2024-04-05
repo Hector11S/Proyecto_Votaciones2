@@ -21,13 +21,13 @@ namespace Sistema_Votaciones.BusinessLogic
             service.AddScoped<VotosPorMesasRepository>();
             service.AddScoped<VotanteRepository>();
             service.AddScoped<MunicipioRepository>();
-            //service.AddScoped<ColaboradorRepository>();
             //service.AddScoped<PantallaRepository>();
             //service.AddScoped<PantallaPorRolRepository>();
             //service.AddScoped<DispositivoRepository>();
             //service.AddScoped<EmpleadoRepository>();
             //service.AddScoped<EmpresaRepository>();
             //service.AddScoped<EstadoCivilRepository>();
+            //service.AddScoped<MunicipioRepository>();
             //service.AddScoped<PiezaRepository>();
             //service.AddScoped<ServicioRepository>();
             //service.AddScoped<SolicitudRepository>();
