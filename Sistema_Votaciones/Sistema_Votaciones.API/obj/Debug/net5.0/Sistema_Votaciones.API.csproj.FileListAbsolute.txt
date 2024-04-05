@@ -598,6 +598,10 @@ C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.API\obj\
 C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.API\obj\Debug\net5.0\ref\Sistema_Votaciones.API.dll
 C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.API\obj\Debug\net5.0\Sistema_Votaciones.API.pdb
 C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.API\obj\Debug\net5.0\Sistema_Votaciones.API.genruntimeconfig.cache
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\obj\Debug\net5.0\Sistema_Votaciones.API.AssemblyInfo.cs
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\appsettings.json
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\Sistema_Votaciones.API.exe
@@ -679,8 +683,6 @@ C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votacione
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
@@ -710,7 +712,6 @@ C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votacione
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
@@ -735,7 +736,6 @@ C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votacione
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\obj\Debug\net5.0\Sistema_Votaciones.API.csproj.AssemblyReference.cache
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\obj\Debug\net5.0\Sistema_Votaciones.API.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\obj\Debug\net5.0\Sistema_Votaciones.API.AssemblyInfoInputs.cache
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\obj\Debug\net5.0\Sistema_Votaciones.API.AssemblyInfo.cs
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\obj\Debug\net5.0\Sistema_Votaciones.API.csproj.CoreCompileInputs.cache
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\obj\Debug\net5.0\Sistema_Votaciones.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.API\obj\Debug\net5.0\Sistema_Votaciones.API.MvcApplicationPartsAssemblyInfo.cache
