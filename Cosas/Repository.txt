@@ -1,0 +1,181 @@
+Repository:
+
+using Dapper;
+using Microsoft.Data.SqlClient;
+using Sistema_Votaciones.BusinessLogic;
+using Sistema_Votaciones.DataAcces;
+using Sistema_Votaciones.Entities.Entities;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sistema_Votaciones.DataAcess.Repository
+{
+    public partial class VotanteRepository : IRepository<tbVotantes>
+    {
+        public int BuscarVotantePorDNI(string dni)
+        {
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@Vota_DNI", dni);
+
+                return db.ExecuteScalar<int>(ScriptsBaseDeDatos.Votante_BuscarPorDNI, parameter, commandType: CommandType.StoredProcedure);
+            }
+        }
+    }
+}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+General services:
+
+public class GeneralServices
+{
+    // Otros métodos del servicio
+
+    public ServiceResult BuscarVotantePorDNI(string dni)
+    {
+        var result = new ServiceResult();
+        try
+        {
+            var votante = _votanteRepository.BuscarPorDNI(dni); // Implementa este método en tu repositorio
+            if (votante == null)
+            {
+                return result.Ok(false); // El votante no fue encontrado
+            }
+            else
+            {
+                return result.Ok(votante.Vota_YaVoto); // Retorna si el votante ya votó o no
+            }
+        }
+        catch (Exception ex)
+        {
+            return result.Error("Error al buscar el votante por DNI");
+        }
+    }
+}
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+controller:
+
+[HttpGet("API/[controller]/Buscar")]
+public IActionResult BuscarVotantePorDNI(string dni)
+{
+    var result = _generalServices.BuscarVotantePorDNI(dni);
+    return Ok(result);
+}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Base de datos
+
+CREATE PROCEDURE [Gral].[SP_Votantes_BuscarPorDNI]
+    @Vota_DNI VARCHAR(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @YaVoto BIT;
+
+    SELECT @YaVoto = Vota_YaVoto
+    FROM [Gral].[tbVotantes]
+    WHERE Vota_DNI = @Vota_DNI;
+
+    IF @YaVoto IS NOT NULL
+        RETURN 1; -- El votante ya ha votado
+    ELSE
+        RETURN 0; -- El votante aún no ha votado
+END;
+
+++++++++++++++++++++++++++++++++++++++++
+Observaciones
+Asegúrate de ajustar los nombres de las tablas y los campos de acuerdo a tu esquema de base de datos.
+Reemplaza [Gral].[tbVotantes] con el nombre real de tu tabla de votantes.
+Verifica que el tipo de dato y la longitud de Vota_DNI en el procedimiento almacenado coincidan con la definición en tu base de datos.
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+Fronted
+<label for="dni">Ingrese su DNI:</label>
+<input type="text" id="dni" name="dni" required>
+<button id="btnBuscar">Buscar</button>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ajax
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#btnBuscar').click(function (e) {
+            e.preventDefault();
+            var dni = $('#dni').val();
+
+            $.ajax({
+                url: '/Departamento/BuscarVotante',
+                type: 'POST',
+                data: { dni: dni },
+                success: function (response) {
+                    // Manejar la respuesta del servidor
+                    // Por ejemplo, redireccionar según el resultado
+                    window.location.href = response.redirectUrl;
+                },
+                error: function (xhr, status, error) {
+                    // Manejar errores de la solicitud AJAX
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script>
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+controller
+
+[HttpPost]
+public async Task<IActionResult> BuscarVotante(string dni)
+{
+    try
+    {
+        var existeVotante = await _departamentoServicios.ExisteVotante(dni);
+        if (existeVotante)
+        {
+            // Si el votante existe, devolver la URL de la página de votación
+            return Json(new { redirectUrl = Url.Action("Votar", "Votacion", new { dni = dni }) });
+        }
+        else
+        {
+            // Si el votante no existe, devolver la URL de la página de registro
+            return Json(new { redirectUrl = Url.Action("Registro", "Votante", new { dni = dni }) });
+        }
+    }
+    catch (Exception ex)
+    {
+        // Manejar el error, por ejemplo, devolver un mensaje de error
+        return Json(new { error = ex.Message });
+    }
+}
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+services
+public async Task<bool> ExisteVotante(string dni)
+{
+    try
+    {
+        var response = await _api.Get<bool, bool>(req =>
+        {
+            req.Path = $"API/Votante/ExisteVotante?dni={dni}";
+        });
+        return response.Data;
+    }
+    catch (Exception ex)
+    {
+        // Manejar el error, por ejemplo, registrando en el registro de errores
+        throw;
+    }
+}
+

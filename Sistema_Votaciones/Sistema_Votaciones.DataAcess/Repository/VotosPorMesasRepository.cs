@@ -51,7 +51,20 @@ namespace Sistema_Votaciones.DataAcess.Repository
             }
         }
 
- 
+        public RequestStatus Insertar(tbVotosPorMesas item)
+        {
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("MePS_Id", item.MePS_Id);
+                parameter.Add("VoMe_CandidatoId", item.VoMe_CandidatoId);
+                parameter.Add("VoMe_EsPresidente", item.VoMe_EsPresidente);
+
+                var result = db.Execute(ScriptsBaseDeDatos.VotosPorMesas_Insertar, parameter, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+        }
 
         public IEnumerable<tbVotosPorMesas> List()
         {

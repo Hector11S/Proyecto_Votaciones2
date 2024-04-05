@@ -20,8 +20,6 @@ namespace Sistema_Votaciones.BusinessLogic
             service.AddScoped<AlcaldeRepository>();
             service.AddScoped<VotosPorMesasRepository>();
             service.AddScoped<VotanteRepository>();
-            service.AddScoped<MunicipioRepository>();
-            service.AddScoped<PartidoRepository>();
             //service.AddScoped<ColaboradorRepository>();
             //service.AddScoped<PantallaRepository>();
             //service.AddScoped<PantallaPorRolRepository>();
@@ -29,6 +27,7 @@ namespace Sistema_Votaciones.BusinessLogic
             //service.AddScoped<EmpleadoRepository>();
             //service.AddScoped<EmpresaRepository>();
             //service.AddScoped<EstadoCivilRepository>();
+            //service.AddScoped<MunicipioRepository>();
             //service.AddScoped<PiezaRepository>();
             //service.AddScoped<ServicioRepository>();
             //service.AddScoped<SolicitudRepository>();
@@ -42,6 +41,8 @@ namespace Sistema_Votaciones.BusinessLogic
             service.AddScoped<GeneralServices>();
             service.AddScoped<AccesoServices>();
             service.AddScoped<VotacionesServices>();
+          
+
         }
     }
 }
