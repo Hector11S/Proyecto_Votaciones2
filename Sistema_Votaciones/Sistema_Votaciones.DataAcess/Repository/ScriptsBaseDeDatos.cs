@@ -10,6 +10,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
     {
         #region Departamentos
         public static string Depa_Listar = "[Gral].[SP_Departamentos_Mostrar]";
+        public static string Depa_Llenar = "[Gral].[SP_Departamentos_Llenar]";
         public static string Depa_Insertar = "[Gral].[SP_Departamentos_Insertar]";
         public static string Depa_Editar = "[Gral].[SP_Departamentos_Editar]";
         public static string Depa_Eliminar = "[Gral].[SP_Departamentos_Eliminar]";
@@ -31,11 +32,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
         #endregion
 
         #region Votantes
-        public static string Votantes_Listar = "[Gral].[SP_Votantes_Mostrar]";
-        public static string Votantes_Insertar = "[Gral].[SP_Votantes_Insertar]";
-        public static string Votantes_Editar = "[Gral].[SP_Votantes_Editar]";
-        public static string Votantes_Eliminar = "[Gral].[SP_Votantes_Eliminar]";
-        public static string Votante_BuscarPorDNI = "[Gral].[SP_Votantes_BuscarPorDNI]";
+        public static string Vota_Llenar = "[Gral].[SP_Votantes_Llenar]";
         #endregion
     }
 }

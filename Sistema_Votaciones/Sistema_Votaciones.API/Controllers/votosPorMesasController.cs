@@ -50,6 +50,21 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
+        [HttpPost("API/[controller]/Insertar")]
+        public IActionResult AlcaldesVotar(VotosPorMesasViewModel json)
+        {
+            _mapper.Map<tbVotosPorMesas>(json);
+            var modelo = new tbVotosPorMesas()
+            {
+                MePS_Id = Convert.ToInt32(json.MePS_Id),
+                VoMe_CandidatoId = Convert.ToInt32(json.VoMe_CandidatoId),
+                VoMe_EsPresidente = json.VoMe_EsPresidente
+
+
+            };
+            var list = _votacionesServices.CrearVotosPorMesas(modelo);
+            return Ok(list);
+        }
 
         [HttpPut("API/[controller]/Update")]
         public IActionResult Update(VotosPorMesasViewModel json)

@@ -1,4 +1,6 @@
-﻿using Frontend_Sistema_Votaciones.Servicios;
+﻿using Frontend_Sistema_Votaciones.Models;
+using Frontend_Sistema_Votaciones.Servicios;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,29 +17,127 @@ namespace Frontend_Sistema_Votaciones.Controllers
             _votanteServicios = votanteServicios;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> BuscarVotante(string dni)
+        [HttpGet("[controller]/ObtenerVotantePorDNI/{Vota_DNI}")]
+        public async Task<IActionResult> ObtenerVotantePorDNI(string Vota_DNI)
         {
             try
             {
-                var existeVotante = await _votanteServicios.ExisteVotante(dni);
-                if (existeVotante)
-                {
+                var model = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
+                return Json(model.Data);
+            }
+            catch (Exception ex)
+            {
+                return Json("Error de capa 8");
+            }
+        }
 
-                    return Json(new { redirectUrl = Url.Action("Votar", "Votacion", new { dni = dni }) });
+
+        [HttpGet("[controller]/VerificarVoto")]
+        public async Task<IActionResult> VerificarVoto(string Vota_DNI)
+        {
+            try
+            {
+
+                var votanteResult = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
+                if (votanteResult.Success)
+                {
+                    var votante = (VotanteViewModel)votanteResult.Data;
+                    if (votante.Vota_YaVoto)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Create", "VotosPorMesa");
+                    }
                 }
                 else
                 {
-
-                    return Json(new { redirectUrl = Url.Action("Registro", "Votante", new { dni = dni }) });
+                    return Json("Error al verificar el estado del votante");
                 }
+
             }
             catch (Exception ex)
             {
 
-                return Json(new { error = ex.Message });
+                return Json("Error al verificar el estado del votante: " + ex.Message);
             }
         }
 
+
+        // GET: VotanteController
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        // GET: VotanteController/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: VotanteController/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: VotanteController/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: VotanteController/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: VotanteController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: VotanteController/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: VotanteController/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }

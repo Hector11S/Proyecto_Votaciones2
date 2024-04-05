@@ -1,0 +1,165 @@
+﻿@model Frontend_Sistema_Votaciones.Models.AlcaldeViewModel
+
+@{
+    var departamentos = ViewBag.Departamentos;
+    var partidos = ViewBag.Partidos;
+    ViewData["Title"] = "Create";
+}
+
+<header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
+    <h2>Añadir nuevo alcalde</h2>
+    <a href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
+        <i class="bi bi-house-door-fill"></i>
+        Inicio
+    </a>
+</header>
+<div class="card m-2 mt-4 p-3" style="overflow-x: auto">
+    <div class="row">
+        <div class="col">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row mt-3">
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Buscar por numero de identidad:</label>
+                        <input asp-for="Alca_Id" type="hidden" class="form-control" />
+                        <input id="txtDNI" type="text" class="form-control" />
+                        <span asp-validation-for="Alca_Id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Nombre completo:</label>
+                        <input id="txtNombreVotante" class="form-control" disabled/>
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Departamento: </label>
+                        <select id="ddlDepartamentos" class="form-select">
+                            <option value="">-- Departamento --</option>
+                            @foreach (var item in departamentos)
+                            {
+                                <option value="@item.Dept_Codigo">@item.Dept_Descripcion</option>
+                            }
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group col">
+                        <label asp-for="Muni_Codigo" class="mb-2" style="color: #3dbdd9">Municipio al que se postula:</label>
+                        <select class="form-select" asp-for="Muni_Codigo">
+                            <option>-- Municipio --</option>
+                        </select>
+                        <span asp-validation-for="Muni_Codigo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Partido al que pertenece:</label>
+                        <select class="form-select" asp-for="Part_Id">
+                            <option>-- Partido --</option>
+                            @*@foreach (var item in partidos)
+                            {
+                                <option value="@item.Part_Id">@item.Part_Descripcion</option>
+                            }*@
+                        </select>
+                    </div>
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Fototografia del candidato: </label>
+                        <input asp-for="Alca_Imagen" type="hidden" class="form-control" />
+                        <input id="inputAlcalde" type="file" class="form-control" />
+                        <span asp-validation-for="Alca_Imagen" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end mt-4 align-items-center">
+                    <img id="imgAlca_Imagen" src="" class="d-none rounded" style="max-width: 400px"/>
+                </div>
+                <div class="d-flex justify-content-end mt-4 align-items-center" style="gap: 10px;">
+                    <a asp-action="Index" class="btn btn-outline-primary"><i class="bi bi-x"></i> Cancelar</a>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const txtNombreVotante = document.getElementById("txtNombreVotante");
+
+        const txtDNI = document.getElementById("txtDNI");
+        txtDNI.addEventListener("input", () => {
+            const val = txtDNI.value.replace(/[^0-9]/g, '');
+            console.log(txtDNI.value.length);
+            if (txtDNI.value.length === 13) {
+                $.ajax({
+                    url: `/Alcalde/ObtenerVotantePorDNI/${txtDNI.value}`,
+                    method: "GET",
+                    success: function (votante) {
+                        console.log(votante, "votante")
+                        $('#Alca_Id').val(votante.vota_Id);
+                        txtNombreVotante.value = votante.vota_Nombre + " " + votante.vota_Apellidos;
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error("Error al cargar los datos del votante:", errorThrown);
+                    }
+                });
+            }
+        })
+
+        const ddlDepartamentos = document.getElementById("ddlDepartamentos");
+        const ddlMunicipios = document.getElementById("ddlMunicipios");
+        ddlDepartamentos.addEventListener("change", () => {
+            console.log(ddlDepartamentos.value);
+            $.ajax({
+                url: `/Alcalde/ObtenerMunicipiosPorDept/${ddlDepartamentos.value}`,
+                method: "GET",
+                success: function (municipios) {
+                    console.log(municipios, "municipios");
+                    municipios.foreach(muni => {
+                        const newOptionElement = document.createElement("option");
+                        newOptionElement.value = muni.muni_Codigo;
+                        newOptionElement.textContent = muni.muni_Descripcion;
+                    })
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(`Error al cargar los municipios del departamento:${ddlDepartamentos.value}`, errorThrown);
+                }
+            });
+        })
+
+        const inputAlcalde = document.getElementById("inputAlcalde");
+        const Alca_Id = document.getElementById("Alca_Id");
+        const Alca_Imagen = document.getElementById("Alca_Imagen");
+        const imgAlca_Imagen = document.getElementById("imgAlca_Imagen");
+        inputAlcalde.addEventListener("change", () => {
+            if (Alca_Id.value && inputAlcalde.files[0]) {
+                const formData = new FormData();
+                formData.append("Imagen", inputAlcalde.files[0])
+                formData.append("Alca_Id", Alca_Id.value)
+                $.ajax({
+                    url: `/Alcalde/SubirImagen`,
+                    method: "POST",
+                    contentType: false,
+                    data: formData,
+                    processData: false,
+                    success: function (response) {
+                        console.log(response, "response");
+                        iziToast.success({
+                            title: 'Éxito',
+                            message: response.message,
+                            position: 'topRight',
+                            transitionIn: 'flipInX',
+                            transitionOut: 'flipOutX'
+                        });
+                        Alca_Imagen.value = response.urlImagen;
+                        imgAlca_Imagen.setAttribute("src", response.urlImagen);
+                        imgAlca_Imagen.classList.remove("d-none");
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error(`Error al cargar la imagen del alcalde`, errorThrown);
+                    }
+                });
+            }
+        })
+    </script>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</div>

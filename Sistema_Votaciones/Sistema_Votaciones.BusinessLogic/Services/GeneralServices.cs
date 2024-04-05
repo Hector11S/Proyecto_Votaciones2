@@ -15,7 +15,6 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         private readonly DepartamentoRepository _departamentosRepository;
         private readonly VotanteRepository _votanteRepository;
 
-
         public GeneralServices(
                DepartamentoRepository departamentosRepository,
                VotanteRepository votanteRepository)
@@ -23,7 +22,6 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         {
             _departamentosRepository = departamentosRepository;
             _votanteRepository = votanteRepository;
-
         }
 
 
@@ -42,6 +40,20 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult ListDepto(string Dept_Codigo)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _departamentosRepository.List(Dept_Codigo);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
         public ServiceResult CrearDepto(tbDepartamentos item)
         {
             var result = new ServiceResult();
@@ -50,12 +62,11 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 var list = _departamentosRepository.Insert(item);
                 if (list.CodeStatus > 0)
                 {
-                    return result.Ok(list);
+                    return result.Ok("Departamento creado con exito", list);
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe ese departamento" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un departamento con ese codigo o con ese nombre");
                 }
             }
             catch (Exception ex)
@@ -71,12 +82,11 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 var list = _departamentosRepository.Update(item);
                 if (list.CodeStatus > 0)
                 {
-                    return result.Ok(list);
+                    return result.Ok($"Departamento {item.Dept_Codigo} editado con éxito", list);
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un departamento con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un departamento con ese nombre");
                 }
             }
             catch (Exception ex)
@@ -92,12 +102,11 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 var list = _departamentosRepository.Delete(Dept_Codigo);
                 if (list.CodeStatus > 0)
                 {
-                    return result.Ok(list);
+                    return result.Ok($"Departamento {Dept_Codigo} eliminado con éxito", list);
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el departamento a eliminar" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("No se encontró el departamento a eliminar");
                 }
             }
             catch (Exception ex)
@@ -105,111 +114,22 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-
         #endregion
-
-
         #region Votantes
-        public ServiceResult ListVotante()
+        public ServiceResult FindVotante(string Vota_DNI)
         {
             var result = new ServiceResult();
             try
             {
-                var list = _votanteRepository.List();
+                var votante = _votanteRepository.Find(Vota_DNI);
 
-                return result.Ok(list);
+                return result.Ok(votante);
             }
             catch (Exception ex)
             {
                 return result.Error("Error de capa 8");
             }
         }
-        public ServiceResult CrearVotante(tbVotantes item)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _votanteRepository.Insert(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok(list);
-                }
-                else
-                {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe ese Votante" : list.MessageStatus;
-                    return result.Error(list);
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error("Error de capa 8");
-            }
-        }
-        public ServiceResult EditarVotante(tbVotantes item)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _votanteRepository.Update(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok(list);
-                }
-                else
-                {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un vontante con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error("Error de capa 8");
-            }
-        }
-        public ServiceResult EliminarVotante(int Vota_Id)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _votanteRepository.Delete(Vota_Id);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok(list);
-                }
-                else
-                {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Vontante a eliminar" : list.MessageStatus;
-                    return result.Error(list);
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error("Error de capa 8");
-            }
-        }
-
-         public ServiceResult BuscarVotantePorDNI(string dni)
-    {
-        var result = new ServiceResult();
-        try
-        {
-            var votante = _votanteRepository.BuscarPorDNI(dni); 
-            if (votante == null)
-            {
-                return result.Ok(false); 
-            }
-            else
-            {
-                return result.Ok(votante.Vota_YaVoto);
-            }
-        }
-        catch (Exception ex)
-        {
-            return result.Error("Error al buscar el votante por DNI");
-        }
-    }
-
-
         #endregion
     }
 }

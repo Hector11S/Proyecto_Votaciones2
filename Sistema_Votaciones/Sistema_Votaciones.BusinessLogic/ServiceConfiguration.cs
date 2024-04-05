@@ -20,6 +20,7 @@ namespace Sistema_Votaciones.BusinessLogic
             service.AddScoped<AlcaldeRepository>();
             service.AddScoped<VotosPorMesasRepository>();
             service.AddScoped<VotanteRepository>();
+            //service.AddScoped<ColaboradorRepository>();
             //service.AddScoped<PantallaRepository>();
             //service.AddScoped<PantallaPorRolRepository>();
             //service.AddScoped<DispositivoRepository>();

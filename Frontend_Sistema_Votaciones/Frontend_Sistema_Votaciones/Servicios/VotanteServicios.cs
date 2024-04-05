@@ -1,4 +1,5 @@
-﻿using Frontend_Sistema_Votaciones.WebAPI;
+﻿using Frontend_Sistema_Votaciones.Models;
+using Frontend_Sistema_Votaciones.WebAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,27 +9,33 @@ namespace Frontend_Sistema_Votaciones.Servicios
 {
     public class VotanteServicios
     {
-
         private readonly API _api;
 
         public VotanteServicios(API api)
         {
             _api = api;
         }
-
-        public async Task<bool> ExisteVotante(string dni)
+        public async Task<ServiceResult> ObtenerVotantePorDNI(string Vota_DNI)
         {
+            var result = new ServiceResult();
             try
             {
-                var response = await _api.Get<bool, bool>(req =>
+                var response = await _api.Get<IEnumerable<VotanteViewModel>, VotanteViewModel>(req =>
                 {
-                    req.Path = $"API/Votante/ExisteVotante?dni={dni}";
+                    req.Path = $"API/Votante/Find?Vota_DNI={Vota_DNI}";
                 });
-                return response.Data;
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
             }
             catch (Exception ex)
             {
-
+                return result.Error(Helpers.GetMessage(ex));
                 throw;
             }
         }

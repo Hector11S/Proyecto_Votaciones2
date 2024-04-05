@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Frontend_Sistema_Votaciones</title>
     @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />*@
+        <link rel="stylesheet" href="~/css/site.css" />*@
 
     <link href="~/NiceAdmin/assets/img/Flag_of_Honduras.svg.png" rel="icon">
 
     <link href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-    
+
     <link href="~/NiceAdmin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/NiceAdmin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="~/NiceAdmin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -19,7 +19,8 @@
     <link href="~/NiceAdmin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="~/NiceAdmin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="~/NiceAdmin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
+    <link href="~/css/IziToast.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="~/NiceAdmin/assets/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -87,6 +88,13 @@
             </li><!-- End Dashboard Nav -->
 
             <li class="nav-item">
+                <a class="nav-link " asp-controller="Votante" asp-action="VerificarVoto">
+                    <i class="ri ri-account-pin-box-fill"></i>
+                    <span>Votar</span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>Generales</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
@@ -127,8 +135,13 @@
                         </a>
                     </li>
                     <li>
-                        <a asp-controller="Votantes" asp-action="Index">
+                        <a href="components-cards.html">
                             <i class="bi bi-circle"></i><span>Votantes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-controller="VotosPorMesa" asp-action="Index">
+                            <i class="bi bi-circle"></i><span>Votos Por Mesas</span>
                         </a>
                     </li>
 
@@ -161,7 +174,7 @@
                 </a>
                 <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="tables-general.html">
+                        <a asp-controller="Alcalde" asp-action="Index">
                             <i class="bi bi-circle"></i><span>Alcaldes</span>
                         </a>
                     </li>
@@ -180,8 +193,8 @@
             </li><!-- End Tables Nav -->
         </ul>
     </aside><!-- End Sidebar-->
-
     <!-- Vendor JS Files -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/NiceAdmin/assets/vendor/apexcharts/apexcharts.min.js"></script>
     <script src="~/NiceAdmin/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/NiceAdmin/assets/vendor/simple-datatables/simple-datatables.js"></script>
@@ -190,11 +203,47 @@
     <script src="~/NiceAdmin/assets/vendor/quill/quill.min.js"></script>
     <script src="~/NiceAdmin/assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="~/NiceAdmin/assets/vendor/php-email-form/validate.js"></script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
     <!-- Template Main JS File -->
     <script src="~/NiceAdmin/assets/js/main.js"></script>
+    <script src="~/js/IziToast.js"></script>
 
+    <script>
+  $(document).ready(function () {
+        @if (TempData["Exito"] != null)
+        {
+            <text>
+                iziToast.success({
+                    title: 'Éxito',
+                    message: '@TempData["Exito"]',
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            </text>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <text>
+                iziToast.error({
+                    title: 'Error',
+                    message: '@TempData["Error"]',
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            </text>
+        }
+    });
+
+    $(document).ready(function () {
+        mostrarMensajes();
+    });
+    </script>
     <main id="main" role="main" style="margin-top: 12vh;">
         @RenderBody()
     </main>

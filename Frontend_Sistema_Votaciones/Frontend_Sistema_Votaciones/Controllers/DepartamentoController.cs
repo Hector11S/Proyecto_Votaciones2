@@ -17,7 +17,6 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             _departamentoServicios = departamentoServicios;
         }
-        // GET: DepartamentosController
         public async Task<IActionResult> Index()
         {
             try
@@ -32,8 +31,9 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
         }
 
-        // GET: Departamento/Details/5
-        [HttpGet("Departamento/Details/{Dept_Codigo}")]
+
+
+        [HttpGet("[controller]/Details/{Dept_Codigo}")]
         public async Task<IActionResult> Details(string Dept_Codigo)
         {
             try
@@ -48,24 +48,29 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
         }
 
-        // GET: DepartamentosController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: DepartamentosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(DepartamentoViewModel item)
         {
             try
             {
-                item.Dept_UsuarioCreacion = 2;
+                item.Dept_UsuarioCreacion = 4;
                 item.Dept_FechaCreacion = DateTime.Now;
-                var list = await _departamentoServicios.CrearDepartamento(item);
-                return RedirectToAction("Index");
-                //return View(new List<DepartamentoViewModel> { (DepartamentoViewModel)list.Data } );
+                var result = await _departamentoServicios.CrearDepartamento(item);
+                if (result.Success)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+
+                    return RedirectToAction("Index");
+                }
             }
             catch (Exception ex)
             {
@@ -73,8 +78,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
         }
 
-        // GET: Departamento/Edit/5
-        [HttpGet("Departamento/Edit/{Dept_Codigo}")]
+        [HttpGet("[controller]/Edit/{Dept_Codigo}")]
         public async Task<IActionResult> Edit(string Dept_Codigo)
         {
             try
@@ -88,9 +92,31 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
         }
 
+        [HttpPost("[controller]/Edit")]
+        public async Task<IActionResult> Edit(DepartamentoViewModel item)
+        {
+            try
+            {
+                item.Dept_UsuarioCreacion = 2;
+                item.Dept_FechaCreacion = DateTime.Now;
+                var result = await _departamentoServicios.EditarDepartamento(item);
+                if (result.Success)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View("Index", item);
+                }
+            }
+            catch (Exception ex)
+            {
+                return View(item);
+                throw;
+            }
+        }
 
-        // POST: DepartamentosController/DeleteConfirmed
-        [HttpPost("/Departamento/DeleteConfirmed")]
+        [HttpPost("/[controller]/DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed([FromForm] string Dept_Codigo)
         {
@@ -115,32 +141,5 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-
-
-        [HttpPost]
-        public async Task<IActionResult> BuscarVotante(string dni)
-        {
-            try
-            {
-                var existeVotante = await _departamentoServicios.ExisteVotante(dni);
-                if (existeVotante)
-                {
-
-                    return Json(new { redirectUrl = Url.Action("Votar", "Votacion", new { dni = dni }) });
-                }
-                else
-                {
-
-                    return Json(new { redirectUrl = Url.Action("Registro", "Votante", new { dni = dni }) });
-                }
-            }
-            catch (Exception ex)
-            {
-
-                return Json(new { error = ex.Message });
-            }
-        }
-
-
     }
 }
