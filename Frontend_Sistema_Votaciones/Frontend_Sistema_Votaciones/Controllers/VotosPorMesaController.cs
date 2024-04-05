@@ -43,11 +43,11 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 var result = await _votosPorMesaServicios.CrearVotosPorMesa(item);
                 if (result.Success)
                 {
-                    return RedirectToAction("Index");
+                    TempData["Exito"] = "Gracias por votar";
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-
                     return RedirectToAction("Index");
                 }
             }
@@ -170,8 +170,6 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 return View(item);
                 throw;
             }
-        }
-
-     
+        }   
     }
 }

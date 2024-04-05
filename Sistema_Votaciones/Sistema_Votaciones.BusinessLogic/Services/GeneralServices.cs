@@ -232,6 +232,81 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("No se encontró una persona con ese DNI");
             }
         }
+
+        public ServiceResult ListVotante()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votanteRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult CrearVotante(tbVotantes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votanteRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok("Votante creado con exito", list);
+                }
+                else
+                {
+                    return result.Error("Ya existe un Votante con ese codigo o con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult EditarVotante(tbVotantes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votanteRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"Departamento {item.Vota_Id} editado con éxito", list);
+                }
+                else
+                {
+                    return result.Error("Ya existe un departamento con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult EliminarVotante(int Vota_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votanteRepository.Delete(Vota_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"Departamento {Vota_Id} eliminado con éxito", list);
+                }
+                else
+                {
+                    return result.Error("No se encontró el departamento a eliminar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
         #endregion
     }
 }

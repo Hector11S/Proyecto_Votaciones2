@@ -10,12 +10,23 @@ namespace Frontend_Sistema_Votaciones.Models
     {
         [Display(Name = "Id")]
         public int Alca_Id { get; set; }
+
+        [Display(Name = "Nombre Completo")]
+        public string Nombre_Completo { get; set; }
+
         [Display(Name = "Url imagen")]
         public string Alca_Imagen { get; set; }
         [Display(Name = "Municipio codigo")]
         public string Muni_Codigo { get; set; }
+
+        [Display(Name = "Municipio")]
+        public string Muni_Descripcion { get; set; }
+
         [Display(Name = "Id Partido")]
         public int Part_Id { get; set; }
+
+        [Display(Name = "Partido")]
+        public string Part_Descripcion { get; set; }
 
         [Display(Name = "Usuario creacion")]
         public int Alca_UsuarioCreacion { get; set; }
@@ -25,5 +36,7 @@ namespace Frontend_Sistema_Votaciones.Models
         public int? Alca_UsuarioModifica { get; set; }
         [Display(Name = "Fecha modifica")]
         public DateTime? Alca_FechaModifica { get; set; }
+
+
     }
 }

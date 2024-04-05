@@ -1,0 +1,84 @@
+﻿@model Frontend_Sistema_Votaciones.Models.AlcaldeViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>AlcaldeViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Alca_Id" class="control-label"></label>
+                <input asp-for="Alca_Id" class="form-control" />
+                <span asp-validation-for="Alca_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre_Completo" class="control-label"></label>
+                <input asp-for="Nombre_Completo" class="form-control" />
+                <span asp-validation-for="Nombre_Completo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alca_Imagen" class="control-label"></label>
+                <input asp-for="Alca_Imagen" class="form-control" />
+                <span asp-validation-for="Alca_Imagen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Muni_Codigo" class="control-label"></label>
+                <input asp-for="Muni_Codigo" class="form-control" />
+                <span asp-validation-for="Muni_Codigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Muni_Descripcion" class="control-label"></label>
+                <input asp-for="Muni_Descripcion" class="form-control" />
+                <span asp-validation-for="Muni_Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Part_Id" class="control-label"></label>
+                <input asp-for="Part_Id" class="form-control" />
+                <span asp-validation-for="Part_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Part_Descripcion" class="control-label"></label>
+                <input asp-for="Part_Descripcion" class="form-control" />
+                <span asp-validation-for="Part_Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alca_UsuarioCreacion" class="control-label"></label>
+                <input asp-for="Alca_UsuarioCreacion" class="form-control" />
+                <span asp-validation-for="Alca_UsuarioCreacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alca_FechaCreacion" class="control-label"></label>
+                <input asp-for="Alca_FechaCreacion" class="form-control" />
+                <span asp-validation-for="Alca_FechaCreacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alca_UsuarioModifica" class="control-label"></label>
+                <input asp-for="Alca_UsuarioModifica" class="form-control" />
+                <span asp-validation-for="Alca_UsuarioModifica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Alca_FechaModifica" class="control-label"></label>
+                <input asp-for="Alca_FechaModifica" class="form-control" />
+                <span asp-validation-for="Alca_FechaModifica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
