@@ -150,11 +150,11 @@ namespace Frontend_Sistema_Votaciones.Servicios
 
                 if (response.Success)
                 {
-                    return result.Ok(response.Data);
+                    return result.Ok($"Municipio {Muni_Codigo} eliminado", response.Data);
                 }
                 else
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
             }
             catch (Exception ex)

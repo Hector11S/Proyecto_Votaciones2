@@ -82,8 +82,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 var parameter = new DynamicParameters();
                 parameter.Add("Dept_Codigo", item.Dept_Codigo);
                 parameter.Add("Dept_Descripcion", item.Dept_Descripcion);
-                parameter.Add("Dept_UsuarioModifica", 2);
-                parameter.Add("Dept_FechaModifica", DateTime.Now);
+                parameter.Add("Dept_UsuarioModifica", item.Dept_UsuarioModifica);
+                parameter.Add("Dept_FechaModifica", item.Dept_FechaModifica);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Editar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };

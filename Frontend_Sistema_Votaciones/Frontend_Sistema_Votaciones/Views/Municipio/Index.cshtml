@@ -1,20 +1,11 @@
-﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.DepartamentoViewModel>
-
-@using Newtonsoft.Json;
+﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.MunicipioViewModel>
 
 @{
-    ViewData["Title"] = "Departamentos";
-    var abrirModal = TempData["AbrirModal"];
-    string serializedItem = (string)TempData["Item"];
-    DepartamentoViewModel departamento = null;
-    if(!String.IsNullOrEmpty(serializedItem))
-    {
-        departamento = JsonConvert.DeserializeObject<DepartamentoViewModel>(serializedItem);
-    }
+    ViewData["Title"] = "Municipios";
 }
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
-    <h2>Listado de departamentos</h2>
+    <h2>Listado de Municipios</h2>
     <button href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
         <i class="bi bi-house-door-fill"></i>
         Inicio
@@ -27,14 +18,14 @@
             Nuevo
         </button>
     </header>
-    <table id="dtDepartamentos" class="table datatable display" style="width: 100%;">
+    <table id="dtMunicipios" class="table datatable display" style="width: 100%;">
         <thead style="color: #78e7ff;">
             <tr style="background: rgb(0,0,0)">
                 <th>
-                    @Html.DisplayNameFor(model => model.Dept_Codigo)
+                    @Html.DisplayNameFor(model => model.Muni_Codigo)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Dept_Descripcion)
+                    @Html.DisplayNameFor(model => model.Muni_Descripcion)
                 </th>
                 <th style="max-width: 300px;">
                     Acciones
@@ -46,23 +37,23 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Dept_Codigo)
+                        @Html.DisplayFor(modelItem => item.Muni_Codigo)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Dept_Descripcion)
+                        @Html.DisplayFor(modelItem => item.Muni_Descripcion)
                     </td>
                     <td style="width: 5%">
                         <div class="w-100" style="max-width: 250px">
                             <div class="d-flex w-100" style="gap: 5px;">
-                                <button data-id="@item.Dept_Codigo" class="btnEditar d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px">
+                                <button data-id="@item.Muni_Codigo" class="btnEditar d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px">
                                     <i class="bi bi-pencil"></i>
                                     Editar
                                 </button>
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { id=item.Dept_Codigo })">
+                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { id=item.Muni_Codigo })">
                                     <i class="bi bi-eye"></i>
                                     Detalles
                                 </a>
-                                <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Dept_Codigo')">
+                                <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Muni_Codigo')">
                                     <i class="bi bi-trash-fill"></i>
                                     Eliminar
                                 </button>
@@ -75,56 +66,34 @@
     </table>
 </div>
 
+
 @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/dataTables.min.js"></script>*@
 
 <script>
-    $(document).ready(function () {
-        $('#modal' + '@abrirModal').modal('show');
-        @if (departamento != null)
-        {
-            switch (abrirModal)
-            {
-                case "Nuevo":
-                    <text>
-                        $('#Dept_Codigo_Create').val("@departamento.Dept_Codigo");
-                        $('#Dept_Descripcion_Create').val("@Html.Raw(departamento.Dept_Descripcion)");
-                    </text>
-                    break;
-                 case "Editar":
-                    <text>
-                        $('#Dept_Codigo_Edit').val("@departamento.Dept_Codigo");
-                        $('#Dept_Descripcion_Edit').val("@Html.Raw(departamento.Dept_Descripcion)");
-                    </text>
-                    break;
-                default:
-                    break;
-            }
-        }
-    })
     $('#btnNuevo').click(function () {
         $('#modalNuevo').modal('show');
     });
     $('.btnEditar').click(function () {
         var id = $(this).data("id");
         $.ajax({
-            url: `/Departamento/Edit/${id}`,
+            url: `/Municipio/Edit/${id}`,
             method: "GET",
-            success: function (departamento) {
-                console.log(departamento, "departamento")
-                $('#Dept_Codigo_Edit').val(departamento.dept_Codigo);
-                $('#Dept_Descripcion_Edit').val(departamento.dept_Descripcion);
+            success: function (Municipio) {
+                console.log(Municipio, "Municipio")
+                $('#Muni_Codigo').val(Municipio.Muni_Codigo);
+                $('#Muni_Descripcion').val(Municipio.Muni_Descripcion);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.error("Error al cargar los datos del departamento:", errorThrown);
+                console.error("Error al cargar los datos del Municipio:", errorThrown);
             }
         });
         $('#modalEditar').modal('show');
     });
 
-    function Eliminar(Dept_Codigo) {
-        $("#Dept_Codigo_Delete").val(Dept_Codigo);
-        localStorage.setItem("#Dept_Codigo_Delete", Dept_Codigo);
+    function Eliminar(Muni_Codigo) {
+        $("#inputHidden").val(Muni_Codigo);
+        localStorage.setItem("inputHidden", Muni_Codigo);
         $('#modalEliminar').modal('show');
     }
 </script>
@@ -136,7 +105,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @Html.Partial("_Edit", new Frontend_Sistema_Votaciones.Models.DepartamentoViewModel())
+                @Html.Partial("_Edit", new Frontend_Sistema_Votaciones.Models.MunicipioViewModel())
             </div>
         </div>
     </div>
@@ -149,7 +118,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @Html.Partial("_Create", new Frontend_Sistema_Votaciones.Models.DepartamentoViewModel())
+                @Html.Partial("_Create", new Frontend_Sistema_Votaciones.Models.MunicipioViewModel())
             </div>
         </div>
     </div>
@@ -163,7 +132,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @Html.Partial("_Delete", new Frontend_Sistema_Votaciones.Models.DepartamentoViewModel())
+                @Html.Partial("_Delete", new Frontend_Sistema_Votaciones.Models.MunicipioViewModel())
             </div>
         </div>
     </div>

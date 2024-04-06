@@ -62,10 +62,10 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var list = _departamentosRepository.Insert(item);
-                if (list.CodeStatus > 0)
+                var reponse = _departamentosRepository.Insert(item);
+                if (reponse.CodeStatus == 1)
                 {
-                    return result.Ok("Departamento creado con exito", list);
+                    return result.Ok("Departamento creado con exito", reponse);
                 }
                 else
                 {
@@ -82,10 +82,10 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var list = _departamentosRepository.Update(item);
-                if (list.CodeStatus > 0)
+                var reponse = _departamentosRepository.Update(item);
+                if (reponse.CodeStatus == 1)
                 {
-                    return result.Ok($"Departamento {item.Dept_Codigo} editado con éxito", list);
+                    return result.Ok($"Departamento {item.Dept_Codigo} editado con éxito", reponse);
                 }
                 else
                 {
@@ -102,10 +102,10 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var list = _departamentosRepository.Delete(Dept_Codigo);
-                if (list.CodeStatus > 0)
+                var reponse = _departamentosRepository.Delete(Dept_Codigo);
+                if (reponse.CodeStatus == 1)
                 {
-                    return result.Ok($"Departamento {Dept_Codigo} eliminado con éxito", list);
+                    return result.Ok($"Departamento {Dept_Codigo} eliminado con éxito", reponse);
                 }
                 else
                 {
@@ -206,7 +206,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 }
                 else
                 {
-                    return result.Error("No se encontró el municipio a eliminar");
+                    return result.Error("Hay personas, sedes o alcaldes que se postularon que dependen de este municipio");
                 }
             }
             catch (Exception ex)

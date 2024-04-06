@@ -70,9 +70,9 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end mt-4 align-items-center">
-                    <img id="imgAlca_Imagen" src="" class="d-none rounded" style="max-width: 400px"/>
+                    <img id="imgAlca_Imagen" src="" class="d-none rounded" style="max-width: 400px; max-height: 400px;"/>
                 </div>
-                <div class="d-flex justify-content-end mt-4 align-items-center" style="gap: 10px;">
+                <div class="d-flex justify-content-center mt-4 align-items-center" style="gap: 10px;">
                     <a asp-action="Index" class="btn btn-outline-primary"><i class="bi bi-x"></i> Cancelar</a>
                     <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar</button>
                 </div>
@@ -84,20 +84,43 @@
         const txtNombreVotante = document.getElementById("txtNombreVotante");
 
         const txtDNI = document.getElementById("txtDNI");
+        txtDNI.addEventListener("blur", () => {
+            if (txtDNI.value.length !== 13) {
+                iziToast.warning({
+                    title: 'Identidad incorrecta',
+                    message: "La identidad debe ser de 13 digitos y no debe llevar guiones",
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            }
+        })
         txtDNI.addEventListener("input", () => {
             const val = txtDNI.value.replace(/[^0-9]/g, '');
-            console.log(txtDNI.value.length);
+            txtDNI.value = val;
             if (txtDNI.value.length === 13) {
                 $.ajax({
                     url: `/Alcalde/ObtenerVotantePorDNI/${txtDNI.value}`,
                     method: "GET",
-                    success: function (votante) {
-                        console.log(votante, "votante")
-                        $('#Alca_Id').val(votante.vota_Id);
-                        txtNombreVotante.value = votante.vota_Nombre + " " + votante.vota_Apellidos;
+                    success: function (response) {
+                        console.log(response, "ObtenerVotantePorDNI");
+                        if (response.votante) {
+                            $('#Alca_Id').val(response.votante.vota_Id);
+                            txtNombreVotante.value = response.votante.vota_Nombre + " " + response.votante.vota_Apellidos;
+                        } else {
+                            iziToast.warning({
+                                title: 'No encontrado',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                            $('#Alca_Id').val("");
+                            txtNombreVotante.value = "";
+                        }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        console.error("Error al cargar los datos del votante:", errorThrown);
+                        console.error("Error al buscar votant por el DNI:", errorThrown);
                     }
                 });
             }

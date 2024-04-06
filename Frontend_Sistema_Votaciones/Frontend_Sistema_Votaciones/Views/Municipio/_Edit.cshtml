@@ -1,4 +1,4 @@
-﻿@model Frontend_Sistema_Votaciones.Models.DepartamentoViewModel
+﻿@model Frontend_Sistema_Votaciones.Models.MunicipioViewModel
 
 @{
     ViewData["Title"] = "tbMunicipios".Substring(2);
@@ -12,11 +12,11 @@
         <form asp-action="@ViewData["ViewName"]" asp-controller="Departamento" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="d-flex flex-wrap justify-content-around">
-                <input type="hidden" id="Dept_Codigo_Edit" name="Dept_Codigo" />
+                <input type="hidden" id="Muni_Codigo" name="Muni_Codigo" />
                 <div class="form-group col-sm-5 mb-4">
-                    <label for="Dept_Descripcion" class="control-label"></label>
-                    <input id="Dept_Descripcion_Edit" name="Dept_Descripcion" class="form-control" @*value="@Model.Dept_Descripcion"*@ />
-                    <span asp-validation-for="Dept_Descripcion" class="text-danger"></span>
+                    <label for="Muni_Descripcion" class="control-label"></label>
+                    <input id="Muni_Descripcion" name="Muni_Descripcion" class="form-control" @*value="@Model.Muni_Descripcion"*@ />
+                    <span asp-validation-for="Muni_Descripcion" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group d-flex justify-content-end">

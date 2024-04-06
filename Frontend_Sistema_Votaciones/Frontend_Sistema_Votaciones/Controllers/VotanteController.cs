@@ -1,8 +1,11 @@
-﻿using Frontend_Sistema_Votaciones.Servicios;
+﻿using Frontend_Sistema_Votaciones.Models;
+using Frontend_Sistema_Votaciones.Servicios;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,13 +14,103 @@ namespace Frontend_Sistema_Votaciones.Controllers
     public class VotanteController : Controller
     {
         private readonly VotanteServicios _votanteServicios;
-        public VotanteController(VotanteServicios votanteServicios)
+        private readonly DepartamentoServicios _departamentoServicios;
+        private readonly MunicipioServicios _municipioServicios;
+        private readonly IWebHostEnvironment _hostingEnviroment;
+
+
+        public VotanteController(
+            VotanteServicios votanteServicios,
+            DepartamentoServicios departamentoServicios,
+            MunicipioServicios municipioServicios,
+            IWebHostEnvironment hostingEnviroment)
         {
             _votanteServicios = votanteServicios;
+            _departamentoServicios = departamentoServicios;
+            _municipioServicios = municipioServicios;
+            _hostingEnviroment = hostingEnviroment;
         }
 
-        [HttpGet("[controller]/ObtenerVotantePorDNI/{Vota_DNI}")]
-        public async Task<IActionResult> ObtenerVotantePorDNI(string Vota_DNI)
+        [HttpGet("[controller]/ObtenerMunicipiosPorDept/{Dept_Codigo}")]
+        public async Task<IActionResult> ObtenerMunicipios(string Dept_Codigo)
+        {
+            try
+            {
+                var response = await _municipioServicios.ObtenerMunicipiosList(Dept_Codigo);
+                return Json(new { municipios = response.Data, message = response.Message });
+            }
+            catch (Exception ex)
+            {
+                return Json("Error de capa 8");
+            }
+        }
+        public async Task<IActionResult> Index()
+        {
+            try
+            {
+                var model = new List<VotanteViewModel>();
+                var list = await _votanteServicios.ObtenerVotanteList();
+                return View(list.Data);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet("[controller]/Details/{Vota_DNI}")]
+        public async Task<IActionResult> Details(string Vota_DNI)
+        {
+            try
+            {
+                var model = new VotanteViewModel();
+                var list = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
+                return View(list.Data);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        public async Task<IActionResult> Create()
+        {
+            try
+            {
+                var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
+                ViewBag.Departamentos = departamentosList.Data;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(VotanteViewModel item)
+        {
+            try
+            {
+                item.Vota_UsuarioCreacion = 2;
+                item.Vota_FechaCreacion = DateTime.Now;
+                var result = await _votanteServicios.CrearVotante(item);
+                if (result.Success)
+                {
+                }
+                else
+                {
+                }
+            }
+            catch (Exception ex)
+            {
+                //return View(item);
+            }
+            return View(item);
+        }
+        [HttpGet("[controller]/Edit/{Dept_Codigo}")]
+        public async Task<IActionResult> Edit(string Vota_DNI)
         {
             try
             {
@@ -26,81 +119,31 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-                return Json("Error de capa 8");
+                return RedirectToAction("Index");
             }
         }
-        // GET: VotanteController
-        public ActionResult Index()
-        {
-            return View();
-        }
 
-        // GET: VotanteController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: VotanteController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: VotanteController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [HttpPost("[controller]/Edit")]
+        public async Task<IActionResult> Edit(VotanteViewModel item)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                item.Vota_UsuarioCreacion = 2;
+                item.Vota_FechaCreacion = DateTime.Now;
+                var result = await _votanteServicios.EditarVotante(item);
+                if (result.Success)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View("Index", item);
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
-            }
-        }
-
-        // GET: VotanteController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: VotanteController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: VotanteController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: VotanteController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                return View(item);
+                throw;
             }
         }
     }
