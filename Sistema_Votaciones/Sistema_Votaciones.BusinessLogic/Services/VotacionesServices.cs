@@ -12,14 +12,17 @@ namespace Sistema_Votaciones.BusinessLogic.Services
     {
         private readonly AlcaldeRepository _alcaldeRepository;
         private readonly VotosPorMesasRepository _votosPorMesasRepository;
+        private readonly PartidoRepository _partidoRepository;
 
         public VotacionesServices(
                AlcaldeRepository alcaldeRepository,
-               VotosPorMesasRepository votosPorMesasRepository)
+               VotosPorMesasRepository votosPorMesasRepository,
+               PartidoRepository partidoRepository)
 
         {
             _alcaldeRepository = alcaldeRepository;
             _votosPorMesasRepository = votosPorMesasRepository;
+            _partidoRepository = partidoRepository;
         }
 
 
@@ -43,15 +46,14 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var list = _alcaldeRepository.Insert(item);
-                if (list.CodeStatus > 0)
+                var response = _alcaldeRepository.Insert(item);
+                if (response.CodeStatus == 1)
                 {
-                    return result.Ok(list);
+                    return result.Ok("Alcalde creado con exito", response);
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe ese Alcalde" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Ya existe un alcalde con ese DNI");
                 }
             }
             catch (Exception ex)
@@ -105,6 +107,84 @@ namespace Sistema_Votaciones.BusinessLogic.Services
 
         #endregion
 
+        #region Partidos
+        public ServiceResult ListPart()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _partidoRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult CrearPart(tbPartidos item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _partidoRepository.Insert(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok("Partido creado con exito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe un partido con ese con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        public ServiceResult EditarPart(tbPartidos item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _partidoRepository.Update(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok("Partido editado con exito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe un partido con ese con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult DesactivarPartido(int Part_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _alcaldeRepository.Delete(Part_Id);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok("Partido inhabilitado", response);
+                }
+                else
+                {
+                    return result.Error("No se puede inhabilitar el partido porque ya tiene votos registrados");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        #endregion
 
         #region VotosPorMesas
         public ServiceResult ListVotosPorMesas()

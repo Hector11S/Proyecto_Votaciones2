@@ -1,7 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +23,10 @@
     <ProjectReference Include="..\Sistema_Votaciones.BusinessLogic\Sistema_Votaciones.BusinessLogic.csproj" />
     <ProjectReference Include="..\Sistema_Votaciones.Common\Sistema_Votaciones.Common.csproj" />
     <ProjectReference Include="..\Sistema_Votaciones.DataAcess\Sistema_Votaciones.DataAcess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="https://json.schemastore.org/appveyor.json" /></VisualStudio></ProjectExtensions>

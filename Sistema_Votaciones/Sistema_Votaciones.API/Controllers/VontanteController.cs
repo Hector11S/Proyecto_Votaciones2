@@ -75,24 +75,11 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
-        [HttpDelete("API/[controller]/Delete")]
-        public IActionResult Delete(VontanteViewModel json)
+        [HttpGet("API/[controller]/BuscarVotantePorDNI")]
+        public IActionResult BuscarVotantePorDNI(string dni)
         {
-            _mapper.Map<tbVotantes>(json);
-            var modelo = new tbVotantes()
-            {
-                Vota_Id = json.Vota_Id
-
-            };
-            var list = _generalServices.EliminarVotante(modelo.Vota_Id);
-            return Ok(list);
+            var result = _generalServices.BuscarVotantePorDNI(dni);
+            return Ok(result);
         }
-
-        //[HttpGet("API/[controller]/Buscar")]
-        //public IActionResult BuscarVotantePorDNI(string dni)
-        //{
-        //    var result = _generalServices.BuscarVotantePorDNI(dni);
-        //    return Ok(result);
-        //}
     }
 }

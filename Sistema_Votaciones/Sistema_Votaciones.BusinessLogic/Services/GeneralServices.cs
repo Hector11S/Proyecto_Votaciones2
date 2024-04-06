@@ -160,7 +160,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             try
             {
                 var response = _municipioRepository.Insert(item);
-                if (response.CodeStatus > 0)
+                if (response.CodeStatus == 1)
                 {
                     return result.Ok("Municipio creado con exito", response);
                 }
@@ -218,21 +218,6 @@ namespace Sistema_Votaciones.BusinessLogic.Services
 
 
         #region Votantes
-        public ServiceResult FindVotante(string Vota_DNI)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var votante = _votanteRepository.Find(Vota_DNI);
-                
-                return result.Ok(votante);
-            }
-            catch (Exception ex)
-            {
-                return result.Error("No se encontró una persona con ese DNI");
-            }
-        }
-
         public ServiceResult ListVotante()
         {
             var result = new ServiceResult();
@@ -247,19 +232,39 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult BuscarVotantePorDNI(string Vota_DNI)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var votante = _votanteRepository.Find(Vota_DNI);
+                if (votante != null)
+                {
+                    return result.Ok(votante);
+                }
+                else
+                {
+                    return result.Error("No se encontró una persona con ese DNI");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("No se encontró una persona con ese DNI");
+            }
+        }
         public ServiceResult CrearVotante(tbVotantes item)
         {
             var result = new ServiceResult();
             try
             {
-                var list = _votanteRepository.Insert(item);
-                if (list.CodeStatus > 0)
+                var response = _votanteRepository.Insert(item);
+                if (response.CodeStatus > 0)
                 {
-                    return result.Ok("Votante creado con exito", list);
+                    return result.Ok("Persona agregada con exito", response);
                 }
                 else
                 {
-                    return result.Error("Ya existe un Votante con ese codigo o con ese nombre");
+                    return result.Error("Ya existe un registro de esta persona");
                 }
             }
             catch (Exception ex)
@@ -272,34 +277,14 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var list = _votanteRepository.Update(item);
-                if (list.CodeStatus > 0)
+                var response = _votanteRepository.Update(item);
+                if (response.CodeStatus == 1)
                 {
-                    return result.Ok($"Departamento {item.Vota_Id} editado con éxito", list);
+                    return result.Ok($"Persona {item.Muni_Codigo} editada con éxito", response);
                 }
                 else
                 {
-                    return result.Error("Ya existe un departamento con ese nombre");
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error("Error de capa 8");
-            }
-        }
-        public ServiceResult EliminarVotante(int Vota_Id)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _votanteRepository.Delete(Vota_Id);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok($"Departamento {Vota_Id} eliminado con éxito", list);
-                }
-                else
-                {
-                    return result.Error("No se encontró el departamento a eliminar");
+                    return result.Error("Ya existe una persona con ese DNI");
                 }
             }
             catch (Exception ex)
