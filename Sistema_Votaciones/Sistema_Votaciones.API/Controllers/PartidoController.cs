@@ -13,12 +13,12 @@ namespace Sistema_Votaciones.API.Controllers
     [ApiController]
     public class PartidoController : Controller
     {
-        private readonly GeneralServices _generalServices;
+        private readonly VotacionesServices _votacionesServices;
         private readonly IMapper _mapper;
 
-        public PartidoController(GeneralServices GeneralServices, IMapper mapper)
+        public PartidoController(VotacionesServices votacionesServices, IMapper mapper)
         {
-            _generalServices = GeneralServices;
+            _votacionesServices = votacionesServices;
             _mapper = mapper;
         }
 
@@ -26,15 +26,7 @@ namespace Sistema_Votaciones.API.Controllers
         public IActionResult List()
         {
 
-            var list = _generalServices.ListPart();
-            return Ok(list);
-        }
-        [HttpGet("API/[controller]/Find")]
-
-        public IActionResult Find(string Dept_Codigo)
-        {
-
-            var list = _generalServices.ListPart(Dept_Codigo);
+            var list = _votacionesServices.ListPart();
             return Ok(list);
         }
 
@@ -49,8 +41,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Part_UsuarioCreacion = json.Part_UsuarioCreacion,
                 Part_FechaCreacion = json.Part_FechaCreacion
             };
-            var list = _generalServices.CrearPart(modelo);
-            return Ok(list);
+            var response = _votacionesServices.CrearPart(modelo);
+            return Ok(response);
         }
         [HttpPut("API/[controller]/Update")]
         public IActionResult Update(PartidoViewModel json)
@@ -63,7 +55,15 @@ namespace Sistema_Votaciones.API.Controllers
                 Part_UsuarioModifica = json.Part_UsuarioModifica,
                 Part_FechaModifica = json.Part_FechaModifica
             };
-            var list = _generalServices.EditarPart(modelo);
-            return Ok(list);
+            var response = _votacionesServices.EditarPart(modelo);
+            return Ok(response);
+        }
+
+        [HttpDelete("API/[controller]/Delete")]
+        public IActionResult Delete(int Part_Id)
+        {
+            var response = _votacionesServices.DesactivarPartido(Part_Id);
+            return Ok(response);
         }
     }
+}

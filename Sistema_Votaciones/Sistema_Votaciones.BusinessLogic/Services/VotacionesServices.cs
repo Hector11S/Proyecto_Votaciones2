@@ -108,7 +108,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         #endregion
 
         #region Partidos
-        public ServiceResult ListPartido()
+        public ServiceResult ListPart()
         {
             var result = new ServiceResult();
             try
@@ -122,7 +122,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-        public ServiceResult CrearPartido(tbPartidos item)
+        public ServiceResult CrearPart(tbPartidos item)
         {
             var result = new ServiceResult();
             try
@@ -143,7 +143,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             }
         }
 
-        public ServiceResult EditarPartido(tbPartidos item)
+        public ServiceResult EditarPart(tbPartidos item)
         {
             var result = new ServiceResult();
             try
