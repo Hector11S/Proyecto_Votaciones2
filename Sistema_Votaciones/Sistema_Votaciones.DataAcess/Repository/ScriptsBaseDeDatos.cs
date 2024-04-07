@@ -40,6 +40,17 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Part_Eliminar = "[Vota].[SP_Partidos_Eliminar]";
         #endregion
 
+        #region Roles
+        public static string Rol_Listar = "[Acce].[SP_Roles_Mostrar]";
+        public static string Rol_Llenar = "[Acce].[SP_Roles_Listar]";
+        public static string Rol_Insertar = "[Acce].[SP_Roles_Insertar]";
+        public static string Rol_Editar = "[Acce].[SP_Roles_Editar]";
+        public static string Rol_Eliminar = "[Acce].[SP_Roles_Eliminar]";
+        #endregion
+        #region Pantallas
+        public static string Pant_Listar = "[Acce].[SP_Pantallas_Mostrar]";
+        #endregion
+
         #region VotosPorMesas
         public static string VotosPorMesas_Listar = "[Vota].[SP_VotosPorMesas_Mostrar]";
         public static string VotosPorMesas_Insertar = "[Vota].[SP_VotosPorMesas_Insertar]";

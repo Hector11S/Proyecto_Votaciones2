@@ -22,8 +22,10 @@ namespace Sistema_Votaciones.BusinessLogic
             service.AddScoped<VotanteRepository>();
             service.AddScoped<MunicipioRepository>();
             service.AddScoped<PartidoRepository>();
-            //service.AddScoped<PantallaRepository>();
-            //service.AddScoped<PantallaPorRolRepository>();
+            service.AddScoped<RolesRepository>();
+            service.AddScoped<PantallasRepository>();
+            service.AddScoped<PantallasPorRolesRepository>();
+            service.AddScoped<UsuariosRepository>();
             //service.AddScoped<DispositivoRepository>();
             //service.AddScoped<EmpleadoRepository>();
             //service.AddScoped<EmpresaRepository>();
@@ -32,7 +34,6 @@ namespace Sistema_Votaciones.BusinessLogic
             //service.AddScoped<PiezaRepository>();
             //service.AddScoped<ServicioRepository>();
             //service.AddScoped<SolicitudRepository>();
-            //service.AddScoped<UsuarioRepository>();
             VotacionesContext.BuildConnectionString(conn);
 
         }
@@ -42,8 +43,6 @@ namespace Sistema_Votaciones.BusinessLogic
             service.AddScoped<GeneralServices>();
             service.AddScoped<AccesoServices>();
             service.AddScoped<VotacionesServices>();
-          
-
         }
     }
 }

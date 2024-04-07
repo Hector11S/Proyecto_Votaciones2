@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_Votaciones.Common.Models
+namespace Frontend_Sistema_Votaciones.Models
 {
     public class PantallasViewModel
     {
@@ -16,6 +15,5 @@ namespace Sistema_Votaciones.Common.Models
         public DateTime? Pant_FechaModifica { get; set; }
         public bool? Pant_Estado { get; set; }
         public string Pant_Esquema { get; set; }
-
     }
 }

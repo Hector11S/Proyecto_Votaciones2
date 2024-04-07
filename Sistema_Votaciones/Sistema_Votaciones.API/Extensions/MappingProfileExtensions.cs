@@ -20,6 +20,7 @@ namespace Sistema_Votaciones.API.Extensions
             CreateMap<VotosPorMesasViewModel, tbVotosPorMesas>().ReverseMap();
             
             CreateMap<VotanteViewModel, tbVotantes>().ReverseMap();
+            CreateMap<RolesViewModel, tbVotantes>().ReverseMap();
         }
     }
 }

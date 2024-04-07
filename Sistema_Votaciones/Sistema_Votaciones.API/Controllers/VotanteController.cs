@@ -43,8 +43,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Muni_Codigo = json.Muni_Codigo,
                 Esta_Id = json.Esta_Id,
                 MePS_Id = json.MePS_Id,
-                Vota_UsuarioCreacion = 2,
-                Vota_FechaCreacion = DateTime.Now
+                Vota_UsuarioCreacion = json.Vota_UsuarioCreacion,
+                Vota_FechaCreacion = json.Vota_FechaCreacion
             };
             var list = _generalServices.CrearVotante(modelo);
             return Ok(list);
@@ -65,8 +65,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Muni_Codigo = json.Muni_Codigo,
                 Esta_Id = json.Esta_Id,
                 MePS_Id = json.MePS_Id,
-                Vota_UsuarioCreacion = 2,
-                Vota_FechaCreacion = DateTime.Now
+                Vota_UsuarioModifica = json.Vota_UsuarioModifica,
+                Vota_FechaModifica = json.Vota_FechaModifica
             };
             var list = _generalServices.EditarVotante(modelo);
             return Ok(list);
