@@ -13,10 +13,16 @@ namespace Frontend_Sistema_Votaciones.Controllers
      
         public VotosPorMesaServicios _votosPorMesaServicios;
         private readonly AlcaldeServicios _alcaldeServicios;
-        public VotosPorMesaController(AlcaldeServicios alcaldeServicios,VotosPorMesaServicios VotosPorMesaServicios)
+        private readonly VotanteServicios _votanteServicios;
+        private readonly PartidoServicios _partidoServicios;
+
+
+        public VotosPorMesaController(PartidoServicios partidoServicios, VotanteServicios votanteServicios, AlcaldeServicios alcaldeServicios,VotosPorMesaServicios VotosPorMesaServicios)
         {
             _alcaldeServicios = alcaldeServicios;
             _votosPorMesaServicios = VotosPorMesaServicios;
+            _votanteServicios = votanteServicios;
+            _partidoServicios = partidoServicios;
         }
         public async Task<IActionResult> Index()
         {
@@ -77,21 +83,26 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-        
-                var alcaldes = await _alcaldeServicios.ObtenerAlcaldeList();
-                ViewBag.Alcaldes = alcaldes.Data;
 
-          
+                var alcaldes = await _alcaldeServicios.ObtenerAlcaldeList();
+                var votante = await _votanteServicios.ObtenerVotantesList();
+                var partido = await _partidoServicios.ObtenerPartidoList();
+
+                ViewBag.Alcaldes = alcaldes.Data;
+                ViewBag.Votante = votante.Data;
+                ViewBag.Partidos = partido.Data;
+
                 var model = new VotosPorMesasViewModel();
 
                 return View(model);
             }
             catch (Exception ex)
             {
-  
+
                 return RedirectToAction("Index");
             }
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

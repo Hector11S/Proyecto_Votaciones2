@@ -2,50 +2,123 @@
 @{
     ViewData["Title"] = "Create";
     var alcaldes = ViewBag.Alcaldes;
+    var partidos = ViewBag.Partidos;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<style>
+    .img-container {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
 
-<h4>VotosPorMesasViewModel</h4>
+        .img-container img {
+            width: 100%; 
+            height: auto; 
+            margin: 0 auto;
+            display: block;
+        }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .form-check {
+        text-align: center;
+    }
+
+    .mb-4 {
+        margin-bottom: 1rem;
+    }
+
+    .custom-radio .form-check-input {
+        width: 25px;
+        height: 25px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .custom-radio .form-check-label {
+        display: none;
+    }
+</style>
+
+
+<h1 style="background-color: #3dbdd9" class="text-center">Candidatos Para la Alcaldía</h1>
+
 <hr />
 <form asp-action="Create">
     <div class="row">
-        @foreach (var alcalde in alcaldes)
-        {
-            <div class="col-4 mb-4">
-                <div class="border border-5 border-white p-3">
-                    <img src="~/NiceAdmin/assets/img/Flag_of_Honduras.svg.png" alt="Imagen-partido-politico" class="w-100 mb-2" />
-                    <img src="~/NiceAdmin/assets/img/profile-img.jpg" class="w-100 mb-2" />
-                    <h5>@alcalde.Alca_Imagen</h5>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="VoMe_CandidatoId" id="@("rb-" + alcalde.Alca_Id)" value="@alcalde.Alca_Id">
-                        <label class="form-check-label" for="@("rb-" + alcalde.Alca_Id)">
-                            Seleccionar
-                        </label>
-                    </div>
-                </div>
-            </div>
-        }
 
-        <div class="col-4 mb-4">
-            <div class="border border-5 border-white p-3">
-                <h1>Voto nulo</h1>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="VoMe_CandidatoId" id="rb-nulo" value="0">
-                    <label class="form-check-label" for="rb-nulo">
-                        Seleccionar
-                    </label>
+        <div class="text-center mt-4">
+            <div class="btn-group">
+                <input style="background-color: #3dbdd9; color: white; border-radius: 10px; padding: 10px 20px;" type="submit" value="Crear Voto" class="btn mr-2" />
+                <span style="margin-right: 50px;"></span>
+                <a class="btn btn-secondary" style="border-radius: 10px; padding: 10px 20px;" href="@Url.Action("Index")">Regresar</a>
+            </div>
+        </div>
+        <br />
+        <hr />
+
+        <div class="col-12 mb-4">
+            <div class="border border-5 border-dark p-3">
+                <h1 class="text-center">Voto nulo</h1>
+                <div class="form-check custom-radio" style="margin: 0 auto; display: table;">
+                    <input style="border-color:black" class="form-check-input" type="radio" name="VoMe_CandidatoId" id="rb-nulo" value="0">
+
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row">
+            @foreach (var alcalde in alcaldes)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="border border-5 border-dark p-3">
+                        <div class="img-container">
+                            @foreach (var partido in partidos)
+                            {
+                                if (partido.Part_Id == alcalde.Part_Id)
+                                {
+                                    <img src="@partido.Part_Imagen" alt="Imagen-partido-politico" style="height: 200px;">
+                                }
+                            }
+                        </div>
+                        <div class="img-container">
+                            <img src="@alcalde.Alca_Imagen" alt="Imagen-alcalde" style="height: 200px;">
+                        </div>
+                        <br />
+                        @foreach (var votante in ViewBag.Votante)
+                        {
+                            if (votante.Vota_Id == alcalde.Alca_Id)
+                            {
+                                <hr />
+                                <h2 class="text-center mb-4">@votante.Vota_Nombre @votante.Vota_Apellidos</h2>
 
-    <div class="form-group mt-4">
-        <input type="submit" value="Crear Voto" class="btn btn-primary" />
+                                <hr />
+                            }
+                        }
+                        <div class="form-check custom-radio" style="margin: 0 auto; display: table;">
+                            <input style="border-color:black" class="form-check-input" type="radio" name="VoMe_CandidatoId" id="@("rb-" + alcalde.Alca_Id)" value="@alcalde.Alca_Id">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+        <hr />
     </div>
+    <div class="text-center mt-4">
+        <div class="btn-group">
+            <input style="background-color: #3dbdd9; color: white; border-radius: 10px; padding: 10px 20px;" type="submit" value="Crear Voto" class="btn mr-2" />
+            <span style="margin-right: 50px;"></span>
+            <a class="btn btn-secondary" style="border-radius: 10px; padding: 10px 20px;" href="@Url.Action("Index")">Regresar</a>
+        </div>
+    </div>
+    <br />
+
 </form>
 
-<div>
-    <a asp-action="Index">Volver al Listado</a>
-</div>

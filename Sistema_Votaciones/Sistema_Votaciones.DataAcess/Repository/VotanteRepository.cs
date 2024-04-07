@@ -42,7 +42,14 @@ namespace Sistema_Votaciones.DataAcess.Repository
 
         public IEnumerable<tbVotantes> List()
         {
-            throw new NotImplementedException();
+
+            List<tbVotantes> result = new List<tbVotantes>();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                result = db.Query<tbVotantes>(ScriptsBaseDeDatos.Vota_ListarCandidatos, commandType: CommandType.Text).ToList();
+                return result;
+            }
+
         }
 
         public RequestStatus Update(tbVotantes item)

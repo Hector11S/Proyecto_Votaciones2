@@ -156,6 +156,8 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             return View(item);
         }
+
+
         [HttpGet("[controller]/Edit/{Dept_Codigo}")]
         public async Task<IActionResult> Edit(string Alca_Id)
         {

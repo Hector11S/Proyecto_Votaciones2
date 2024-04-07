@@ -48,6 +48,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
 
         #region Votantes
         public static string Vota_Llenar = "[Gral].[SP_Votantes_Llenar]";
+        public static string Vota_Listar = "[Gral].[SP_Votantes_Mostrar]";
+        public static string Vota_ListarCandidatos = "[Gral].[SP_Votantes_MostrarCandidatos]";
         #endregion
     }
 }
