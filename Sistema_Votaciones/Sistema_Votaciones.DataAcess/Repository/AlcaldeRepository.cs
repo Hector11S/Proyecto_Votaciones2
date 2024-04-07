@@ -26,9 +26,16 @@ namespace Sistema_Votaciones.DataAcess.Repository
             }
         }
 
-        public tbAlcaldes Find(int? id)
+        public tbAlcaldes Find(int? Alca_Id)
         {
-            throw new NotImplementedException();
+            tbAlcaldes result = new tbAlcaldes();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Alca_Id", Alca_Id);
+                result = db.QueryFirst<tbAlcaldes>(ScriptsBaseDeDatos.Alca_Llenar, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
         }
 
         public RequestStatus Insert(tbAlcaldes item)
@@ -69,8 +76,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Alca_Imagen", item.Alca_Imagen);
                 parameter.Add("Part_Id", item.Part_Id);
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
-                parameter.Add("Alca_UsuarioModifica", item.Alca_UsuarioCreacion);
-                parameter.Add("Alca_FechaModifica", item.Alca_FechaCreacion);
+                parameter.Add("Alca_UsuarioModifica", item.Alca_UsuarioModifica);
+                parameter.Add("Alca_FechaModifica", item.Alca_FechaModifica);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Alca_Editar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };

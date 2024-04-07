@@ -21,14 +21,14 @@ namespace Frontend_Sistema_Votaciones.Models
         public string Alca_Imagen { get; set; }
         [Display(Name = "Municipio codigo")]
         public string Muni_Codigo { get; set; }
+        public string Dept_Codigo { get; set; }
 
         [Display(Name = "Municipio")]
         public string Muni_Descripcion { get; set; }
 
         [Display(Name = "Id Partido")]
         public int Part_Id { get; set; }
-
-        [Display(Name = "Partido")]
+        [Display(Name = "Nombre Partido")]
         public string Part_Descripcion { get; set; }
 
         [Display(Name = "Usuario creacion")]

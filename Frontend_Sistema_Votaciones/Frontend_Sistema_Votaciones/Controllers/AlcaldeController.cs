@@ -53,16 +53,20 @@ namespace Frontend_Sistema_Votaciones.Controllers
                         await imagen.CopyToAsync(fileStream);
                     }
                     var result = await _alcaldeServicios.SubirImagen(rutaImagen);
+                    if (System.IO.File.Exists(rutaImagen))
+                    {
+                        System.IO.File.Delete(rutaImagen);
+                    }
                     return Json( new { message= result.Message, urlImagen= result.Data });
                 }
                 else
                 {
-                    return Json("No se recibió ninguna imagen");
+                    return Json( new { message= "No se recibió ninguna imagen" });
                 }
             }
             catch (Exception ex)
             {
-                return Json("Error de capa 8");
+                return Json( new { message= "Error al subir la imagen" });
             }
         }
         [HttpGet("[controller]/ObtenerVotantePorDNI/{Vota_DNI}")]
@@ -70,12 +74,22 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                var reponse = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
-                return Json( new { votante = reponse.Data, message= reponse.Message });
+
+                var reponseVotante = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
+                VotanteViewModel votante = (VotanteViewModel)reponseVotante.Data;
+                var responseAlcalde = await _alcaldeServicios.ObtenerAlcalde(Convert.ToString(votante.Vota_Id));
+                if (responseAlcalde.Success)
+                {
+                    return Json( new { message= "Ya existe un registro de este alcalde." });
+                }
+                else
+                {
+                    return Json( new { votante = reponseVotante.Data, message= reponseVotante.Message });
+                }
             }
             catch (Exception ex)
             {
-                return Json("Error de capa 8");
+                return Json("Error al obtener la persona por el DNI");
             }
         }
         [HttpGet("[controller]/ObtenerMunicipiosPorDept/{Dept_Codigo}")]
@@ -163,17 +177,25 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             return View(item);
         }
-        [HttpGet("[controller]/Edit/{Dept_Codigo}")]
+        //[HttpGet("[controller]/Edit")]
         public async Task<IActionResult> Edit(string Alca_Id)
         {
             try
             {
-                var model = await _alcaldeServicios.ObtenerAlcalde(Alca_Id);
-                return Json(model.Data);
+                var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
+                var partidosList = await _partidoServicios.ObtenerPartidoList();
+                ViewBag.Departamentos = departamentosList.Data;
+                ViewBag.Partidos = partidosList.Data;
+                var response = await _alcaldeServicios.ObtenerAlcalde(Alca_Id);
+                AlcaldeViewModel alcaldeViewModel = (AlcaldeViewModel)response.Data;
+                var municipios = await _municipioServicios.ObtenerMunicipiosList(alcaldeViewModel.Dept_Codigo);
+                ViewBag.Municipios = municipios.Data;
+                return View(response.Data);
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index");
+                TempData["Error"] = $"Error al cargar informacion del Alcalde {Alca_Id}.";
+                return View();
             }
         }
 
@@ -182,23 +204,25 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                item.Alca_UsuarioCreacion = 2;
-                item.Alca_FechaCreacion = DateTime.Now;
+                item.Alca_UsuarioModifica = 4;
+                item.Alca_FechaModifica = DateTime.Now;
                 var result = await _alcaldeServicios.EditarAlcalde(item);
                 if (result.Success)
                 {
+                    TempData["AbrirModal"] = null;
+                    TempData["Exito"] = result.Message;
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    return View("Index", item);
+                    TempData["Advertencia"] = result.Message;
                 }
             }
             catch (Exception ex)
             {
-                return View(item);
-                throw;
+                TempData["Error"] = "Error al editar el alcalde.";
             }
+            return RedirectToAction("Edit", "Alcalde", new { Alca_Id = item.Alca_Id });
         }
     }
 }

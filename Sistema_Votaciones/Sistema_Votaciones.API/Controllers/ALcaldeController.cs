@@ -16,11 +16,11 @@ namespace Sistema_Votaciones.API.Controllers
         private readonly VotacionesServices _votacionesServices;
         private readonly IMapper _mapper;
 
-        public ALcaldeController(VotacionesServices VotacionesServices, IMapper mapper)
+        public ALcaldeController(VotacionesServices votacionesServices, IMapper mapper)
 
         {
 
-            _votacionesServices = VotacionesServices;
+            _votacionesServices = votacionesServices;
             _mapper = mapper;
 
         }
@@ -32,6 +32,13 @@ namespace Sistema_Votaciones.API.Controllers
 
             var list = _votacionesServices.ListAlcalde();
             return Ok(list);
+        }
+        
+        [HttpGet("API/[controller]/Find")]
+        public IActionResult Find(int Alca_Id)
+        {
+            var result = _votacionesServices.BuscarAlcalde(Alca_Id);
+            return Ok(result);
         }
 
         [HttpPost("API/[controller]/Insert")]
@@ -47,8 +54,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Alca_UsuarioCreacion = json.Alca_UsuarioCreacion,
                 Alca_FechaCreacion = json.Alca_FechaCreacion
             };
-            var list = _votacionesServices.CrearAlcalde(modelo);
-            return Ok(list);
+            var response = _votacionesServices.CrearAlcalde(modelo);
+            return Ok(response);
         }
 
         [HttpPut("API/[controller]/Update")]
@@ -64,8 +71,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Alca_UsuarioModifica = json.Alca_UsuarioModifica,
                 Alca_FechaModifica = json.Alca_FechaModifica
             };
-            var list = _votacionesServices.EditarAlcalde(modelo);
-            return Ok(list);
+            var response = _votacionesServices.EditarAlcalde(modelo);
+            return Ok(response);
         }
 
         [HttpDelete("API/[controller]/Delete")]
@@ -77,8 +84,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Alca_Id = Convert.ToInt32(json.Alca_Id)
 
             };
-            var list = _votacionesServices.EliminarAlcalde(modelo.Alca_Id);
-            return Ok(list);
+            var response = _votacionesServices.EliminarAlcalde(modelo.Alca_Id);
+            return Ok(response);
         }
     }
 }
