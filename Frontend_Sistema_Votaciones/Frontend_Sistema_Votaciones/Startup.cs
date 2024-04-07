@@ -39,6 +39,7 @@ namespace Frontend_Sistema_Votaciones
             services.AddScoped<MunicipioServicios>();
             services.AddScoped<PartidoServicios>();
             services.AddScoped<PantallasServicios>();
+            services.AddScoped<UsuariosServicios>();
             services.AddScoped<BlobStorage>();
         }
 

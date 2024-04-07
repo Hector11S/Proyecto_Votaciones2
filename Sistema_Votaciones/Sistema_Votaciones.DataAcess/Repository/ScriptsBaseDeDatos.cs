@@ -40,6 +40,14 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Part_Eliminar = "[Vota].[SP_Partidos_Eliminar]";
         #endregion
 
+        #region Usuarios
+        public static string Usua_Listar = "[Acce].[SP_Usuarios_Mostrar]";
+        public static string Usua_Llenar = "[Acce].[SP_Usuarios_Llenar]";
+        public static string Usua_Insertar = "[Acce].[SP_Usuarios_Insertar]";
+        public static string Usua_Editar = "[Acce].[SP_Usuarios_Editar]";
+        public static string Usua_ActivarDesactivar = "[Acce].[SP_Usuarios_ActivarDesactivar]";
+        #endregion
+
         #region Roles
         public static string Rol_Listar = "[Acce].[SP_Roles_Mostrar]";
         public static string Rol_Llenar = "[Acce].[SP_Roles_Listar]";
@@ -50,7 +58,11 @@ namespace Sistema_Votaciones.DataAcess.Repository
         #region Pantallas
         public static string Pant_Listar = "[Acce].[SP_Pantallas_Mostrar]";
         #endregion
-
+        #region PantallasPorRoles
+        public static string Paro_Listar = "[Acce].[SP_PantallasPorRoles_Mostrar]";
+        public static string Paro_Insertar = "[Acce].[SP_PantallasPorRoles_Insertar]";
+        public static string Paro_Eliminar = "[Acce].[SP_PantallasPorRoles_Eliminar]";
+        #endregion
         #region VotosPorMesas
         public static string VotosPorMesas_Listar = "[Vota].[SP_VotosPorMesas_Mostrar]";
         public static string VotosPorMesas_Insertar = "[Vota].[SP_VotosPorMesas_Insertar]";
