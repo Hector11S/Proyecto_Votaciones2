@@ -32,6 +32,14 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Alca_Eliminar = "[Vota].[SP_Alca_Eliminar]";
         #endregion
 
+        #region Presidentes
+        public static string Presi_Listar = "[Vota].[SP_Presidentes_Mostrar]";
+        public static string Presi_Insertar = "[Vota].[SP_Presidentes_Insertar]";
+        public static string Presi_Editar = "[Vota].[SP_Presidentes_Editar]";
+        public static string Presi_Eliminar = "[Vota].[SP_Presidentes_Eliminar]";
+        #endregion
+
+
         #region Partidos
         public static string Part_Listar = "[Vota].[SP_Partidos_Mostrar]";
         public static string Part_Insertar = "[Vota].[SP_Partidos_Insertar]";
@@ -53,6 +61,10 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Vota_Insertar = "[Gral].[SP_Votantes_Insertar]";
         public static string Vota_Editar = "[Gral].[SP_Votantes_Editar]";
         public static string Vota_Eliminar = "[Gral].[SP_Votantes_Eliminar]";
+        public static string Vota_ListarCandidatos = "[Gral].[SP_Votantes_MostrarCandidatos]";
         #endregion
+
+
+
     }
 }

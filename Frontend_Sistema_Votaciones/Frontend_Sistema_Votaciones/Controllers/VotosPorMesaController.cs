@@ -10,15 +10,16 @@ namespace Frontend_Sistema_Votaciones.Controllers
 {
     public class VotosPorMesaController : Controller
     {
-     
+        private readonly PresidenteServicios _presidenteServicios;
         public VotosPorMesaServicios _votosPorMesaServicios;
         private readonly AlcaldeServicios _alcaldeServicios;
         private readonly VotanteServicios _votanteServicios;
         private readonly PartidoServicios _partidoServicios;
 
 
-        public VotosPorMesaController(PartidoServicios partidoServicios, VotanteServicios votanteServicios, AlcaldeServicios alcaldeServicios,VotosPorMesaServicios VotosPorMesaServicios)
+        public VotosPorMesaController(PresidenteServicios presidenteServicios, PartidoServicios partidoServicios, VotanteServicios votanteServicios, AlcaldeServicios alcaldeServicios,VotosPorMesaServicios VotosPorMesaServicios)
         {
+            _presidenteServicios = presidenteServicios;
             _alcaldeServicios = alcaldeServicios;
             _votosPorMesaServicios = VotosPorMesaServicios;
             _votanteServicios = votanteServicios;
@@ -85,7 +86,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             {
 
                 var alcaldes = await _alcaldeServicios.ObtenerAlcaldeList();
-                var votante = await _votanteServicios.ObtenerVotantesList();
+                var votante = await _votanteServicios.ObtenerVotanteList();
                 var partido = await _partidoServicios.ObtenerPartidoList();
 
                 ViewBag.Alcaldes = alcaldes.Data;
@@ -142,6 +143,76 @@ namespace Frontend_Sistema_Votaciones.Controllers
             catch (Exception ex)
             {
      
+                return RedirectToAction("Index");
+            }
+        }
+
+        public async Task<IActionResult> CreatePresi()
+        {
+            try
+            {
+
+                var presidente = await _presidenteServicios.ObtenerPresidenteList();
+                var alcaldes = await _alcaldeServicios.ObtenerAlcaldeList();
+                var votante = await _votanteServicios.ObtenerVotanteList();
+                var partido = await _partidoServicios.ObtenerPartidoList();
+
+                ViewBag.Alcaldes = alcaldes.Data;
+                ViewBag.Votante = votante.Data;
+                ViewBag.Partidos = partido.Data;
+                ViewBag.Presidente = presidente.Data;
+
+                var model = new VotosPorMesasViewModel();
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+
+                return RedirectToAction("Index");
+            }
+        }
+
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreatePresi(VotosPorMesasViewModel item)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    item.MePS_Id = 1;
+                    item.VoMe_EsPresidente = true;
+
+
+                    var result = await _votosPorMesaServicios.CrearVotosPorMesa(item);
+
+                    if (result.Success)
+                    {
+                        
+                        return RedirectToAction("Create", "VotosPorMesa");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+
+                    var alcaldes = await _alcaldeServicios.ObtenerAlcaldeList();
+                    ViewBag.Alcaldes = alcaldes.Data;
+
+                    return View(item);
+                }
+            }
+            catch (Exception ex)
+            {
+
                 return RedirectToAction("Index");
             }
         }

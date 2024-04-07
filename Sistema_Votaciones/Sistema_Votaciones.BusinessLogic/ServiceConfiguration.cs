@@ -22,7 +22,7 @@ namespace Sistema_Votaciones.BusinessLogic
             service.AddScoped<VotanteRepository>();
             service.AddScoped<MunicipioRepository>();
             service.AddScoped<PartidoRepository>();
-            //service.AddScoped<PantallaRepository>();
+            service.AddScoped<PresidenteRepository>();
             //service.AddScoped<PantallaPorRolRepository>();
             //service.AddScoped<DispositivoRepository>();
             //service.AddScoped<EmpleadoRepository>();

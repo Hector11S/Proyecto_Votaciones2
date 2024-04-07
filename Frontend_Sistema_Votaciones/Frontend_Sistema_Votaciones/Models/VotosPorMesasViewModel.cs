@@ -19,5 +19,20 @@ namespace Frontend_Sistema_Votaciones.Models
 
         [Display(Name = "Es Presidente")]
         public bool VoMe_EsPresidente { get; set; }
+
+        [Display(Name = "Cargo")]
+        public string Cargo { get; set; }
+
+        [Display(Name = "Candidato")]
+        public int CandidatoId { get; set; }
+
+        [Display(Name = "Total Votos")]
+        public int TotalVotos { get; set; }
+
+        [Display(Name = "Nombre")]
+        public string Nombre { get; set; }
+
+        [Display(Name = "Apellidos")]
+        public string Apellidos { get; set; }
     }
 }

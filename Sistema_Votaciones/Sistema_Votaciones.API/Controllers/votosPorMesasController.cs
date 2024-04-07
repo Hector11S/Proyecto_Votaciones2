@@ -66,6 +66,8 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
+
+
         [HttpPut("API/[controller]/Update")]
         public IActionResult Update(VotosPorMesasViewModel json)
         {

@@ -12,5 +12,12 @@ namespace Sistema_Votaciones.Common.Models
         public int MePS_Id { get; set; }
         public int VoMe_CandidatoId { get; set; }
         public bool VoMe_EsPresidente { get; set; }
+
+        public string Cargo { get; set; }
+
+        public string Nombre { get; set; }
+        public string Apellidos { get; set; }
+        public int CandidatoId { get; set; } 
+        public int TotalVotos { get; set; }
     }
 }

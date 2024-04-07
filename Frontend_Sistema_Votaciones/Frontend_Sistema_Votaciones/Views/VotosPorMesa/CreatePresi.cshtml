@@ -1,0 +1,127 @@
+﻿@model Frontend_Sistema_Votaciones.Models.VotosPorMesasViewModel
+@{
+    ViewData["Title"] = "Create";
+    var alcaldes = ViewBag.Alcaldes;
+    var partidos = ViewBag.Partidos;
+    var presidentes = ViewBag.Presidente;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .img-container {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
+
+        .img-container img {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+        }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .form-check {
+        text-align: center;
+    }
+
+    .mb-4 {
+        margin-bottom: 1rem;
+    }
+
+    .custom-radio .form-check-input {
+        width: 25px;
+        height: 25px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .custom-radio .form-check-label {
+        display: none;
+    }
+</style>
+
+
+<h1 style="background-color: #3dbdd9" class="text-center">Candidatos Para la Presidencia</h1>
+
+<hr />
+<form asp-action="CreatePresi">
+    <div class="row">
+        <input type="hidden" asp-for="VoMe_Id" />
+
+        <div class="text-center mt-4">
+            <div class="btn-group">
+                <input style="background-color: #3dbdd9; color: white; border-radius: 10px; padding: 10px 20px;" type="submit" value="Crear Voto" class="btn mr-2" />
+                <span style="margin-right: 50px;"></span>
+                <a class="btn btn-secondary" style="border-radius: 10px; padding: 10px 20px;" href="@Url.Action("Index")">Regresar</a>
+            </div>
+        </div>
+        <br />
+        <hr />
+
+        <div class="col-12 mb-4">
+            <div class="border border-5 border-dark p-3">
+                <h1 class="text-center">Voto nulo</h1>
+                <div class="form-check custom-radio" style="margin: 0 auto; display: table;">
+                    <input style="border-color:black" class="form-check-input" type="radio" name="VoMe_CandidatoId" id="rb-nulo" value="0">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var presidente in presidentes)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="border border-5 border-dark p-3">
+                        <div class="img-container">
+                            @foreach (var partido in partidos)
+                            {
+                                if (partido.Part_Id == presidente.Part_Id)
+                                {
+                                    <img src="@partido.Part_Imagen" alt="Imagen-partido-politico" style="height: 200px;">
+                                }
+                            }
+                        </div>
+                        <div class="img-container">
+                            <img src="@presidente.Pres_Imagen" alt="Imagen-alcalde" style="height: 200px;">
+                        </div>
+                        <br />
+                        @foreach (var votante in ViewBag.Votante)
+                        {
+                            if (votante.Vota_Id == presidente.Pres_Id)
+                            {
+                                <hr />
+                                <h2 class="text-center mb-4">@votante.Vota_Nombre @votante.Vota_Apellidos</h2>
+
+                                <hr />
+                            }
+                        }
+                        <div class="form-check custom-radio" style="margin: 0 auto; display: table;">
+                            <input style="border-color:black" class="form-check-input" type="radio" name="VoMe_CandidatoId" id="@("rb-" + presidente.Pres_Id)" value="@presidente.Pres_Id">
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+
+        <hr />
+    </div>
+    <div class="text-center mt-4">
+        <div class="btn-group">
+            <input style="background-color: #3dbdd9; color: white; border-radius: 10px; padding: 10px 20px;" type="submit" value="Crear Voto" class="btn mr-2" />
+            <span style="margin-right: 50px;"></span>
+            <a class="btn btn-secondary" style="border-radius: 10px; padding: 10px 20px;" href="@Url.Action("Index")">Regresar</a>
+        </div>
+    </div>
+    <br />
+
+</form>
+
+

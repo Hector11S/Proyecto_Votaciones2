@@ -292,6 +292,26 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult EliminarVotante(int Vota_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votanteRepository.Delete(Vota_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"Departamento {Vota_Id} eliminado con éxito", list);
+                }
+                else
+                {
+                    return result.Error("No se encontró el departamento a eliminar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
         #endregion
     }
 }

@@ -49,7 +49,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                         TempData["Advertencia"] = "Usted ya votó";
                         return RedirectToAction("Index");
                     }
-                    return RedirectToAction("Create", "VotosPorMesa");
+                    return RedirectToAction("CreatePresi", "VotosPorMesa");
                 }
             }
             catch (Exception ex)

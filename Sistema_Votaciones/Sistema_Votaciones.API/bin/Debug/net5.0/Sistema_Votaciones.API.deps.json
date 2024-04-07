@@ -1962,6 +1962,9 @@
         }
       },
       "Sistema_Votaciones.Common/1.0.0": {
+        "dependencies": {
+          "Sistema_Votaciones.Entities": "1.0.0"
+        },
         "runtime": {
           "Sistema_Votaciones.Common.dll": {}
         },

@@ -22,9 +22,11 @@ namespace Sistema_Votaciones.API.Controllers
         [HttpGet("API/[controller]/Find")]
         public IActionResult Find(string Vota_DNI)
         {
-            var list = _generalServices.FindVotante(Vota_DNI);
+            var list = _generalServices.BuscarVotantePorDNI(Vota_DNI);
             return Ok(list);
         }
+
+
 
     }
 }

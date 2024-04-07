@@ -41,6 +41,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+
         public async Task<ServiceResult> ObtenerVotosPorMesa(int VoMe_Id)
         {
             var result = new ServiceResult();
@@ -140,5 +141,8 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 return result.Error(Helpers.GetMessage(ex));
             }
         }
+
+      
+
     }
 }

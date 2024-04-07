@@ -68,15 +68,28 @@ namespace Sistema_Votaciones.DataAcess.Repository
 
         public IEnumerable<tbVotosPorMesas> List()
         {
-
             List<tbVotosPorMesas> result = new List<tbVotosPorMesas>();
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
-                result = db.Query<tbVotosPorMesas>(ScriptsBaseDeDatos.VotosPorMesas_Listar, commandType: CommandType.Text).ToList();
-                return result;
-            }
+                var queryResult = db.Query<dynamic>(ScriptsBaseDeDatos.VotosPorMesas_Listar, commandType: CommandType.StoredProcedure);
 
+                foreach (var item in queryResult)
+                {
+                
+                    var viewModel = new tbVotosPorMesas
+                    {
+                        Nombre = item.Nombre,
+                        Apellidos = item.Apellidos,
+                        Cargo = item.Cargo,
+                        CandidatoId = item.CandidatoId,
+                        TotalVotos = item.TotalVotos
+                    };
+                    result.Add(viewModel);
+                }
+            }
+            return result;
         }
+
 
         public RequestStatus Update(tbVotosPorMesas item)
         {

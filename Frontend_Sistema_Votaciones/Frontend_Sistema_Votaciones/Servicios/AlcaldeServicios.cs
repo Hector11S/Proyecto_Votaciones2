@@ -139,5 +139,31 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+
+        public async Task<ServiceResult> ObtenerAlcaldePorMunicipio(string codigoMunicipio)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<AlcaldeViewModel>, IEnumerable<AlcaldeViewModel>>(req =>
+                {
+                    req.Path = $"API/Alcalde/List?Muni_Codigo={codigoMunicipio}";
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
     }
 }

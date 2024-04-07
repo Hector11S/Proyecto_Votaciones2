@@ -13,16 +13,19 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         private readonly AlcaldeRepository _alcaldeRepository;
         private readonly VotosPorMesasRepository _votosPorMesasRepository;
         private readonly PartidoRepository _partidoRepository;
+        private readonly PresidenteRepository _presidenteRepository;
 
         public VotacionesServices(
                AlcaldeRepository alcaldeRepository,
                VotosPorMesasRepository votosPorMesasRepository,
-               PartidoRepository partidoRepository)
+               PartidoRepository partidoRepository,
+               PresidenteRepository presidenteRepository)
 
         {
             _alcaldeRepository = alcaldeRepository;
             _votosPorMesasRepository = votosPorMesasRepository;
             _partidoRepository = partidoRepository;
+            _presidenteRepository = presidenteRepository;
         }
 
 
@@ -106,6 +109,88 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         }
 
         #endregion
+
+        #region Presidentes
+        public ServiceResult ListPresidente()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _presidenteRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult CrearPresidente(tbPresidentes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _presidenteRepository.Insert(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok("Presidente creado con exito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe un Presidente con ese DNI");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        public ServiceResult EditarPresidente(tbPresidentes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _presidenteRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Presidente con ese nombre" : list.MessageStatus;
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult EliminarPresidente(int Pres_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _presidenteRepository.Delete(Pres_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Presidente a eliminar" : list.MessageStatus;
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        #endregion
+
 
         #region Partidos
         public ServiceResult ListPart()
@@ -265,7 +350,6 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-
         #endregion
 
         #region Partidos

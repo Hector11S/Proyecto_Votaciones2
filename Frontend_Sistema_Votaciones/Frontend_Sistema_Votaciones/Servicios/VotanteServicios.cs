@@ -24,7 +24,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<VotanteViewModel>, IEnumerable<VotanteViewModel>>(req =>
                 {
-                    req.Path = $"API/Votante/List";
+                    req.Path = $"API/Vontante/List";
                 });
                 if (!response.Success)
                 {

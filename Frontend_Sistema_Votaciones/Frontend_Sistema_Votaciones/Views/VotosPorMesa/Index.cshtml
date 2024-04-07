@@ -5,6 +5,37 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
+<div class="col-lg-6">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Pie Chart</h5>
+            <div id="pieChart"></div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    var seriesData = @Html.Raw(Json.Serialize(Model.Select(m => m.TotalVotos)));
+                    var labelsData = @Html.Raw(Json.Serialize(Model.Select(m => m.Nombre)));
+
+                    new ApexCharts(document.querySelector("#pieChart"), {
+                        series: seriesData,
+                        chart: {
+                            height: 350,
+                            type: 'pie',
+                            toolbar: {
+                                show: true
+                            }
+                        },
+                        labels: labelsData
+                    }).render();
+                });
+            </script>
+        </div>
+    </div>
+</div>
+
+
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
     <h2>Índice de Votos por Mesas</h2>
     <a asp-action="Create" class="btn btn-primary">Crear Nuevo</a>
@@ -15,17 +46,22 @@
         <thead style="color: #78e7ff;">
             <tr style="background: rgb(0,0,0)">
                 <th>
-                    @Html.DisplayNameFor(model => model.VoMe_Id)
+                    @Html.DisplayNameFor(model => model.Nombre)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.MePS_Id)
+                    @Html.DisplayNameFor(model => model.Apellidos)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.VoMe_CandidatoId)
+                    @Html.DisplayNameFor(model => model.Cargo)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.VoMe_EsPresidente)
+                    @Html.DisplayNameFor(model => model.CandidatoId)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalVotos)
+                </th>
+
+
                 <th style="max-width: 300px;">
                     Acciones
                 </th>
@@ -36,17 +72,22 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.VoMe_Id)
+                        @Html.DisplayFor(modelItem => item.Nombre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.MePS_Id)
+                        @Html.DisplayFor(modelItem => item.Apellidos)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.VoMe_CandidatoId)
+                        @Html.DisplayFor(modelItem => item.Cargo)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.VoMe_EsPresidente)
+                        @Html.DisplayFor(modelItem => item.CandidatoId)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalVotos)
+                    </td>
+
+
                     <td>
                         <div class="w-100" style="max-width: 250px">
                             <div class="d-flex w-100" style="gap: 5px;">
