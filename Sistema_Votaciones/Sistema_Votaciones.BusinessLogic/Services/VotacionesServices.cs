@@ -267,5 +267,92 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         }
 
         #endregion
+
+        #region Partidos
+        public ServiceResult ListPartido()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _partidoRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        public ServiceResult CrearPartido(tbPartidos item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _partidoRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe ese Partido" : list.MessageStatus;
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        public ServiceResult EditarPartido(tbPartidos item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _partidoRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Partido con ese nombre" : list.MessageStatus;
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        public ServiceResult EliminarPartido(int Part_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _partidoRepository.Delete(Part_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Partido a eliminar" : list.MessageStatus;
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
+        #endregion
+
+
+
     }
 }

@@ -34,6 +34,16 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 else
                 {
                     var votante = (VotanteViewModel)response.Data;
+                    string fechaNacimientoStr = Vota_DNI.Substring(4, 4);
+                    int fechaNacimiento = int.Parse(fechaNacimientoStr);
+
+                    if (fechaNacimiento > 2006)
+                    {
+                        TempData["Advertencia"] = "Usted es menor de edad.";
+
+                        return RedirectToAction("Index");
+                    }
+
                     if (votante.Vota_YaVoto == true)
                     {
                         TempData["Advertencia"] = "Usted ya votó";
@@ -47,6 +57,8 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 return Json("Error de capa 8");
             }
         }
+
+
         public IActionResult Index()
         {
             return View();

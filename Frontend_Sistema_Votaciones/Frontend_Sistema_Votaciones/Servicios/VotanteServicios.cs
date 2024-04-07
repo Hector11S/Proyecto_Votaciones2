@@ -39,5 +39,30 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+
+        public async Task<ServiceResult> ObtenerVotantesList()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<VotanteViewModel>, IEnumerable<VotanteViewModel>>(req =>
+                {
+                    req.Path = $"API/Vontante/List";
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
     }
 }
