@@ -40,12 +40,11 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Alca_Imagen", item.Alca_Imagen);
                 parameter.Add("Part_Id", item.Part_Id);
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
-                parameter.Add("Alca_UsuarioCreacion", 2);
-                parameter.Add("Alca_FechaCreacion", DateTime.Now);
+                parameter.Add("Alca_UsuarioCreacion", item.Alca_UsuarioCreacion);
+                parameter.Add("Alca_FechaCreacion", item.Alca_FechaCreacion);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Alca_Insertar, parameter, commandType: CommandType.StoredProcedure);
-                string mensaje = (result == 1) ? "Exito" : "Error";
-                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Alca_Insertar, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
 
@@ -70,12 +69,11 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Alca_Imagen", item.Alca_Imagen);
                 parameter.Add("Part_Id", item.Part_Id);
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
-                parameter.Add("Alca_UsuarioModifica", 2);
-                parameter.Add("Alca_FechaModifica", DateTime.Now);
+                parameter.Add("Alca_UsuarioModifica", item.Alca_UsuarioCreacion);
+                parameter.Add("Alca_FechaModifica", item.Alca_FechaCreacion);
 
-                var result = db.Execute(ScriptsBaseDeDatos.Alca_Editar, parameter, commandType: CommandType.StoredProcedure);
-                string mensaje = (result == 1) ? "Exito" : "Error";
-                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Alca_Editar, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
     }

@@ -125,7 +125,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="components-cards.html">
+                        <a asp-controller="Municipio" asp-action="Index">
                             <i class="bi bi-circle"></i><span>Municipios</span>
                         </a>
                     </li>
@@ -135,7 +135,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="components-cards.html">
+                        <a asp-controller="Votante" asp-action="Index">
                             <i class="bi bi-circle"></i><span>Votantes</span>
                         </a>
                     </li>
@@ -250,10 +250,6 @@
                 });
             </text>
         }
-    });
-
-    $(document).ready(function () {
-        mostrarMensajes();
     });
     </script>
     <main id="main" role="main" style="margin-top: 12vh;">

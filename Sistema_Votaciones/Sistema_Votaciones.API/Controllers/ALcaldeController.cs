@@ -44,8 +44,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Part_Id = Convert.ToInt32(json.Part_Id),
                 Muni_Codigo = json.Muni_Codigo,
                 Alca_Imagen = json.Alca_Imagen,
-                Alca_UsuarioCreacion = 2,
-                Alca_FechaCreacion = DateTime.Now
+                Alca_UsuarioCreacion = json.Alca_UsuarioCreacion,
+                Alca_FechaCreacion = json.Alca_FechaCreacion
             };
             var list = _votacionesServices.CrearAlcalde(modelo);
             return Ok(list);
@@ -61,8 +61,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Part_Id = Convert.ToInt32(json.Part_Id),
                 Muni_Codigo = json.Muni_Codigo,
                 Alca_Imagen = json.Alca_Imagen,
-                Alca_UsuarioModifica = 2,
-                Alca_FechaModifica = DateTime.Now
+                Alca_UsuarioModifica = json.Alca_UsuarioModifica,
+                Alca_FechaModifica = json.Alca_FechaModifica
             };
             var list = _votacionesServices.EditarAlcalde(modelo);
             return Ok(list);

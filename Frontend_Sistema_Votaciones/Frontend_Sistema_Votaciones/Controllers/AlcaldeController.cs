@@ -88,7 +88,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-                return Json("Error de capa 8");
+                return Json(new { message = "Error al cargar los municipios" });
             }
         }
         public async Task<IActionResult> Index()
@@ -131,6 +131,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al cargar departamentos y partidos.";
                 throw;
             }
             return View();
@@ -142,19 +143,23 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                item.Alca_UsuarioCreacion = 2;
+                item.Alca_UsuarioCreacion = 4;
                 item.Alca_FechaCreacion = DateTime.Now;
                 var result = await _alcaldeServicios.CrearAlcalde(item);
                 if (result.Success)
                 {
+                    TempData["AbrirModal"] = null;
+                    TempData["Exito"] = result.Message;
+                    return RedirectToAction("Index");
                 }
                 else
                 {
+                    TempData["Advertencia"] = result.Message;
                 }
             }
             catch (Exception ex)
             {
-                //return View(item);
+                TempData["Error"] = "Error al crear el alcalde.";
             }
             return View(item);
         }

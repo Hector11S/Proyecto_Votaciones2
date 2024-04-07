@@ -75,14 +75,13 @@ namespace Frontend_Sistema_Votaciones.WebAPI
                 var content = await responseData.Content.ReadAsStringAsync();
                 result = JsonConvert.DeserializeObject<ApiResult<B>>(content);
                 result.Path = config.Path;
-                if ((int)result.StatusCode == 1)
+                if (result.Success)
                 {
                     result.StatusCode = HttpStatusCode.OK;
-                    result.Success = true;
+                    result.Type = ApiResultType.Success;
                 }
                 else
                 {
-                    result.Success = false;
                     result.StatusCode = HttpStatusCode.Forbidden;
                 }
             }
@@ -107,7 +106,14 @@ namespace Frontend_Sistema_Votaciones.WebAPI
                 var content = await response.Content.ReadAsStringAsync();
                 result = JsonConvert.DeserializeObject<ApiResult<B>>(content);
                 result.Path = config.Path;
-                result.StatusCode = response.StatusCode;
+                if (result.Success)
+                {
+                    result.StatusCode = HttpStatusCode.OK;
+                }
+                else
+                {
+                    result.StatusCode = HttpStatusCode.Forbidden;
+                }
             }
             catch (Exception ex)
             {
@@ -132,7 +138,14 @@ namespace Frontend_Sistema_Votaciones.WebAPI
                 var content = await response.Content.ReadAsStringAsync();
                 result = JsonConvert.DeserializeObject<ApiResult<B>>(content);
                 result.Path = config.Path;
-                result.StatusCode = response.StatusCode;
+                if (result.Success)
+                {
+                    result.StatusCode = HttpStatusCode.OK;
+                }
+                else
+                {
+                    result.StatusCode = HttpStatusCode.Forbidden;
+                }
             }
             catch (Exception ex)
             {

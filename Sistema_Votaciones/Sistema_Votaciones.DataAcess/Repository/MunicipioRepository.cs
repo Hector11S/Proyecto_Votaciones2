@@ -18,12 +18,12 @@ namespace Sistema_Votaciones.DataAcess.Repository
         {
             throw new NotImplementedException();
         }
-        public RequestStatus Delete(string Dept_Codigo)
+        public RequestStatus Delete(string Muni_Codigo)
         {
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Dept_Codigo", Dept_Codigo);
+                parameter.Add("Muni_Codigo", Muni_Codigo);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Muni_Eliminar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
@@ -40,7 +40,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Muni_Codigo", item.Dept_Codigo);
+                parameter.Add("Muni_Codigo", item.Muni_Codigo);
                 parameter.Add("Muni_Descripcion", item.Muni_Descripcion);
                 parameter.Add("Muni_UsuarioCreacion", item.Muni_UsuarioCreacion);
                 parameter.Add("Muni_FechaCreacion", item.Muni_FechaCreacion);

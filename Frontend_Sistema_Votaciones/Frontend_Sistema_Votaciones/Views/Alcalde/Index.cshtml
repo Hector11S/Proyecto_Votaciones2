@@ -5,7 +5,7 @@
 }
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
-    <h2>Listado de departamentos</h2>
+    <h2>Listado de @ViewData["Title"]</h2>
     <a href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
         <i class="bi bi-house-door-fill"></i>
         Inicio
@@ -25,7 +25,7 @@
                     @Html.DisplayNameFor(model => model.Alca_Id)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Nombre_Completo)
+                    @Html.DisplayNameFor(model => model.Vota_NombreCompleto)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Alca_Imagen)
@@ -51,7 +51,7 @@
                         @Html.DisplayFor(modelItem => item.Alca_Id)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Nombre_Completo)
+                        @Html.DisplayFor(modelItem => item.Vota_NombreCompleto)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Alca_Imagen)

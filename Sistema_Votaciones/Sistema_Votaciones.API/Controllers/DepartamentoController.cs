@@ -49,8 +49,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Dept_UsuarioCreacion = json.Dept_UsuarioCreacion,
                 Dept_FechaCreacion = json.Dept_FechaCreacion
             };
-            var list = _generalServices.CrearDepto(modelo);
-            return Ok(list);
+            var response = _generalServices.CrearDepto(modelo);
+            return Ok(response);
         }
         [HttpPut("API/[controller]/Update")]
         public IActionResult Update(DepartamentoViewModel json)
@@ -60,8 +60,8 @@ namespace Sistema_Votaciones.API.Controllers
             {
                 Dept_Codigo = json.Dept_Codigo,
                 Dept_Descripcion = json.Dept_Descripcion,
-                Dept_UsuarioModifica = 2,
-                Dept_FechaModifica = DateTime.Now
+                Dept_UsuarioModifica = json.Dept_UsuarioModifica,
+                Dept_FechaModifica = json.Dept_FechaModifica
             };
             var list = _generalServices.EditarDepto(modelo);
             return Ok(list);

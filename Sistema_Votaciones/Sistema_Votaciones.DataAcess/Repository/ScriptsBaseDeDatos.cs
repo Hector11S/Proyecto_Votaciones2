@@ -47,9 +47,12 @@ namespace Sistema_Votaciones.DataAcess.Repository
         #endregion
 
         #region Votantes
-        public static string Vota_Llenar = "[Gral].[SP_Votantes_Llenar]";
         public static string Vota_Listar = "[Gral].[SP_Votantes_Mostrar]";
-        public static string Vota_ListarCandidatos = "[Gral].[SP_Votantes_MostrarCandidatos]";
+        public static string Vota_ListarPorDept = "[Gral].[SP_Votantes_Listar]";
+        public static string Vota_Llenar = "[Gral].[SP_Votantes_Llenar]";
+        public static string Vota_Insertar = "[Gral].[SP_Votantes_Insertar]";
+        public static string Vota_Editar = "[Gral].[SP_Votantes_Editar]";
+        public static string Vota_Eliminar = "[Gral].[SP_Votantes_Eliminar]";
         #endregion
     }
 }

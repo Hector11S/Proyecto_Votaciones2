@@ -1,9 +1,17 @@
 ﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.DepartamentoViewModel>
 
+@using Newtonsoft.Json;
+
 @{
-    //ViewData["ViewDataTypeShortName"] = "tbDepartamentos";
     ViewData["Title"] = "Departamentos";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+    var abrirModal = TempData["AbrirModal"];
+    string serializedItem = (string)TempData["Item"];
+
+    DepartamentoViewModel departamento = null;
+    if (!String.IsNullOrEmpty(serializedItem))
+    {
+        departamento = JsonConvert.DeserializeObject<DepartamentoViewModel>(serializedItem);
+    }
 }
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
@@ -61,18 +69,41 @@
                                 </button>
                             </div>
                         </div>
-                    </td>   
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
 
-
 @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/dataTables.min.js"></script>*@
 
 <script>
+    $(document).ready(function () {
+        $('#dtDepartamentos').DataTable();
+        $('#modal' + '@abrirModal').modal('show');
+        @if (departamento != null)
+        {
+            switch (abrirModal)
+            {
+                case "Nuevo":
+                    <text>
+                        $('#Dept_Codigo_Create').val("@departamento.Dept_Codigo");
+                        $('#Dept_Descripcion_Create').val("@Html.Raw(departamento.Dept_Descripcion)");
+                    </text>
+                    break;
+                 case "Editar":
+                    <text>
+                        $('#Dept_Codigo_Edit').val("@departamento.Dept_Codigo");
+                        $('#Dept_Descripcion_Edit').val("@Html.Raw(departamento.Dept_Descripcion)");
+                    </text>
+                    break;
+                default:
+                    break;
+            }
+        }
+    })
     $('#btnNuevo').click(function () {
         $('#modalNuevo').modal('show');
     });
@@ -83,8 +114,8 @@
             method: "GET",
             success: function (departamento) {
                 console.log(departamento, "departamento")
-                $('#Dept_Codigo').val(departamento.dept_Codigo);
-                $('#Dept_Descripcion').val(departamento.dept_Descripcion);
+                $('#Dept_Codigo_Edit').val(departamento.dept_Codigo);
+                $('#Dept_Descripcion_Edit').val(departamento.dept_Descripcion);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.error("Error al cargar los datos del departamento:", errorThrown);
@@ -94,8 +125,8 @@
     });
 
     function Eliminar(Dept_Codigo) {
-        $("#inputHidden").val(Dept_Codigo);
-        localStorage.setItem("inputHidden", Dept_Codigo);
+        $("#Dept_Codigo_Delete").val(Dept_Codigo);
+        localStorage.setItem("#Dept_Codigo_Delete", Dept_Codigo);
         $('#modalEliminar').modal('show');
     }
 </script>

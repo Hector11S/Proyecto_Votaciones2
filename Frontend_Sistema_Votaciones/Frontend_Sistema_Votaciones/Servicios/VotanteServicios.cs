@@ -10,10 +10,36 @@ namespace Frontend_Sistema_Votaciones.Servicios
     public class VotanteServicios
     {
         private readonly API _api;
+        private readonly BlobStorage _blobStorage;
 
-        public VotanteServicios(API api)
+        public VotanteServicios(API api, BlobStorage blobStorage)
         {
             _api = api;
+            _blobStorage = blobStorage;
+        }
+        public async Task<ServiceResult> ObtenerVotanteList()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<VotanteViewModel>, IEnumerable<VotanteViewModel>>(req =>
+                {
+                    req.Path = $"API/Votante/List";
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
         }
         public async Task<ServiceResult> ObtenerVotantePorDNI(string Vota_DNI)
         {
@@ -39,29 +65,78 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
-
-        public async Task<ServiceResult> ObtenerVotantesList()
+        public async Task<ServiceResult> CrearVotante(VotanteViewModel item)
         {
             var result = new ServiceResult();
             try
             {
-                var response = await _api.Get<IEnumerable<VotanteViewModel>, IEnumerable<VotanteViewModel>>(req =>
+                var response = await _api.Post<VotanteViewModel, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Vontante/List";
+                    req.Path = $"API/Votante/Insert";
+                    req.Content = item;
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
-                    return result.Ok(response.Data);
+                    return result.Ok(response.Message, response.Data);
                 }
             }
             catch (Exception ex)
             {
                 return result.Error(Helpers.GetMessage(ex));
                 throw;
+            }
+        }
+        public async Task<ServiceResult> EditarVotante(VotanteViewModel item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Put<VotanteViewModel, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Votante/Update";
+                    req.Content = item;
+                });
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Message, response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+        public async Task<ServiceResult> EliminarVotante(string Vota_DNI)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Delete<string, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Votante/Delete?Vota_DNI={Vota_DNI}";
+                });
+
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Message, response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
             }
         }
     }
