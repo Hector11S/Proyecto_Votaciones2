@@ -1,6 +1,12 @@
 ﻿@model Frontend_Sistema_Votaciones.Models.AlcaldeViewModel
 
 @{
+    var Vota_DNI = Model != null ? Model.Vota_DNI : null;
+    var Vota_NombreCompleto = Model != null ? Model.Vota_NombreCompleto : null;
+    var Alca_Imagen = Model != null ? Model.Alca_Imagen : null;
+    var Alca_Id = Model != null ? Model.Alca_Id : 0;
+    var Part_Id = Model != null ? Model.Part_Id : 0;
+    var Muni_Codigo = Model != null ? Model.Muni_Codigo : null;
     var departamentos = ViewBag.Departamentos;
     var partidos = ViewBag.Partidos;
     ViewData["Title"] = "Create";
@@ -21,13 +27,13 @@
                 <div class="row mt-3">
                     <div class="form-group col">
                         <label class="mb-2" style="color: #3dbdd9">Buscar por numero de identidad:</label>
-                        <input asp-for="Alca_Id" type="hidden" class="form-control" />
-                        <input id="txtDNI" type="text" class="form-control" />
+                        <input asp-for="Alca_Id" value="@Alca_Id" type="hidden" class="form-control" />
+                        <input asp-for="Vota_DNI" value="@Vota_DNI"  type="text" class="form-control" />
                         <span asp-validation-for="Alca_Id" class="text-danger"></span>
                     </div>
                     <div class="form-group col">
                         <label class="mb-2" style="color: #3dbdd9">Nombre completo:</label>
-                        <input id="txtNombreVotante" class="form-control" disabled/>
+                        <input asp-for="Vota_NombreCompleto" value="@Vota_NombreCompleto" class="form-control" disabled/>
                         <span class="text-danger"></span>
                     </div>
                 </div>
@@ -36,9 +42,12 @@
                         <label class="mb-2" style="color: #3dbdd9">Departamento: </label>
                         <select id="ddlDepartamentos" class="form-select">
                             <option value="">-- Departamento --</option>
-                            @foreach (var item in departamentos)
+                            @if (departamentos != null)
                             {
-                                <option value="@item.Dept_Codigo">@item.Dept_Descripcion</option>
+                                foreach (var item in departamentos)
+                                {
+                                    <option value="@item.Dept_Codigo">@item.Dept_Descripcion</option>
+                                }
                             }
                         </select>
                         <span class="text-danger"></span>
@@ -56,10 +65,13 @@
                         <label class="mb-2" style="color: #3dbdd9">Partido al que pertenece:</label>
                         <select class="form-select" asp-for="Part_Id">
                             <option>-- Partido --</option>
-                            @*@foreach (var item in partidos)
+                            @if (partidos != null)
                             {
-                                <option value="@item.Part_Id">@item.Part_Descripcion</option>
-                            }*@
+                                foreach (var item in partidos)
+                                {
+                                    <option value="@item.Part_Id">@item.Part_Descripcion</option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="form-group col">
@@ -69,21 +81,147 @@
                         <span asp-validation-for="Alca_Imagen" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="d-flex justify-content-end mt-4 align-items-center">
-                    <img id="imgAlca_Imagen" src="" class="d-none rounded" style="max-width: 400px; max-height: 400px;"/>
+                <div class="d-flex justify-content-center mt-4 align-items-center">
+                    <img id="imgAlca_Imagen" src=""  class="d-none rounded" style="max-width: 400px; max-height: 400px;"/>
                 </div>
-                <div class="d-flex justify-content-center mt-4 align-items-center" style="gap: 10px;">
+                <div class="d-flex justify-content-end mt-4 align-items-center" style="gap: 10px;">
+                    <button type="submit" class="btn btn-primary" onclick="guardarArreglos()"><i class="bi bi-floppy"></i> Guardar</button>
                     <a asp-action="Index" class="btn btn-outline-primary"><i class="bi bi-x"></i> Cancelar</a>
-                    <button type="submit" class="btn btn-primary"><i class="bi bi-save"></i> Guardar</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        const txtNombreVotante = document.getElementById("txtNombreVotante");
+        const txtNombreVotante = document.getElementById("Vota_NombreCompleto");
+        const imgAlca_Imagen = document.getElementById("imgAlca_Imagen");
 
-        const txtDNI = document.getElementById("txtDNI");
+        let departamentosJS = [];
+        let partidosJS = [];
+        let municipios = [];
+
+        function llenarSelectsDesdeElSessionStorage() {
+            txtNombreVotante.setAttribute("disabled", "disabled");
+            const departamentosJSON = sessionStorage.getItem('departamentosJS');
+            const partidosJSON = sessionStorage.getItem('partidosJS');
+            const municipiosJSON = sessionStorage.getItem('municipios');
+
+            departamentosJS = JSON.parse(departamentosJSON);
+            partidosJS = JSON.parse(partidosJSON);
+            municipios = JSON.parse(municipiosJSON);
+
+            console.log(departamentosJS, "departamentosJS", partidosJS, "partidosJSON", municipios, "municipios")
+
+            llenarSelect('ddlDepartamentos', departamentosJS);
+            llenarSelect('Part_Id', partidosJS);
+            llenarSelect('Muni_Codigo', municipios);
+        }
+
+        function llenarSelect(selectId, options) {
+            const selectElement = document.getElementById(selectId);
+            switch (selectId) {
+                case "ddlDepartamentos":
+                    options.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option.Dept_Codigo;
+                        optionElement.textContent = option.Dept_Descripcion;
+                        selectElement.appendChild(optionElement);
+                    });
+                    break;
+                case "Part_Id":
+                    options.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option.Part_Id;
+                        optionElement.textContent = option.Part_Descripcion;
+                        selectElement.appendChild(optionElement);
+                        @if (partidos == null)
+                        {
+                            if (Part_Id != null)
+                            {
+                                <text>
+                                if (option.Part_Id === "@Part_Id") {
+                                    selectElement.value = option.Part_Id;
+                                }
+                                </text>
+                            }
+                        }
+                    });
+                    break;
+                case "Muni_Codigo":
+                    options.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option.muni_Codigo;
+                        optionElement.textContent = option.muni_Descripcion;
+                        selectElement.appendChild(optionElement);
+                        @if (Muni_Codigo != null)
+                        {
+                            <text>
+                            const departamentosElement = document.getElementById("ddlDepartamentos");
+                            if (option.muni_Codigo === "@Muni_Codigo") {
+                                selectElement.value = option.muni_Codigo;
+                                departamentosElement.value = option.dept_Codigo;
+                            }
+                            </text>
+
+                        }
+                    });
+                    break;
+                default:
+                    console.log("No entró en el switch")
+                    break;
+            }
+        }
+
+        @if (departamentos != null)
+        {
+            foreach (var item in departamentos)
+            {
+                <text>
+                departamentosJS.push({
+                    Dept_Codigo: '@item.Dept_Codigo',
+                    Dept_Descripcion: '@Html.Raw(item.Dept_Descripcion)'
+                });
+                </text>
+            }
+            foreach (var item in partidos)
+            {
+                <text>
+                partidosJS.push({
+                    Part_Id: '@item.Part_Id',
+                    Part_Descripcion: '@Html.Raw(item.Part_Descripcion)'
+                });
+                </text>
+            }
+        }
+        else {
+
+            if (Alca_Imagen != null)
+            {
+                <text>
+                imgAlca_Imagen.setAttribute("src", "@Alca_Imagen");
+                imgAlca_Imagen.classList.remove("d-none");
+                </text>
+            }
+            <text>
+            llenarSelectsDesdeElSessionStorage();
+            </text>
+        }
+
+
+        function guardarArreglos() {
+            txtNombreVotante.removeAttribute("disabled");
+
+            const departamentosJSON = JSON.stringify(departamentosJS);
+            const partidosJSON = JSON.stringify(partidosJS);
+            const municipiosJSON = JSON.stringify(municipios);
+
+            sessionStorage.setItem('departamentosJS', departamentosJSON);
+            sessionStorage.setItem('partidosJS', partidosJSON);
+            sessionStorage.setItem('municipios', municipiosJSON);
+        }
+
+
+        const txtDNI = document.getElementById("Vota_DNI");
         txtDNI.addEventListener("blur", () => {
             if (txtDNI.value.length !== 13) {
                 iziToast.warning({
@@ -127,19 +265,35 @@
         })
 
         const ddlDepartamentos = document.getElementById("ddlDepartamentos");
-        const ddlMunicipios = document.getElementById("ddlMunicipios");
+        const ddlMunicipios = document.getElementById("Muni_Codigo");
         ddlDepartamentos.addEventListener("change", () => {
-            console.log(ddlDepartamentos.value);
             $.ajax({
                 url: `/Alcalde/ObtenerMunicipiosPorDept/${ddlDepartamentos.value}`,
                 method: "GET",
-                success: function (municipios) {
-                    console.log(municipios, "municipios");
-                    municipios.foreach(muni => {
-                        const newOptionElement = document.createElement("option");
-                        newOptionElement.value = muni.muni_Codigo;
-                        newOptionElement.textContent = muni.muni_Descripcion;
-                    })
+                success: function (response) {
+                    console.log(response, "ObtenerMunicipiosPorDept");
+                    if (response.municipios) {
+
+                        response.municipios.forEach(muni => {
+                            const indiceDelMunicipioEncontrado = municipios.findIndex(mu => mu.muni_Codigo === muni.muni_Codigo);
+                            if (indiceDelMunicipioEncontrado === -1) {
+                                municipios.push(muni);
+                            }
+                            const newOptionElement = document.createElement("option");
+                            newOptionElement.value = muni.muni_Codigo;
+                            newOptionElement.textContent = muni.muni_Descripcion;
+                            ddlMunicipios.append(newOptionElement);
+                        })
+                        ddlMunicipios.selectedIndex = 1;
+                    } else {
+                        iziToast.error({
+                            title: 'Error',
+                            message: response.message,
+                            position: 'topRight',
+                            transitionIn: 'flipInX',
+                            transitionOut: 'flipOutX'
+                        });
+                    }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.error(`Error al cargar los municipios del departamento:${ddlDepartamentos.value}`, errorThrown);
@@ -150,7 +304,6 @@
         const inputAlcalde = document.getElementById("inputAlcalde");
         const Alca_Id = document.getElementById("Alca_Id");
         const Alca_Imagen = document.getElementById("Alca_Imagen");
-        const imgAlca_Imagen = document.getElementById("imgAlca_Imagen");
         inputAlcalde.addEventListener("change", () => {
             if (Alca_Id.value && inputAlcalde.files[0]) {
                 const formData = new FormData();
@@ -163,7 +316,6 @@
                     data: formData,
                     processData: false,
                     success: function (response) {
-                        console.log(response, "response");
                         iziToast.success({
                             title: 'Éxito',
                             message: response.message,

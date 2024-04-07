@@ -77,7 +77,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error dentro del código de la aplicación. Por favor contacte a un administrador del sistema";
+                TempData["Error"] = "Error al crear el departamento.";
                 TempData["Item"] = JsonConvert.SerializeObject(item);
                 return RedirectToAction("Index");
             }
@@ -115,13 +115,12 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 {
                     TempData["AbrirModal"] = TiposDeModal.Editar;
                     TempData["Item"] = JsonConvert.SerializeObject(item);
-                    TempData["Advertencia"] = result.Message;
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error dentro del código de la aplicación. Por favor contacte a un administrador del sistema";
+                TempData["Error"] = "Error al editar el departamento";
                 TempData["Item"] = JsonConvert.SerializeObject(item);
                 return RedirectToAction("Index");
                 throw;

@@ -3,6 +3,7 @@ using Frontend_Sistema_Votaciones.Servicios;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -82,7 +83,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                TempData["Error"] = "Error al cargar los departamentos";
             }
             return View();
         }
@@ -93,34 +94,39 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                item.Vota_UsuarioCreacion = 2;
+                item.Vota_UsuarioCreacion = 4;
                 item.Vota_FechaCreacion = DateTime.Now;
                 var result = await _votanteServicios.CrearVotante(item);
                 if (result.Success)
                 {
+                    TempData["Exito"] = result.Message;
+                    return RedirectToAction("Index");
                 }
                 else
                 {
+                    TempData["Advertencia"] = result.Message;
+                    return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-                //return View(item);
+                TempData["Error"] = "Error al crear el registro de la persona.";
             }
             return View(item);
         }
-        [HttpGet("[controller]/Edit/{Dept_Codigo}")]
+        [HttpGet("[controller]/Edit/{Vota_DNI}")]
         public async Task<IActionResult> Edit(string Vota_DNI)
         {
             try
             {
                 var model = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
-                return Json(model.Data);
+                return View(model.Data);
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index");
+                TempData["Error"] = "Error al cargar la información de la persona";
             }
+            return View();
         }
 
         [HttpPost("[controller]/Edit")]
@@ -128,22 +134,47 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                item.Vota_UsuarioCreacion = 2;
-                item.Vota_FechaCreacion = DateTime.Now;
+                item.Vota_UsuarioModifica = 4;
+                item.Vota_FechaModifica = DateTime.Now;
                 var result = await _votanteServicios.EditarVotante(item);
                 if (result.Success)
                 {
+                    TempData["Exito"] = result.Message;
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    return View("Index", item);
+                    TempData["Advertencia"] = result.Message;
+                    return View(item);
                 }
             }
             catch (Exception ex)
             {
-                return View(item);
-                throw;
+            }
+            return View(item);
+        }
+        [HttpPost("/[controller]/DeleteConfirmed")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed([FromForm] string Vota_DNI)
+        {
+            try
+            {
+                var result = await _votanteServicios.EliminarVotante(Vota_DNI);
+                if (result.Success)
+                {
+                    TempData["Exito"] = result.Message;
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["Advertencia"] = result.Message;
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al cargar la información de la persona";
+                return RedirectToAction("Index");
             }
         }
     }

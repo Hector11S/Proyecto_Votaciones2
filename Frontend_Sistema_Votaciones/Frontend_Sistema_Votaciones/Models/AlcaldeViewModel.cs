@@ -11,8 +11,11 @@ namespace Frontend_Sistema_Votaciones.Models
         [Display(Name = "Id")]
         public int Alca_Id { get; set; }
 
+        [Display(Name = "DNI")]
+        public string Vota_DNI { get; set; }
+
         [Display(Name = "Nombre Completo")]
-        public string Nombre_Completo { get; set; }
+        public string Vota_NombreCompleto { get; set; }
 
         [Display(Name = "Url imagen")]
         public string Alca_Imagen { get; set; }
@@ -36,7 +39,6 @@ namespace Frontend_Sistema_Votaciones.Models
         public int? Alca_UsuarioModifica { get; set; }
         [Display(Name = "Fecha modifica")]
         public DateTime? Alca_FechaModifica { get; set; }
-
 
     }
 }

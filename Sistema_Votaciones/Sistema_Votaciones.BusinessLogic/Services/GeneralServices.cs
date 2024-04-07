@@ -151,7 +151,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al cargar los municipios");
             }
         }
         public ServiceResult CrearMuni(tbMunicipios item)

@@ -6,8 +6,9 @@
     ViewData["Title"] = "Departamentos";
     var abrirModal = TempData["AbrirModal"];
     string serializedItem = (string)TempData["Item"];
+
     DepartamentoViewModel departamento = null;
-    if(!String.IsNullOrEmpty(serializedItem))
+    if (!String.IsNullOrEmpty(serializedItem))
     {
         departamento = JsonConvert.DeserializeObject<DepartamentoViewModel>(serializedItem);
     }
@@ -80,6 +81,7 @@
 
 <script>
     $(document).ready(function () {
+        $('#dtDepartamentos').DataTable();
         $('#modal' + '@abrirModal').modal('show');
         @if (departamento != null)
         {

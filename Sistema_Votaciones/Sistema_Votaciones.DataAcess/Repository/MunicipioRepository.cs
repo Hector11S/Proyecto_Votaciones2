@@ -61,14 +61,14 @@ namespace Sistema_Votaciones.DataAcess.Repository
             }
 
         }
-        public List<tbMunicipios> List(string Muni_Codigo)
+        public List<tbMunicipios> List(string Dept_Codigo)
         {
 
             List<tbMunicipios> result = new List<tbMunicipios>();
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Muni_Codigo", Muni_Codigo);
+                parameter.Add("Dept_Codigo", Dept_Codigo);
                 result = db.Query<tbMunicipios>(ScriptsBaseDeDatos.Muni_ListarPorDept, parameter, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }

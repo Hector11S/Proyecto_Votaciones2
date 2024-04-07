@@ -1,12 +1,21 @@
 ﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.VotanteViewModel>
 
+@using Newtonsoft.Json;
+
+
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Votantes";
+    var abrirModal = TempData["AbrirModal"];
+    string serializedItem = (string)TempData["Item"];
+    DepartamentoViewModel departamento = null;
+    if (!String.IsNullOrEmpty(serializedItem))
+    {
+        departamento = JsonConvert.DeserializeObject<DepartamentoViewModel>(serializedItem);
+    }
 }
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
-    <h2>Listado de departamentos</h2>
+    <h2>Listado de @ViewData["Title"]</h2>
     <a href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
         <i class="bi bi-house-door-fill"></i>
         Inicio
@@ -19,7 +28,7 @@
             Nuevo
         </a>
     </header>
-    <table id="dtVotante" class="table datatable display" style="width: 100%;">
+    <table id="dtVotante" class="table datatable display mt-4" style="width: 100%;">
         <thead style="color: #78e7ff;">
             <tr style="background: rgb(0,0,0)">
                 <th>
@@ -90,7 +99,7 @@
                                 </a>
                                 <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Vota_Id')">
                                     <i class="bi bi-trash-fill"></i>
-                                    Eliminar
+                                    Fallecida
                                 </button>
                             </div>
                         </div>
@@ -104,6 +113,47 @@
     <script>
         $(document).ready(function () {
             $('#dtVotante').DataTable();
+            $('#modal' + '@abrirModal').modal('show');
+            @if (departamento != null)
+            {
+                switch (abrirModal)
+                {
+                    case "Nuevo":
+                        <text>
+                            $('#Dept_Codigo_Create').val("@departamento.Dept_Codigo");
+                            $('#Dept_Descripcion_Create').val("@Html.Raw(departamento.Dept_Descripcion)");
+                        </text>
+                        break;
+                     case "Editar":
+                        <text>
+                            $('#Dept_Codigo_Edit').val("@departamento.Dept_Codigo");
+                            $('#Dept_Descripcion_Edit').val("@Html.Raw(departamento.Dept_Descripcion)");
+                        </text>
+                        break;
+                    default:
+                        break;
+                }
+            }$('#modal' + '@abrirModal').modal('show');
+            @if (departamento != null)
+            {
+                switch (abrirModal)
+                {
+                    case "Nuevo":
+                        <text>
+                            $('#Dept_Codigo_Create').val("@departamento.Dept_Codigo");
+                            $('#Dept_Descripcion_Create').val("@Html.Raw(departamento.Dept_Descripcion)");
+                        </text>
+                        break;
+                     case "Editar":
+                        <text>
+                            $('#Dept_Codigo_Edit').val("@departamento.Dept_Codigo");
+                            $('#Dept_Descripcion_Edit').val("@Html.Raw(departamento.Dept_Descripcion)");
+                        </text>
+                        break;
+                    default:
+                        break;
+                }
+            }
         });
         function Eliminar(Vota_Id) {
             $("#inputHidden").val(Vota_Id);
@@ -119,7 +169,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @Html.Partial("_Delete");
+                @Html.Partial("_Delete")
             </div>
         </div>
     </div>

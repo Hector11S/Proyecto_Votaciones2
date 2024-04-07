@@ -77,11 +77,11 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
-                    return result.Ok(response.Data);
+                    return result.Ok(response.Message, response.Data);
                 }
             }
             catch (Exception ex)
@@ -102,17 +102,41 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
-                    return result.Ok(response.Data);
+                    return result.Ok(response.Message, response.Data);
                 }
             }
             catch (Exception ex)
             {
                 return result.Error(Helpers.GetMessage(ex));
                 throw;
+            }
+        }
+        public async Task<ServiceResult> EliminarVotante(string Vota_DNI)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Delete<string, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Votante/Delete?Vota_DNI={Vota_DNI}";
+                });
+
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Message, response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
             }
         }
     }
