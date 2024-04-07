@@ -79,16 +79,22 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(string Vota_DNI)
         {
             try
             {
+                string municipioCodigo = Vota_DNI.Substring(0, 4);
 
                 var alcaldes = await _alcaldeServicios.ObtenerAlcaldeList();
                 var votante = await _votanteServicios.ObtenerVotantesList();
                 var partido = await _partidoServicios.ObtenerPartidoList();
 
-                ViewBag.Alcaldes = alcaldes.Data;
+             
+                var alcaldesFiltrados = ((IEnumerable<AlcaldeViewModel>)alcaldes.Data)
+                    .Where(a => a.Muni_Codigo == municipioCodigo && a.Muni_Codigo.StartsWith(Vota_DNI.Substring(0, 4)))
+                    .ToList();
+
+                ViewBag.Alcaldes = alcaldesFiltrados;
                 ViewBag.Votante = votante.Data;
                 ViewBag.Partidos = partido.Data;
 
@@ -98,10 +104,11 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-
                 return RedirectToAction("Index");
             }
         }
+
+
 
 
         [HttpPost]
