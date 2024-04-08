@@ -16,18 +16,21 @@ namespace Sistema_Votaciones.BusinessLogic
     {
         public static void DataAcces(this IServiceCollection service, string conn)
         {
-            service.AddScoped<DepartamentoRepository>();
-            service.AddScoped<AlcaldeRepository>();
-            service.AddScoped<VotosPorMesasRepository>();
-            service.AddScoped<VotanteRepository>();
-            service.AddScoped<MunicipioRepository>();
-            service.AddScoped<PartidoRepository>();
             service.AddScoped<RolesRepository>();
             service.AddScoped<PantallasRepository>();
             service.AddScoped<PantallasPorRolesRepository>();
+            service.AddScoped<DepartamentoRepository>();
+            service.AddScoped<MunicipioRepository>();
+            service.AddScoped<CargosRepository>();
+            service.AddScoped<SedesRepository>();
+            service.AddScoped<MesasRepository>();
+            service.AddScoped<PartidoRepository>();
+            service.AddScoped<AlcaldeRepository>();
+            service.AddScoped<VotanteRepository>();
+            service.AddScoped<VotosPorMesasRepository>();
             service.AddScoped<UsuariosRepository>();
+            service.AddScoped<EmpleadosRepository>();
             //service.AddScoped<DispositivoRepository>();
-            //service.AddScoped<EmpleadoRepository>();
             //service.AddScoped<EmpresaRepository>();
             //service.AddScoped<EstadoCivilRepository>();
             //service.AddScoped<MunicipioRepository>();

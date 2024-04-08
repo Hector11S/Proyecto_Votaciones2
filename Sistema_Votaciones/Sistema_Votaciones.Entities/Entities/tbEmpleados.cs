@@ -16,6 +16,8 @@ namespace Sistema_Votaciones.Entities.Entities
         public int Part_Id { get; set; }
         public int Carg_Id { get; set; }
         public int Empl_Id { get; set; }
+        public int Sede_Id { get; set; }
+        public int Mesa_Id { get; set; }
 
         public virtual tbCargos Carg { get; set; }
         public virtual tbVotantes Empl { get; set; }

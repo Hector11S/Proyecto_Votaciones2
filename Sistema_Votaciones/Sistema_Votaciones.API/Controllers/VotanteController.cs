@@ -42,7 +42,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Vota_YaVoto = json.Vota_YaVoto,
                 Muni_Codigo = json.Muni_Codigo,
                 Esta_Id = json.Esta_Id,
-                MePS_Id = json.MePS_Id,
+                Sede_Id = json.Sede_Id,
+                Mesa_Id = json.Mesa_Id,
                 Vota_UsuarioCreacion = json.Vota_UsuarioCreacion,
                 Vota_FechaCreacion = json.Vota_FechaCreacion
             };
@@ -64,7 +65,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Vota_YaVoto = json.Vota_YaVoto,
                 Muni_Codigo = json.Muni_Codigo,
                 Esta_Id = json.Esta_Id,
-                MePS_Id = json.MePS_Id,
+                Sede_Id = json.Sede_Id,
+                Mesa_Id = json.Mesa_Id,
                 Vota_UsuarioModifica = json.Vota_UsuarioModifica,
                 Vota_FechaModifica = json.Vota_FechaModifica
             };

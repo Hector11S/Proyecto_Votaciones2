@@ -14,16 +14,28 @@ namespace Sistema_Votaciones.BusinessLogic.Services
 
         private readonly DepartamentoRepository _departamentosRepository;
         private readonly MunicipioRepository _municipioRepository;
+        private readonly CargosRepository _cargosRepository;
+        private readonly SedesRepository _sedesRepository;
+        private readonly MesasRepository _mesasRepository;
+        private readonly EmpleadosRepository _empleadosRepository;
         private readonly VotanteRepository _votanteRepository;
 
         public GeneralServices(
                DepartamentoRepository departamentosRepository,
                MunicipioRepository municipioRepository,
+               CargosRepository cargosRepository,
+               SedesRepository sedesRepository,
+               MesasRepository mesasRepository,
+               EmpleadosRepository empleadosRepository,
                VotanteRepository votanteRepository)
 
         {
             _departamentosRepository = departamentosRepository;
             _municipioRepository = municipioRepository;
+            _cargosRepository = cargosRepository;
+            _sedesRepository = sedesRepository;
+            _mesasRepository = mesasRepository;
+            _empleadosRepository = empleadosRepository;
             _votanteRepository = votanteRepository;
         }
 
@@ -151,7 +163,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             }
             catch (Exception ex)
             {
-                return result.Error("Error al cargar los municipios");
+                return result.Error("Error al cargar el municipios");
             }
         }
         public ServiceResult CrearMuni(tbMunicipios item)
@@ -216,6 +228,387 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         }
         #endregion
 
+        #region Cargos
+        public ServiceResult ListCargo()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _cargosRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult ListCargo(int Carg_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var cargo = _cargosRepository.Find(Carg_Id);
+                if (cargo != null)
+                {
+                    return result.Ok(cargo);
+                }
+                else
+                {
+                    return result.Error("No se encontró el cargo");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al cargar el cargo");
+            }
+        }
+        public ServiceResult CrearCargo(tbCargos item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _cargosRepository.Insert(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok("Cargo creado con exito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe un cargo con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult EditarCargo(tbCargos item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _cargosRepository.Update(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok($"Cargo {item.Carg_Id} editado con éxito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe un cargo con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult EliminarCargo(int Carg_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _cargosRepository.Delete(Carg_Id);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok($"Cargo {Carg_Id} eliminado con éxito", response);
+                }
+                else
+                {
+                    return result.Error("Hay empleados que dependen de este cargo");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        #endregion
+
+        #region Empleados
+        public ServiceResult ListEmpl()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al cargar los empleados");
+            }
+        }
+        public ServiceResult FindEmpl(int Empl_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.Find(Empl_Id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al cargar el empleado");
+            }
+        }
+        public ServiceResult CrearEmpl(tbEmpleados item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var reponse = _empleadosRepository.Insert(item);
+                if (reponse.CodeStatus == 1)
+                {
+                    return result.Ok("Empleado creado con exito", reponse);
+                }
+                else
+                {
+                    return result.Error("Por favor rellene todos los campos");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al crear el empleado");
+            }
+        }
+        public ServiceResult EditarEmpl(tbEmpleados item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var reponse = _empleadosRepository.Update(item);
+                if (reponse.CodeStatus == 1)
+                {
+                    return result.Ok($"Empleado {item.Empl_Id} editado con éxito", reponse);
+                }
+                else
+                {
+                    return result.Error("Por favor rellene todos los campos");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al editar el empleado");
+            }
+        }
+        public ServiceResult ActivarDesactivarEmpl(int Empl_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var reponse = _empleadosRepository.Update(Empl_Id);
+                if (reponse.CodeStatus == 1)
+                {
+                    return result.Ok($"Empleado {Empl_Id} actualizado", reponse);
+                }
+                else
+                {
+                    return result.Error("Error al actualizar el empleado");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al actualizar el empleado");
+            }
+        }
+        #endregion
+
+        #region Sedes
+        public ServiceResult ListSede()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _sedesRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult ListSede(int Sede_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var cargo = _sedesRepository.Find(Sede_Id);
+                if (cargo != null)
+                {
+                    return result.Ok(cargo);
+                }
+                else
+                {
+                    return result.Error("No se encontró la sede");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al cargar la sede");
+            }
+        }
+        public ServiceResult CrearSede(tbSedes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _sedesRepository.Insert(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok("Sede creada con exito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe una sede con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al crear la sede");
+            }
+        }
+        public ServiceResult EditarSede(tbSedes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _sedesRepository.Update(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok($"Sede {item.Sede_Id} editada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe una sede con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al editar la sede");
+            }
+        }
+        public ServiceResult EliminarSede(int Sede_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _sedesRepository.Delete(Sede_Id);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok($"Sede {Sede_Id} eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("Hay mesas que dependen de esta sede o personas que se les asignó esta sede para votar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al eliminar la sede");
+            }
+        }
+        #endregion
+
+        #region Mesas
+        public ServiceResult ListMesa()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _mesasRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al cargar las mesas");
+            }
+        }
+        public ServiceResult ListMesa(int Mesa_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var mesa = _mesasRepository.Find(Mesa_Id);
+                if (mesa != null)
+                {
+                    return result.Ok(mesa);
+                }
+                else
+                {
+                    return result.Error("No se encontró la mesa");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al cargar la mesa");
+            }
+        }
+        public ServiceResult CrearMesa(tbMesas item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _mesasRepository.Insert(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok("Mesa creada con exito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe una mesa con ese numero");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al crear la mesa");
+            }
+        }
+        public ServiceResult EditarMesa(tbMesas item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _mesasRepository.Update(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok($"Mesa {item.Mesa_Id} editada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe una mesa con ese numero");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al editar la mesa");
+            }
+        }
+        public ServiceResult EliminarMesa(int Mesa_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _mesasRepository.Delete(Mesa_Id);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok($"Mesa {Mesa_Id} eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("Hay personas que se les asignó esta mesa para votar");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al eliminar la mesa");
+            }
+        }
+        #endregion
 
         #region Votantes
         public ServiceResult ListVotante()
@@ -229,7 +622,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al cargar los votantes");
             }
         }
         public ServiceResult BuscarVotantePorDNI(string Vota_DNI)

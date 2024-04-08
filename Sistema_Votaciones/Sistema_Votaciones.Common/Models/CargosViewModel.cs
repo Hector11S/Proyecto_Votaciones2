@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Sistema_Votaciones.Common.Models
 {
-    public class CargoViewModel
+    public class CargosViewModel
     {
-        public CargoViewModel()
+        public CargosViewModel()
         {
             tbEmpleados = new HashSet<tbEmpleados>();
         }
