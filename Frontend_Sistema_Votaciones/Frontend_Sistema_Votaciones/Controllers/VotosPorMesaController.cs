@@ -118,6 +118,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 if (ModelState.IsValid)
                 {
                     item.MePS_Id = 1;
+              
 
                     var result = await _votosPorMesaServicios.CrearVotosPorMesa(item);
 
@@ -182,6 +183,8 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 {
                     item.MePS_Id = 1;
                     item.VoMe_EsPresidente = true;
+
+                
 
                     var result = await _votosPorMesaServicios.CrearVotosPorMesa(item);
 

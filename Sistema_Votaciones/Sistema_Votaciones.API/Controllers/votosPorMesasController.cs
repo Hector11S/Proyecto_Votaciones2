@@ -60,7 +60,8 @@ namespace Sistema_Votaciones.API.Controllers
             {
                 MePS_Id = Convert.ToInt32(json.MePS_Id),
                 VoMe_CandidatoId = Convert.ToInt32(json.VoMe_CandidatoId),
-                VoMe_EsPresidente = json.VoMe_EsPresidente
+                VoMe_EsPresidente = json.VoMe_EsPresidente,
+  
 
 
             };
@@ -76,7 +77,8 @@ namespace Sistema_Votaciones.API.Controllers
             {
                 MePS_Id = Convert.ToInt32(json.MePS_Id),
                 VoMe_CandidatoId = Convert.ToInt32(json.VoMe_CandidatoId),
-                VoMe_EsPresidente = json.VoMe_EsPresidente
+                VoMe_EsPresidente = json.VoMe_EsPresidente,
+         
 
 
             };

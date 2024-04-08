@@ -19,5 +19,6 @@ namespace Frontend_Sistema_Votaciones.Models
         public int? Vota_UsuarioModifica { get; set; }
         public DateTime? Vota_FechaModifica { get; set; }
         public int? MePS_Id { get; set; }
+        public bool Vota_Permitido { get; set; }
     }
 }

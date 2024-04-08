@@ -33,9 +33,17 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 }
                 else
                 {
+
                     var votante = (VotanteViewModel)response.Data;
+               
                     string fechaNacimientoStr = Vota_DNI.Substring(4, 4);
                     int fechaNacimiento = int.Parse(fechaNacimientoStr);
+
+                    //if (votante.Vota_Permitido == false)
+                    //{
+                    //    TempData["Advertencia"] = "Usted no esta habilitado a votar";
+                    //    return RedirectToAction("Index");
+                    //}
 
                     if (fechaNacimiento > 2006)
                     {

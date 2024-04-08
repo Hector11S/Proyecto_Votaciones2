@@ -39,7 +39,7 @@ namespace Sistema_Votaciones.API.Controllers
                 Vota_Nombre = json.Vota_Nombre,
                 Vota_Apellidos = json.Vota_Apellidos,
                 Vota_DNI = json.Vota_DNI,
-                Vota_YaVoto = json.Vota_YaVoto,
+                Vota_YaVoto = true,
                 Muni_Codigo = json.Muni_Codigo,
                 Esta_Id = json.Esta_Id,
                 Sede_Id = json.Sede_Id,

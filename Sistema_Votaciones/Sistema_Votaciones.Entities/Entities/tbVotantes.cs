@@ -22,6 +22,7 @@ namespace Sistema_Votaciones.Entities.Entities
         public int Sede_Id { get; set; }
         public int Mesa_Id { get; set; }
         public int MePS_Id { get; set; }
+        public bool Vota_Permitido { get; set; }
 
         public virtual tbEstadosCiviles Esta { get; set; }
         public virtual tbMesasPorSedes MePS { get; set; }
