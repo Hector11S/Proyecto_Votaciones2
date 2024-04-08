@@ -1,7 +1,7 @@
 ﻿using Frontend_Sistema_Votaciones.Models;
 using Frontend_Sistema_Votaciones.Servicios;
+using Frontend_Sistema_Votaciones.WebAPI;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Sistema_Votaciones.Common.Models;
 using System;
 using System.Collections.Generic;
@@ -10,26 +10,34 @@ using System.Threading.Tasks;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class UsuariosController : Controller
+    public class EstadosCivilesController : Controller
     {
-        private readonly UsuariosServicios _usuariosServicios;
-        public UsuariosController(UsuariosServicios rolesServicios)
+        public EstadosCivilesServicios _estadosCivilesServicios;
+        public EstadosCivilesController(EstadosCivilesServicios estadosCivilesServicios)
         {
-            _usuariosServicios = rolesServicios;
+            _estadosCivilesServicios = estadosCivilesServicios;
         }
         public async Task<IActionResult> Index()
         {
-            var model = new List<UsuariosViewModel>();
-            var list = await _usuariosServicios.ObtenerUsuariosList();
-            return View(list.Data);
+            try
+            {
+                var model = new List<EstadosCivilesViewModel>();
+                var list = await _estadosCivilesServicios.ObtenerEstadosCivilesList();
+                return View(list.Data);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
-        [HttpGet("[controller]/Details/{Usua_Id}")]
-        public async Task<IActionResult> Details(string Usua_Id)
+
+        [HttpGet("[controller]/Details/{Esta_Id}")]
+        public async Task<IActionResult> Details(int Esta_Id)
         {
             try
             {
-                var model = new UsuariosViewModel();
-                var list = await _usuariosServicios.ObtenerUsuarios(Usua_Id);
+                var model = new EstadosCivilesViewModel();
+                var list = await _estadosCivilesServicios.ObtenerEstadosCiviles(Esta_Id);
                 return View(list.Data);
             }
             catch (Exception ex)
@@ -45,13 +53,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(UsuariosViewModel item)
+        public async Task<IActionResult> Create(EstadosCivilesViewModel item)
         {
             try
             {
-                item.Usua_UsuarioCreacion = 4;
-                item.Usua_FechaCreacion = DateTime.Now;
-                var result = await _usuariosServicios.CrearUsuarios(item);
+                item.Esta_UsuarioCreacion = 4;
+                item.Esta_FechaCreacion = DateTime.Now;
+                var result = await _estadosCivilesServicios.CrearEstadosCiviles(item);
                 if (result.Success)
                 {
                     TempData["AbrirModal"] = null;
@@ -61,7 +69,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 else
                 {
                     TempData["AbrirModal"] = TiposDeModal.Nuevo;
-                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    //TempData["Item"] = JsonConvert.SerializeObject(item);
                     TempData["Advertencia"] = result.Message;
                     return RedirectToAction("Index");
                 }
@@ -69,17 +77,17 @@ namespace Frontend_Sistema_Votaciones.Controllers
             catch (Exception ex)
             {
                 TempData["Error"] = "Error al crear el departamento.";
-                TempData["Item"] = JsonConvert.SerializeObject(item);
+                //TempData["Item"] = JsonConvert.SerializeObject(item);
                 return RedirectToAction("Index");
             }
         }
 
-        [HttpGet("[controller]/Edit/{Usua_Id}")]
-        public async Task<IActionResult> Edit(string Usua_Id)
+        [HttpGet("[controller]/Edit/{Esta_Id}")]
+        public async Task<IActionResult> Edit(int Esta_Id)
         {
             try
             {
-                var model = await _usuariosServicios.ObtenerUsuarios(Usua_Id);
+                var model = await _estadosCivilesServicios.ObtenerEstadosCiviles(Esta_Id);
                 return Json(model.Data);
             }
             catch (Exception ex)
@@ -89,13 +97,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
         }
 
         [HttpPost("[controller]/Edit")]
-        public async Task<IActionResult> Edit(UsuariosViewModel item)
+        public async Task<IActionResult> Edit(EstadosCivilesViewModel item)
         {
             try
             {
-                item.Usua_UsuarioModifica = 4;
-                item.Usua_FechaModifica = DateTime.Now;
-                var result = await _usuariosServicios.EditarUsuarios(item);
+                item.Esta_UsuarioModifica = 4;
+                item.Esta_FechaModifica = DateTime.Now;
+                var result = await _estadosCivilesServicios.EditarEstadosCiviles(item);
                 if (result.Success)
                 {
                     TempData["AbrirModal"] = null;
@@ -105,14 +113,14 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 else
                 {
                     TempData["AbrirModal"] = TiposDeModal.Editar;
-                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    //TempData["Item"] = JsonConvert.SerializeObject(item);
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
                 TempData["Error"] = "Error al editar el departamento";
-                TempData["Item"] = JsonConvert.SerializeObject(item);
+                //TempData["Item"] = JsonConvert.SerializeObject(item);
                 return RedirectToAction("Index");
                 throw;
             }
@@ -120,11 +128,11 @@ namespace Frontend_Sistema_Votaciones.Controllers
 
         [HttpPost("/[controller]/DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed([FromForm] string Usua_Id)
+        public async Task<IActionResult> DeleteConfirmed([FromForm] string Esta_Id)
         {
             try
             {
-                var result = await _usuariosServicios.EliminarUsuarios(Usua_Id);
+                var result = await _estadosCivilesServicios.EliminarEstadosCiviles(Esta_Id);
                 if (result.Success)
                 {
                     TempData["Exito"] = result.Message;

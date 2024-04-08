@@ -16,6 +16,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         private readonly MunicipioRepository _municipioRepository;
         private readonly CargosRepository _cargosRepository;
         private readonly SedesRepository _sedesRepository;
+        private readonly EstadosCivilesRepository _estadosCivilesRepository;
         private readonly MesasRepository _mesasRepository;
         private readonly EmpleadosRepository _empleadosRepository;
         private readonly VotanteRepository _votanteRepository;
@@ -25,6 +26,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                MunicipioRepository municipioRepository,
                CargosRepository cargosRepository,
                SedesRepository sedesRepository,
+               EstadosCivilesRepository estadosCivilesRepository,
                MesasRepository mesasRepository,
                EmpleadosRepository empleadosRepository,
                VotanteRepository votanteRepository)
@@ -34,6 +36,8 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             _municipioRepository = municipioRepository;
             _cargosRepository = cargosRepository;
             _sedesRepository = sedesRepository;
+            _estadosCivilesRepository = estadosCivilesRepository;
+            _empleadosRepository = empleadosRepository;
             _mesasRepository = mesasRepository;
             _empleadosRepository = empleadosRepository;
             _votanteRepository = votanteRepository;
@@ -412,6 +416,103 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             catch (Exception ex)
             {
                 return result.Error("Error al actualizar el empleado");
+            }
+        }
+        #endregion
+
+        #region EstadosCiviles
+        public ServiceResult ListEsta()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _estadosCivilesRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al cargar los estados civiles");
+            }
+        }
+        public ServiceResult ListEsta(int Esta_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var esta = _estadosCivilesRepository.Find(Esta_Id);
+                if (esta != null)
+                {
+                    return result.Ok(esta);
+                }
+                else
+                {
+                    return result.Error("No se encontró el estado civil");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al cargar el estado civil");
+            }
+        }
+        public ServiceResult CrearEsta(tbEstadosCiviles item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _estadosCivilesRepository.Insert(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok("Estado civil creada con exito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe un estado civil con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al crear el estado civil");
+            }
+        }
+        public ServiceResult EditarEsta(tbEstadosCiviles item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _estadosCivilesRepository.Update(item);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok($"Estado civil {item.Esta_Id} editado con éxito", response);
+                }
+                else
+                {
+                    return result.Error("Ya existe un estado civil con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al editar el estado civil");
+            }
+        }
+        public ServiceResult EliminarEsta(int Esta_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = _estadosCivilesRepository.Delete(Esta_Id);
+                if (response.CodeStatus == 1)
+                {
+                    return result.Ok($"Estado civil {Esta_Id} eliminada con éxito", response);
+                }
+                else
+                {
+                    return result.Error("Hay personas que tienen este estado civil registrado");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al eliminar el estado civil");
             }
         }
         #endregion

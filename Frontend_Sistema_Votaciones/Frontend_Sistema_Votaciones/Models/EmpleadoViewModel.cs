@@ -16,5 +16,8 @@ namespace Sistema_Votaciones.Common.Models
         public int Part_Id { get; set; }
         public int Carg_Id { get; set; }
         public int Empl_Id { get; set; }
+        public string Dept_Codigo { get; set; }
+        public int Sede_Id { get; set; }
+        public int Mesa_Id { get; set; }
     }
 }

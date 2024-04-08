@@ -21,6 +21,7 @@ namespace Sistema_Votaciones.Entities.Entities
         public DateTime? Vota_FechaModifica { get; set; }
         public int Sede_Id { get; set; }
         public int Mesa_Id { get; set; }
+        public int MePS_Id { get; set; }
 
         public virtual tbEstadosCiviles Esta { get; set; }
         public virtual tbMesasPorSedes MePS { get; set; }

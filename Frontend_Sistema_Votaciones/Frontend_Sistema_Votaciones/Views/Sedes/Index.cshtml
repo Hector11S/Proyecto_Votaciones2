@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Sistema_Votaciones.Common.Models.SedesViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Sede_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sede_Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Muni_Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sede_UsuarioCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sede_FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sede_UsuarioModifica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sede_FechaModifica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sede_Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sede_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sede_Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Muni_Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sede_UsuarioCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sede_FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sede_UsuarioModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sede_FechaModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sede_Estado)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

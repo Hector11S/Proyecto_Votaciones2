@@ -24,6 +24,7 @@ namespace Sistema_Votaciones.BusinessLogic
             service.AddScoped<CargosRepository>();
             service.AddScoped<SedesRepository>();
             service.AddScoped<MesasRepository>();
+            service.AddScoped<EstadosCivilesRepository>();
             service.AddScoped<PartidoRepository>();
             service.AddScoped<AlcaldeRepository>();
             service.AddScoped<VotanteRepository>();
@@ -32,7 +33,6 @@ namespace Sistema_Votaciones.BusinessLogic
             service.AddScoped<EmpleadosRepository>();
             //service.AddScoped<DispositivoRepository>();
             //service.AddScoped<EmpresaRepository>();
-            //service.AddScoped<EstadoCivilRepository>();
             //service.AddScoped<MunicipioRepository>();
             //service.AddScoped<PiezaRepository>();
             //service.AddScoped<ServicioRepository>();

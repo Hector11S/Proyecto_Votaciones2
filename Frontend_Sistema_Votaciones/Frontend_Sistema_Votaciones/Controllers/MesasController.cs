@@ -1,7 +1,7 @@
 ﻿using Frontend_Sistema_Votaciones.Models;
 using Frontend_Sistema_Votaciones.Servicios;
+using Frontend_Sistema_Votaciones.WebAPI;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Sistema_Votaciones.Common.Models;
 using System;
 using System.Collections.Generic;
@@ -10,26 +10,34 @@ using System.Threading.Tasks;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class UsuariosController : Controller
+    public class MesasController : Controller
     {
-        private readonly UsuariosServicios _usuariosServicios;
-        public UsuariosController(UsuariosServicios rolesServicios)
+        public MesasServicios _mesasServicios;
+        public MesasController(MesasServicios mesasServicios)
         {
-            _usuariosServicios = rolesServicios;
+            _mesasServicios = mesasServicios;
         }
         public async Task<IActionResult> Index()
         {
-            var model = new List<UsuariosViewModel>();
-            var list = await _usuariosServicios.ObtenerUsuariosList();
-            return View(list.Data);
+            try
+            {
+                var model = new List<MesasViewModel>();
+                var list = await _mesasServicios.ObtenerMesasList();
+                return View(list.Data);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
-        [HttpGet("[controller]/Details/{Usua_Id}")]
-        public async Task<IActionResult> Details(string Usua_Id)
+
+        [HttpGet("[controller]/Details/{Mesa_Id}")]
+        public async Task<IActionResult> Details(int Mesa_Id)
         {
             try
             {
-                var model = new UsuariosViewModel();
-                var list = await _usuariosServicios.ObtenerUsuarios(Usua_Id);
+                var model = new MesasViewModel();
+                var list = await _mesasServicios.ObtenerMesas(Mesa_Id);
                 return View(list.Data);
             }
             catch (Exception ex)
@@ -45,13 +53,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(UsuariosViewModel item)
+        public async Task<IActionResult> Create(MesasViewModel item)
         {
             try
             {
-                item.Usua_UsuarioCreacion = 4;
-                item.Usua_FechaCreacion = DateTime.Now;
-                var result = await _usuariosServicios.CrearUsuarios(item);
+                item.Mesa_UsuarioCreacion = 4;
+                item.Mesa_FechaCreacion = DateTime.Now;
+                var result = await _mesasServicios.CrearMesas(item);
                 if (result.Success)
                 {
                     TempData["AbrirModal"] = null;
@@ -61,7 +69,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 else
                 {
                     TempData["AbrirModal"] = TiposDeModal.Nuevo;
-                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    //TempData["Item"] = JsonConvert.SerializeObject(item);
                     TempData["Advertencia"] = result.Message;
                     return RedirectToAction("Index");
                 }
@@ -69,17 +77,17 @@ namespace Frontend_Sistema_Votaciones.Controllers
             catch (Exception ex)
             {
                 TempData["Error"] = "Error al crear el departamento.";
-                TempData["Item"] = JsonConvert.SerializeObject(item);
+                //TempData["Item"] = JsonConvert.SerializeObject(item);
                 return RedirectToAction("Index");
             }
         }
 
-        [HttpGet("[controller]/Edit/{Usua_Id}")]
-        public async Task<IActionResult> Edit(string Usua_Id)
+        [HttpGet("[controller]/Edit/{Mesa_Id}")]
+        public async Task<IActionResult> Edit(int Mesa_Id)
         {
             try
             {
-                var model = await _usuariosServicios.ObtenerUsuarios(Usua_Id);
+                var model = await _mesasServicios.ObtenerMesas(Mesa_Id);
                 return Json(model.Data);
             }
             catch (Exception ex)
@@ -89,13 +97,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
         }
 
         [HttpPost("[controller]/Edit")]
-        public async Task<IActionResult> Edit(UsuariosViewModel item)
+        public async Task<IActionResult> Edit(MesasViewModel item)
         {
             try
             {
-                item.Usua_UsuarioModifica = 4;
-                item.Usua_FechaModifica = DateTime.Now;
-                var result = await _usuariosServicios.EditarUsuarios(item);
+                item.Mesa_UsuarioModifica = 4;
+                item.Mesa_FechaModifica = DateTime.Now;
+                var result = await _mesasServicios.EditarMesas(item);
                 if (result.Success)
                 {
                     TempData["AbrirModal"] = null;
@@ -105,14 +113,14 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 else
                 {
                     TempData["AbrirModal"] = TiposDeModal.Editar;
-                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    //TempData["Item"] = JsonConvert.SerializeObject(item);
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
                 TempData["Error"] = "Error al editar el departamento";
-                TempData["Item"] = JsonConvert.SerializeObject(item);
+                //TempData["Item"] = JsonConvert.SerializeObject(item);
                 return RedirectToAction("Index");
                 throw;
             }
@@ -120,11 +128,11 @@ namespace Frontend_Sistema_Votaciones.Controllers
 
         [HttpPost("/[controller]/DeleteConfirmed")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed([FromForm] string Usua_Id)
+        public async Task<IActionResult> DeleteConfirmed([FromForm] string Mesa_Id)
         {
             try
             {
-                var result = await _usuariosServicios.EliminarUsuarios(Usua_Id);
+                var result = await _mesasServicios.EliminarMesas(Mesa_Id);
                 if (result.Success)
                 {
                     TempData["Exito"] = result.Message;

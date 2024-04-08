@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Sistema_Votaciones.Common.Models.UsuariosViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Usua_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usua_Usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usua_Contra)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usua_Admin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empl_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rol_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usua_UsuarioCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usua_FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usua_UsuarioModifica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usua_FechaModifica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usua_Activo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usua_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usua_Usuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usua_Contra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usua_Admin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empl_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rol_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usua_UsuarioCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usua_FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usua_UsuarioModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usua_FechaModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usua_Activo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
