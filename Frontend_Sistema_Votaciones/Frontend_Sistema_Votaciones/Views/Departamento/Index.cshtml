@@ -15,20 +15,20 @@
 }
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
-    <h2>Listado de departamentos</h2>
+    <h2>Listado de @ViewData["Title"]</h2>
     <button href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
         <i class="bi bi-house-door-fill"></i>
         Inicio
     </button>
 </header>
 <div class="card m-2 mt-4 p-3" style="overflow-x: auto">
-    <header class="">
+    <header class="mb-4">
         <button id="btnNuevo" class="btn btn-outline-primary" style="max-height: 40px; max-width: 150px;" data-toggle="modal" data-target="#modal">
             <i class="bi bi-plus"></i>
             Nuevo
         </button>
     </header>
-    <table id="dtDepartamentos" class="table datatable display" style="width: 100%;">
+    <table id="dtDepartamentos" class="table datatable display " style="width: 100%;">
         <thead style="color: #78e7ff;">
             <tr style="background: rgb(0,0,0)">
                 <th>

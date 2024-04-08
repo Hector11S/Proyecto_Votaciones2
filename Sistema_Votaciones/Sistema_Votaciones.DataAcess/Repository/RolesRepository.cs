@@ -21,7 +21,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 var parameter = new DynamicParameters();
                 parameter.Add("Rol_Id", id);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Eliminar, parameter, commandType: CommandType.StoredProcedure);
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Rol_Eliminar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
@@ -33,7 +33,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Rol_Id", id);
-                result = db.QueryFirst<tbRoles>(ScriptsBaseDeDatos.Depa_Llenar, parameter, commandType: CommandType.StoredProcedure);
+                result = db.QueryFirst<tbRoles>(ScriptsBaseDeDatos.Rol_Llenar, parameter, commandType: CommandType.StoredProcedure);
                 return result;
             }
         }
@@ -44,11 +44,11 @@ namespace Sistema_Votaciones.DataAcess.Repository
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Rol_Id", item.Rol_Id);
-                //parameter.Add("Rol_Descripcion", item.Rol_Descripcion);
+                parameter.Add("Rol_Descripcion", item.Rol_Descripcion);
                 parameter.Add("Rol_UsuarioCreacion", item.Rol_UsuarioCreacion);
                 parameter.Add("Rol_FechaCreacion", item.Rol_FechaCreacion);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Insertar, parameter, commandType: CommandType.StoredProcedure);
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Rol_Insertar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
@@ -59,7 +59,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
             List<tbRoles> result = new List<tbRoles>();
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
-                result = db.Query<tbRoles>(ScriptsBaseDeDatos.Depa_Listar, commandType: CommandType.Text).ToList();
+                result = db.Query<tbRoles>(ScriptsBaseDeDatos.Rol_Listar, commandType: CommandType.Text).ToList();
                 return result;
             }
 
@@ -71,11 +71,11 @@ namespace Sistema_Votaciones.DataAcess.Repository
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Rol_Id", item.Rol_Id);
-                //parameter.Add("Rol_Descripcion", item.Rol_Descripcion);
+                parameter.Add("Rol_Descripcion", item.Rol_Descripcion);
                 parameter.Add("Rol_UsuarioModifica", item.Rol_UsuarioModifica);
                 parameter.Add("Rol_FechaModifica", item.Rol_FechaModifica);
 
-                var result = db.QueryFirst(ScriptsBaseDeDatos.Depa_Editar, parameter, commandType: CommandType.StoredProcedure);
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Rol_Editar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }

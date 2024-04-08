@@ -72,11 +72,11 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<AlcaldeViewModel>, AlcaldeViewModel>(req =>
                 {
-                    req.Path = $"API/Alcalde/Fill?Alca_Id={Alca_Id}";
+                    req.Path = $"API/Alcalde/Find?Alca_Id={Alca_Id}";
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
@@ -101,11 +101,11 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
-                    return result.Ok(response.Data);
+                    return result.Ok(response.Message, response.Data);
                 }
             }
             catch (Exception ex)
@@ -126,11 +126,11 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
-                    return result.Ok(response.Data);
+                    return result.Ok(response.Message, response.Data);
                 }
             }
             catch (Exception ex)

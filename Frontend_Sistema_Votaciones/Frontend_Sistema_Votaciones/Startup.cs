@@ -31,13 +31,20 @@ namespace Frontend_Sistema_Votaciones
             services.AddSingleton<API>();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddControllersWithViews();
+            services.AddScoped<UsuariosServicios>();
+            services.AddScoped<PantallasServicios>();
+            services.AddScoped<RolesServicios>();
             services.AddScoped<DepartamentoServicios>();
-            services.AddScoped<AlcaldeServicios>();
-            services.AddScoped<VotanteServicios>();
-            services.AddScoped<VotosPorMesaServicios>();
             services.AddScoped<MunicipioServicios>();
+            services.AddScoped<CargoServicios>();
+            services.AddScoped<EstadosCivilesServicios>();
+            services.AddScoped<EmpleadoServicios>();
+            services.AddScoped<SedesServicios>();
+            services.AddScoped<MesasServicios>();
+            services.AddScoped<VotanteServicios>();
             services.AddScoped<PartidoServicios>();
-            services.AddScoped<PresidenteServicios>();
+            services.AddScoped<AlcaldeServicios>();
+            services.AddScoped<VotosPorMesaServicios>();
             services.AddScoped<BlobStorage>();
         }
 

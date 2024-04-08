@@ -44,6 +44,26 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult BuscarAlcalde(int Alca_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var votante = _alcaldeRepository.Find(Alca_Id);
+                if (votante != null)
+                {
+                    return result.Ok(votante);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el alcalde con ID {Alca_Id}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"No se encontró el alcalde con ID {Alca_Id}");
+            }
+        }
         public ServiceResult CrearAlcalde(tbAlcaldes item)
         {
             var result = new ServiceResult();
@@ -56,12 +76,12 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 }
                 else
                 {
-                    return result.Error("Ya existe un alcalde con ese DNI");
+                    return result.Error("Por favor rellene todos los campos");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al guardar la informacion del alcalde");
             }
         }
 
@@ -70,20 +90,19 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var list = _alcaldeRepository.Update(item);
-                if (list.CodeStatus > 0)
+                var response = _alcaldeRepository.Update(item);
+                if (response.CodeStatus == 1)
                 {
-                    return result.Ok(list);
+                    return result.Ok("Alcalde editado con exito", response);
                 }
                 else
                 {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Alcalde con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
+                    return result.Error("Por favor rellene todos los campos");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al editar la informacion del alcalde");
             }
         }
         public ServiceResult EliminarAlcalde(int Alca_Id)

@@ -12,7 +12,7 @@
     </a>
 </header>
 <div class="card m-2 mt-4 p-3" style="overflow-x: auto">
-    <header class="">
+    <header class="mb-4">
         <a id="btnNuevo" asp-action="Create" class="btn btn-outline-primary" style="max-height: 40px; max-width: 150px;" data-toggle="modal" data-target="#modal">
             <i class="bi bi-plus"></i>
             Nuevo
@@ -70,11 +70,11 @@
                     <td style="width: 5%">
                         <div class="w-100" style="max-width: 250px">
                             <div class="d-flex w-100" style="gap: 5px;">
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Edit", new { id=item.Alca_Id })">
+                                <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Edit", new { Alca_Id=item.Alca_Id })">
                                     <i class="bi bi-pencil"></i>
                                     Editar
                                 </a>
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { id=item.Alca_Id })">
+                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { Alca_Id=item.Alca_Id })">
                                     <i class="bi bi-eye"></i>
                                     Detalles
                                 </a>

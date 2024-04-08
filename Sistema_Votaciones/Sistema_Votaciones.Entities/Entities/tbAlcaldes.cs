@@ -8,9 +8,11 @@ namespace Sistema_Votaciones.Entities.Entities
 {
     public partial class tbAlcaldes
     {
-        public string Nombre_Completo { get; set; }
+        public string Vota_NombreCompleto { get; set; }
+        public string Vota_DNI { get; set; }
         public string Alca_Imagen { get; set; }
         public string Muni_Codigo { get; set; }
+        public string Dept_Codigo { get; set; }
         public string Muni_Descripcion { get; set; }
         public int Part_Id { get; set; }
         public string Part_Descripcion { get; set; }
@@ -25,6 +27,7 @@ namespace Sistema_Votaciones.Entities.Entities
         public virtual tbUsuarios Alca_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Alca_UsuarioModificaNavigation { get; set; }
         public virtual tbMunicipios Muni_CodigoNavigation { get; set; }
+
         public virtual tbPartidos Part { get; set; }
     }
 }

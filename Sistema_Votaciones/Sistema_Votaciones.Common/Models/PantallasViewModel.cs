@@ -15,5 +15,7 @@ namespace Sistema_Votaciones.Common.Models
         public int? Pant_UsuarioModifica { get; set; }
         public DateTime? Pant_FechaModifica { get; set; }
         public bool? Pant_Estado { get; set; }
+        public string Pant_Esquema { get; set; }
+
     }
 }

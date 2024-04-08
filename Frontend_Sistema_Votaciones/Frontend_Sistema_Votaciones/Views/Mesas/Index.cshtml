@@ -1,0 +1,72 @@
+﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.MesasViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Mesa_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mesa_UsuarioCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mesa_FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mesa_UsuarioModifica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mesa_FechaModifica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mesa_Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mesa_Numero)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mesa_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mesa_UsuarioCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mesa_FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mesa_UsuarioModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mesa_FechaModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mesa_Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mesa_Numero)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

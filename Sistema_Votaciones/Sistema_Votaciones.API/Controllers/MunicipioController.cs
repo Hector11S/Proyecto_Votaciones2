@@ -29,12 +29,17 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _generalServices.ListMuni();
             return Ok(list);
         }
+        [HttpGet("API/[controller]/List/{Dept_Codigo}")]
+        public IActionResult List(string Dept_Codigo)
+        {
+            var list = _generalServices.ListMuni(Dept_Codigo);
+            return Ok(list);
+        }
         [HttpGet("API/[controller]/Find")]
 
-        public IActionResult Find(string Dept_Codigo)
+        public IActionResult Find(string Muni_Codigo)
         {
-
-            var list = _generalServices.ListMuni(Dept_Codigo);
+            var list = _generalServices.FindMuni(Muni_Codigo);
             return Ok(list);
         }
 
@@ -44,6 +49,7 @@ namespace Sistema_Votaciones.API.Controllers
             _mapper.Map<tbMunicipios>(json);
             var modelo = new tbMunicipios()
             {
+                Dept_Codigo = json.Dept_Codigo,
                 Muni_Codigo = json.Muni_Codigo,
                 Muni_Descripcion = json.Muni_Descripcion,
                 Muni_UsuarioCreacion = json.Muni_UsuarioCreacion,
@@ -58,6 +64,7 @@ namespace Sistema_Votaciones.API.Controllers
             _mapper.Map<tbMunicipios>(json);
             var modelo = new tbMunicipios()
             {
+                Dept_Codigo = json.Dept_Codigo,
                 Muni_Codigo = json.Muni_Codigo,
                 Muni_Descripcion = json.Muni_Descripcion,
                 Muni_UsuarioModifica = json.Muni_UsuarioModifica,
