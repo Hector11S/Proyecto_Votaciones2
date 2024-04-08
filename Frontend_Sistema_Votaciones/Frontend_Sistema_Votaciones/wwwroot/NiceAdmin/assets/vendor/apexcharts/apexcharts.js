@@ -3389,7 +3389,7 @@
   		"Sat"
   	],
   	toolbar: {
-  		exportToSVG: "Download SVG",
+  		exportToSVG: "Descargar SVG",
   		exportToPNG: "Download PNG",
   		exportToCSV: "Download CSV",
   		menu: "Menu",

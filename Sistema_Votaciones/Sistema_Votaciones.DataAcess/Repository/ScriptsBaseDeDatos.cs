@@ -52,6 +52,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string VotosPorMesas_Insertar = "[Vota].[SP_VotosPorMesas_Insertar]";
         public static string VotosPorMesas_Editar = "[Vota].[SP_VotosPorMesas_Editar]";
         public static string VotosPorMesas_Eliminar = "[Vota].[SP_VotosPorMesas_Eliminar]";
+        public static string VotosPorMesas_ListarPresidentes = "[Vota].[SP_VotosPorMesas_MostrarPresidentes]";
+        public static string VotosPorMesas_ListarAlcaldes = "[Vota].[SP_VotosPorMesas_MostrarAlcaldes]";
         #endregion
 
         #region Votantes

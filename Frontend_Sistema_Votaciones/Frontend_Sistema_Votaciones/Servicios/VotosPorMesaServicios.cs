@@ -42,6 +42,56 @@ namespace Frontend_Sistema_Votaciones.Servicios
             }
         }
 
+        public async Task<ServiceResult> VotosPorMesaListAlcaldes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<VotosPorMesasViewModel>, IEnumerable<VotosPorMesasViewModel>>(req =>
+                {
+                    req.Path = $"API/votosPorMesas/ListAlcaldes";
+                });
+                if (response != null && !response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
+        public async Task<ServiceResult> VotosPorMesaListPresidentes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<VotosPorMesasViewModel>, IEnumerable<VotosPorMesasViewModel>>(req =>
+                {
+                    req.Path = $"API/votosPorMesas/ListPresidentes";
+                });
+                if (response != null && !response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
         public async Task<ServiceResult> ObtenerVotosPorMesa(int VoMe_Id)
         {
             var result = new ServiceResult();

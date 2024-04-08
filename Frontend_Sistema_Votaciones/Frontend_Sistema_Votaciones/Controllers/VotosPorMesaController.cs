@@ -31,6 +31,10 @@ namespace Frontend_Sistema_Votaciones.Controllers
             {
                 var model = new List<VotosPorMesasViewModel>();
                 var list = await _votosPorMesaServicios.VotosPorMesaList();
+                var listAlcaldes = await _votosPorMesaServicios.VotosPorMesaListAlcaldes();
+                var listPresidentes = await _votosPorMesaServicios.VotosPorMesaListPresidentes();
+                ViewBag.ListaVotosAlcaldes = listAlcaldes.Data;
+                ViewBag.ListaVotosPresidentes = listPresidentes.Data;
                 return View(list.Data);
             }
             catch (Exception ex)
@@ -105,8 +109,6 @@ namespace Frontend_Sistema_Votaciones.Controllers
         }
 
 
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VotosPorMesasViewModel item)
@@ -115,34 +117,31 @@ namespace Frontend_Sistema_Votaciones.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                
-                    item.MePS_Id = 1; 
+                    item.MePS_Id = 1;
 
-       
                     var result = await _votosPorMesaServicios.CrearVotosPorMesa(item);
 
                     if (result.Success)
                     {
+                        TempData["Exito"] = "El voto por el Alcalde se ha creado correctamente.";
                         return RedirectToAction("Index");
                     }
                     else
                     {
-         
+                        TempData["Advertencia"] = "No se pudo crear el voto.";
                         return RedirectToAction("Index");
                     }
                 }
                 else
                 {
-              
                     var alcaldes = await _alcaldeServicios.ObtenerAlcaldeList();
                     ViewBag.Alcaldes = alcaldes.Data;
-
                     return View(item);
                 }
             }
             catch (Exception ex)
             {
-     
+                TempData["Error"] = "Error al procesar la solicitud.";
                 return RedirectToAction("Index");
             }
         }
@@ -173,9 +172,6 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
         }
 
-
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreatePresi(VotosPorMesasViewModel item)
@@ -184,39 +180,35 @@ namespace Frontend_Sistema_Votaciones.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
                     item.MePS_Id = 1;
                     item.VoMe_EsPresidente = true;
-
 
                     var result = await _votosPorMesaServicios.CrearVotosPorMesa(item);
 
                     if (result.Success)
                     {
-                        
+                        TempData["Exito"] = "El voto por el presidente se ha creado correctamente.";
                         return RedirectToAction("Create", "VotosPorMesa");
                     }
                     else
                     {
+                        TempData["Advertencia"] = "No se pudo crear el voto por el presidente.";
                         return RedirectToAction("Index");
                     }
                 }
                 else
                 {
-
                     var alcaldes = await _alcaldeServicios.ObtenerAlcaldeList();
                     ViewBag.Alcaldes = alcaldes.Data;
-
                     return View(item);
                 }
             }
             catch (Exception ex)
             {
-
+                TempData["Error"] = "Error al procesar la solicitud.";
                 return RedirectToAction("Index");
             }
         }
-
 
 
         [HttpGet("[controller]/Edit/{VoMe_Id}")]

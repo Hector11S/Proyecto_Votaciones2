@@ -1,24 +1,31 @@
 ﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.VotosPorMesasViewModel>
 
 @{
+    var listaVotosAlcaldes = ViewBag.ListaVotosAlcaldes as IEnumerable<VotosPorMesasViewModel>;
+    var listaVotosPresidentes = ViewBag.ListaVotosPresidentes as IEnumerable<VotosPorMesasViewModel>;
+
     ViewData["Title"] = "VotosPorMesa";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<header class="w-100 d-flex justify-content-between align-items-center p-2 text-center" style="background: rgb(255,255,255); min-height: 12vh;">
+    <h1>Conteo de Votos</h1>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Votar</a>
+</header>
 
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Alcaldes</h5>
+                <div id="pieChartAlcaldes"></div>
 
-<div class="col-lg-6">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Pie Chart</h5>
-            <div id="pieChart"></div>
-
-            <script>
+                <script>
                 document.addEventListener("DOMContentLoaded", () => {
-                    var seriesData = @Html.Raw(Json.Serialize(Model.Select(m => m.TotalVotos)));
-                    var labelsData = @Html.Raw(Json.Serialize(Model.Select(m => m.Nombre)));
+                    var seriesData = @Html.Raw(Json.Serialize(listaVotosAlcaldes.Select(m => m.TotalVotosAlcalde)));
+                    var labelsData = @Html.Raw(Json.Serialize(listaVotosAlcaldes.Select(m => m.NombreAlcalde + " " + m.ApellidoAlcalde)));
 
-                    new ApexCharts(document.querySelector("#pieChart"), {
+                    new ApexCharts(document.querySelector("#pieChartAlcaldes"), {
                         series: seriesData,
                         chart: {
                             height: 350,
@@ -30,16 +37,45 @@
                         labels: labelsData
                     }).render();
                 });
-            </script>
+                </script>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Presidentes</h5>
+                <div id="pieChartPresidentes"></div>
+
+                <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    var seriesData = @Html.Raw(Json.Serialize(listaVotosPresidentes.Select(m => m.TotalVotosPresidentes)));
+                    var labelsData = @Html.Raw(Json.Serialize(listaVotosPresidentes.Select(m => m.NombrePresidente + " " + m.ApellidoPresidente)));
+
+                    new ApexCharts(document.querySelector("#pieChartPresidentes"), {
+                        series: seriesData,
+                        chart: {
+                            height: 350,
+                            type: 'pie',
+                            toolbar: {
+                                show: true
+                            }
+                        },
+                        labels: labelsData
+                    }).render();
+                });
+                </script>
+
+            </div>
         </div>
     </div>
 </div>
 
 
-<header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
-    <h2>Índice de Votos por Mesas</h2>
-    <a asp-action="Create" class="btn btn-primary">Crear Nuevo</a>
-</header>
+
+
 
 <div class="card m-2 mt-4 p-3">
     <table id="dtVotosPorMesas" class="table" style="width:100%">

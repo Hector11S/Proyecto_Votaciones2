@@ -286,6 +286,34 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult ListVotosPorMesasAlcaldes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votosPorMesasRepository.ListAlcaldes();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult ListVotosPorMesasPresidentes()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votosPorMesasRepository.ListPresidentes();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
         public ServiceResult CrearVotosPorMesas(tbVotosPorMesas item)
         {
             var result = new ServiceResult();

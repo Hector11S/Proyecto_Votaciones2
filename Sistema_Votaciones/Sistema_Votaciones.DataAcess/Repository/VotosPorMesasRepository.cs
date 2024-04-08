@@ -90,6 +90,53 @@ namespace Sistema_Votaciones.DataAcess.Repository
             return result;
         }
 
+        public IEnumerable<tbVotosPorMesas> ListAlcaldes()
+        {
+            List<tbVotosPorMesas> result = new List<tbVotosPorMesas>();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var queryResult = db.Query<dynamic>(ScriptsBaseDeDatos.VotosPorMesas_ListarAlcaldes, commandType: CommandType.StoredProcedure);
+
+                foreach (var item in queryResult)
+                {
+
+                    var viewModel = new tbVotosPorMesas
+                    {
+                        NombreAlcalde = item.NombreAlcalde,
+                        ApellidoAlcalde = item.ApellidoAlcalde,
+                        CargoAlcalde = item.CargoAlcalde,
+                        CandidatoIdAlcalde = item.CandidatoIdAlcalde,
+                        TotalVotosAlcalde = item.TotalVotosAlcalde
+                    };
+                    result.Add(viewModel);
+                }
+            }
+            return result;
+        }
+
+        public IEnumerable<tbVotosPorMesas> ListPresidentes()
+        {
+            List<tbVotosPorMesas> result = new List<tbVotosPorMesas>();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var queryResult = db.Query<dynamic>(ScriptsBaseDeDatos.VotosPorMesas_ListarPresidentes, commandType: CommandType.StoredProcedure);
+
+                foreach (var item in queryResult)
+                {
+
+                    var viewModel = new tbVotosPorMesas
+                    {
+                        NombrePresidente = item.NombrePresidente,
+                        ApellidoPresidente = item.ApellidoPresidente,
+                        CargoPresidente = item.CargoPresidente,
+                        CandidatoIdPresidente = item.CandidatoIdPresidente,
+                        TotalVotosPresidentes = item.TotalVotosPresidentes
+                    };
+                    result.Add(viewModel);
+                }
+            }
+            return result;
+        }
 
         public RequestStatus Update(tbVotosPorMesas item)
         {

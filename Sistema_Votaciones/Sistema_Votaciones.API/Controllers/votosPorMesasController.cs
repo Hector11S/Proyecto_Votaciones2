@@ -29,10 +29,28 @@ namespace Sistema_Votaciones.API.Controllers
         [HttpGet("API/[controller]/List")]
         public IActionResult List()
         {
-
             var list = _votacionesServices.ListVotosPorMesas();
+      
             return Ok(list);
         }
+
+        [HttpGet("API/[controller]/ListAlcaldes")]
+        public IActionResult ListAlcaldes()
+        {
+       
+            var listvotosPorMesasAlcaldes = _votacionesServices.ListVotosPorMesasAlcaldes();
+         
+            return Ok(listvotosPorMesasAlcaldes);
+        }
+
+        [HttpGet("API/[controller]/ListPresidentes")]
+        public IActionResult ListPresidentes()
+        {
+          
+            var listvotosPorMesasPresidentes = _votacionesServices.ListVotosPorMesasPresidentes();
+            return Ok(listvotosPorMesasPresidentes);
+        }
+
 
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(VotosPorMesasViewModel json)

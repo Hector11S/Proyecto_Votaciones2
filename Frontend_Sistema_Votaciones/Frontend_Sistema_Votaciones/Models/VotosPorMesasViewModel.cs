@@ -34,5 +34,38 @@ namespace Frontend_Sistema_Votaciones.Models
 
         [Display(Name = "Apellidos")]
         public string Apellidos { get; set; }
+
+
+        [Display(Name = "Nombre del Presidente")]
+        public string NombrePresidente { get; set; }
+
+        [Display(Name = "Apellido del Presidente")]
+        public string ApellidoPresidente { get; set; }
+
+        [Display(Name = "Cargo del Presidente")]
+        public string CargoPresidente { get; set; }
+
+        [Display(Name = "ID del Candidato Presidente")]
+        public int CandidatoIdPresidente { get; set; }
+
+        [Display(Name = "Total de Votos para el Presidente")]
+        public int TotalVotosPresidentes { get; set; }
+
+        [Display(Name = "Nombre del Alcalde")]
+        public string NombreAlcalde { get; set; }
+
+        [Display(Name = "Apellido del Alcalde")]
+        public string ApellidoAlcalde { get; set; }
+
+        [Display(Name = "Cargo del Alcalde")]
+        public string CargoAlcalde { get; set; }
+
+        [Display(Name = "ID del Candidato Alcalde")]
+        public int CandidatoIdAlcalde { get; set; }
+
+        [Display(Name = "Total de Votos para el Alcalde")]
+        public int TotalVotosAlcalde { get; set; }
+  
+
     }
 }
