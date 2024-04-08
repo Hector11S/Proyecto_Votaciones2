@@ -31,6 +31,7 @@ namespace Sistema_Votaciones.BusinessLogic
             service.AddScoped<VotosPorMesasRepository>();
             service.AddScoped<UsuariosRepository>();
             service.AddScoped<EmpleadosRepository>();
+            service.AddScoped<PresidenteRepository>();
             //service.AddScoped<DispositivoRepository>();
             //service.AddScoped<EmpresaRepository>();
             //service.AddScoped<MunicipioRepository>();
