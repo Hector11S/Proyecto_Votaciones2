@@ -1,0 +1,71 @@
+Hacer tabla de esquemas con urlIcono, clase bootstrap, id, texto
+-------------------------------------------------------------
+alter table [Gral].[tbMesas]
+add constraint UQ_tbMesas_Mesa_Numero UNIQUE([Mesa_Numero])
+-------------------------------------------------------------
+ALTER   PROCEDURE [Gral].[SP_Mesas_Insertar]
+(
+	@Mesa_Numero INT,
+    @Mesa_UsuarioCreacion INT, 
+    @Mesa_FechaCreacion DATETIME
+)
+AS
+BEGIN
+    BEGIN TRY
+		BEGIN TRANSACTION
+        INSERT INTO [Gral].[tbMesas] (
+			[Mesa_Numero],
+            [Mesa_UsuarioCreacion], 
+            [Mesa_FechaCreacion] 
+        )
+        VALUES(
+			@Mesa_Numero,
+            @Mesa_UsuarioCreacion,
+            @Mesa_FechaCreacion
+        )
+        COMMIT TRANSACTION
+        SELECT 1 AS Resultado
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        
+        SELECT 
+            ERROR_NUMBER() AS ErrorNumber,
+            ERROR_MESSAGE() AS ErrorMessage,
+            ERROR_LINE() AS ErrorLine,
+            0 AS Resultado;
+    END CATCH
+END
+----------------------------------------------------------
+ALTER   PROCEDURE [Gral].[SP_Mesas_Editar]
+(
+    @Mesa_Id INT,
+	@Mesa_Numero INT,
+    @Mesa_UsuarioModifica INT, 
+    @Mesa_FechaModifica DATETIME
+)
+AS
+BEGIN
+    BEGIN TRY
+		BEGIN TRANSACTION
+        UPDATE [Gral].[tbMesas] 
+        SET
+			[Mesa_Numero] = @Mesa_Numero,
+            [Mesa_UsuarioModifica] = @Mesa_UsuarioModifica, 
+            [Mesa_FechaModifica] = @Mesa_FechaModifica 
+        WHERE [tbMesas].[Mesa_Id] = @Mesa_Id
+        COMMIT TRANSACTION
+        SELECT 1 AS Resultado
+    END TRY
+    BEGIN CATCH
+		IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        
+        SELECT 
+            ERROR_NUMBER() AS ErrorNumber,
+            ERROR_MESSAGE() AS ErrorMessage,
+            ERROR_LINE() AS ErrorLine,
+            0 AS Resultado;
+    END CATCH
+END

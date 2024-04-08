@@ -17,7 +17,7 @@
 </header>
 <div class="card m-2 mt-4 p-3" style="overflow-x: auto">
     <div class="d-flex justify-content-center align-items-center flex-column">
-        <select asp-for="Rol_Id" class="form-select" style="max-width: 250px;">
+        <select asp-for="Rol_Id" class="form-select" style="max-width: 280px;">
             <option>--Rol--</option>
             @if (roles != null)
             {
@@ -34,27 +34,27 @@
                 }
             }
         </select>
-        <div class="outer">
-            <ul id="ul">
-                <li>
-                    <span class="caret">Esquemas</span>
-                    <ul class="nested">
+        <div id="ParoTreeView">
+            <ul>
+                <li id="Pantallas" data-jstree='{"opened":true,"icon":"/lib/jstree/window-fullscreen.svg"}'>
+                    <span>Pantallas</span>
+                    <ul>
                         @if (esquemas != null && pantallas != null)
                         {
                             foreach (var esquema in esquemas)
                             {
-                            <li>
-                                <span class="caret"><label>@esquema</label></span><input id="@esquema" type="checkbox" style="margin-left: 10px;">
-                                <ul class="nested">
-                                    @foreach (var pantalla in pantallas)
-                                    {
-                                        if (pantalla.Pant_Esquema == esquema)
+                                <li id="@esquema" data-jstree='{"icon":"/lib/jstree/card-list.svg"}'>
+                                    <label>@esquema</label>
+                                    <ul>
+                                        @foreach (var pantalla in pantallas)
                                         {
-                                            <li><input id="@pantalla.Pant_Id" type="checkbox"> <label for="@pantalla.Pant_Id">@pantalla.Pant_Descripcion</label></li>
+                                            if (pantalla.Pant_Esquema == esquema)
+                                            {
+                                                <li id="@pantalla.Pant_Id" data-jstree='{"icon":"/lib/jstree/circle.svg"}'>@pantalla.Pant_Descripcion</li>
+                                            }
                                         }
-                                    }
-                                </ul>
-                            </li>
+                                    </ul>
+                                </li>
                             }
                         }
                     </ul>
@@ -67,15 +67,27 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 <script>
-    var toggler = document.getElementsByClassName("caret");
-    var i;
+    $('#ParoTreeView').jstree({
+        "core": {
+            "themes": {
+                "variant": "large"
+            }
+        },
+        "checkbox": {
+            "keep_selected_style": false
+        },
+        "plugins": ["checkbox"]
+    }).on('changed.jstree', function (e, data) {
+        console.log(data.node, "data.node")
+        console.log(data.node.id, "data.node.id")
+        console.log(data.node.text, "data.node.text")
+        if (data.action === "select_node") {
+            alert("CHECKED")
+        } else {
+            alert("UNCHECKED")
+        }
+    })
 
-    for (i = 0; i < toggler.length; i++) {
-        toggler[i].addEventListener("click", function () {
-            this.parentElement.querySelector(".nested").classList.toggle("active");
-            this.classList.toggle("caret-down");
-        });
-    }
     const ddlRoles = document.getElementById("Rol_Id");
     ddlRoles.addEventListener("change", () => {
         $.ajax({

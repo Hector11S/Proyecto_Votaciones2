@@ -40,7 +40,30 @@ namespace Frontend_Sistema_Votaciones.Servicios
             }
         }
 
-        
+        public async Task<ServiceResult> ObtenerRoles(int Rol_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<MesasViewModel>, MesasViewModel>(req =>
+                {
+                    req.Path = $"API/Roles/Find?Rol_Id={Rol_Id}";
+                });
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
         public async Task<ServiceResult> CrearRoles(RolesViewModel item)
         {
             var result = new ServiceResult();
