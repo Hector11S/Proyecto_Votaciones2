@@ -1,7 +1,7 @@
 ﻿using Frontend_Sistema_Votaciones.Models;
 using Frontend_Sistema_Votaciones.Servicios;
 using Microsoft.AspNetCore.Mvc;
-using Sistema_Votaciones.Common.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class CargoController : Controller
+    public class CargosController : Controller
     {
         public CargoServicios _cargosServicios;
-        public CargoController(CargoServicios cargosServicios)
+        public CargosController(CargoServicios cargosServicios)
         {
             _cargosServicios = cargosServicios;
         }
@@ -68,7 +68,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 else
                 {
                     TempData["AbrirModal"] = TiposDeModal.Nuevo;
-                    //TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Item"] = JsonConvert.SerializeObject(item);
                     TempData["Advertencia"] = result.Message;
                     return RedirectToAction("Index");
                 }
@@ -76,7 +76,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             catch (Exception ex)
             {
                 TempData["Error"] = "Error al crear el departamento.";
-                //TempData["Item"] = JsonConvert.SerializeObject(item);
+                TempData["Item"] = JsonConvert.SerializeObject(item);
                 return RedirectToAction("Index");
             }
         }
@@ -112,14 +112,15 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 else
                 {
                     TempData["AbrirModal"] = TiposDeModal.Editar;
-                    //TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Advertencia"] = result.Message;
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
                 TempData["Error"] = "Error al editar el departamento";
-                //TempData["Item"] = JsonConvert.SerializeObject(item);
+                TempData["Item"] = JsonConvert.SerializeObject(item);
                 return RedirectToAction("Index");
                 throw;
             }
@@ -145,7 +146,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error dentro del código de la aplicación. Por favor contacte a un administrador del sistema";
+                TempData["Error"] = $"Error al eliminar el cargo {Carg_Id}";
                 return RedirectToAction("Index");
             }
         }

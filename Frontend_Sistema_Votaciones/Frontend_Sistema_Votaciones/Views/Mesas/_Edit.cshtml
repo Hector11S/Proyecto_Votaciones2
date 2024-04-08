@@ -4,7 +4,7 @@
     ViewData["Title"] = "tbDepartamentos".Substring(2);
     ViewData["ViewName"] = "_Edit".Substring(1);
 }
-<h1 class="text-primary">Editar </h1>
+<h1 class="text-primary">Crear </h1>
 <h4 class="text-primary">@ViewData["Title"]</h4>
 <hr class="border border-primary" />
 <div>
@@ -31,10 +31,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-<script>
-    const txtDept_Descripcion = document.getElementById("Dept_Descripcion_Edit");
-    txtDept_Descripcion.addEventListener("input", () => {
-        const val = txtDept_Descripcion.value.replace(/[^a-zA-Z]/g, '');
-        txtDept_Descripcion.value = val;
-    })
-</script>

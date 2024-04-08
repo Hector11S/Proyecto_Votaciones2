@@ -5,9 +5,9 @@
     ViewData["Title"] = "tbDepartamentos".Substring(2);
     ViewData["ViewName"] = "_Create".Substring(1);
 }
-<h1>Crear </h1>
-<h4>@ViewData["Title"]</h4>
-<hr />
+<h1 class="text-primary">Crear </h1>
+<h4 class="text-primary">@ViewData["Title"]</h4>
+<hr class="border border-primary"/>
 <div>
     <div>
         <form asp-action="@ViewData["ViewName"]">
@@ -36,3 +36,16 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script>
+    const txtDept_Codigo = document.getElementById("Dept_Codigo_Create");
+    txtDept_Codigo.addEventListener("input", () => {
+        const val = txtDept_Codigo.value.replace(/[^0-9]/g, '');
+        txtDept_Codigo.value = val.substr(0, 2);
+    })
+
+    const txtDept_Descripcion = document.getElementById("Dept_Descripcion_Create");
+    txtDept_Descripcion.addEventListener("input", () => {
+        const val = txtDept_Descripcion.value.replace(/[^a-zA-Z]/g, '');
+        txtDept_Descripcion.value = val;
+    })
+</script>

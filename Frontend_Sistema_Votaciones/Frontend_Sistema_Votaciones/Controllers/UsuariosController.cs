@@ -2,7 +2,6 @@
 using Frontend_Sistema_Votaciones.Servicios;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Sistema_Votaciones.Common.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -42,6 +42,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 var parameter = new DynamicParameters();
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
                 parameter.Add("Muni_Descripcion", item.Muni_Descripcion);
+                parameter.Add("Dept_Codigo", item.Dept_Codigo);
                 parameter.Add("Muni_UsuarioCreacion", item.Muni_UsuarioCreacion);
                 parameter.Add("Muni_FechaCreacion", item.Muni_FechaCreacion);
 
@@ -63,13 +64,25 @@ namespace Sistema_Votaciones.DataAcess.Repository
         }
         public List<tbMunicipios> List(string Dept_Codigo)
         {
-
             List<tbMunicipios> result = new List<tbMunicipios>();
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Dept_Codigo", Dept_Codigo);
                 result = db.Query<tbMunicipios>(ScriptsBaseDeDatos.Muni_ListarPorDept, parameter, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
+        public tbMunicipios Find(string Muni_Codigo)
+        {
+
+            tbMunicipios result = new tbMunicipios();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Muni_Codigo", Muni_Codigo);
+                result = db.QueryFirst<tbMunicipios>(ScriptsBaseDeDatos.Muni_Llenar, parameter, commandType: CommandType.StoredProcedure);
                 return result;
             }
 
@@ -82,8 +95,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 var parameter = new DynamicParameters();
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
                 parameter.Add("Muni_Descripcion", item.Muni_Descripcion);
-                parameter.Add("Muni_UsuarioModifica", 2);
-                parameter.Add("Muni_FechaModifica", DateTime.Now);
+                parameter.Add("Muni_UsuarioModifica", item.Muni_UsuarioModifica);
+                parameter.Add("Muni_FechaModifica", item.Muni_FechaModifica);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Muni_Editar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };

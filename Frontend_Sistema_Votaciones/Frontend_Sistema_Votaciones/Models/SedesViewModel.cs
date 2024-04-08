@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sistema_Votaciones.Common.Models
+namespace Frontend_Sistema_Votaciones.Models
 {
     public class SedesViewModel
     {

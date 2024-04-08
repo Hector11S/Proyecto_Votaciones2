@@ -46,7 +46,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<MunicipioViewModel>, IEnumerable<MunicipioViewModel>>(req =>
                 {
-                    req.Path = $"API/Municipio/Find?Dept_Codigo={Dept_Codigo}";
+                    req.Path = $"API/Municipio/List/{Dept_Codigo}";
                 });
                 if (!response.Success)
                 {
@@ -70,15 +70,15 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<MunicipioViewModel>, MunicipioViewModel>(req =>
                 {
-                    req.Path = $"API/Municipio/Fill?Muni_Codigo={Muni_Codigo}";
+                    req.Path = $"API/Municipio/Find?Muni_Codigo={Muni_Codigo}";
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
-                    return result.Ok(response.Data);
+                    return result.Ok(response.Message, response.Data);
                 }
             }
             catch (Exception ex)
@@ -99,11 +99,11 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
-                    return result.Ok(response.Data);
+                    return result.Ok(response.Message, response.Data);
                 }
             }
             catch (Exception ex)
@@ -124,11 +124,11 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
-                    return result.Ok(response.Data);
+                    return result.Ok(response.Message, response.Data);
                 }
             }
             catch (Exception ex)
@@ -147,14 +147,13 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 {
                     req.Path = $"API/Municipio/Delete?Muni_Codigo={Muni_Codigo}";
                 });
-
-                if (response.Success)
+                if (!response.Success)
                 {
-                    return result.Ok($"Municipio {Muni_Codigo} eliminado", response.Data);
+                    return result.Error(response.Message);
                 }
                 else
                 {
-                    return result.Error(response.Message);
+                    return result.Ok(response.Message, response.Data);
                 }
             }
             catch (Exception ex)

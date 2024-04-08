@@ -170,6 +170,26 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error al cargar el municipios");
             }
         }
+        public ServiceResult FindMuni(string Muni_Codigo)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var municipio = _municipioRepository.Find(Muni_Codigo);
+                if (municipio != null)
+                {
+                    return result.Ok(municipio);
+                }
+                else
+                {
+                    return result.Error("No se encontraron municipios");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al cargar el municipios");
+            }
+        }
         public ServiceResult CrearMuni(tbMunicipios item)
         {
             var result = new ServiceResult();
@@ -187,7 +207,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al crear el municipio");
             }
         }
         public ServiceResult EditarMuni(tbMunicipios item)
@@ -207,7 +227,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al editar el municipio");
             }
         }
         public ServiceResult EliminarMuni(string Muni_Codigo)

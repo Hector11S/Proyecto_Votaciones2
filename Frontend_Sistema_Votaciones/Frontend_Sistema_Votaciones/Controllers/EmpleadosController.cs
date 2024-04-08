@@ -8,11 +8,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Sistema_Votaciones.Common.Models;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class EmpleadoController : Controller
+    public class EmpleadosController : Controller
     {
         private readonly EmpleadoServicios _empleadoServicios;
         private readonly VotanteServicios _votanteServicios;
@@ -22,7 +21,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
         private readonly IWebHostEnvironment _hostingEnviroment;
 
 
-        public EmpleadoController(
+        public EmpleadosController(
             EmpleadoServicios alcaldeServicios,
             VotanteServicios votanteServicios,
             DepartamentoServicios departamentoServicios,
