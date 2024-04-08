@@ -164,6 +164,29 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+        public async Task<ServiceResult> EliminarAlcalde(int Alca_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Delete<string, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Alcalde/Delete?Alca_Id={Alca_Id}";
+                });
 
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Message, response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+            }
+        }
     }
 }

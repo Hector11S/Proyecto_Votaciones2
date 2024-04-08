@@ -17,6 +17,7 @@ namespace Sistema_Votaciones.Common.Models
         public int Part_Id { get; set; }
         public string Part_Descripcion { get; set; }
         public int Alca_Id { get; set; }
+        public bool? Alca_Estado { get; set; }
         public int Alca_UsuarioCreacion { get; set; }
         public DateTime Alca_FechaCreacion { get; set; }
         public int? Alca_UsuarioModifica { get; set; }
