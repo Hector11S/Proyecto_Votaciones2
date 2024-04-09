@@ -39,18 +39,18 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
-        public async Task<ServiceResult> ObtenerEmpleado(int Carg_Id)
+        public async Task<ServiceResult> ObtenerEmpleado(int Empl_Id)
         {
             var result = new ServiceResult();
             try
             {
                 var response = await _api.Get<IEnumerable<EmpleadoViewModel>, EmpleadoViewModel>(req =>
                 {
-                    req.Path = $"API/Empleado/Find?Carg_Id={Carg_Id}";
+                    req.Path = $"API/Empleados/Find?Empl_Id={Empl_Id}";
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error("No se encontró el empleado");
                 }
                 else
                 {
@@ -114,14 +114,14 @@ namespace Frontend_Sistema_Votaciones.Servicios
             }
         }
 
-        public async Task<ServiceResult> EliminarEmpleado(string Carg_Id)
+        public async Task<ServiceResult> EliminarEmpleado(string Empl_Id)
         {
             var result = new ServiceResult();
             try
             {
                 var response = await _api.Delete<string, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Empleado/Delete?Carg_Id={Carg_Id}";
+                    req.Path = $"API/Empleado/Delete?Empl_Id={Empl_Id}";
                 });
 
                 if (!response.Success)

@@ -19,5 +19,6 @@ namespace Sistema_Votaciones.Common.Models
         public string Dept_Codigo { get; set; }
         public int Sede_Id { get; set; }
         public int Mesa_Id { get; set; }
+        public string Vota_NombreCompleto { get; set; }
     }
 }

@@ -70,7 +70,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<UsuariosViewModel>, UsuariosViewModel>(req =>
                 {
-                    req.Path = $"API/Empleados/Find?Empl_Id={Empl_Id}";
+                    req.Path = $"API/Usuarios/FindByEmpl?Empl_Id={Empl_Id}";
                 });
                 if (!response.Success)
                 {

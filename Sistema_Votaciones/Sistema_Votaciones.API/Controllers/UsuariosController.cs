@@ -37,6 +37,13 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
+        [HttpGet("API/[controller]/FindByEmpl")]
+        public IActionResult FindByEmpl(int Empl_Id)
+        {
+            var list = _accesoServices.FindUsuaByEmpl(Empl_Id);
+            return Ok(list);
+        }
+
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(UsuariosViewModel json)
         {
@@ -50,7 +57,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Rol_Id = json.Rol_Id,
                 Usua_Admin = json.Usua_Admin,
                 Usua_UsuarioCreacion = json.Usua_UsuarioCreacion,
-                Usua_FechaCreacion = json.Usua_FechaCreacion
+                Usua_FechaCreacion = json.Usua_FechaCreacion,
+                Usua_Imagen = json.Usua_Imagen
             };
             var response = _accesoServices.CrearUsua(modelo);
             return Ok(response);
@@ -67,7 +75,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Rol_Id = json.Rol_Id,
                 Usua_Admin = json.Usua_Admin,
                 Usua_UsuarioModifica = json.Usua_UsuarioModifica,
-                Usua_FechaModifica = json.Usua_FechaModifica
+                Usua_FechaModifica = json.Usua_FechaModifica,
+                Usua_Imagen = json.Usua_Imagen
             };
             var list = _accesoServices.EditarUsua(modelo);
             return Ok(list);

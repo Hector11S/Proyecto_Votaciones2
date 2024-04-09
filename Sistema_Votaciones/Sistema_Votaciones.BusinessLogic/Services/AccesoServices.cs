@@ -163,6 +163,20 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult FindUsuaByEmpl(int Empl_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuariosRepository.FindByEmpl(Empl_Id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
         public ServiceResult CrearUsua(tbUsuarios item)
         {
             var result = new ServiceResult();
@@ -175,12 +189,12 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 }
                 else
                 {
-                    return result.Error("Por favor rellene todos los campos");
+                    return result.Error("Ya hay alguien más que utiliza este nombre de usuario");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al crear el usuario");
             }
         }
         public ServiceResult EditarUsua(tbUsuarios item)

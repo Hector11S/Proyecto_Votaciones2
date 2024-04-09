@@ -370,7 +370,6 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             try
             {
                 var list = _empleadosRepository.Find(Empl_Id);
-
                 return result.Ok(list);
             }
             catch (Exception ex)

@@ -1,4 +1,132 @@
-
+create or ALTER         PROCEDURE [Acce].[SP_Usuarios_LlenarByEmpl]
+(
+	@Empl_Id int
+)
+AS
+BEGIN
+	BEGIN TRY
+		SELECT * FROM Acce.tbUsuarios 
+		where tbUsuarios.Empl_Id = @Empl_Id
+	END TRY
+	BEGIN CATCH
+        SELECT 0 AS Resultado;
+	END CATCH
+END
+----------------------------------------------------------------
+ALTER   PROCEDURE [Gral].[SP_Empleados_Llenar]
+(
+	@Empl_Id int
+)
+AS
+BEGIN
+    BEGIN TRY
+        SELECT 
+			Empl_Id,
+			CONCAT(tbVotantes.Vota_Nombre, ' ', tbVotantes.Vota_Apellidos) AS empl, 
+			Part_Id,
+			Carg_Id,
+			Empl_Estado
+        FROM Gral.tbEmpleados INNER JOIN Gral.tbVotantes
+			ON tbEmpleados.Empl_Id = tbVotantes.Vota_Id
+        WHERE Empl_Estado = 1 AND Empl_Id = @Empl_Id;
+        
+        SELECT 1 AS Resultado;
+    END TRY
+    BEGIN CATCH
+        SELECT 0 AS Resultado;
+    END CATCH
+END;
+-------------------------------------------------------------
+ALTER     PROCEDURE [Acce].[SP_Usuarios_Editar]
+(
+	@Usua_Id int, 
+	@Usua_Usuario varchar(50), 
+	@Usua_Contra varchar(max), 
+	@Usua_Admin bit, 
+	@Empl_Id int, 
+	@Rol_Id int, 
+	@Usua_UsuarioModifica int, 
+	@Usua_FechaModifica datetime, 
+	@Usua_Imagen varchar(max)
+)
+AS
+BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+		UPDATE [Acce].[tbUsuarios]
+		SET 
+			Usua_Usuario = @Usua_Usuario, 
+			Usua_Admin = @Usua_Admin, 
+			Empl_Id = @Empl_Id, 
+			Rol_Id = @Rol_Id, 
+			Usua_UsuarioModifica = @Usua_UsuarioModifica, 
+			Usua_FechaModifica = @Usua_FechaModifica, 
+			Usua_Imagen	= @Usua_Imagen
+		where tbUsuarios.Usua_Id = @Usua_Id
+		COMMIT TRANSACTION
+		SELECT 1 AS Resultado;
+	END TRY
+	BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        
+        SELECT 
+            ERROR_NUMBER() AS ErrorNumber,
+            ERROR_MESSAGE() AS ErrorMessage,
+            ERROR_LINE() AS ErrorLine,
+            0 AS Resultado;
+	END CATCH
+END
+-----------------------------------------------------
+ALTER     PROCEDURE [Acce].[SP_Usuarios_Insertar]
+(
+	@Usua_Usuario varchar(50), 
+	@Usua_Contra varchar(max), 
+	@Usua_Admin bit, 
+	@Empl_Id int, 
+	@Rol_Id int, 
+	@Usua_UsuarioCreacion int, 
+	@Usua_FechaCreacion datetime, 
+	@Usua_Imagen varchar(max)
+)
+AS
+BEGIN
+	BEGIN TRY
+		BEGIN TRANSACTION
+		insert into [Acce].[tbUsuarios](
+			Usua_Usuario, 
+			Usua_Contra, 
+			Usua_Admin, 
+			Empl_Id, 
+			Rol_Id, 
+			Usua_UsuarioCreacion, 
+			Usua_FechaCreacion, 
+			Usua_Imagen
+		)
+		VALUES(
+			@Usua_Usuario, 
+			@Usua_Contra, 
+			@Usua_Admin, 
+			@Empl_Id, 
+			@Rol_Id, 
+			@Usua_UsuarioCreacion, 
+			@Usua_FechaCreacion, 
+			@Usua_Imagen)
+		COMMIT TRANSACTION
+		SELECT 1 AS Resultado;
+	END TRY
+	BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        
+        SELECT 
+            ERROR_NUMBER() AS ErrorNumber,
+            ERROR_MESSAGE() AS ErrorMessage,
+            ERROR_LINE() AS ErrorLine,
+            0 AS Resultado;
+	END CATCH
+END
+------------------------------------------------------------
 create or ALTER PROCEDURE [Gral].[SP_Empleados_Llenar]
 (
 	@Empl_Id int

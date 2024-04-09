@@ -187,9 +187,9 @@
                     method: "GET",
                     success: function (response) {
                         console.log(response, "ObtenerVotantePorDNI");
-                        if (response.votante) {
-                            $('#Empl_Id').val(response.votante.vota_Id);
-                            txtNombreVotante.value = response.votante.vota_Nombre + " " + response.votante.vota_Apellidos;
+                        if (response.empleado) {
+                            $('#Empl_Id').val(response.empleado.empl_Id);
+                            txtNombreVotante.value = response.empleado.vota_NombreCompleto;
                         } else {
                             iziToast.warning({
                                 title: 'No encontrado',

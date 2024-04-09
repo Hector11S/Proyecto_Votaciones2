@@ -17,17 +17,20 @@ namespace Frontend_Sistema_Votaciones.Controllers
     {
         private readonly RolesServicios _rolesServicios;
         private readonly UsuariosServicios _usuariosServicios;
+        private readonly EmpleadoServicios _empleadoServicios;
         private readonly VotanteServicios _votanteServicios;
         private readonly IWebHostEnvironment _hostingEnviroment;
 
         public UsuariosController(UsuariosServicios usuariosServicios,
             VotanteServicios votanteServicios,
+            EmpleadoServicios empleadoServicios,
             RolesServicios rolesServicios,
             IWebHostEnvironment hostingEnviroment)
         {
             _usuariosServicios = usuariosServicios;
             _rolesServicios = rolesServicios;
             _hostingEnviroment = hostingEnviroment;
+            _empleadoServicios = empleadoServicios;
             _votanteServicios = votanteServicios;
         }
         [HttpPost]
@@ -68,25 +71,32 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-
                 var reponseVotante = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
                 VotanteViewModel votante = (VotanteViewModel)reponseVotante.Data;
-                var responseUsuario = await _usuariosServicios.ObtenerUsuarioPorEmplId(votante.Vota_Id);
-                if (responseUsuario.Success)
+                var reponseEmpleado = await _empleadoServicios.ObtenerEmpleado(votante.Vota_Id);
+                if (reponseEmpleado.Success)
                 {
-                    UsuariosViewModel usuario = (UsuariosViewModel)responseUsuario.Data;
-                    if (usuario.Empl_Id == votante.Vota_Id)
+                    EmpleadoViewModel empleado = (EmpleadoViewModel)reponseEmpleado.Data;
+                    if (empleado.Empl_Estado)
                     {
-                        return Json(new { message = "Ya existe un usuario para esta persona." });
+                        var responseUsuario = await _usuariosServicios.ObtenerUsuarioPorEmplId(empleado.Empl_Id);
+                        if (responseUsuario.Success)
+                        {
+                            return Json(new { message = "Ya existe un usuario para esta persona." });
+                        }
+                        else
+                        {
+                             return Json(new { empleado = reponseEmpleado.Data, message = reponseEmpleado.Message });
+                        }
                     }
                     else
                     {
-                        return Json(new { votante = reponseVotante.Data, message = reponseVotante.Message });
+                        return Json(new { message = "No existe un miembro de partido con este DNI." });
                     }
                 }
                 else
                 {
-                    return Json(new { votante = reponseVotante.Data, message = reponseVotante.Message });
+                    return Json(new { message = "No existe un miembro de partido con este DNI." });
                 }
             }
             catch (Exception ex)
@@ -151,7 +161,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                     TempData["Advertencia"] = "Por favor seleccione un rol para este usuario.";
                     return View(item);
                 }
-                if (item.Usua_Contra != null && item.Usua_Contra.Length > 6)
+                if (item.Usua_Contra != null && item.Usua_Contra.Length > 5)
                 {
                     if (item.Usua_Contra == item.Usua_ContraConfirmar)
                     {
