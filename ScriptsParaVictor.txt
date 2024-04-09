@@ -1,0 +1,40 @@
+  alter table [Vota].[tbPartidos]
+  add Part_Color varchar(50)
+
+///////////////////////////////////////////////
+ALTER   PROCEDURE [Gral].[SP_Sedes_Insertar]
+(
+    @Sede_Descripcion VARCHAR(50),
+    @Muni_Codigo varchar(4),
+    @Sede_UsuarioCreacion INT,
+    @Sede_FechaCreacion DATETIME
+)
+AS
+BEGIN
+    BEGIN TRY
+		BEGIN TRANSACTION
+        INSERT INTO [Gral].[tbSedes] (
+            [Sede_Descripcion],
+            [Muni_Codigo],
+            [Sede_UsuarioCreacion],
+            [Sede_FechaCreacion]
+        )
+        VALUES(
+            @Sede_Descripcion,
+            @Muni_Codigo,
+            @Sede_UsuarioCreacion,
+            @Sede_FechaCreacion
+        )
+        COMMIT TRANSACTION
+        SELECT 1 AS Resultado
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        SELECT 
+            ERROR_NUMBER() AS ErrorNumber,
+            ERROR_MESSAGE() AS ErrorMessage,
+            ERROR_LINE() AS ErrorLine,
+            0 AS Resultado;
+    END CATCH
+END
