@@ -3,6 +3,7 @@
 @{
     var listaVotosAlcaldes = ViewBag.ListaVotosAlcaldes as IEnumerable<VotosPorMesasViewModel>;
     var listaVotosPresidentes = ViewBag.ListaVotosPresidentes as IEnumerable<VotosPorMesasViewModel>;
+    //var municipios = ViewBag.MunicipiosAlcaldes as IEnumerable<VotosPorMesasViewModel>;
 
     ViewData["Title"] = "VotosPorMesa";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,6 +20,17 @@
             <div class="card-body">
                 <h5 class="card-title">Alcaldes</h5>
                 <div id="pieChartAlcaldes"></div>
+
+                @*<div class="form-group">
+                    <label for="municipioDropdown">Seleccionar Municipio:</label>
+                    <select id="municipioDropdown" class="form-control" onchange="actualizarGraficoAlcaldes()">
+                        @foreach (var municipio in municipios)
+                        {
+                            <option value="@municipio.Muni_Codigo">@municipio.Muni_Descripcion</option>
+                        }
+                    </select>
+                </div>*@
+
 
                 <script>
                 document.addEventListener("DOMContentLoaded", () => {
@@ -153,5 +165,46 @@
         $(document).ready(function () {
             $('#dtVotosPorMesas').DataTable();
         });
+    </script>
+    <script>
+        function actualizarGraficoAlcaldes() {
+            var selectedMunicipioId = document.getElementById("municipioDropdown").value;
+
+            // Realiza una llamada AJAX para obtener los datos de alcaldes para el municipio seleccionado
+            $.ajax({
+                url: '/VotosPorMesa/VotosPorMesaListPorMunicipio',
+                type: 'GET',
+                data: { Muni_Codigo: selectedMunicipioId },
+                success: function (response) {
+                    // Actualiza el gráfico de alcaldes con los nuevos datos
+                    var seriesData = response.map(function (item) {
+                        return item.TotalVotosAlcalde;
+                    });
+                    var labelsData = response.map(function (item) {
+                        return item.NombreAlcalde + " " + item.ApellidoAlcalde;
+                    });
+
+                    var pieChartAlcaldes = document.querySelector("#pieChartAlcaldes");
+                    if (pieChartAlcaldes) {
+                        var chart = new ApexCharts(pieChartAlcaldes, {
+                            series: seriesData,
+                            chart: {
+                                height: 350,
+                                type: 'pie',
+                                toolbar: {
+                                    show: true
+                                }
+                            },
+                            labels: labelsData
+                        });
+
+                        chart.render();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        }
     </script>
 }

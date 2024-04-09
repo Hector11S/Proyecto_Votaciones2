@@ -192,7 +192,32 @@ namespace Frontend_Sistema_Votaciones.Servicios
             }
         }
 
-      
+        public async Task<ServiceResult> VotosPorMesaListPorMunicipio(string municipioId)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<VotosPorMesasViewModel>, IEnumerable<VotosPorMesasViewModel>>(req =>
+                {
+                    req.Path = $"API/votosPorMesas/ListPorMunicipio?municipioId={municipioId}";
+                });
+                if (response != null && !response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
+
 
     }
 }

@@ -94,5 +94,7 @@ namespace Sistema_Votaciones.API.Controllers
         //    var result = _generalServices.BuscarVotantePorDNI(dni);
         //    return Ok(result);
         //}
+
+
     }
 }

@@ -68,5 +68,8 @@ namespace Frontend_Sistema_Votaciones.Models
 
         public bool Vota_YaVoto { get; set; }
 
+        public string Muni_Codigo { get; set; }
+        public string Muni_Descripcion { get; set; }
+        public string Dept_Codigo { get; set; }
     }
 }

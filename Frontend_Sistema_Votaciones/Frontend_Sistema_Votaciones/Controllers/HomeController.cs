@@ -26,6 +26,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             try
             {
                 var response = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
+
                 if (response.Data == null)
                 {
                     TempData["Advertencia"] = response.Message;
@@ -33,30 +34,30 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 }
                 else
                 {
-
                     var votante = (VotanteViewModel)response.Data;
-               
+
                     string fechaNacimientoStr = Vota_DNI.Substring(4, 4);
                     int fechaNacimiento = int.Parse(fechaNacimientoStr);
-
-                    //if (votante.Vota_Permitido == false)
-                    //{
-                    //    TempData["Advertencia"] = "Usted no esta habilitado a votar";
-                    //    return RedirectToAction("Index");
-                    //}
 
                     if (fechaNacimiento > 2006)
                     {
                         TempData["Advertencia"] = "Usted es menor de edad.";
-
                         return RedirectToAction("Index");
                     }
 
-                    if (votante.Vota_YaVoto == true)
+                    if (!votante.Vota_Permitido)
+                    {
+                        TempData["Advertencia"] = "No está habilitado para votar.";
+                        return RedirectToAction("Index");
+                    }
+
+                    if (votante.Vota_YaVoto)
                     {
                         TempData["Advertencia"] = "Usted ya votó";
                         return RedirectToAction("Index");
                     }
+
+                    //await _votanteServicios.MarcarVotanteComoYaVoto(Vota_DNI);
                     return RedirectToAction("CreatePresi", "VotosPorMesa");
                 }
             }

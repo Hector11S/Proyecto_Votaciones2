@@ -15,15 +15,17 @@ namespace Frontend_Sistema_Votaciones.Controllers
         private readonly AlcaldeServicios _alcaldeServicios;
         private readonly VotanteServicios _votanteServicios;
         private readonly PartidoServicios _partidoServicios;
+        private readonly MunicipioServicios _municipioServicios;
 
 
-        public VotosPorMesaController(PresidenteServicios presidenteServicios, PartidoServicios partidoServicios, VotanteServicios votanteServicios, AlcaldeServicios alcaldeServicios,VotosPorMesaServicios VotosPorMesaServicios)
+        public VotosPorMesaController(MunicipioServicios municipioServicios, PresidenteServicios presidenteServicios, PartidoServicios partidoServicios, VotanteServicios votanteServicios, AlcaldeServicios alcaldeServicios,VotosPorMesaServicios VotosPorMesaServicios)
         {
             _presidenteServicios = presidenteServicios;
             _alcaldeServicios = alcaldeServicios;
             _votosPorMesaServicios = VotosPorMesaServicios;
             _votanteServicios = votanteServicios;
             _partidoServicios = partidoServicios;
+            _municipioServicios = municipioServicios;
         }
         public async Task<IActionResult> Index()
         {
@@ -33,8 +35,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 var list = await _votosPorMesaServicios.VotosPorMesaList();
                 var listAlcaldes = await _votosPorMesaServicios.VotosPorMesaListAlcaldes();
                 var listPresidentes = await _votosPorMesaServicios.VotosPorMesaListPresidentes();
+                //var municipios = await _alcaldeServicios.ObtenerAlcaldeList();          
+          
+
                 ViewBag.ListaVotosAlcaldes = listAlcaldes.Data;
                 ViewBag.ListaVotosPresidentes = listPresidentes.Data;
+                //ViewBag.MunicipiosAlcaldes = municipios;
+
                 return View(list.Data);
             }
             catch (Exception ex)
@@ -42,6 +49,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -249,6 +257,21 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 return View(item);
                 throw;
             }
-        }   
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> VotosPorMesaListPorMunicipio(string Muni_Codigo)
+        {
+            try
+            {
+                var result = await _municipioServicios.ObtenerMunicipiosList(Muni_Codigo);
+                return Json(result.Data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
