@@ -13,10 +13,14 @@ namespace Frontend_Sistema_Votaciones.Controllers
     {
         private readonly RolesServicios _rolesServicios;
         private readonly PantallasServicios _pantallasServicios;
-        public RolesController(RolesServicios rolesServicios, PantallasServicios pantallasServicios)
+        private readonly PantallasPorRolesServicios _pantallasPorRolesServicios;
+        public RolesController(RolesServicios rolesServicios, 
+                PantallasServicios pantallasServicios, 
+                PantallasPorRolesServicios pantallasPorRolesServicios)
         {
             _rolesServicios = rolesServicios;
             _pantallasServicios = pantallasServicios;
+            _pantallasPorRolesServicios = pantallasPorRolesServicios;
         }
         public async Task<IActionResult> Index()
         {
@@ -24,14 +28,16 @@ namespace Frontend_Sistema_Votaciones.Controllers
             var list = await _rolesServicios.ObtenerRolesList();
             return View(list.Data);
         }
-        [HttpGet]
+        [HttpGet("[controller]/Create")]
         public async Task<IActionResult> Create()
         {
             var model = new List<RolesViewModel>();
             var rolesList = await _rolesServicios.ObtenerRolesList();
             var pantallasList = await _pantallasServicios.ObtenerPantallasList();
+            var pantallasPorRolesList = await _pantallasPorRolesServicios.ObtenerParoList();
             ViewBag.Roles = rolesList.Data;
             ViewBag.Pantallas = pantallasList.Data;
+            ViewBag.PantallasPorRoles = JsonConvert.SerializeObject(pantallasPorRolesList.Data);
 
             HashSet<string> uniqueEsquemas = new HashSet<string>();
             foreach (var pantalla in (List<PantallasViewModel>)pantallasList.Data)
@@ -154,6 +160,49 @@ namespace Frontend_Sistema_Votaciones.Controllers
             {
                 TempData["Error"] = "Error dentro del código de la aplicación. Por favor contacte a un administrador del sistema";
                 return RedirectToAction("Index");
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> CreatePantallasPorRoles(int Rol_Id, int Pant_Id)
+        {
+            try
+            {
+                var paro = new PantallasPorRolesViewModel();
+                paro.Rol_Id = Rol_Id;
+                paro.Pant_Id = Pant_Id;
+                var result = await _pantallasPorRolesServicios.CrearParo(paro);
+                if (result.Success)
+                {
+                    return Json(new { result = true, message = result.Message });
+                }
+                else
+                {
+                    return Json(new { result = false, message = result.Message });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = false, message = $"Error al vincular la pantalla {Pant_Id} al rol {Rol_Id}." });
+            }
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeletePantallasPorRoles(int Rol_Id, int Pant_Id)
+        {
+            try
+            {
+                var result = await _pantallasPorRolesServicios.EliminarParo(Rol_Id, Pant_Id);
+                if (result.Success)
+                {
+                    return Json(new { result = true, message = result.Message });
+                }
+                else
+                {
+                    return Json(new { result = false, message = result.Message });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = false, message = $"Error al desvincular la pantalla {Pant_Id} al rol {Rol_Id}." });
             }
         }
     }

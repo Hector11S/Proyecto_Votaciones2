@@ -262,16 +262,16 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 var reponse = _pantallasPorRolesRepository.Insert(item);
                 if (reponse.CodeStatus == 1)
                 {
-                    return result.Ok("Rol creado con exito", reponse);
+                    return result.Ok("Pantalla vinculada con exito", reponse);
                 }
                 else
                 {
-                    return result.Error("Este rol ya existe");
+                    return result.Error("Error al vincular la pantalla al rol");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al vincular la pantalla al rol");
             }
         }
         

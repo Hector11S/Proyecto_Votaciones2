@@ -1,11 +1,20 @@
 ﻿@model Frontend_Sistema_Votaciones.Models.RolesViewModel
-
+@using Newtonsoft.Json;
 @{
     var Rol_Id = Model != null ? Model.Rol_Id : 0;
     var roles = ViewBag.Roles;
     var pantallas = ViewBag.Pantallas;
     var esquemas = ViewBag.Esquemas;
+    var pantallasPorRoles = ViewBag.PantallasPorRoles;
     ViewData["Title"] = "Roles";
+    var abrirModal = TempData["AbrirModal"];
+    string serializedItem = (string)TempData["Item"];
+
+    RolesViewModel rol = null;
+    if (!String.IsNullOrEmpty(serializedItem))
+    {
+        rol = JsonConvert.DeserializeObject<RolesViewModel>(serializedItem);
+    }
 }
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
@@ -17,23 +26,26 @@
 </header>
 <div class="card m-2 mt-4 p-3" style="overflow-x: auto">
     <div class="d-flex justify-content-center align-items-center flex-column">
-        <select asp-for="Rol_Id" class="form-select" style="max-width: 280px;">
-            <option>--Rol--</option>
-            @if (roles != null)
-            {
-                foreach (var item in roles)
+        <div style="min-width: 280px">
+            <label style="color: #3dbdd9">Rol</label>
+            <select asp-for="Rol_Id" class="form-select" style="max-width: 280px;">
+                <option>--Rol--</option>
+                @if (roles != null)
                 {
-                    if (item.Rol_Id == Rol_Id)
+                    foreach (var item in roles)
                     {
-                        <option value="@item.Rol_Id" selected>@item.Rol_Descripcion</option>
-                    }
-                    else
-                    {
-                        <option value="@item.Rol_Id">@item.Rol_Descripcion</option>
+                        if (item.Rol_Id == Rol_Id)
+                        {
+                            <option value="@item.Rol_Id" selected>@item.Rol_Descripcion</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Rol_Id">@item.Rol_Descripcion</option>
+                        }
                     }
                 }
-            }
-        </select>
+            </select>
+        </div>
         <div id="ParoTreeView">
             <ul>
                 <li id="Pantallas" data-jstree='{"opened":true,"icon":"/lib/jstree/window-fullscreen.svg"}'>
@@ -67,6 +79,8 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 <script>
+    const pantallasPorRolesJSON = JSON.parse("@pantallasPorRoles");
+    console.log(pantallasPorRolesJSON);
     $('#ParoTreeView').jstree({
         "core": {
             "themes": {
@@ -78,50 +92,64 @@
         },
         "plugins": ["checkbox"]
     }).on('changed.jstree', function (e, data) {
-        console.log(data.node, "data.node")
         console.log(data.node.id, "data.node.id")
-        console.log(data.node.text, "data.node.text")
-        if (data.action === "select_node") {
-            alert("CHECKED")
+        if (/^\d+$/.test(ddlRoles.value)) {
+            if (/^\d+$/.test(data.node.id)) {
+                let method = "DELETE";
+                if (data.action === "select_node") {
+                    method = "GET";
+                }
+                $.ajax({
+                    url: `/Roles/${method === "GET" ? "Create" : "Delete"}PantallasPorRoles?Rol_Id=${ddlRoles.value}&Pant_Id=${data.node.id}`,
+                    method,
+                    success: function (response) {
+                        console.log(response, "PantallasPorRoles/Create");
+                        if (response.result === true) {
+                            iziToast.success({
+                                title: 'Exito',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Error',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error(`Error al asignar las pantallas al rol`, errorThrown);
+                    }
+                });
+            } else {
+                alert("AAAAAAAAA");
+            }
         } else {
-            alert("UNCHECKED")
+            console.log(data, "data")
+            var selectedNodes = data.selected;
+
+            $.each(selectedNodes, function (index, nodeId) {
+                $('#ParoTreeView').jstree('uncheck_node', nodeId);
+            });
+            if (selectedNodes.length === 0) {
+                iziToast.warning({
+                    title: 'Seleccione un rol',
+                    message: "Por favor seleccione un rol",
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            }
         }
     })
 
     const ddlRoles = document.getElementById("Rol_Id");
     ddlRoles.addEventListener("change", () => {
-        $.ajax({
-            url: `/Roles/PantallasPorRol/${ddlRoles.value}`,
-            method: "GET",
-            success: function (response) {
-                console.log(response, "PantallasPorRol");
-                if (response.pantallas) {
-
-                    response.pantallas.forEach(pant => {
-                        console.log(pant, "pant")
-                        //const indiceDelMunicipioEncontrado = municipios.findIndex(mu => mu.muni_Codigo === muni.muni_Codigo);
-                        //if (indiceDelMunicipioEncontrado === -1) {
-                        //    municipios.push(muni);
-                        //}
-                        //const newOptionElement = document.createElement("option");
-                        //newOptionElement.value = muni.muni_Codigo;
-                        //newOptionElement.textContent = muni.muni_Descripcion;
-                        //ddlMunicipios.append(newOptionElement);
-                    })
-                    //ddlMunicipios.selectedIndex = 1;
-                } else {
-                    iziToast.error({
-                        title: 'Error',
-                        message: response.message,
-                        position: 'topRight',
-                        transitionIn: 'flipInX',
-                        transitionOut: 'flipOutX'
-                    });
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.error(`Error al cargar los pantallas del rol:${ddlRoles.value}`, errorThrown);
-            }
-        });
+        
     })
 </script>

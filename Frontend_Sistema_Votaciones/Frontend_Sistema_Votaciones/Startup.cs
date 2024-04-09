@@ -27,13 +27,15 @@ namespace Frontend_Sistema_Votaciones
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSession();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<API>();
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddControllersWithViews();
             services.AddScoped<UsuariosServicios>();
-            services.AddScoped<PantallasServicios>();
             services.AddScoped<RolesServicios>();
+            services.AddScoped<PantallasServicios>();
+            services.AddScoped<PantallasPorRolesServicios>();
             services.AddScoped<DepartamentoServicios>();
             services.AddScoped<MunicipioServicios>();
             services.AddScoped<CargoServicios>();
