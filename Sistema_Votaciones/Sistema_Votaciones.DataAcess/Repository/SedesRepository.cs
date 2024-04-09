@@ -43,7 +43,6 @@ namespace Sistema_Votaciones.DataAcess.Repository
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Sede_Id", item.Sede_Id);
                 parameter.Add("Sede_Descripcion", item.Sede_Descripcion);
                 parameter.Add("Muni_Codigo", item.Muni_Codigo);
                 parameter.Add("Sede_UsuarioCreacion", item.Sede_UsuarioCreacion);

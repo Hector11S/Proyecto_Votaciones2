@@ -3,14 +3,14 @@
 @using Newtonsoft.Json;
 
 @{
-    ViewData["Title"] = "Municipios";
+    ViewData["Title"] = "Sedes";
     var abrirModal = TempData["AbrirModal"];
     string serializedItem = (string)TempData["Item"];
 
-    MunicipioViewModel itemModel = null;
+    SedesViewModel itemModel = null;
     if (!String.IsNullOrEmpty(serializedItem))
     {
-        itemModel = JsonConvert.DeserializeObject<MunicipioViewModel>(serializedItem);
+        itemModel = JsonConvert.DeserializeObject<SedesViewModel>(serializedItem);
     }
 }
 
@@ -144,7 +144,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @Html.Partial("_Edit", new Frontend_Sistema_Votaciones.Models.SedesViewModel())
+                @*@Html.Partial("_Edit", new Frontend_Sistema_Votaciones.Models.SedesViewModel())*@
             </div>
         </div>
     </div>
@@ -171,7 +171,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @Html.Partial("_Delete", new Frontend_Sistema_Votaciones.Models.SedesViewModel())
+                @*@Html.Partial("_Delete", new Frontend_Sistema_Votaciones.Models.SedesViewModel())*@
             </div>
         </div>
     </div>

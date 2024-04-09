@@ -110,18 +110,38 @@
                 </th>
 
 
-                <th style="max-width: 300px;">
-                    Acciones
-                </th>
+           
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+            <tr>
+                @if (item.Nombre == "Presidente" || item.Nombre == "Alcalde")
+                {
+                    <td style="background-color:#ffd800">
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+
+                    <td style="background-color: #ffd800">
+                        @Html.DisplayFor(modelItem => item.Apellidos)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cargo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CandidatoId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalVotos)
+                    </td>
+                }
+                else
+                {
                     <td>
                         @Html.DisplayFor(modelItem => item.Nombre)
                     </td>
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Apellidos)
                     </td>
@@ -134,27 +154,12 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.TotalVotos)
                     </td>
+                }
 
 
-                    <td>
-                        <div class="w-100" style="max-width: 250px">
-                            <div class="d-flex w-100" style="gap: 5px;">
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Edit", new { id=item.VoMe_Id })">
-                                    <i class="bi bi-pencil"></i>
-                                    Editar
-                                </a>
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { id=item.VoMe_Id })">
-                                    <i class="bi bi-eye"></i>
-                                    Detalles
-                                </a>
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Delete", new { id=item.VoMe_Id })">
-                                    <i class="bi bi-trash-fill"></i>
-                                    Eliminar
-                                </a>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+
+
+            </tr>
             }
         </tbody>
     </table>

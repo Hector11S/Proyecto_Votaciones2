@@ -22,7 +22,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<CargoViewModel>, IEnumerable<CargoViewModel>>(req =>
                 {
-                    req.Path = $"API/Cargo/List";
+                    req.Path = $"API/Cargos/List";
                 });
                 if (!response.Success)
                 {
@@ -46,7 +46,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<CargoViewModel>, CargoViewModel>(req =>
                 {
-                    req.Path = $"API/Cargo/Find?Carg_Id={Carg_Id}";
+                    req.Path = $"API/Cargos/Find?Carg_Id={Carg_Id}";
                 });
                 if (!response.Success)
                 {
@@ -70,7 +70,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Post<CargoViewModel, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Cargo/Insert";
+                    req.Path = $"API/Cargos/Insert";
                     req.Content = item;
                 });
                 if (!response.Success)
@@ -95,7 +95,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Put<CargoViewModel, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Cargo/Update";
+                    req.Path = $"API/Cargos/Update";
                     req.Content = item;
                 });
                 if (!response.Success)
@@ -121,7 +121,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Delete<string, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Cargo/Delete?Carg_Id={Carg_Id}";
+                    req.Path = $"API/Cargos/Delete?Carg_Id={Carg_Id}";
                 });
 
                 if (!response.Success)

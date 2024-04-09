@@ -22,7 +22,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<EmpleadoViewModel>, IEnumerable<EmpleadoViewModel>>(req =>
                 {
-                    req.Path = $"API/Empleado/List";
+                    req.Path = $"API/Empleados/List";
                 });
                 if (!response.Success)
                 {
@@ -46,7 +46,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<EmpleadoViewModel>, EmpleadoViewModel>(req =>
                 {
-                    req.Path = $"API/Empleado/Find?Carg_Id={Carg_Id}";
+                    req.Path = $"API/Empleados/Find?Carg_Id={Carg_Id}";
                 });
                 if (!response.Success)
                 {
@@ -70,7 +70,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Post<EmpleadoViewModel, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Empleado/Insert";
+                    req.Path = $"API/Empleados/Insert";
                     req.Content = item;
                 });
                 if (!response.Success)
@@ -95,7 +95,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Put<EmpleadoViewModel, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Empleado/Update";
+                    req.Path = $"API/Empleados/Update";
                     req.Content = item;
                 });
                 if (!response.Success)
@@ -121,7 +121,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Delete<string, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Empleado/Delete?Carg_Id={Carg_Id}";
+                    req.Path = $"API/Empleados/Delete?Carg_Id={Carg_Id}";
                 });
 
                 if (!response.Success)

@@ -2,6 +2,7 @@
 using Frontend_Sistema_Votaciones.Servicios;
 using Frontend_Sistema_Votaciones.WebAPI;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,12 @@ namespace Frontend_Sistema_Votaciones.Controllers
     public class SedesController : Controller
     {
         public SedesServicios _sedesServicios;
-        public SedesController(SedesServicios sedesServicios)
+        public MunicipioServicios _municipioServicios;
+
+        public SedesController(MunicipioServicios municipioServicios, SedesServicios sedesServicios)
         {
             _sedesServicios = sedesServicios;
+            _municipioServicios = municipioServicios;
         }
         public async Task<IActionResult> Index()
         {
@@ -22,6 +26,8 @@ namespace Frontend_Sistema_Votaciones.Controllers
             {
                 var model = new List<SedesViewModel>();
                 var list = await _sedesServicios.ObtenerSedesList();
+                var departamentosResult = await _municipioServicios.ObtenerMunicipioList();
+                ViewBag.Municipios = departamentosResult.Data;
                 return View(list.Data);
             }
             catch (Exception ex)
@@ -67,16 +73,19 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 }
                 else
                 {
+                    item.Muni_Codigo = item.Muni_Codigo.Substring(2, 2);
                     TempData["AbrirModal"] = TiposDeModal.Nuevo;
-                    //TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Item"] = JsonConvert.SerializeObject(item);
                     TempData["Advertencia"] = result.Message;
                     return RedirectToAction("Index");
                 }
             }
+
             catch (Exception ex)
             {
-                TempData["Error"] = "Error al crear el departamento.";
-                //TempData["Item"] = JsonConvert.SerializeObject(item);
+                item.Muni_Codigo = item.Muni_Codigo.Substring(2, 2);
+                TempData["Error"] = "Error al crear el municipio.";
+                TempData["Item"] = JsonConvert.SerializeObject(item);
                 return RedirectToAction("Index");
             }
         }

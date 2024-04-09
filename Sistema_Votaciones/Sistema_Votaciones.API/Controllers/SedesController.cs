@@ -44,7 +44,6 @@ namespace Sistema_Votaciones.API.Controllers
             _mapper.Map<tbSedes>(json);
             var modelo = new tbSedes()
             {
-                Sede_Id = json.Sede_Id,
                 Sede_Descripcion = json.Sede_Descripcion,
                 Muni_Codigo = json.Muni_Codigo,
                 Sede_UsuarioCreacion = json.Sede_UsuarioCreacion,
@@ -53,6 +52,8 @@ namespace Sistema_Votaciones.API.Controllers
             var response = _generalServices.CrearSede(modelo);
             return Ok(response);
         }
+
+
         [HttpPut("API/[controller]/Update")]
         public IActionResult Update(SedesViewModel json)
         {
