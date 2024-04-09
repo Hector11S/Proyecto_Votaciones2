@@ -107,7 +107,7 @@
                     <div class="form-group col">
                         <label class="mb-2" style="color: #3dbdd9">Fototografia del candidato: </label>
                         <input asp-for="Alca_Imagen" type="hidden" class="form-control" />
-                        <input id="inputAlcalde" type="file" class="form-control" />
+                        <input id="inputFileAlcalde" type="file" class="form-control" />
                         <span asp-validation-for="Alca_Imagen" class="text-danger"></span>
                     </div>
                 </div>
@@ -330,13 +330,13 @@
             });
         })
 
-        const inputAlcalde = document.getElementById("inputAlcalde");
+        const inputFileAlcalde = document.getElementById("inputFileAlcalde");
         const Alca_Id = document.getElementById("Alca_Id");
         const Alca_Imagen = document.getElementById("Alca_Imagen");
-        inputAlcalde.addEventListener("change", () => {
-            if (Alca_Id.value && inputAlcalde.files[0]) {
+        inputFileAlcalde.addEventListener("change", () => {
+            if (Alca_Id.value && inputFileAlcalde.files[0]) {
                 const formData = new FormData();
-                formData.append("Imagen", inputAlcalde.files[0])
+                formData.append("Imagen", inputFileAlcalde.files[0])
                 formData.append("Alca_Id", Alca_Id.value)
                 $.ajax({
                     url: `/Alcalde/SubirImagen`,

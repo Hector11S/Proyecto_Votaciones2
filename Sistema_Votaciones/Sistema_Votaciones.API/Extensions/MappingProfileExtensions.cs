@@ -16,6 +16,7 @@ namespace Sistema_Votaciones.API.Extensions
             CreateMap<RolesViewModel, tbRoles>().ReverseMap();
             CreateMap<PantallasViewModel, tbPantallas>().ReverseMap();
             CreateMap<PantallasPorRolesViewModel, tbPantallasPorRoles>().ReverseMap();
+            CreateMap<DepartamentoViewModel, tbDepartamentos>().ReverseMap();
             CreateMap<MunicipioViewModel, tbMunicipios>().ReverseMap();
             CreateMap<CargosViewModel, tbCargos>().ReverseMap();
             CreateMap<EstadosCivilesViewModel, tbEstadosCiviles>().ReverseMap();

@@ -50,6 +50,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Usua_Admin", item.Usua_Admin);
                 parameter.Add("Empl_Id", item.Empl_Id);
                 parameter.Add("Rol_Id", item.Rol_Id);
+                parameter.Add("Usua_Imagen", item.Usua_Imagen);
                 parameter.Add("Usua_UsuarioCreacion", item.Usua_UsuarioCreacion);
                 parameter.Add("Usua_FechaCreacion", item.Usua_FechaCreacion);
 
@@ -81,6 +82,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Usua_Admin", item.Usua_Admin);
                 parameter.Add("Empl_Id", item.Empl_Id);
                 parameter.Add("Rol_Id", item.Rol_Id);
+                parameter.Add("Usua_Imagen", item.Usua_Imagen);
                 parameter.Add("Usua_UsuarioModifica", item.Usua_UsuarioModifica);
                 parameter.Add("Usua_FechaModifica", item.Usua_FechaModifica);
 

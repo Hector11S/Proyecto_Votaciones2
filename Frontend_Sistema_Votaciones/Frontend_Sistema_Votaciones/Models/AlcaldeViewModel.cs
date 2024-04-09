@@ -17,7 +17,7 @@ namespace Frontend_Sistema_Votaciones.Models
         [Display(Name = "Nombre Completo")]
         public string Vota_NombreCompleto { get; set; }
 
-        [Display(Name = "Url imagen")]
+        [Display(Name = "Imagen")]
         public string Alca_Imagen { get; set; }
         [Display(Name = "Municipio codigo")]
         public string Muni_Codigo { get; set; }

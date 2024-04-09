@@ -1,7 +1,38 @@
+
+create or ALTER PROCEDURE [Gral].[SP_Empleados_Llenar]
+(
+	@Empl_Id int
+)
+AS
+BEGIN
+    BEGIN TRY
+        SELECT *
+        FROM Gral.tbEmpleados
+        WHERE Empl_Estado = 1 AND Empl_Id = @Empl_Id;
+        
+        SELECT 1 AS Resultado;
+    END TRY
+    BEGIN CATCH
+        SELECT 0 AS Resultado;
+    END CATCH
+END;
+--------------------------------------------------------------
 Hacer tabla de esquemas con urlIcono, clase bootstrap, id, texto
 -------------------------------------------------------------
 alter table [Gral].[tbMesas]
 add constraint UQ_tbMesas_Mesa_Numero UNIQUE([Mesa_Numero])
+
+alter table [Gral].[tbCargos]
+add constraint UQ_tbCargos_Carg_Descripcion UNIQUE([Carg_Descripcion])
+
+alter table [Acce].[tbUsuarios]
+add Usua_Imagen VARCHAR(MAX)
+
+UPDATE [Acce].[tbUsuarios]
+SET Usua_Imagen = 'https://votacionesblobstorage.blob.core.windows.net/main/Usuario_0.png'
+
+alter table [Acce].[tbUsuarios]
+ALTER COLUMN Usua_Imagen VARCHAR(MAX) NOT NULL
 -------------------------------------------------------------
 ALTER   PROCEDURE [Gral].[SP_Mesas_Insertar]
 (

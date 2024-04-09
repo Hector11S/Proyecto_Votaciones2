@@ -19,5 +19,6 @@ namespace Sistema_Votaciones.Common.Models
         public int? Usua_UsuarioModifica { get; set; }
         public DateTime? Usua_FechaModifica { get; set; }
         public bool? Usua_Activo { get; set; }
+        public string Usua_Imagen { get; set; }
     }
 }
