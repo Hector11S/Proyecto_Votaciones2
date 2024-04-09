@@ -16,5 +16,7 @@ namespace Sistema_Votaciones.Common.Models
         public DateTime? Part_FechaModifica { get; set; }
         public bool? Part_Estado { get; set; }
         public string Part_Imagen { get; set; }
+        public string Part_Color { get; set; }
+
     }
 }

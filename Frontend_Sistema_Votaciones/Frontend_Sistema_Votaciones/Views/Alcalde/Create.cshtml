@@ -310,42 +310,61 @@
         const Alca_Id = document.getElementById("Alca_Id");
         const Alca_Imagen = document.getElementById("Alca_Imagen");
         inputFileAlcalde.addEventListener("change", () => {
-            if (Alca_Id.value && inputFileAlcalde.files[0]) {
-                const formData = new FormData();
-                formData.append("Imagen", inputFileAlcalde.files[0])
-                formData.append("Alca_Id", Alca_Id.value)
-                $.ajax({
-                    url: `/Alcalde/SubirImagen`,
-                    method: "POST",
-                    contentType: false,
-                    data: formData,
-                    processData: false,
-                    success: function (response) {
-                        if (response.urlImagen) {
-                            iziToast.success({
-                                title: 'Éxito',
-                                message: response.message,
-                                position: 'topRight',
-                                transitionIn: 'flipInX',
-                                transitionOut: 'flipOutX'
-                            });
-                            Alca_Imagen.value = response.urlImagen;
-                            imgAlca_Imagen.setAttribute("src", response.urlImagen);
-                            imgAlca_Imagen.classList.remove("d-none");
-                        } else {
-                            iziToast.error({
-                                title: 'Error',
-                                message: response.message,
-                                position: 'topRight',
-                                transitionIn: 'flipInX',
-                                transitionOut: 'flipOutX'
-                            });
-                        } 
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.error(`Error al cargar la imagen del alcalde`, errorThrown);
-                    }
+            if (Alca_Id.value) {
+                if (inputFileAlcalde.files[0]) {
+                    const formData = new FormData();
+                    formData.append("Imagen", inputFileAlcalde.files[0])
+                    formData.append("Alca_Id", Alca_Id.value)
+                    $.ajax({
+                        url: `/Alcalde/SubirImagen`,
+                        method: "POST",
+                        contentType: false,
+                        data: formData,
+                        processData: false,
+                        success: function (response) {
+                            if (response.urlImagen) {
+                                iziToast.success({
+                                    title: 'Éxito',
+                                    message: response.message,
+                                    position: 'topRight',
+                                    transitionIn: 'flipInX',
+                                    transitionOut: 'flipOutX'
+                                });
+                                Alca_Imagen.value = response.urlImagen;
+                                imgAlca_Imagen.setAttribute("src", response.urlImagen);
+                                imgAlca_Imagen.classList.remove("d-none");
+                            } else {
+                                iziToast.error({
+                                    title: 'Error',
+                                    message: response.message,
+                                    position: 'topRight',
+                                    transitionIn: 'flipInX',
+                                    transitionOut: 'flipOutX'
+                                });
+                            } 
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.error(`Error al cargar la imagen del alcalde`, errorThrown);
+                        }
+                    });
+                } else {
+                    iziToast.error({
+                        title: 'Error al seleccionar la imagen',
+                        message: "Por favor seleccione nuevamente la imagen",
+                        position: 'topRight',
+                        transitionIn: 'flipInX',
+                        transitionOut: 'flipOutX'
+                    });
+                }
+            } else {
+                iziToast.warning({
+                    title: 'Falta el miembro del partido',
+                    message: "Por favor ingrese el DNI de un miembro del partido",
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
                 });
+                inputFileUsuario.value = "";
             }
         })
     </script>
