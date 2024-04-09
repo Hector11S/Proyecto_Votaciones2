@@ -37,17 +37,17 @@ namespace Sistema_Votaciones.API.Controllers
             _mapper.Map<tbPantallasPorRoles>(json);
             var modelo = new tbPantallasPorRoles()
             {
-                Paro_Id = json.Paro_Id,
-                
+                Rol_Id = json.Rol_Id,
+                Pant_Id = json.Pant_Id
             };
             var response = _accesoServices.CrearParo(modelo);
             return Ok(response);
         }
 
         [HttpDelete("API/[controller]/Delete")]
-        public IActionResult Delete(int Rol_Id, int Paro_Id)
+        public IActionResult Delete(int Rol_Id, int Pant_Id)
         {
-            var list = _accesoServices.EliminarParo(Rol_Id, Paro_Id);
+            var list = _accesoServices.EliminarParo(Rol_Id, Pant_Id);
             return Ok(list);
         }
     }
