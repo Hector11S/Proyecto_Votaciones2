@@ -1,0 +1,168 @@
+﻿@model Frontend_Sistema_Votaciones.Models.PresidenteViewModel
+
+@{
+    var Vota_DNI = Model != null ? Model.Vota_DNI : null;
+    var Vota_NombreCompleto = Model != null ? Model.Vota_NombreCompleto : null;
+    var Pres_Imagen = Model != null ? Model.Pres_Imagen : null;
+    var Pres_Id = Model != null ? Model.Pres_Id : 0;
+    var Part_Id = Model != null ? Model.Part_Id : 0;
+    var partidos = ViewBag.Partidos;
+    ViewData["Title"] = "Create";
+}
+
+<header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
+    <h2>Añadir nuevo Presidente</h2>
+    <a href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
+        <i class="bi bi-house-door-fill"></i>
+        Inicio
+    </a>
+</header>
+<div class="card m-2 mt-4 p-3" style="overflow-x: auto">
+    <div class="row">
+        <div class="col">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row mt-3">
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Buscar por numero de identidad:</label>
+                        <input asp-for="Pres_Id" value="@Pres_Id" type="hidden" class="form-control" />
+                        <input asp-for="Vota_DNI" value="@Vota_DNI" type="text" class="form-control" />
+                        <span asp-validation-for="Pres_Id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Nombre completo:</label>
+                        <input asp-for="Vota_NombreCompleto" value="@Vota_NombreCompleto" class="form-control" disabled />
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+              
+                <div class="row mt-3">
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Partido al que pertenece:</label>
+                        <select class="form-select" asp-for="Part_Id">
+                            <option>-- Partido --</option>
+                            @if (partidos != null)
+                            {
+                                foreach (var item in partidos)
+                                {
+                                    <option value="@item.Part_Id">@item.Part_Descripcion</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Fototografia del candidato: </label>
+                        <input asp-for="Pres_Imagen" type="hidden" class="form-control" />
+                        <input id="inputPresidente" type="file" class="form-control" />
+                        <span asp-validation-for="Pres_Imagen" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-4 align-items-center">
+                    <img id="imgPres_Imagen" src="" class="d-none rounded" style="max-width: 400px; max-height: 400px;" />
+                </div>
+                <div class="d-flex justify-content-end mt-4 align-items-center" style="gap: 10px;">
+                    <button type="submit" class="btn btn-primary" onclick="guardarArreglos()"><i class="bi bi-floppy"></i> Guardar</button>
+                    <a asp-action="Index" class="btn btn-outline-primary"><i class="bi bi-x"></i> Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const txtNombreVotante = document.getElementById("Vota_NombreCompleto");
+        const imgPres_Imagen = document.getElementById("imgPres_Imagen");
+
+        function guardarArreglos() {
+            // No hay necesidad de guardar nada relacionado con los departamentos y municipios.
+        }
+
+        const txtDNI = document.getElementById("Vota_DNI");
+        txtDNI.addEventListener("blur", () => {
+            if (txtDNI.value.length !== 13) {
+                iziToast.warning({
+                    title: 'Identidad incorrecta',
+                    message: "La identidad debe ser de 13 digitos y no debe llevar guiones",
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            }
+        })
+        txtDNI.addEventListener("input", () => {
+            const val = txtDNI.value.replace(/[^0-9]/g, '');
+            txtDNI.value = val;
+            if (txtDNI.value.length === 13) {
+                $.ajax({
+                    url: `/Presidente/ObtenerVotantePorDNI/${txtDNI.value}`,
+                    method: "GET",
+                    success: function (response) {
+                        console.log(response, "ObtenerVotantePorDNI");
+                        if (response.votante) {
+                            $('#Pres_Id').val(response.votante.vota_Id);
+                            txtNombreVotante.value = response.votante.vota_Nombre + " " + response.votante.vota_Apellidos;
+                        } else {
+                            iziToast.warning({
+                                title: 'No encontrado',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                            $('#Pres_Id').val("");
+                            txtNombreVotante.value = "";
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error("Error al buscar votante por el DNI:", errorThrown);
+                    }
+                });
+            }
+        })
+
+        const inputPresidente = document.getElementById("inputPresidente");
+        const Pres_Id = document.getElementById("Pres_Id");
+        const Pres_Imagen = document.getElementById("Pres_Imagen");
+        inputPresidente.addEventListener("change", () => {
+            if (Pres_Id.value && inputPresidente.files[0]) {
+                const formData = new FormData();
+                formData.append("Imagen", inputPresidente.files[0])
+                formData.append("Pres_Id", Pres_Id.value)
+                $.ajax({
+                    url: `/Presidente/SubirImagen`,
+                    method: "POST",
+                    contentType: false,
+                    data: formData,
+                    processData: false,
+                    success: function (response) {
+                        if (response.urlImagen) {
+                            iziToast.success({
+                                title: 'Éxito',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                            Pres_Imagen.value = response.urlImagen;
+                            imgPres_Imagen.setAttribute("src", response.urlImagen);
+                            imgPres_Imagen.classList.remove("d-none");
+                        } else {
+                            iziToast.error({
+                                title: 'Error',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error(`Error al cargar la imagen del Presidente`, errorThrown);
+                    }
+                });
+            }
+        })
+    </script>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</div>

@@ -1,0 +1,96 @@
+﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.EmpleadoViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Empl_UsuarioCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empl_FechaCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empl_UsuarioModifica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empl_FechaModifica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empl_Estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Part_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carg_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Empl_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dept_Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sede_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mesa_Id)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empl_UsuarioCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empl_FechaCreacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empl_UsuarioModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empl_FechaModifica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empl_Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Part_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carg_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empl_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dept_Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sede_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mesa_Id)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,167 @@
+﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.CargoViewModel>
+
+@using Newtonsoft.Json;
+
+@{
+    ViewData["Title"] = "Cargos";
+    var abrirModal = TempData["AbrirModal"];
+    string serializedItem = (string)TempData["Item"];
+
+    CargoViewModel itemModel = null;
+    if (!String.IsNullOrEmpty(serializedItem))
+    {
+        itemModel = JsonConvert.DeserializeObject<CargoViewModel>(serializedItem);
+    }
+}
+
+<header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
+    <h2>Listado de @ViewData["Title"]</h2>
+    <button href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
+        <i class="bi bi-house-door-fill"></i>
+        Inicio
+    </button>
+</header>
+<div class="card m-2 mt-4 p-3" style="overflow-x: auto">
+    <header class="mb-4">
+        <button id="btnNuevo" class="btn btn-outline-primary" style="max-height: 40px; max-width: 150px;" data-toggle="modal" data-target="#modal">
+            <i class="bi bi-plus"></i>
+            Nuevo
+        </button>
+    </header>
+    <table id="dtCargos" class="table datatable display" style="width: 100%;">
+        <thead style="color: #78e7ff;">
+            <tr style="background: rgb(0,0,0)">
+                <th>
+                    @Html.DisplayNameFor(model => model.Carg_Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Carg_Descripcion)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Carg_Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Carg_Descripcion)
+                    </td>
+                    <td style="width: 5%">
+                        <div class="w-100" style="max-width: 250px">
+                            <div class="d-flex w-100" style="gap: 5px;">
+                                <button data-id="@item.Carg_Id" class="btnEditar d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px">
+                                    <i class="bi bi-pencil"></i>
+                                    Editar
+                                </button>
+                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { id=item.Carg_Id })">
+                                    <i class="bi bi-eye"></i>
+                                    Detalles
+                                </a>
+                                <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Carg_Id')">
+                                    <i class="bi bi-trash-fill"></i>
+                                    Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#dtCargos').DataTable();
+        $('#modal' + '@abrirModal').modal('show');
+        @if (itemModel != null)
+        {
+            switch (abrirModal)
+            {
+                case "Nuevo":
+                    <text>
+                        $('#Carg_Id_Create').val("@itemModel.Carg_Id");
+                        $('#Carg_Descripcion_Create').val("@Html.Raw(itemModel.Carg_Descripcion)");
+                    </text>
+                    break;
+                 case "Editar":
+                    <text>
+                        $('#Carg_Id_Edit').val("@itemModel.Carg_Id");
+                        $('#Carg_Descripcion_Edit').val("@Html.Raw(itemModel.Carg_Descripcion)");
+                    </text>
+                    break;
+                default:
+                    break;
+            }
+        }
+    })
+    $('#btnNuevo').click(function () {
+        $('#modalNuevo').modal('show');
+    });
+    $('.btnEditar').click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            url: `/Departamento/Edit/${id}`,
+            method: "GET",
+            success: function (departamento) {
+                console.log(departamento, "departamento")
+                $('#Carg_Id_Edit').val(departamento.dept_Codigo);
+                $('#Carg_Descripcion_Edit').val(departamento.dept_Descripcion);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error al cargar los datos del departamento:", errorThrown);
+            }
+        });
+        $('#modalEditar').modal('show');
+    });
+
+    function Eliminar(Carg_Id) {
+        $("#Carg_Id_Delete").val(Carg_Id);
+        localStorage.setItem("#Carg_Id_Delete", Carg_Id);
+        $('#modalEliminar').modal('show');
+    }
+</script>
+
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_Edit", new Frontend_Sistema_Votaciones.Models.CargoViewModel())
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalNuevo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_Create", new Frontend_Sistema_Votaciones.Models.CargoViewModel())
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_Delete", new Frontend_Sistema_Votaciones.Models.CargoViewModel())
+            </div>
+        </div>
+    </div>
+</div>
