@@ -82,19 +82,19 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 return Json("Error de capa 8");
             }
         }
-        [HttpGet("[controller]/ObtenerMunicipiosPorDept/{Dept_Codigo}")]
-        public async Task<IActionResult> ObtenerMunicipios(string Dept_Codigo)
-        {
-            try
-            {
-                var response = await _municipioServicios.ObtenerMunicipiosList(Dept_Codigo);
-                return Json(new { municipios = response.Data, message = response.Message });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { message = "Error al cargar los municipios" });
-            }
-        }
+        //[HttpGet("[controller]/ObtenerMunicipiosPorDept/{Dept_Codigo}")]
+        //public async Task<IActionResult> ObtenerMunicipios(string Dept_Codigo)
+        //{
+        //    try
+        //    {
+        //        var response = await _municipioServicios.ObtenerMunicipiosList(Dept_Codigo);
+        //        return Json(new { municipios = response.Data, message = response.Message });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new { message = "Error al cargar los municipios" });
+        //    }
+        //}
         public async Task<IActionResult> Index()
         {
             try
@@ -128,9 +128,9 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
+                //var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
                 var partidosList = await _partidoServicios.ObtenerPartidoList();
-                ViewBag.Departamentos = departamentosList.Data;
+                //ViewBag.Departamentos = departamentosList.Data;
                 ViewBag.Partidos = partidosList.Data;
             }
             catch (Exception ex)
@@ -204,6 +204,31 @@ namespace Frontend_Sistema_Votaciones.Controllers
             {
                 return View(item);
                 throw;
+            }
+        }
+
+        [HttpPost("/[controller]/DeleteConfirmed")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed([FromForm] int Pres_Id)
+        {
+            try
+            {
+                var result = await _presidenteServicios.EliminarPresidente(Pres_Id);
+                if (result.Success)
+                {
+                    TempData["Exito"] = result.Message;
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["Advertencia"] = result.Message;
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al eliminar el alcalde";
+                return RedirectToAction("Index");
             }
         }
     }

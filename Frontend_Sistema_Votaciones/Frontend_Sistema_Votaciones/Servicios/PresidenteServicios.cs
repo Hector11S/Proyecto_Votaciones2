@@ -139,5 +139,30 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+
+        public async Task<ServiceResult> EliminarPresidente(int Pres_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Delete<string, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Presidente/Delete?Pres_Id={Pres_Id}";
+                });
+
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Message, response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+            }
+        }
     }
 }

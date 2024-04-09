@@ -26,9 +26,16 @@ namespace Sistema_Votaciones.DataAcess.Repository
             }
         }
 
-        public tbPresidentes Find(int? id)
+        public tbPresidentes Find(int? Pres_Id)
         {
-            throw new NotImplementedException();
+            tbPresidentes result = new tbPresidentes();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Pres_Id", Pres_Id);
+                result = db.QueryFirst<tbPresidentes>(ScriptsBaseDeDatos.Presi_Llenar, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
         }
 
         public RequestStatus Insert(tbPresidentes item)
@@ -39,8 +46,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Pres_Id", item.Pres_Id);
                 parameter.Add("Alca_Imagen", item.Pres_Imagen);
                 parameter.Add("Part_Id", item.Part_Id);
-                parameter.Add("Alca_UsuarioCreacion", item.Pres_UsuarioCreacion);
-                parameter.Add("Alca_FechaCreacion", item.Pres_FechaCreacion);
+                parameter.Add("Pres_UsuarioCreacion", item.Pres_UsuarioCreacion);
+                parameter.Add("Pres_FechaCreacion", item.Pres_FechaCreacion);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Presi_Insertar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };

@@ -144,6 +144,27 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult BuscarPresidente(int Pres_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var votante = _presidenteRepository.Find(Pres_Id);
+                if (votante != null)
+                {
+                    return result.Ok(votante);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el Presidente con ID {Pres_Id}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"No se encontró el Presidente con ID {Pres_Id}");
+            }
+        }
+
         public ServiceResult CrearPresidente(tbPresidentes item)
         {
             var result = new ServiceResult();
