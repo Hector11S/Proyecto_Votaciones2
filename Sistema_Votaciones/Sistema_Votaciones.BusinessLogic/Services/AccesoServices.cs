@@ -72,7 +72,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al crear el rol");
             }
         }
         public ServiceResult EditarRol(tbRoles item)
