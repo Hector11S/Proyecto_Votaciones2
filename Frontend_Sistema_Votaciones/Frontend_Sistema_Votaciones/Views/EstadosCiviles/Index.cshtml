@@ -1,8 +1,18 @@
 ﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.EstadosCivilesViewModel>
 
+@using Newtonsoft.Json;
+
+
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Roles";
+    var abrirModal = TempData["AbrirModal"];
+    string serializedItem = (string)TempData["Item"];
+
+    EstadosCivilesViewModel estadoCivil = null;
+    if (!String.IsNullOrEmpty(serializedItem))
+    {
+        estadoCivil = JsonConvert.DeserializeObject<EstadosCivilesViewModel>(serializedItem);
+    }
 }
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
@@ -19,7 +29,7 @@
             Nuevo
         </button>
     </header>
-    <table id="dtEstados" class="table datatable display" style="width: 100%;">
+    <table id="dtEstadosCiviles" class="table datatable display" style="width: 100%;">
         <thead style="color: #78e7ff;">
             <tr style="background: rgb(0,0,0)">
                 <th>
@@ -28,65 +38,99 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Esta_Descripcion)
                 </th>
-  
+
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Esta_Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Esta_Descripcion)
-                </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Esta_Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Esta_Descripcion)
+                    </td>
 
-                <td style="width: 5%">
-                    <div class="w-100" style="max-width: 250px">
-                        <div class="d-flex w-100" style="gap: 5px;">
-                            <button data-id="@item.Esta_Id" class="btnEditar d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px">
-                                <i class="bi bi-pencil"></i>
-                                Editar
-                            </button>
-                            <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { id=item.Esta_Id })">
-                                <i class="bi bi-eye"></i>
-                                Detalles
-                            </a>
-                            <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Esta_Id')">
-                                <i class="bi bi-trash-fill"></i>
-                                Eliminar
-                            </button>
+                    <td style="width: 5%">
+                        <div class="w-100" style="max-width: 250px">
+                            <div class="d-flex w-100" style="gap: 5px;">
+                                <button data-id="@item.Esta_Id" class="btnEditar d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px">
+                                    <i class="bi bi-pencil"></i>
+                                    Editar
+                                </button>
+                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { Esta_Id=item.Esta_Id })">
+                                    <i class="bi bi-eye"></i>
+                                    Detalles
+                                </a>
+                                <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Esta_Id')">
+                                    <i class="bi bi-trash-fill"></i>
+                                    Eliminar
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
 </div>
 
 
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('#dtMesas').DataTable();
-        });
+@*@section Scripts {
+    }*@
+<script>
+$(document).ready(function () {
+    $('#dtEstadosCiviles').DataTable();
+    $('#modal' + '@abrirModal').modal('show');
+    @if (estadoCivil != null)
+    {
+        switch (abrirModal)
+        {
+            case "Nuevo":
+                <text>
+                    $('#Esta_Id_Create').val("@estadoCivil.Esta_Id");
+                    $('#Esta_Descripcion_Create').val("@Html.Raw(estadoCivil.Esta_Descripcion)");
+                </text>
+                break;
+                case "Editar":
+                <text>
+                    $('#Esta_Id_Edit').val("@estadoCivil.Esta_Id");
+                    $('#Esta_Descripcion_Edit').val("@Html.Raw(estadoCivil.Esta_Descripcion)");
+                </text>
+                break;
+            default:
+                break;
+        }
+    }
+})
+$('#btnNuevo').click(function () {
+    $('#modalNuevo').modal('show');
+});
+$('.btnEditar').click(function () {
+    var id = $(this).data("id");
+    $.ajax({
+        url: `/EstadosCiviles/Edit/${id}`,
+        method: "GET",
+        success: function (estadoCivil) {
+            console.log(estadoCivil, "estadoCivil")
+            $('#Esta_Id_Edit').val(estadoCivil.estadoCivil_Id);
+            $('#Esta_Descripcion_Edit').val(estadoCivil.estadoCivil_Descripcion);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error("Error al cargar los datos del estadoCivil:", errorThrown);
+        }
+    });
+    $('#modalEditar').modal('show');
+});
 
-        $('#btnNuevo').click(function () {
-            $('#modalNuevo').modal('show');
-        });
-
-        $('#btnEditar').click(function () {
-            $('#modalEditar').modal('show');
-        });
-
-        $('#btnNuevo').click(function () {
-            $('#modalEliminar').modal('show');
-        });
-    </script>
+function Eliminar(Esta_Id) {
+    $("#Esta_Id_Delete").val(Esta_Id);
+    localStorage.setItem("#Esta_Id_Delete", Esta_Id);
+    $('#modalEliminar').modal('show');
 }
+</script>
 
 <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -95,7 +139,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @*@Html.Partial("_Edit", new Frontend_Sistema_Votaciones.Models.MesasViewModel())*@
+                @Html.Partial("_Edit", new Frontend_Sistema_Votaciones.Models.EstadosCivilesViewModel())
             </div>
         </div>
     </div>
@@ -108,7 +152,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @*@Html.Partial("_Create", new Frontend_Sistema_Votaciones.Models.MesasViewModel())*@
+                @Html.Partial("_Create", new Frontend_Sistema_Votaciones.Models.EstadosCivilesViewModel())
             </div>
         </div>
     </div>
@@ -122,7 +166,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @*@Html.Partial("_Delete", new Frontend_Sistema_Votaciones.Models.MesasViewModel())*@
+                @Html.Partial("_Delete", new Frontend_Sistema_Votaciones.Models.EstadosCivilesViewModel())
             </div>
         </div>
     </div>

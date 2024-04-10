@@ -33,7 +33,7 @@
             Administrar roles
         </a>
     </header>
-    <table id="dtDepartamentos" class="table datatable display" style="width: 100%;">
+    <table id="dtRoles" class="table datatable display" style="width: 100%;">
         <thead style="color: #78e7ff;">
             <tr style="background: rgb(0,0,0)">
                 <th>
@@ -86,7 +86,7 @@
 </div>
 <script>
 $(document).ready(function () {
-    $('#dtDepartamentos').DataTable();
+    $('#dtRoles').DataTable();
     $('#modal' + '@abrirModal').modal('show');
     @if (rol != null)
     {

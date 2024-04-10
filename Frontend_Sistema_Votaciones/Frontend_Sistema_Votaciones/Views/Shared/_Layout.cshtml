@@ -3,6 +3,7 @@
 @{ 
     HttpContextAccessor _httpContextAccessor = new HttpContextAccessor();
     var Rol_Id = _httpContextAccessor.HttpContext.Session.GetInt32("Rol_Id") ?? 0;
+    var Carg_Descripcion = _httpContextAccessor.HttpContext.Session.GetString("Carg_Descripcion");
     var Usua_Imagen = _httpContextAccessor.HttpContext.Session.GetString("Usua_Imagen");
     var Vota_NombreCompleto = _httpContextAccessor.HttpContext.Session.GetString("Vota_NombreCompleto");
     var paroDictionaryString = _httpContextAccessor.HttpContext.Session.GetString("paroDictionary");
@@ -77,13 +78,13 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
                             <h6>@Vota_NombreCompleto</h6>
-                            <span>Cargo</span>
+                            <span>@Carg_Descripcion</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" asp-controller="Login" asp-action="CerrarSesion">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Cerrar Sesion</span>
                             </a>

@@ -89,5 +89,17 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             return View(item);
         }
+        public ActionResult CerrarSesion()
+        {
+            try
+            {
+                HttpContext.Session.Clear();
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al cerrar sesion";
+            }
+            return RedirectToAction("Index", "Login");
+        }
     }
 }

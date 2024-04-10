@@ -24,9 +24,16 @@ namespace Frontend_Sistema_Votaciones.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var model = new List<RolesViewModel>();
-            var list = await _rolesServicios.ObtenerRolesList();
-            return View(list.Data);
+            try
+            {
+                var model = new List<RolesViewModel>();
+                var list = await _rolesServicios.ObtenerRolesList();
+                return View(list.Data);
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index", "Roles");
+            }
         }
         [HttpGet("[controller]/Create")]
         public async Task<IActionResult> Create()
