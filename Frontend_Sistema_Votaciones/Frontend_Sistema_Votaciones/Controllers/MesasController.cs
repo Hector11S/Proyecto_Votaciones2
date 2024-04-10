@@ -2,6 +2,7 @@
 using Frontend_Sistema_Votaciones.Servicios;
 using Frontend_Sistema_Votaciones.WebAPI;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,22 +69,22 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 else
                 {
                     TempData["AbrirModal"] = TiposDeModal.Nuevo;
-                    //TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Item"] = JsonConvert.SerializeObject(item);
                     TempData["Advertencia"] = result.Message;
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error al crear el departamento.";
-                //TempData["Item"] = JsonConvert.SerializeObject(item);
+                TempData["Error"] = "Error al crear la mesa.";
+                TempData["Item"] = JsonConvert.SerializeObject(item);
                 return RedirectToAction("Index");
             }
         }
 
         [HttpGet("[controller]/Edit/{Mesa_Id}")]
         public async Task<IActionResult> Edit(int Mesa_Id)
-        {
+        {   
             try
             {
                 var model = await _mesasServicios.ObtenerMesas(Mesa_Id);
@@ -112,14 +113,15 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 else
                 {
                     TempData["AbrirModal"] = TiposDeModal.Editar;
-                    //TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Advertencia"] = result.Message;
                     return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error al editar el departamento";
-                //TempData["Item"] = JsonConvert.SerializeObject(item);
+                TempData["Error"] = "Error al editar la mesa";
+                TempData["Item"] = JsonConvert.SerializeObject(item);
                 return RedirectToAction("Index");
                 throw;
             }

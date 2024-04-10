@@ -11,32 +11,53 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class PartidoController : Controller
+    public class PartidosController : Controller
     {
-        private readonly AlcaldeServicios _alcaldeServicios;
-        private readonly VotanteServicios _votanteServicios;
-        private readonly DepartamentoServicios _departamentoServicios;
-        private readonly MunicipioServicios _municipioServicios;
         private readonly PartidoServicios _partidoServicios;
         private readonly IWebHostEnvironment _hostingEnviroment;
 
 
-        public PartidoController(
-            AlcaldeServicios alcaldeServicios,
-            VotanteServicios votanteServicios,
-            DepartamentoServicios departamentoServicios,
-            MunicipioServicios municipioServicios,
+        public PartidosController(
             PartidoServicios partidoServicios,
             IWebHostEnvironment hostingEnviroment)
         {
-            _alcaldeServicios = alcaldeServicios;
-            _votanteServicios = votanteServicios;
-            _departamentoServicios = departamentoServicios;
-            _municipioServicios = municipioServicios;
+            _partidoServicios = partidoServicios;
             _hostingEnviroment = hostingEnviroment;
         }
+        [HttpPost]
+        public async Task<IActionResult> SubirImagen(IFormCollection formData, IFormFile imagen)
+        {
+            try
+            {
+                if (imagen != null && imagen.Length > 0)
+                {
+                    var Part_Id = formData["Part_Id"];
+                    var extensionDeLaImagen = imagen.FileName.Split('.')[1];
+                    var nombreDeLaImagen = $"Usuario_{Part_Id}.{extensionDeLaImagen}";
+                    var rutaCarpeta = Path.Combine(_hostingEnviroment.WebRootPath, "assets", "usuarios");
+                    var rutaImagen = Path.Combine(rutaCarpeta, nombreDeLaImagen);
+                    using (var fileStream = new FileStream(rutaImagen, FileMode.Create))
+                    {
+                        await imagen.CopyToAsync(fileStream);
+                    }
+                    var result = await _partidoServicios.SubirImagen(rutaImagen);
+                    if (System.IO.File.Exists(rutaImagen))
+                    {
+                        System.IO.File.Delete(rutaImagen);
+                    }
+                    return Json(new { message = result.Message, urlImagen = result.Data });
+                }
+                else
+                {
+                    return Json(new { message = "No se recibió ninguna imagen" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { message = "Error al subir la imagen" });
+            }
+        }
 
-  
         public async Task<IActionResult> Index()
         {
             try
@@ -66,19 +87,8 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
         }
 
-        public async Task<IActionResult> Create()
+        public ActionResult Create()
         {
-            try
-            {
-                var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
-                var partidosList = await _partidoServicios.ObtenerPartidoList();
-                ViewBag.Departamentos = departamentosList.Data;
-                ViewBag.Partidos = partidosList.Data;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
             return View();
         }
 
@@ -88,19 +98,38 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                item.Part_UsuarioCreacion = 2;
+                if (item.Part_Descripcion == null)
+                {
+                    TempData["Advertencia"] = "Por favor ingrese el nombre del partido.";
+                    return View(item);
+                }
+                if (item.Part_Color == null)
+                {
+                    TempData["Advertencia"] = "Por favor elija un color para el partido.";
+                    return View(item);
+                }
+                if (item.Part_Imagen == null)
+                {
+                    TempData["Advertencia"] = "Por favor seleccione una imagen para el partido.";
+                    return View(item);
+                }
+                item.Part_UsuarioCreacion = 4;
                 item.Part_FechaCreacion = DateTime.Now;
                 var result = await _partidoServicios.CrearPartido(item);
                 if (result.Success)
                 {
+                    TempData["AbrirModal"] = null;
+                    TempData["Exito"] = result.Message;
+                    return RedirectToAction("Index");
                 }
                 else
                 {
+                    TempData["Advertencia"] = result.Message;
                 }
             }
             catch (Exception ex)
             {
-                //return View(item);
+                TempData["Error"] = "Error al crear el partido.";
             }
             return View(item);
         }
@@ -125,7 +154,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                item.Part_UsuarioModifica = 2;
+                item.Part_UsuarioModifica = 4;
                 item.Part_FechaModifica = DateTime.Now;
                 var result = await _partidoServicios.EditarPartido(item);
                 if (result.Success)

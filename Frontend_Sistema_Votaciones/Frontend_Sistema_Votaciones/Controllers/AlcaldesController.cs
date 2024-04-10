@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class AlcaldeController : Controller
+    public class AlcaldesController : Controller
     {
         private readonly AlcaldeServicios _alcaldeServicios;
         private readonly VotanteServicios _votanteServicios;
@@ -19,15 +19,17 @@ namespace Frontend_Sistema_Votaciones.Controllers
         private readonly MunicipioServicios _municipioServicios;
         private readonly PartidoServicios _partidoServicios;
         private readonly IWebHostEnvironment _hostingEnviroment;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        //private readonly Autorizacion _autorizacion;
 
-
-        public AlcaldeController(
+        public AlcaldesController(
             AlcaldeServicios alcaldeServicios, 
             VotanteServicios votanteServicios, 
             DepartamentoServicios departamentoServicios,
             MunicipioServicios municipioServicios,
             PartidoServicios partidoServicios,
-            IWebHostEnvironment hostingEnviroment)
+            IWebHostEnvironment hostingEnviroment,
+            IHttpContextAccessor httpContextAccessor)
         {
             _alcaldeServicios = alcaldeServicios;
             _votanteServicios = votanteServicios;
@@ -35,6 +37,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             _municipioServicios = municipioServicios;
             _partidoServicios = partidoServicios;
             _hostingEnviroment = hostingEnviroment;
+            _httpContextAccessor = httpContextAccessor;
         }
         [HttpPost]
         public async Task<IActionResult> SubirImagen(IFormCollection formData, IFormFile imagen)
@@ -109,9 +112,27 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                var model = new List<AlcaldeViewModel>();
-                var list = await _alcaldeServicios.ObtenerAlcaldeList();
-                return View(list.Data);
+                var rol = HttpContext.Session.GetInt32("Rol_Id");
+                if (rol != null)
+                {
+                    bool autorizado = Autorizacion.Autorizar(Convert.ToInt32(rol), ControllerContext.ActionDescriptor.ControllerName);
+                    if (autorizado)
+                    {
+                        var model = new List<AlcaldeViewModel>();
+                        var list = await _alcaldeServicios.ObtenerAlcaldeList();
+                        return View(list.Data);
+                    }
+                    else
+                    {
+                        TempData["Advertencia"] = "No está autorizado para acceder a esta pantalla.";
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    TempData["Advertencia"] = "Debe iniciar sesión para acceder a esta pantalla.";
+                    return RedirectToAction("Index", "Home");
+                }
             }
             catch (Exception ex)
             {

@@ -1,22 +1,22 @@
-﻿@model Frontend_Sistema_Votaciones.Models.DepartamentoViewModel
+﻿@model Frontend_Sistema_Votaciones.Models.MesasViewModel
 
 @{
-    ViewData["Title"] = "tbDepartamentos".Substring(2);
+    ViewData["Title"] = "tbMesas".Substring(2);
     ViewData["ViewName"] = "_Edit".Substring(1);
 }
-<h1 class="text-primary">Crear </h1>
+<h1 class="text-primary">Editar </h1>
 <h4 class="text-primary">@ViewData["Title"]</h4>
 <hr class="border border-primary" />
 <div>
     <div>
-        <form asp-action="@ViewData["ViewName"]" asp-controller="Departamento" method="post">
+        <form asp-action="@ViewData["ViewName"]" asp-controller="Mesas" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="d-flex flex-wrap justify-content-around">
-                <input type="hidden" id="Dept_Codigo_Edit" name="Dept_Codigo" />
+                <input type="hidden" id="Mesa_Id_Edit" name="Mesa_Id" />
                 <div class="form-group col-sm-5 mb-4">
-                    <label for="Dept_Descripcion" class="control-label"></label>
-                    <input id="Dept_Descripcion_Edit" name="Dept_Descripcion" class="form-control" @*value="@Model.Dept_Descripcion"*@ />
-                    <span asp-validation-for="Dept_Descripcion" class="text-danger"></span>
+                    <label for="Mesa_Numero" class="control-label"></label>
+                    <input id="Mesa_Numero_Edit" name="Mesa_Numero" class="form-control" @*value="@Model.Dept_Descripcion"*@ />
+                    <span asp-validation-for="Mesa_Numero" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group d-flex justify-content-end">
@@ -31,3 +31,10 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script>
+    const txtMesa_Numero = document.getElementById("Mesa_Numero_Edit");
+    txtMesa_Numero.addEventListener("input", () => {
+        const val = txtMesa_Numero.value.replace(/[^0-9]/g, '');
+        txtMesa_Numero.value = val.substr(0, 2);
+    })
+</script>

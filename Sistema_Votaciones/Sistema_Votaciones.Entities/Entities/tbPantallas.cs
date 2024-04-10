@@ -21,6 +21,7 @@ namespace Sistema_Votaciones.Entities.Entities
         public DateTime? Pant_FechaModifica { get; set; }
         public bool? Pant_Estado { get; set; }
         public string Pant_Esquema { get; set; }
+        public string Pant_Controlador { get; set; }
 
         public virtual tbUsuarios Pant_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Pant_UsuarioModificaNavigation { get; set; }

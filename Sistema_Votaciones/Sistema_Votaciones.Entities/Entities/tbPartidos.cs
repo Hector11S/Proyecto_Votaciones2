@@ -23,6 +23,7 @@ namespace Sistema_Votaciones.Entities.Entities
         public DateTime? Part_FechaModifica { get; set; }
         public bool? Part_Estado { get; set; }
         public string Part_Imagen { get; set; }
+        public string Part_Color { get; set; }
 
         public virtual tbUsuarios Part_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Part_UsuarioModificaNavigation { get; set; }

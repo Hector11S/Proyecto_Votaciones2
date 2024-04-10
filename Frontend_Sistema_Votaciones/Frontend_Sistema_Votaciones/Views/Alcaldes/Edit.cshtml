@@ -7,13 +7,15 @@
     var Alca_Id = Model != null ? Model.Alca_Id : 0;
     var Part_Id = Model != null ? Model.Part_Id : 0;
     var Muni_Codigo = Model != null ? Model.Muni_Codigo : null;
+    var Dept_Codigo = Model != null ? Model.Dept_Codigo : null;
     var departamentos = ViewBag.Departamentos;
     var partidos = ViewBag.Partidos;
-    ViewData["Title"] = "Create";
+    var municipios = ViewBag.Municipios;
+    ViewData["Title"] = "Alcalde";
 }
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
-    <h2>Añadir nuevo alcalde</h2>
+    <h2>Editar @ViewData["Title"]</h2>
     <a href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
         <i class="bi bi-house-door-fill"></i>
         Inicio
@@ -22,18 +24,18 @@
 <div class="card m-2 mt-4 p-3" style="overflow-x: auto">
     <div class="row">
         <div class="col">
-            <form asp-action="Create">
+            <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row mt-3">
                     <div class="form-group col">
                         <label class="mb-2" style="color: #3dbdd9">Buscar por numero de identidad:</label>
                         <input asp-for="Alca_Id" value="@Alca_Id" type="hidden" class="form-control" />
-                        <input asp-for="Vota_DNI" value="@Vota_DNI"  type="text" class="form-control" />
+                        <input asp-for="Vota_DNI" value="@Vota_DNI" type="text" class="form-control" disabled/>
                         <span asp-validation-for="Alca_Id" class="text-danger"></span>
                     </div>
                     <div class="form-group col">
                         <label class="mb-2" style="color: #3dbdd9">Nombre completo:</label>
-                        <input asp-for="Vota_NombreCompleto" value="@Vota_NombreCompleto" class="form-control" disabled/>
+                        <input asp-for="Vota_NombreCompleto" value="@Vota_NombreCompleto" class="form-control" disabled />
                         <span class="text-danger"></span>
                     </div>
                 </div>
@@ -46,7 +48,14 @@
                             {
                                 foreach (var item in departamentos)
                                 {
-                                    <option value="@item.Dept_Codigo">@item.Dept_Descripcion</option>
+                                    if (item.Dept_Codigo == Dept_Codigo)
+                                    {
+                                        <option value="@item.Dept_Codigo" selected>@item.Dept_Descripcion</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Dept_Codigo">@item.Dept_Descripcion</option>
+                                    }
                                 }
                             }
                         </select>
@@ -56,6 +65,20 @@
                         <label asp-for="Muni_Codigo" class="mb-2" style="color: #3dbdd9">Municipio al que se postula:</label>
                         <select class="form-select" asp-for="Muni_Codigo">
                             <option>-- Municipio --</option>
+                            @if (municipios != null)
+                            {
+                                foreach (var item in municipios)
+                                {
+                                    if (item.Muni_Codigo == Muni_Codigo)
+                                    {
+                                        <option value="@item.Muni_Codigo" selected>@item.Muni_Descripcion</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Muni_Codigo">@item.Muni_Descripcion</option>
+                                    }
+                                }
+                            }
                         </select>
                         <span asp-validation-for="Muni_Codigo" class="text-danger"></span>
                     </div>
@@ -69,7 +92,14 @@
                             {
                                 foreach (var item in partidos)
                                 {
-                                    <option value="@item.Part_Id">@item.Part_Descripcion</option>
+                                    if (item.Part_Id == Part_Id)
+                                    {
+                                        <option value="@item.Part_Id" selected>@item.Part_Descripcion</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.Part_Id">@item.Part_Descripcion</option>
+                                    }
                                 }
                             }
                         </select>
@@ -77,12 +107,12 @@
                     <div class="form-group col">
                         <label class="mb-2" style="color: #3dbdd9">Fototografia del candidato: </label>
                         <input asp-for="Alca_Imagen" type="hidden" class="form-control" />
-                        <input id="inputAlcalde" type="file" class="form-control" />
+                        <input id="inputFileAlcalde" type="file" class="form-control" />
                         <span asp-validation-for="Alca_Imagen" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-4 align-items-center">
-                    <img id="imgAlca_Imagen" src=""  class="d-none rounded" style="max-width: 400px; max-height: 400px;"/>
+                    <img id="imgAlca_Imagen" src="@Alca_Imagen" class="rounded" style="max-width: 400px; max-height: 400px;" />
                 </div>
                 <div class="d-flex justify-content-end mt-4 align-items-center" style="gap: 10px;">
                     <button type="submit" class="btn btn-primary" onclick="guardarArreglos()"><i class="bi bi-floppy"></i> Guardar</button>
@@ -95,12 +125,11 @@
     <script>
         const txtNombreVotante = document.getElementById("Vota_NombreCompleto");
         const imgAlca_Imagen = document.getElementById("imgAlca_Imagen");
-
-        let departamentosJS = [];
-        let partidosJS = [];
+        //let departamentosJS = [];
+        //let partidosJS = [];
         let municipios = [];
 
-        function llenarSelectsDesdeElSessionStorage() {
+        @*function llenarSelectsDesdeElSessionStorage() {
             txtNombreVotante.setAttribute("disabled", "disabled");
             const departamentosJSON = sessionStorage.getItem('departamentosJS');
             const partidosJSON = sessionStorage.getItem('partidosJS');
@@ -192,6 +221,7 @@
                 });
                 </text>
             }
+
         }
         else {
 
@@ -218,8 +248,7 @@
             sessionStorage.setItem('departamentosJS', departamentosJSON);
             sessionStorage.setItem('partidosJS', partidosJSON);
             sessionStorage.setItem('municipios', municipiosJSON);
-        }
-
+        }*@
 
         const txtDNI = document.getElementById("Vota_DNI");
         txtDNI.addEventListener("blur", () => {
@@ -273,13 +302,12 @@
                 success: function (response) {
                     console.log(response, "ObtenerMunicipiosPorDept");
                     if (response.municipios) {
-                        ddlMunicipios.innerHTML = "<option value=''>-- Municipio --</option>"
+
                         response.municipios.forEach(muni => {
-                            municipios.push(muni);
-                            //const indiceDelMunicipioEncontrado = municipios.findIndex(mu => mu.muni_Codigo === muni.muni_Codigo);
-                            //if (indiceDelMunicipioEncontrado === -1) {
-                            //    municipios.push(muni);
-                            //}
+                            const indiceDelMunicipioEncontrado = municipios.findIndex(mu => mu.muni_Codigo === muni.muni_Codigo);
+                            if (indiceDelMunicipioEncontrado === -1) {
+                                municipios.push(muni);
+                            }
                             const newOptionElement = document.createElement("option");
                             newOptionElement.value = muni.muni_Codigo;
                             newOptionElement.textContent = muni.muni_Descripcion;
@@ -302,13 +330,13 @@
             });
         })
 
-        const inputAlcalde = document.getElementById("inputAlcalde");
+        const inputFileAlcalde = document.getElementById("inputFileAlcalde");
         const Alca_Id = document.getElementById("Alca_Id");
         const Alca_Imagen = document.getElementById("Alca_Imagen");
-        inputAlcalde.addEventListener("change", () => {
-            if (Alca_Id.value && inputAlcalde.files[0]) {
+        inputFileAlcalde.addEventListener("change", () => {
+            if (Alca_Id.value && inputFileAlcalde.files[0]) {
                 const formData = new FormData();
-                formData.append("Imagen", inputAlcalde.files[0])
+                formData.append("Imagen", inputFileAlcalde.files[0])
                 formData.append("Alca_Id", Alca_Id.value)
                 $.ajax({
                     url: `/Alcalde/SubirImagen`,
@@ -317,16 +345,26 @@
                     data: formData,
                     processData: false,
                     success: function (response) {
-                        iziToast.success({
-                            title: 'Éxito',
-                            message: response.message,
-                            position: 'topRight',
-                            transitionIn: 'flipInX',
-                            transitionOut: 'flipOutX'
-                        });
-                        Alca_Imagen.value = response.urlImagen;
-                        imgAlca_Imagen.setAttribute("src", response.urlImagen);
-                        imgAlca_Imagen.classList.remove("d-none");
+                        if (response.urlImagen) {
+                            iziToast.success({
+                                title: 'Éxito',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                            Alca_Imagen.value = response.urlImagen;
+                            imgAlca_Imagen.setAttribute("src", response.urlImagen);
+                            imgAlca_Imagen.classList.remove("d-none");
+                        } else {
+                            iziToast.error({
+                                title: 'Error',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                        }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.error(`Error al cargar la imagen del alcalde`, errorThrown);
