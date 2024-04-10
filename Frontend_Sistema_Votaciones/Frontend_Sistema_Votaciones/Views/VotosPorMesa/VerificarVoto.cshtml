@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Verificar Voto";
+}
+
+<h1>Verificar Voto</h1>
+
+<form asp-action="VerificarVoto" method="get">
+    <div class="form-group">
+        <label for="Vota_DNI">Ingrese su DNI:</label>
+        <input type="text" class="form-control" id="Vota_DNI" name="Vota_DNI">
+    </div>
+    <button type="submit" class="btn btn-primary">Verificar</button>
+</form>

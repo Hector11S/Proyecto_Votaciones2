@@ -1,0 +1,115 @@
+﻿@model Frontend_Sistema_Votaciones.Models.RolesViewModel
+
+@{
+    var Rol_Id = Model != null ? Model.Rol_Id : 0;
+    var roles = ViewBag.Roles;
+    var pantallas = ViewBag.Pantallas;
+    var esquemas = ViewBag.Esquemas;
+    ViewData["Title"] = "Roles";
+}
+
+<header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
+    <h2>Pantallas por rol</h2>
+    <button href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
+        <i class="bi bi-house-door-fill"></i>
+        Inicio
+    </button>
+</header>
+<div class="card m-2 mt-4 p-3" style="overflow-x: auto">
+    <div class="d-flex justify-content-center align-items-center flex-column">
+        <select asp-for="Rol_Id" class="form-select" style="max-width: 250px;">
+            <option>--Rol--</option>
+            @if (roles != null)
+            {
+                foreach (var item in roles)
+                {
+                    if (item.Rol_Id == Rol_Id)
+                    {
+                        <option value="@item.Rol_Id" selected>@item.Rol_Descripcion</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Rol_Id">@item.Rol_Descripcion</option>
+                    }
+                }
+            }
+        </select>
+        <div class="outer">
+            <ul id="ul">
+                <li>
+                    <span class="caret">Esquemas</span>
+                    <ul class="nested">
+                        @if (esquemas != null && pantallas != null)
+                        {
+                            foreach (var esquema in esquemas)
+                            {
+                            <li>
+                                <span class="caret"><label>@esquema</label></span><input id="@esquema" type="checkbox" style="margin-left: 10px;">
+                                <ul class="nested">
+                                    @foreach (var pantalla in pantallas)
+                                    {
+                                        if (pantalla.Pant_Esquema == esquema)
+                                        {
+                                            <li><input id="@pantalla.Pant_Id" type="checkbox"> <label for="@pantalla.Pant_Id">@pantalla.Pant_Descripcion</label></li>
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                            }
+                        }
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+    var toggler = document.getElementsByClassName("caret");
+    var i;
+
+    for (i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", function () {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+        });
+    }
+    const ddlRoles = document.getElementById("Rol_Id");
+    ddlRoles.addEventListener("change", () => {
+        $.ajax({
+            url: `/Roles/PantallasPorRol/${ddlRoles.value}`,
+            method: "GET",
+            success: function (response) {
+                console.log(response, "PantallasPorRol");
+                if (response.pantallas) {
+
+                    response.pantallas.forEach(pant => {
+                        console.log(pant, "pant")
+                        //const indiceDelMunicipioEncontrado = municipios.findIndex(mu => mu.muni_Codigo === muni.muni_Codigo);
+                        //if (indiceDelMunicipioEncontrado === -1) {
+                        //    municipios.push(muni);
+                        //}
+                        //const newOptionElement = document.createElement("option");
+                        //newOptionElement.value = muni.muni_Codigo;
+                        //newOptionElement.textContent = muni.muni_Descripcion;
+                        //ddlMunicipios.append(newOptionElement);
+                    })
+                    //ddlMunicipios.selectedIndex = 1;
+                } else {
+                    iziToast.error({
+                        title: 'Error',
+                        message: response.message,
+                        position: 'topRight',
+                        transitionIn: 'flipInX',
+                        transitionOut: 'flipOutX'
+                    });
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error(`Error al cargar los pantallas del rol:${ddlRoles.value}`, errorThrown);
+            }
+        });
+    })
+</script>

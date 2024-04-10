@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Sistema_Votaciones.Entities/1.0.0": {
+        "runtime": {
+          "Sistema_Votaciones.Entities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Sistema_Votaciones.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
