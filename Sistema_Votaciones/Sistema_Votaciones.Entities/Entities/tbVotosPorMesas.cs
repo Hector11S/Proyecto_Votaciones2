@@ -17,7 +17,7 @@ namespace Sistema_Votaciones.Entities.Entities
         [NotMapped]
         public string Vota_Nombre { get; internal set; }
 
-
+        public string ColorPartido { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
 

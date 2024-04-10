@@ -326,20 +326,24 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-        public ServiceResult ListVotosPorMesasAlcaldes()
+        public ServiceResult ListVotosPorMesasAlcaldesPorMunicipio(string Muni_Codigo)
         {
             var result = new ServiceResult();
             try
             {
-                var list = _votosPorMesasRepository.ListAlcaldes();
-
+                var list = _votosPorMesasRepository.ListAlcaldesPorMunicipio(Muni_Codigo);
                 return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+               
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                return result.Error("Error: " + ex.Message);
             }
         }
+
+
         public ServiceResult ListVotosPorMesasPresidentes()
         {
             var result = new ServiceResult();

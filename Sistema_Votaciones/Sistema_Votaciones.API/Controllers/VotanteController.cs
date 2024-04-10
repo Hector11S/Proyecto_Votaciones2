@@ -83,21 +83,5 @@ namespace Sistema_Votaciones.API.Controllers
 
 
 
-        //[HttpPut("API/[controller]/MarcarComoYaVoto")]
-        //public IActionResult MarcarComoYaVoto(string Vota_DNI)
-        //{
-        //    var votante = _generalServices.BuscarVotantePorDNI(Vota_DNI);
-        //    if (votante != null)
-        //    {
-        //        votante.Vota_YaVoto = true;
-        //        _generalServices.EditarVotante(votante);
-        //        return Ok("El votante ha sido marcado como que ya ha votado.");
-        //    }
-        //    else
-        //    {
-        //        return NotFound("No se encontró un votante con el DNI proporcionado.");
-        //    }
-        //}
-
     }
 }

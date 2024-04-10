@@ -34,14 +34,20 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
-        [HttpGet("API/[controller]/ListAlcaldes")]
-        public IActionResult ListAlcaldes()
+        [HttpGet("API/[controller]/ListAlcaldesPorMunicipio")]
+        public IActionResult ListAlcaldes(string Muni_Codigo)
         {
        
-            var listvotosPorMesasAlcaldes = _votacionesServices.ListVotosPorMesasAlcaldes();
-         
+            if (string.IsNullOrEmpty(Muni_Codigo))
+            {
+                return BadRequest("El código del municipio es obligatorio.");
+            }
+
+            var listvotosPorMesasAlcaldes = _votacionesServices.ListVotosPorMesasAlcaldesPorMunicipio(Muni_Codigo);
+
             return Ok(listvotosPorMesasAlcaldes);
         }
+
 
         [HttpGet("API/[controller]/ListPresidentes")]
         public IActionResult ListPresidentes()
