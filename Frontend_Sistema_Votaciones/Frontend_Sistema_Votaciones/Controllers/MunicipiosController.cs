@@ -9,11 +9,11 @@ using Newtonsoft.Json;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class MunicipioController : Controller
+    public class MunicipiosController : Controller
     {
         public MunicipioServicios _municipioServicios;
         public DepartamentoServicios _departamentoServicios;
-        public MunicipioController(MunicipioServicios municipioServicios, DepartamentoServicios departamentoServicios)
+        public MunicipiosController(MunicipioServicios municipioServicios, DepartamentoServicios departamentoServicios)
         {
             _municipioServicios = municipioServicios;
             _departamentoServicios = departamentoServicios;

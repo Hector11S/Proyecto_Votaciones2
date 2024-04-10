@@ -29,6 +29,12 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _votacionesServices.ListPart();
             return Ok(list);
         }
+        [HttpGet("API/[controller]/Find")]
+        public IActionResult Find(int Part_Id)
+        {
+            var list = _votacionesServices.BuscarPartido(Part_Id);
+            return Ok(list);
+        }
 
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(PartidoViewModel json)
@@ -36,8 +42,9 @@ namespace Sistema_Votaciones.API.Controllers
             _mapper.Map<tbPartidos>(json);
             var modelo = new tbPartidos()
             {
-                Part_Id = json.Part_Id,
                 Part_Descripcion = json.Part_Descripcion,
+                Part_Color = json.Part_Color,
+                Part_Imagen = json.Part_Imagen,
                 Part_UsuarioCreacion = json.Part_UsuarioCreacion,
                 Part_FechaCreacion = json.Part_FechaCreacion
             };
@@ -52,6 +59,8 @@ namespace Sistema_Votaciones.API.Controllers
             {
                 Part_Id = json.Part_Id,
                 Part_Descripcion = json.Part_Descripcion,
+                Part_Color = json.Part_Color,
+                Part_Imagen = json.Part_Imagen,
                 Part_UsuarioModifica = json.Part_UsuarioModifica,
                 Part_FechaModifica = json.Part_FechaModifica
             };

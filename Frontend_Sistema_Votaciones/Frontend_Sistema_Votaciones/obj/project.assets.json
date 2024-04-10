@@ -6513,19 +6513,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\LAB1\\.nuget\\packages\\": {}
+    "C:\\Users\\test\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\repositorio\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
+      "projectUniqueName": "C:\\Users\\test\\Downloads\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
       "projectName": "Frontend_Sistema_Votaciones",
-      "projectPath": "C:\\repositorio\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
-      "packagesPath": "C:\\Users\\LAB1\\.nuget\\packages\\",
-      "outputPath": "C:\\repositorio\\Proyecto_Votaciones2\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\obj\\",
+      "projectPath": "C:\\Users\\test\\Downloads\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
+      "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\test\\Downloads\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\LAB1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -11,6 +11,9 @@ namespace Sistema_Votaciones.Entities.Entities
         public int Paro_Id { get; set; }
         public int Rol_Id { get; set; }
         public int Pant_Id { get; set; }
+        public string Pant_Descripcion { get; set; }
+        public string Pant_Controlador { get; set; }
+
 
         public virtual tbPantallas Pant { get; set; }
         public virtual tbRoles Rol { get; set; }

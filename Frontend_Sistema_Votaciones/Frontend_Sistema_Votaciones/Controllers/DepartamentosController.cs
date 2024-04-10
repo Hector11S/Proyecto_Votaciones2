@@ -11,10 +11,11 @@ using Newtonsoft.Json;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class DepartamentoController : Controller
+    public class DepartamentosController : Controller
     {
-        public DepartamentoServicios _departamentoServicios;
-        public DepartamentoController(DepartamentoServicios departamentoServicios)
+        private readonly DepartamentoServicios _departamentoServicios;
+
+        public DepartamentosController(DepartamentoServicios departamentoServicios)
         {
             _departamentoServicios = departamentoServicios;
         }
@@ -22,9 +23,27 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                var model = new List<DepartamentoViewModel>();
-                var list = await _departamentoServicios.ObtenerDepartamentoList();
-                return View(list.Data);
+                var rol = HttpContext.Session.GetInt32("Rol_Id");
+                if (rol != null)
+                {
+                    bool autorizado = Autorizacion.Autorizar(Convert.ToInt32(rol), ControllerContext.ActionDescriptor.ControllerName);
+                    if (autorizado)
+                    {
+                        var model = new List<DepartamentoViewModel>();
+                        var list = await _departamentoServicios.ObtenerDepartamentoList();
+                        return View(list.Data);
+                    }
+                    else
+                    {
+                        TempData["Advertencia"] = "No está autorizado para acceder a esta pantalla.";
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    TempData["Advertencia"] = "Debe iniciar sesión para acceder a esta pantalla.";
+                    return RedirectToAction("Index", "Home");
+                }
             }
             catch (Exception ex)
             {

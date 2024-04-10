@@ -247,6 +247,26 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult BuscarPartido(int Part_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var votante = _partidoRepository.Find(Part_Id);
+                if (votante != null)
+                {
+                    return result.Ok(votante);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el partido con ID {Part_Id}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"No se encontró el partido con ID {Part_Id}");
+            }
+        }
         public ServiceResult CrearPart(tbPartidos item)
         {
             var result = new ServiceResult();
@@ -445,89 +465,89 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         }
         #endregion
 
-        #region Partidos
-        public ServiceResult ListPartido()
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _partidoRepository.List();
+        //#region Partidos
+        //public ServiceResult ListPartido()
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var list = _partidoRepository.List();
 
-                return result.Ok(list);
-            }
-            catch (Exception ex)
-            {
-                return result.Error("Error de capa 8");
-            }
-        }
+        //        return result.Ok(list);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return result.Error("Error de capa 8");
+        //    }
+        //}
 
-        public ServiceResult CrearPartido(tbPartidos item)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _partidoRepository.Insert(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok(list);
-                }
-                else
-                {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe ese Partido" : list.MessageStatus;
-                    return result.Error(list);
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error("Error de capa 8");
-            }
-        }
+        //public ServiceResult CrearPartido(tbPartidos item)
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var list = _partidoRepository.Insert(item);
+        //        if (list.CodeStatus > 0)
+        //        {
+        //            return result.Ok(list);
+        //        }
+        //        else
+        //        {
+        //            list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe ese Partido" : list.MessageStatus;
+        //            return result.Error(list);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return result.Error("Error de capa 8");
+        //    }
+        //}
 
-        public ServiceResult EditarPartido(tbPartidos item)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _partidoRepository.Update(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok(list);
-                }
-                else
-                {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Partido con ese nombre" : list.MessageStatus;
-                    return result.Error(list);
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error("Error de capa 8");
-            }
-        }
+        //public ServiceResult EditarPartido(tbPartidos item)
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var list = _partidoRepository.Update(item);
+        //        if (list.CodeStatus > 0)
+        //        {
+        //            return result.Ok(list);
+        //        }
+        //        else
+        //        {
+        //            list.MessageStatus = (list.CodeStatus == 0) ? "Ya existe un Partido con ese nombre" : list.MessageStatus;
+        //            return result.Error(list);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return result.Error("Error de capa 8");
+        //    }
+        //}
 
-        public ServiceResult EliminarPartido(int Part_Id)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _partidoRepository.Delete(Part_Id);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok(list);
-                }
-                else
-                {
-                    list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Partido a eliminar" : list.MessageStatus;
-                    return result.Error(list);
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error("Error de capa 8");
-            }
-        }
+        //public ServiceResult EliminarPartido(int Part_Id)
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var list = _partidoRepository.Delete(Part_Id);
+        //        if (list.CodeStatus > 0)
+        //        {
+        //            return result.Ok(list);
+        //        }
+        //        else
+        //        {
+        //            list.MessageStatus = (list.CodeStatus == 0) ? "No se encontró el Partido a eliminar" : list.MessageStatus;
+        //            return result.Error(list);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return result.Error("Error de capa 8");
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
 
 

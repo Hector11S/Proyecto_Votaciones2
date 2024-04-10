@@ -149,6 +149,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 {
                     req.Path = $"API/votosPorMesas/MarcarVotanteComoYaVoto?Vota_DNI={Vota_DNI}";
                     req.Content = $"{Vota_DNI}";
+                   
                 });
 
                 if (!response.Success)

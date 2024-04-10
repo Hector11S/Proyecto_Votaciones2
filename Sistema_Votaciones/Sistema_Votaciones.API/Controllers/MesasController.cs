@@ -44,7 +44,6 @@ namespace Sistema_Votaciones.API.Controllers
             _mapper.Map<tbMesas>(json);
             var modelo = new tbMesas()
             {
-                Mesa_Id = json.Mesa_Id,
                 Mesa_Numero = json.Mesa_Numero,
                 Mesa_UsuarioCreacion = json.Mesa_UsuarioCreacion,
                 Mesa_FechaCreacion = json.Mesa_FechaCreacion

@@ -37,6 +37,47 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
+        [HttpGet("API/[controller]/FindByEmpl")]
+        public IActionResult FindByEmpl(int Empl_Id)
+        {
+            var list = _accesoServices.FindUsuaByEmpl(Empl_Id);
+            return Ok(list);
+        }
+        [HttpPost("API/[controller]/IniciarSesion")]
+        public IActionResult IniciarSesion(UsuariosViewModel json)
+        {
+            _mapper.Map<tbUsuarios>(json);
+            var modelo = new tbUsuarios()
+            {
+                Usua_Usuario = json.Usua_Usuario,
+                Usua_Contra = json.Usua_Contra
+            };
+            var response = _accesoServices.IniciarSesion(modelo);
+            
+            //if (response.Data != null)
+            //{
+            //    var usuario = (tbUsuarios) response.Data;
+            //    var modeloRespuesta = new UsuariosViewModel()
+            //    {
+            //        Usua_Id = usuario.Usua_Id,
+            //        Usua_Usuario = usuario.Usua_Usuario,
+            //        Usua_Contra = usuario.Usua_Contra,
+            //        Vota_NombreCompleto = usuario.Vota_NombreCompleto,
+            //        Usua_Admin = usuario.Usua_Admin,
+            //        Empl_Id = usuario.Empl_Id,
+            //        Rol_Id = usuario.Rol_Id,
+            //        Usua_UsuarioCreacion = usuario.Usua_UsuarioCreacion,
+            //        Usua_FechaCreacion = usuario.Usua_FechaCreacion,
+            //        Usua_UsuarioModifica = usuario.Usua_UsuarioModifica,
+            //        Usua_FechaModifica = usuario.Usua_FechaModifica,
+            //        Usua_Activo = usuario.Usua_Activo,
+            //        Usua_Imagen = usuario.Usua_Imagen,
+            //        Muni_Codigo = usuario.Muni_Codigo
+            //    };
+            //    response.Data = modeloRespuesta;
+            //}
+            return Ok(response);
+        }
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(UsuariosViewModel json)
         {
@@ -50,7 +91,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Rol_Id = json.Rol_Id,
                 Usua_Admin = json.Usua_Admin,
                 Usua_UsuarioCreacion = json.Usua_UsuarioCreacion,
-                Usua_FechaCreacion = json.Usua_FechaCreacion
+                Usua_FechaCreacion = json.Usua_FechaCreacion,
+                Usua_Imagen = json.Usua_Imagen
             };
             var response = _accesoServices.CrearUsua(modelo);
             return Ok(response);
@@ -67,7 +109,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Rol_Id = json.Rol_Id,
                 Usua_Admin = json.Usua_Admin,
                 Usua_UsuarioModifica = json.Usua_UsuarioModifica,
-                Usua_FechaModifica = json.Usua_FechaModifica
+                Usua_FechaModifica = json.Usua_FechaModifica,
+                Usua_Imagen = json.Usua_Imagen
             };
             var list = _accesoServices.EditarUsua(modelo);
             return Ok(list);

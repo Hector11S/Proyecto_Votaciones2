@@ -42,6 +42,8 @@ namespace Sistema_Votaciones.Entities.Entities
 
         public int Usua_Id { get; set; }
         public string Usua_Usuario { get; set; }
+        public string Vota_NombreCompleto { get; set; }
+
         public string Usua_Contra { get; set; }
         public bool Usua_Admin { get; set; }
         public int Empl_Id { get; set; }
@@ -51,6 +53,9 @@ namespace Sistema_Votaciones.Entities.Entities
         public int? Usua_UsuarioModifica { get; set; }
         public DateTime? Usua_FechaModifica { get; set; }
         public bool? Usua_Activo { get; set; }
+        public string Usua_Imagen { get; set; }
+        public string Muni_Codigo { get; set; }
+
 
         public virtual tbRoles Rol { get; set; }
         public virtual tbUsuarios Usua_UsuarioCreacionNavigation { get; set; }

@@ -149,12 +149,40 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult IniciarSesion(tbUsuarios item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuariosRepository.Find(item);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Usuario o contraseña incorrectos");
+            }
+        }
         public ServiceResult FindUsua(int Usua_Id)
         {
             var result = new ServiceResult();
             try
             {
                 var list = _usuariosRepository.Find(Usua_Id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+        public ServiceResult FindUsuaByEmpl(int Empl_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuariosRepository.FindByEmpl(Empl_Id);
 
                 return result.Ok(list);
             }
@@ -175,12 +203,12 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 }
                 else
                 {
-                    return result.Error("Por favor rellene todos los campos");
+                    return result.Error("Ya hay alguien más que utiliza este nombre de usuario");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al crear el usuario");
             }
         }
         public ServiceResult EditarUsua(tbUsuarios item)
@@ -262,16 +290,16 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 var reponse = _pantallasPorRolesRepository.Insert(item);
                 if (reponse.CodeStatus == 1)
                 {
-                    return result.Ok("Rol creado con exito", reponse);
+                    return result.Ok("Pantalla vinculada con exito", reponse);
                 }
                 else
                 {
-                    return result.Error("Este rol ya existe");
+                    return result.Error("Error al vincular la pantalla al rol");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al vincular la pantalla al rol");
             }
         }
         

@@ -11,9 +11,11 @@ namespace Sistema_Votaciones.DataAcess.Repository
         #region Usuarios
         public static string Usua_Listar = "[Acce].[SP_Usuarios_Mostrar]";
         public static string Usua_Llenar = "[Acce].[SP_Usuarios_Llenar]";
+        public static string Usua_LlenarByEmpl = "[Acce].[SP_Usuarios_LlenarByEmpl]";
         public static string Usua_Insertar = "[Acce].[SP_Usuarios_Insertar]";
         public static string Usua_Editar = "[Acce].[SP_Usuarios_Editar]";
         public static string Usua_ActivarDesactivar = "[Acce].[SP_Usuarios_ActivarDesactivar]";
+        public static string Usua_IniciarSesion = "[Acce].[SP_Usuarios_IniciarSesion]";
         #endregion
 
         #region Roles
