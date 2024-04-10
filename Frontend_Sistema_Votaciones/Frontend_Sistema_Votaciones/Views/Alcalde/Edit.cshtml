@@ -345,16 +345,26 @@
                     data: formData,
                     processData: false,
                     success: function (response) {
-                        iziToast.success({
-                            title: 'Éxito',
-                            message: response.message,
-                            position: 'topRight',
-                            transitionIn: 'flipInX',
-                            transitionOut: 'flipOutX'
-                        });
-                        Alca_Imagen.value = response.urlImagen;
-                        imgAlca_Imagen.setAttribute("src", response.urlImagen);
-                        imgAlca_Imagen.classList.remove("d-none");
+                        if (response.urlImagen) {
+                            iziToast.success({
+                                title: 'Éxito',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                            Alca_Imagen.value = response.urlImagen;
+                            imgAlca_Imagen.setAttribute("src", response.urlImagen);
+                            imgAlca_Imagen.classList.remove("d-none");
+                        } else {
+                            iziToast.error({
+                                title: 'Error',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                        }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.error(`Error al cargar la imagen del alcalde`, errorThrown);

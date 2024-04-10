@@ -43,7 +43,6 @@ namespace Sistema_Votaciones.DataAcess.Repository
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Rol_Id", item.Rol_Id);
                 parameter.Add("Rol_Descripcion", item.Rol_Descripcion);
                 parameter.Add("Rol_UsuarioCreacion", item.Rol_UsuarioCreacion);
                 parameter.Add("Rol_FechaCreacion", item.Rol_FechaCreacion);

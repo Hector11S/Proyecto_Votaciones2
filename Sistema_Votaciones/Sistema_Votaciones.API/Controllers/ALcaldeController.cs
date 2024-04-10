@@ -76,15 +76,9 @@ namespace Sistema_Votaciones.API.Controllers
         }
 
         [HttpDelete("API/[controller]/Delete")]
-        public IActionResult Delete(AlcaldeViewModel json)
+        public IActionResult Delete(int Alca_Id)
         {
-            _mapper.Map<tbAlcaldes>(json);
-            var modelo = new tbAlcaldes()
-            {
-                Alca_Id = Convert.ToInt32(json.Alca_Id)
-
-            };
-            var response = _votacionesServices.EliminarAlcalde(modelo.Alca_Id);
+            var response = _votacionesServices.EliminarAlcalde(Alca_Id);
             return Ok(response);
         }
     }

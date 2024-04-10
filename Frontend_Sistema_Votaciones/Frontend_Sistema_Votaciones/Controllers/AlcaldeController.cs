@@ -80,7 +80,15 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 var responseAlcalde = await _alcaldeServicios.ObtenerAlcalde(Convert.ToString(votante.Vota_Id));
                 if (responseAlcalde.Success)
                 {
-                    return Json( new { message= "Ya existe un registro de este alcalde." });
+                    AlcaldeViewModel alcalde = (AlcaldeViewModel)responseAlcalde.Data;
+                    if (alcalde.Alca_Estado)
+                    {
+                        return Json( new { message= "Ya existe un registro de este alcalde." });
+                    }
+                    else
+                    {
+                        return Json(new { votante = reponseVotante.Data, message = reponseVotante.Message });
+                    }
                 }
                 else
                 {
@@ -223,6 +231,30 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 TempData["Error"] = "Error al editar el alcalde.";
             }
             return RedirectToAction("Edit", "Alcalde", new { Alca_Id = item.Alca_Id });
+        }
+        [HttpPost("/[controller]/DeleteConfirmed")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed([FromForm] int Alca_Id)
+        {
+            try
+            {
+                var result = await _alcaldeServicios.EliminarAlcalde(Alca_Id);
+                if (result.Success)
+                {
+                    TempData["Exito"] = result.Message;
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["Advertencia"] = result.Message;
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al eliminar el alcalde";
+                return RedirectToAction("Index");
+            }
         }
     }
 }
