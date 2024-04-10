@@ -243,7 +243,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             {
                 TempData["Error"] = "Error al editar el alcalde.";
             }
-            return RedirectToAction("Edit", "Alcalde", new { Alca_Id = item.Alca_Id });
+            return RedirectToAction("Edit", "Alcaldes", new { Alca_Id = item.Alca_Id });
         }
     }
 }

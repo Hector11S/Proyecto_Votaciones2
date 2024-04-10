@@ -135,18 +135,18 @@ namespace Frontend_Sistema_Votaciones.Controllers
         }
 
 
-        [HttpGet("[controller]/Edit/{Part_Id}")]
+        //[HttpGet("[controller]/Edit/{Part_Id}")]
         public async Task<IActionResult> Edit(string Part_Id)
         {
             try
             {
-                var model = await _partidoServicios.ObtenerPartido(Part_Id);
-                return Json(model.Data);
+                var response = await _partidoServicios.ObtenerPartido(Part_Id);
+                return View(response.Data);
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error al cargar la pagina de editar partido";
-                return RedirectToAction("Index");
+                TempData["Error"] = $"Error al cargar informacion del partido {Part_Id}.";
+                return View();
             }
         }
 
@@ -167,14 +167,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 else
                 {
                     TempData["Advertencia"] = result.Message;
-                    return View("Index", item);
                 }
             }
             catch (Exception ex)
             {
-                return View(item);
-                throw;
+                TempData["Error"] = "Error al editar el partido.";
             }
+            return RedirectToAction("Edit", "Partidos", new { Part_Id = item.Part_Id });
         }
     }
 }
