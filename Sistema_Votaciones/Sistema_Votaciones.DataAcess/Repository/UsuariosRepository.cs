@@ -37,6 +37,19 @@ namespace Sistema_Votaciones.DataAcess.Repository
             }
         }
 
+        public tbUsuarios Find(tbUsuarios item)
+        {
+            tbUsuarios result = new tbUsuarios();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Usua_Usuario", item.Usua_Usuario);
+                parameter.Add("Usua_Contra", item.Usua_Contra);
+                result = db.QueryFirst<tbUsuarios>(ScriptsBaseDeDatos.Usua_IniciarSesion, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
+        }
+
         public tbUsuarios FindByEmpl(int? id)
         {
             tbUsuarios result = new tbUsuarios();

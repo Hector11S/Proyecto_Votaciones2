@@ -33,7 +33,6 @@ namespace Frontend_Sistema_Votaciones
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddControllersWithViews();
             services.AddScoped<UsuariosServicios>();
-            services.AddScoped<Autorizacion>();
             services.AddScoped<RolesServicios>();
             services.AddScoped<PantallasServicios>();
             services.AddScoped<PantallasPorRolesServicios>();

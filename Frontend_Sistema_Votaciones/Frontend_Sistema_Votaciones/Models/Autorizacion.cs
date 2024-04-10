@@ -5,39 +5,50 @@ using System.Threading.Tasks;
 
 namespace Frontend_Sistema_Votaciones.Models
 {
-    public class Autorizacion
+    public static class Autorizacion
     {
-        private Dictionary<int, HashSet<string>> pantallasPorRoles = new Dictionary<int, HashSet<string>>();
+        private static Dictionary<int, HashSet<PantallasViewModel>> pantallasPorRoles =
+            new Dictionary<int, HashSet<PantallasViewModel>>();
 
-        public void SetearPantallasPorRoles(List<PantallasPorRolesViewModel> paroList) {
+        public static Dictionary<int, HashSet<PantallasViewModel>> SetearPantallasPorRoles(
+            List<PantallasPorRolesViewModel> paroList)
+        {
             try
             {
                 foreach (var item in paroList)
                 {
                     if (!pantallasPorRoles.ContainsKey(item.Rol_Id))
                     {
-                        pantallasPorRoles[item.Rol_Id] = new HashSet<string>();
+                        pantallasPorRoles[item.Rol_Id] = new HashSet<PantallasViewModel>(
+                            new PantallasViewModelComparer());
                     }
 
-                    pantallasPorRoles[item.Rol_Id].Add(item.Pant_Descripcion);
+                    var pantalla = new PantallasViewModel();
+                    pantalla.Pant_Id = item.Pant_Id;
+                    pantalla.Pant_Descripcion = item.Pant_Descripcion;
+                    pantalla.Pant_Controlador = item.Pant_Controlador;
+
+                    pantallasPorRoles[item.Rol_Id].Add(pantalla);
                 }
             }
             catch (Exception ex)
             {
-                throw;
+                // Handle exception
             }
+            return pantallasPorRoles;
         }
-        public bool Autorizar(int Rol_Id, string ControllerName) {
+
+        public static bool Autorizar(int Rol_Id, string ControllerName) {
             try
             {
                 if (Rol_Id != 0)
                 {
-                    return pantallasPorRoles[Rol_Id].Contains(ControllerName);
+                    return pantallasPorRoles[Rol_Id].Any(pantalla=>pantalla.Pant_Controlador == ControllerName);
                 }
             }
             catch (Exception ex)
             {
-                throw;
+                //throw;
             }
             return false;
         }

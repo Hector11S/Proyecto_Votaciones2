@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class AlcaldeController : Controller
+    public class AlcaldesController : Controller
     {
         private readonly AlcaldeServicios _alcaldeServicios;
         private readonly VotanteServicios _votanteServicios;
@@ -20,17 +20,16 @@ namespace Frontend_Sistema_Votaciones.Controllers
         private readonly PartidoServicios _partidoServicios;
         private readonly IWebHostEnvironment _hostingEnviroment;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly Autorizacion _autorizacion;
+        //private readonly Autorizacion _autorizacion;
 
-        public AlcaldeController(
+        public AlcaldesController(
             AlcaldeServicios alcaldeServicios, 
             VotanteServicios votanteServicios, 
             DepartamentoServicios departamentoServicios,
             MunicipioServicios municipioServicios,
             PartidoServicios partidoServicios,
             IWebHostEnvironment hostingEnviroment,
-            IHttpContextAccessor httpContextAccessor,
-            Autorizacion autorizacion)
+            IHttpContextAccessor httpContextAccessor)
         {
             _alcaldeServicios = alcaldeServicios;
             _votanteServicios = votanteServicios;
@@ -39,7 +38,6 @@ namespace Frontend_Sistema_Votaciones.Controllers
             _partidoServicios = partidoServicios;
             _hostingEnviroment = hostingEnviroment;
             _httpContextAccessor = httpContextAccessor;
-            _autorizacion = autorizacion;
         }
         [HttpPost]
         public async Task<IActionResult> SubirImagen(IFormCollection formData, IFormFile imagen)
@@ -123,9 +121,9 @@ namespace Frontend_Sistema_Votaciones.Controllers
             try
             {
                 var rol = HttpContext.Session.GetInt32("Rol_Id");
-                bool autorizado = _autorizacion.Autorizar(Convert.ToInt32(rol), ControllerContext.ActionDescriptor.ControllerName);
                 if (rol != null)
                 {
+                    bool autorizado = Autorizacion.Autorizar(Convert.ToInt32(rol), ControllerContext.ActionDescriptor.ControllerName);
                     if (autorizado)
                     {
                         var model = new List<AlcaldeViewModel>();
@@ -134,7 +132,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                     }
                     else
                     {
-                        TempData["Advertencia"] = "Debe iniciar sesión para acceder a esta pantalla.";
+                        TempData["Advertencia"] = "No está autorizado para acceder a esta pantalla.";
                         return RedirectToAction("Index", "Home");
                     }
                 }

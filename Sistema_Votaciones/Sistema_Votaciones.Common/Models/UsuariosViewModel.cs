@@ -10,6 +10,8 @@ namespace Sistema_Votaciones.Common.Models
     {
         public int Usua_Id { get; set; }
         public string Usua_Usuario { get; set; }
+        public string Vota_NombreCompleto { get; set; }
+
         public string Usua_Contra { get; set; }
         public bool Usua_Admin { get; set; }
         public int Empl_Id { get; set; }
@@ -20,5 +22,6 @@ namespace Sistema_Votaciones.Common.Models
         public DateTime? Usua_FechaModifica { get; set; }
         public bool? Usua_Activo { get; set; }
         public string Usua_Imagen { get; set; }
+        public string Muni_Codigo { get; set; }
     }
 }

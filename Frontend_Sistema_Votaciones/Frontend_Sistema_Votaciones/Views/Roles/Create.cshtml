@@ -79,8 +79,10 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 <script>
-    const pantallasPorRolesJSON = JSON.parse("@pantallasPorRoles");
+    const pantallasPorRolesJSON = JSON.parse('@Html.Raw(pantallasPorRoles)');
     console.log(pantallasPorRolesJSON);
+
+    let dropdownChangedByUser = true;
     $('#ParoTreeView').jstree({
         "core": {
             "themes": {
@@ -92,6 +94,10 @@
         },
         "plugins": ["checkbox"]
     }).on('changed.jstree', function (e, data) {
+        if (dropdownChangedByUser) {
+            dropdownChangedByUser = false;
+            return;
+        }
         console.log(data.node.id, "data.node.id")
         if (/^\d+$/.test(ddlRoles.value)) {
             if (/^\d+$/.test(data.node.id)) {
@@ -130,13 +136,12 @@
                 alert("AAAAAAAAA");
             }
         } else {
-            console.log(data, "data")
             var selectedNodes = data.selected;
 
             $.each(selectedNodes, function (index, nodeId) {
                 $('#ParoTreeView').jstree('uncheck_node', nodeId);
             });
-            if (selectedNodes.length === 0) {
+            if (data.action === "select_node") {
                 iziToast.warning({
                     title: 'Seleccione un rol',
                     message: "Por favor seleccione un rol",
@@ -147,9 +152,15 @@
             }
         }
     })
-
     const ddlRoles = document.getElementById("Rol_Id");
     ddlRoles.addEventListener("change", () => {
-        
-    })
+        dropdownChangedByUser = true;
+        const pantallasToCheck = pantallasPorRolesJSON.filter(item => item.Rol_Id === parseInt(ddlRoles.value));
+        console.log(pantallasToCheck);
+        pantallasToCheck.forEach(pantalla => {
+            const nodeId = pantalla.Pant_Id.toString();
+            $('#ParoTreeView').jstree('check_node', nodeId);
+        });
+    });
+
 </script>

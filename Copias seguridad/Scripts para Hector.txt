@@ -1,3 +1,22 @@
+
+alter table [Acce].[tbPantallas]
+add Pant_Controlador varchar(50)
+go
+update [Acce].[tbPantallas]
+set [Pant_Controlador] = [Pant_Descripcion]
+go
+alter table [Acce].[tbPantallas]
+alter column Pant_Controlador varchar(50) not null
+
+alter table [Acce].[tbPantallas]
+add Pant_IconoBootstrap varchar(50)
+go
+update [Acce].[tbPantallas]
+set [Pant_IconoBootstrap] = 'bi bi-circle'
+go
+alter table [Acce].[tbPantallas]
+alter column Pant_IconoBootstrap varchar(50) not null
+--------------------------------------------------------------------
 ALTER         PROCEDURE [Acce].[SP_PantallasPorRoles_Mostrar]
 AS
 BEGIN
@@ -6,14 +25,15 @@ BEGIN
 			Paro_Id,
 			Rol_Id,
 			tbPantallasPorRoles.Pant_Id,
-			tbPantallas.Pant_Descripcion
+			tbPantallas.Pant_Descripcion,
+			tbPantallas.Pant_Controlador
 		FROM Acce.tbPantallasPorRoles INNER JOIN Acce.tbPantallas
 			ON tbPantallasPorRoles.Pant_Id = tbPantallas.Pant_Id
 	END TRY
 	BEGIN CATCH
         SELECT 0 AS Resultado;
 	END CATCH
-END
+ENDG
 -------------------------------------------------------------------
 ALTER     PROCEDURE [Acce].[SP_Usuarios_Insertar]
 (

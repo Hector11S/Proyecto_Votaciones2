@@ -22,7 +22,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             var result = new ServiceResult();
             try
             {
-                var response = await _api.Post<UsuariosViewModel, ServiceResult>(req =>
+                var response = await _api.Post<UsuariosViewModel, UsuariosViewModel>(req =>
                 {
                     req.Path = $"API/Usuarios/IniciarSesion";
                     req.Content = item;

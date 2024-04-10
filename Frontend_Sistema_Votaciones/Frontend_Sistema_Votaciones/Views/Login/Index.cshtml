@@ -1,0 +1,159 @@
+﻿@model Frontend_Sistema_Votaciones.Models.UsuariosViewModel
+
+@{
+    var Usua_Usuario_Message = ViewBag.Usua_Usuario_Message;
+    var Usua_Contra_Message = ViewBag.Usua_Contra_Message;
+
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Frontend_Sistema_Votaciones</title>
+    @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />*@
+
+    <link href="~/NiceAdmin/assets/img/Flag_of_Honduras.svg.png" rel="icon">
+
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <link href="~/NiceAdmin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/NiceAdmin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="~/css/IziToast.css" rel="stylesheet" />
+    <link href="~/lib/jstree/jstree.min.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />*@
+    <link href="~/lib/datatable/datatable.min.css" rel="stylesheet" />
+    <link href="~/NiceAdmin/assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <main>
+        <div class="container">
+
+            <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                            <div class="d-flex justify-content-center py-4">
+                                <a href="#" class="logo d-flex align-items-center w-auto">
+                                    <img src="/NiceAdmin/assets/img/Flag_of_Honduras.svg.png" alt="honduras_flag">
+                                    <span class="d-block">Sistema Electoral</span>
+                                </a>
+                            </div><!-- End Logo -->
+
+                            <div class="card mb-3">
+
+                                <div class="card-body">
+
+                                    <div class="pt-4 pb-2">
+                                        <h5 class="card-title text-center pb-0 fs-4">Inicio de Sesión</h5>
+                                    </div>
+
+                                    <form class="row g-3 needs-validation" novalidate asp-action="Index">
+
+                                        <div class="col-12">
+                                            <label asp-for="Usua_Usuario" class="form-label">Usuario</label>
+                                            <div class="input-group has-validation">
+                                                <span class="input-group-text" id="inputGroupPrepend">
+                                                    <i class="bi bi-person-circle"></i>
+                                                </span>
+                                                <input asp-for="Usua_Usuario" type="text" class="form-control" required>
+                                                @if (Usua_Usuario_Message != null)
+                                                {
+                                                    <div id="Usua_Usuario_Validacion" style="color: orangered; font-size: 11px; width: 100%">@Usua_Usuario_Message</div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label asp-for="Usua_Contra" class="form-label">Contraseña</label>
+                                            <input asp-for="Usua_Contra" type="password" class="form-control" required>
+                                            @if (Usua_Contra_Message != null)
+                                            {
+                                                <div id="Usua_Contra_Validacion" style="color: orangered; font-size: 11px; width: 100%">@Usua_Contra_Message</div>
+                                            }
+                                        </div>
+
+                                        <div class="col-12">
+                                            <button class="btn btn-primary w-100" type="submit">Iniciar sesión</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </main><!-- End #main -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/IziToast.js"></script>
+
+    @*<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+        <script src="assets/js/main.js"></script>*@
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    <script>
+        const txtUsuario = document.getElementById("Usua_Usuario");
+        const txtContra = document.getElementById("Usua_Contra");
+      $(document).ready(function () {
+        @if (TempData["Exito"] != null)
+        {
+            <text>
+                iziToast.success({
+                    title: 'Éxito',
+                    message: '@TempData["Exito"]',
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            </text>
+        }
+
+        @if (TempData["Error"] != null)
+        {
+            <text>
+                iziToast.error({
+                    title: 'Error',
+                    message: '@TempData["Error"]',
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            </text>
+        }
+        @if (TempData["Advertencia"] != null)
+        {
+            <text>
+                iziToast.warning({
+                    title: 'Error',
+                    message: '@TempData["Advertencia"]',
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            </text>
+        }
+    });
+    </script>
+</body>
+</html>

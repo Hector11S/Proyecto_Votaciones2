@@ -35,5 +35,7 @@ namespace Frontend_Sistema_Votaciones.Models
         public bool? Usua_Activo { get; set; }
         [Display(Name = "Imagen")]
         public string Usua_Imagen { get; set; }
+        public string Muni_Codigo { get; set; }
+
     }
 }

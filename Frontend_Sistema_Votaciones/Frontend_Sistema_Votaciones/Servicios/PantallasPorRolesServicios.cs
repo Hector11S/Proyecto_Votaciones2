@@ -20,7 +20,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             var result = new ServiceResult();
             try
             {
-                var response = await _api.Get<IEnumerable<RolesViewModel>, IEnumerable<RolesViewModel>>(req =>
+                var response = await _api.Get<IEnumerable<PantallasPorRolesViewModel>, IEnumerable<PantallasPorRolesViewModel>>(req =>
                 {
                     req.Path = $"API/PantallasPorRoles/List";
                 });
