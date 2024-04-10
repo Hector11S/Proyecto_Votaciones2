@@ -36,8 +36,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Part_Id", item.Part_Id);
                 parameter.Add("Part_Descripcion", item.Part_Descripcion);
+                parameter.Add("Part_Color", item.Part_Color);
                 parameter.Add("Part_Imagen", item.Part_Imagen);
                 parameter.Add("Part_UsuarioCreacion", item.Part_UsuarioCreacion);
                 parameter.Add("Part_FechaCreacion", item.Part_FechaCreacion);
@@ -66,6 +66,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 var parameter = new DynamicParameters();
                 parameter.Add("Part_Id", item.Part_Id);
                 parameter.Add("Part_Descripcion", item.Part_Descripcion);
+                parameter.Add("Part_Color", item.Part_Color);
                 parameter.Add("Part_Imagen", item.Part_Imagen);
                 parameter.Add("Part_UsuarioModifica", item.Part_UsuarioModifica);
                 parameter.Add("Part_FechaModifica", item.Part_FechaModifica);
