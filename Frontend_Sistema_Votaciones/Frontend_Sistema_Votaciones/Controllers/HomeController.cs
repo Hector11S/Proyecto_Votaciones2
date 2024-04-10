@@ -57,7 +57,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                         return RedirectToAction("Index");
                     }
 
-                    //await _votanteServicios.MarcarVotanteComoYaVoto(Vota_DNI);
+                    var resultYaVoto = await _votanteServicios.MarcarVotanteComoYaVoto(Vota_DNI);
                     return RedirectToAction("CreatePresi", "VotosPorMesa");
                 }
             }

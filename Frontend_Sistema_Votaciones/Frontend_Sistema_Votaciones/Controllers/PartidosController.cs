@@ -33,8 +33,8 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 {
                     var Part_Id = formData["Part_Id"];
                     var extensionDeLaImagen = imagen.FileName.Split('.')[1];
-                    var nombreDeLaImagen = $"Usuario_{Part_Id}.{extensionDeLaImagen}";
-                    var rutaCarpeta = Path.Combine(_hostingEnviroment.WebRootPath, "assets", "usuarios");
+                    var nombreDeLaImagen = $"Partido_{Part_Id}.{extensionDeLaImagen}";
+                    var rutaCarpeta = Path.Combine(_hostingEnviroment.WebRootPath, "assets", "partidos");
                     var rutaImagen = Path.Combine(rutaCarpeta, nombreDeLaImagen);
                     using (var fileStream = new FileStream(rutaImagen, FileMode.Create))
                     {
@@ -136,15 +136,16 @@ namespace Frontend_Sistema_Votaciones.Controllers
 
 
         [HttpGet("[controller]/Edit/{Part_Id}")]
-        public async Task<IActionResult> Edit(int Part_Id)
+        public async Task<IActionResult> Edit(string Part_Id)
         {
             try
             {
-                var model = await _partidoServicios.EliminarPartido(Part_Id);
+                var model = await _partidoServicios.ObtenerPartido(Part_Id);
                 return Json(model.Data);
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al cargar la pagina de editar partido";
                 return RedirectToAction("Index");
             }
         }
@@ -159,10 +160,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 var result = await _partidoServicios.EditarPartido(item);
                 if (result.Success)
                 {
+                    TempData["AbrirModal"] = null;
+                    TempData["Exito"] = result.Message;
                     return RedirectToAction("Index");
                 }
                 else
                 {
+                    TempData["Advertencia"] = result.Message;
                     return View("Index", item);
                 }
             }

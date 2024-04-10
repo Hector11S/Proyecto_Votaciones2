@@ -69,7 +69,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<PartidoViewModel>, PartidoViewModel>(req =>
                 {
-                    req.Path = $"API/Partido/Fill?Part_Id={Part_Id}";
+                    req.Path = $"API/Partido/Find?Part_Id={Part_Id}";
                 });
                 if (!response.Success)
                 {
