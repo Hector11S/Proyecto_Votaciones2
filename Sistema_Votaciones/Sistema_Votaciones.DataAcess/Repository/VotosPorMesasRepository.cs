@@ -82,7 +82,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
                         Apellidos = item.Apellidos,
                         Cargo = item.Cargo,
                         CandidatoId = item.CandidatoId,
-                        TotalVotos = item.TotalVotos
+                        TotalVotos = item.TotalVotos,
+           
                     };
                     result.Add(viewModel);
                 }
@@ -90,28 +91,40 @@ namespace Sistema_Votaciones.DataAcess.Repository
             return result;
         }
 
-        public IEnumerable<tbVotosPorMesas> ListAlcaldes()
+        public List<tbVotosPorMesas> ListAlcaldesPorMunicipio(string Muni_Codigo)
         {
-            List<tbVotosPorMesas> result = new List<tbVotosPorMesas>();
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
-                var queryResult = db.Query<dynamic>(ScriptsBaseDeDatos.VotosPorMesas_ListarAlcaldes, commandType: CommandType.StoredProcedure);
+                var parameter = new DynamicParameters();
+                parameter.Add("Muni_Codigo", Muni_Codigo);
 
-                foreach (var item in queryResult)
+                var queryResult = db.Query<dynamic>(ScriptsBaseDeDatos.VotosPorMesas_ListarAlcaldesPorMunicipio, parameter, commandType: CommandType.StoredProcedure).ToList();
+
+                var result = queryResult.Select(item => new tbVotosPorMesas
                 {
+                    NombreAlcalde = item.NombreAlcalde,
+                    ApellidoAlcalde = item.ApellidoAlcalde,
+                    CargoAlcalde = item.CargoAlcalde,
+                    CandidatoIdAlcalde = item.CandidatoIdAlcalde,
+                    TotalVotosAlcalde = item.TotalVotosAlcalde,
+                    ColorPartido = item.ColorPartido
+                }).ToList();
 
-                    var viewModel = new tbVotosPorMesas
-                    {
-                        NombreAlcalde = item.NombreAlcalde,
-                        ApellidoAlcalde = item.ApellidoAlcalde,
-                        CargoAlcalde = item.CargoAlcalde,
-                        CandidatoIdAlcalde = item.CandidatoIdAlcalde,
-                        TotalVotosAlcalde = item.TotalVotosAlcalde
-                    };
-                    result.Add(viewModel);
-                }
+                return result;
             }
-            return result;
+        }
+
+        public RequestStatus MarcarVotanteComoYaVoto(string Vota_DNI)
+        {
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Vota_DNI", Vota_DNI);
+
+                var result = db.Execute(ScriptsBaseDeDatos.VotosPorMesas_MarcarVoto, parameter, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "Éxito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
         }
 
         public IEnumerable<tbVotosPorMesas> ListPresidentes()
@@ -130,7 +143,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
                         ApellidoPresidente = item.ApellidoPresidente,
                         CargoPresidente = item.CargoPresidente,
                         CandidatoIdPresidente = item.CandidatoIdPresidente,
-                        TotalVotosPresidentes = item.TotalVotosPresidentes
+                        TotalVotosPresidentes = item.TotalVotosPresidentes,
+                        ColorPartido = item.ColorPartido
                     };
                     result.Add(viewModel);
                 }

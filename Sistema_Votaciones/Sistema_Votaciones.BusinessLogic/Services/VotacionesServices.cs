@@ -144,6 +144,27 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult BuscarPresidente(int Pres_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var votante = _presidenteRepository.Find(Pres_Id);
+                if (votante != null)
+                {
+                    return result.Ok(votante);
+                }
+                else
+                {
+                    return result.Error($"No se encontró el Presidente con ID {Pres_Id}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"No se encontró el Presidente con ID {Pres_Id}");
+            }
+        }
+
         public ServiceResult CrearPresidente(tbPresidentes item)
         {
             var result = new ServiceResult();
@@ -305,20 +326,45 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
-        public ServiceResult ListVotosPorMesasAlcaldes()
+        public ServiceResult ListVotosPorMesasAlcaldesPorMunicipio(string Muni_Codigo)
         {
             var result = new ServiceResult();
             try
             {
-                var list = _votosPorMesasRepository.ListAlcaldes();
-
+                var list = _votosPorMesasRepository.ListAlcaldesPorMunicipio(Muni_Codigo);
                 return result.Ok(list);
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+               
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                return result.Error("Error: " + ex.Message);
             }
         }
+
+        public ServiceResult MarcarVotanteComoYaVoto(string Vota_DNI)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var status = _votosPorMesasRepository.MarcarVotanteComoYaVoto(Vota_DNI);
+                if (status.CodeStatus > 0)
+                {
+                    return result.Ok("Votante marcado como que ya ha votado.");
+                }
+                else
+                {
+                    return result.Error("No se pudo marcar al votante como que ya ha votado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al intentar marcar al votante como que ya ha votado: " + ex.Message);
+            }
+        }
+
+
         public ServiceResult ListVotosPorMesasPresidentes()
         {
             var result = new ServiceResult();

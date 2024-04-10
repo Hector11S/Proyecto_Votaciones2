@@ -68,7 +68,7 @@
             <div class="border border-5 border-dark p-3">
                 <h1 class="text-center">Voto nulo</h1>
                 <div class="form-check custom-radio" style="margin: 0 auto; display: table;">
-                    <input style="border-color:black" class="form-check-input" type="radio" name="VoMe_CandidatoId" id="rb-nulo" value="0">
+                    <input style="border-color:black" class="form-check-input" type="radio" name="VoMe_CandidatoId" id="rb-nulo" value="15">
 
                 </div>
             </div>
@@ -76,37 +76,40 @@
         <div class="row">
             @foreach (var alcalde in alcaldes)
             {
-                <div class="col-md-4 mb-4">
-                    <div class="border border-5 border-dark p-3">
-                        <div class="img-container">
-                            @foreach (var partido in partidos)
-                            {
-                                if (partido.Part_Id == alcalde.Part_Id)
+                @if (alcalde.Alca_Id != 15)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="border border-5 border-dark p-3">
+                            <div class="img-container">
+                                @foreach (var partido in partidos)
                                 {
-                                    <img src="@partido.Part_Imagen" alt="Imagen-partido-politico" style="height: 200px;">
+                                    if (partido.Part_Id == alcalde.Part_Id)
+                                    {
+                                        <img src="@partido.Part_Imagen" alt="Imagen-partido-politico" style="height: 200px;">
+                                    }
+                                }
+                            </div>
+                            <div class="img-container">
+                                <img src="@alcalde.Alca_Imagen" alt="Imagen-alcalde" style="height: 200px;">
+                            </div>
+                            <br />
+                            @foreach (var votante in ViewBag.Votante)
+                            {
+                                if (votante.Vota_Id == alcalde.Alca_Id)
+                                {
+                                    <hr />
+                                    <h2 class="text-center mb-4">@votante.Vota_Nombre @votante.Vota_Apellidos</h2>
+                                    <hr />
                                 }
                             }
-                        </div>
-                        <div class="img-container">
-                            <img src="@alcalde.Alca_Imagen" alt="Imagen-alcalde" style="height: 200px;">
-                        </div>
-                        <br />
-                        @foreach (var votante in ViewBag.Votante)
-                        {
-                            if (votante.Vota_Id == alcalde.Alca_Id)
-                            {
-                                <hr />
-                                <h2 class="text-center mb-4">@votante.Vota_Nombre @votante.Vota_Apellidos</h2>
-
-                                <hr />
-                            }
-                        }
-                        <div class="form-check custom-radio" style="margin: 0 auto; display: table;">
-                            <input style="border-color:black" class="form-check-input" type="radio" name="VoMe_CandidatoId" id="@("rb-" + alcalde.Alca_Id)" value="@alcalde.Alca_Id">
+                            <div class="form-check custom-radio" style="margin: 0 auto; display: table;">
+                                <input style="border-color:black" class="form-check-input" type="radio" name="VoMe_CandidatoId" id="@("rb-" + alcalde.Alca_Id)" value="@alcalde.Alca_Id">
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             }
+
         </div>
 
 

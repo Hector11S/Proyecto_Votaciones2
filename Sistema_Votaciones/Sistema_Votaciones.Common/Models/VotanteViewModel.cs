@@ -21,5 +21,6 @@ namespace Sistema_Votaciones.Common.Models
         public DateTime? Vota_FechaModifica { get; set; }
         public int Sede_Id { get; set; }
         public int Mesa_Id { get; set; }
+        public bool Vota_Permitido { get; set; }
     }
 }

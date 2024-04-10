@@ -26,12 +26,17 @@ namespace Sistema_Votaciones.Common.Models
         public string CargoPresidente { get; set; }
         public int CandidatoIdPresidente { get; set; }
         public int TotalVotosPresidentes { get; set; }
-
+        public string ColorPartido { get; set; }
+        public bool Vota_YaVoto { get; set; }
 
         public string NombreAlcalde { get; set; }
         public string ApellidoAlcalde { get; set; }
         public string CargoAlcalde { get; set; }
         public int CandidatoIdAlcalde { get; set; }
         public int TotalVotosAlcalde { get; set; }
+
+        public string Muni_Codigo { get; set; }
+        public string Muni_Descripcion { get; set; }
+        public string Dept_Codigo { get; set; }
     }
 }

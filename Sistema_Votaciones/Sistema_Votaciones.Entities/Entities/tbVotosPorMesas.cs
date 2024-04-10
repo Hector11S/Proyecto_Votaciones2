@@ -17,7 +17,7 @@ namespace Sistema_Votaciones.Entities.Entities
         [NotMapped]
         public string Vota_Nombre { get; internal set; }
 
-
+        public string ColorPartido { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
 
@@ -39,5 +39,11 @@ namespace Sistema_Votaciones.Entities.Entities
         public string CargoAlcalde { get; set; }
         public int CandidatoIdAlcalde { get; set; }
         public int TotalVotosAlcalde { get; set; }
+
+        public bool Vota_YaVoto { get; set; }
+
+        public string Muni_Codigo { get; set; }
+        public string Muni_Descripcion { get; set; }
+        public string Dept_Codigo { get; set; }
     }
 }

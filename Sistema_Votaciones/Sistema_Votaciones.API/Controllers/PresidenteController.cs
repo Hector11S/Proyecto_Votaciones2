@@ -34,6 +34,13 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
+        [HttpGet("API/[controller]/Find")]
+        public IActionResult Find(int Pres_Id)
+        {
+            var result = _votacionesServices.BuscarPresidente(Pres_Id);
+            return Ok(result);
+        }
+
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(PresidenteViewModel json)
         {
@@ -67,16 +74,10 @@ namespace Sistema_Votaciones.API.Controllers
         }
 
         [HttpDelete("API/[controller]/Delete")]
-        public IActionResult Delete(PresidenteViewModel json)
+        public IActionResult Delete(int Pres_Id)
         {
-            _mapper.Map<tbPresidentes>(json);
-            var modelo = new tbPresidentes()
-            {
-                Pres_Id = Convert.ToInt32(json.Pres_Id)
-
-            };
-            var list = _votacionesServices.EliminarPresidente(modelo.Pres_Id);
-            return Ok(list);
+            var response = _votacionesServices.EliminarPresidente(Pres_Id);
+            return Ok(response);
         }
     }
 }

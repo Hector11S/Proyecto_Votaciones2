@@ -766,6 +766,8 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("No se encontró una persona con ese DNI");
             }
         }
+
+
         public ServiceResult CrearVotante(tbVotantes item)
         {
             var result = new ServiceResult();

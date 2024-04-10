@@ -139,5 +139,34 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 return result.Error(Helpers.GetMessage(ex));
             }
         }
+
+        public async Task<ServiceResult> MarcarVotanteComoYaVoto(string Vota_DNI)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Put<string, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Votante/MarcarComoYaVoto?Vota_DNI={Vota_DNI}";
+                   
+                });
+
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Message, response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+            }
+        }
+
+
+
     }
 }

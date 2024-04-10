@@ -17,6 +17,9 @@ namespace Sistema_Votaciones.Entities.Entities
         public DateTime? Sede_FechaModifica { get; set; }
         public bool? Sede_Estado { get; set; }
 
+        public string Muni_Descripcion { get; set; }
+        public string Dept_Codigo { get; set; }
+
         public virtual tbUsuarios Sede_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Sede_UsuarioModificaNavigation { get; set; }
     }

@@ -35,6 +35,7 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _generalServices.ListMuni(Dept_Codigo);
             return Ok(list);
         }
+
         [HttpGet("API/[controller]/Find")]
 
         public IActionResult Find(string Muni_Codigo)

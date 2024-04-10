@@ -42,15 +42,22 @@ namespace Frontend_Sistema_Votaciones.Servicios
             }
         }
 
-        public async Task<ServiceResult> VotosPorMesaListAlcaldes()
+        public async Task<ServiceResult> VotosPorMesaListAlcaldes(string Muni_Codigo)
         {
             var result = new ServiceResult();
             try
             {
+    
+                if (string.IsNullOrEmpty(Muni_Codigo))
+                {
+                    return result.Error("Se necesita un municipio seleccionado para obtener los votos por mesas de los alcaldes.");
+                }
+
                 var response = await _api.Get<IEnumerable<VotosPorMesasViewModel>, IEnumerable<VotosPorMesasViewModel>>(req =>
                 {
-                    req.Path = $"API/votosPorMesas/ListAlcaldes";
+                    req.Path = $"API/votosPorMesas/ListAlcaldesPorMunicipio?Muni_Codigo={Muni_Codigo}";
                 });
+
                 if (response != null && !response.Success)
                 {
                     return result.FromApi(response);
@@ -63,9 +70,11 @@ namespace Frontend_Sistema_Votaciones.Servicios
             catch (Exception ex)
             {
                 return result.Error(Helpers.GetMessage(ex));
-                throw;
             }
         }
+
+
+
 
         public async Task<ServiceResult> VotosPorMesaListPresidentes()
         {
@@ -192,7 +201,32 @@ namespace Frontend_Sistema_Votaciones.Servicios
             }
         }
 
-      
+        public async Task<ServiceResult> VotosPorMesaListPorMunicipio(string municipioId)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<VotosPorMesasViewModel>, IEnumerable<VotosPorMesasViewModel>>(req =>
+                {
+                    req.Path = $"API/votosPorMesas/ListPorMunicipio?municipioId={municipioId}";
+                });
+                if (response != null && !response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
+
 
     }
 }

@@ -102,11 +102,11 @@ namespace Sistema_Votaciones.DataAcess.Repository
 
         #region Presidentes
         public static string Presi_Listar = "[Vota].[SP_Presidentes_Mostrar]";
+        public static string Presi_Llenar = "[Vota].[SP_Presidentes_Listar]";
         public static string Presi_Insertar = "[Vota].[SP_Presidentes_Insertar]";
         public static string Presi_Editar = "[Vota].[SP_Presidentes_Editar]";
         public static string Presi_Eliminar = "[Vota].[SP_Presidentes_Eliminar]";
         #endregion
-
 
         #region Partidos
         public static string Part_Listar = "[Vota].[SP_Partidos_Mostrar]";
@@ -122,6 +122,9 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string VotosPorMesas_Eliminar = "[Vota].[SP_VotosPorMesas_Eliminar]";
         public static string VotosPorMesas_ListarPresidentes = "[Vota].[SP_VotosPorMesas_MostrarPresidentes]";
         public static string VotosPorMesas_ListarAlcaldes = "[Vota].[SP_VotosPorMesas_MostrarAlcaldes]";
+        public static string VotosPorMesas_ListarAlcaldesPorMunicipio = "[Vota].[SP_VotosPorMesas_MostrarAlcaldes_PorMunicipio]";
+
+        public static string VotosPorMesas_MarcarVoto = "[Gral].[SP_MarcarVotanteComoYaVoto]";
         #endregion
 
         #region Votantes

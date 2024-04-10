@@ -34,14 +34,20 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
-        [HttpGet("API/[controller]/ListAlcaldes")]
-        public IActionResult ListAlcaldes()
+        [HttpGet("API/[controller]/ListAlcaldesPorMunicipio")]
+        public IActionResult ListAlcaldes(string Muni_Codigo)
         {
        
-            var listvotosPorMesasAlcaldes = _votacionesServices.ListVotosPorMesasAlcaldes();
-         
+            if (string.IsNullOrEmpty(Muni_Codigo))
+            {
+                return BadRequest("El código del municipio es obligatorio.");
+            }
+
+            var listvotosPorMesasAlcaldes = _votacionesServices.ListVotosPorMesasAlcaldesPorMunicipio(Muni_Codigo);
+
             return Ok(listvotosPorMesasAlcaldes);
         }
+
 
         [HttpGet("API/[controller]/ListPresidentes")]
         public IActionResult ListPresidentes()
@@ -60,7 +66,8 @@ namespace Sistema_Votaciones.API.Controllers
             {
                 MePS_Id = Convert.ToInt32(json.MePS_Id),
                 VoMe_CandidatoId = Convert.ToInt32(json.VoMe_CandidatoId),
-                VoMe_EsPresidente = json.VoMe_EsPresidente
+                VoMe_EsPresidente = json.VoMe_EsPresidente,
+  
 
 
             };
@@ -76,7 +83,8 @@ namespace Sistema_Votaciones.API.Controllers
             {
                 MePS_Id = Convert.ToInt32(json.MePS_Id),
                 VoMe_CandidatoId = Convert.ToInt32(json.VoMe_CandidatoId),
-                VoMe_EsPresidente = json.VoMe_EsPresidente
+                VoMe_EsPresidente = json.VoMe_EsPresidente,
+         
 
 
             };
@@ -113,6 +121,27 @@ namespace Sistema_Votaciones.API.Controllers
             };
             var list = _votacionesServices.EliminarVotosPorMesas(modelo.VoMe_Id);
             return Ok(list);
+        }
+
+
+        [HttpPost("API/[controller]/MarcarVotanteComoYaVoto")]
+        public IActionResult MarcarVotanteComoYaVoto(string Vota_DNI)
+        {
+            if (string.IsNullOrEmpty(Vota_DNI))
+            {
+                return BadRequest("El DNI del votante es obligatorio.");
+            }
+
+            var result = _votacionesServices.MarcarVotanteComoYaVoto(Vota_DNI);
+
+            if (result.Success)
+            {
+                return Ok(result.Message);
+            }
+            else
+            {
+                return BadRequest(result.Message);
+            }
         }
     }
 }

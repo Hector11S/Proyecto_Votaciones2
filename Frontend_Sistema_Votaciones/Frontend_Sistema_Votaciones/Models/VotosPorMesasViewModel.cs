@@ -65,7 +65,11 @@ namespace Frontend_Sistema_Votaciones.Models
 
         [Display(Name = "Total de Votos para el Alcalde")]
         public int TotalVotosAlcalde { get; set; }
-  
 
+        public bool Vota_YaVoto { get; set; }
+        public string ColorPartido { get; set; }
+        public string Muni_Codigo { get; set; }
+        public string Muni_Descripcion { get; set; }
+        public string Dept_Codigo { get; set; }
     }
 }
