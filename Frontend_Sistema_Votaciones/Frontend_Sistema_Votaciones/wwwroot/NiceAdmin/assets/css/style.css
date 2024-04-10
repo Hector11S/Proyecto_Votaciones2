@@ -34,7 +34,7 @@
 
     .caret::before {
         content: "\25B6";
-        color: black;
+        color: #3dbdd9;
         display: inline-block;
         margin-right: 5px;
     }

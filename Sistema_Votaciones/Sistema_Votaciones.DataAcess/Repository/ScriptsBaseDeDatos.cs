@@ -112,6 +112,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
 
         #region Partidos
         public static string Part_Listar = "[Vota].[SP_Partidos_Mostrar]";
+        public static string Part_Llenar = "[Vota].[SP_Partidos_Llenar]";
         public static string Part_Insertar = "[Vota].[SP_Partidos_Insertar]";
         public static string Part_Editar = "[Vota].[SP_Partidos_Editar]";
         public static string Part_Eliminar = "[Vota].[SP_Partidos_Eliminar]";

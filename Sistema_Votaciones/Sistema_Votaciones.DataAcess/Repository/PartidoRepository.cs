@@ -28,7 +28,14 @@ namespace Sistema_Votaciones.DataAcess.Repository
 
         public tbPartidos Find(int? id)
         {
-            throw new NotImplementedException();
+            tbPartidos result = new tbPartidos();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Part_Id", id);
+                result = db.QueryFirst<tbPartidos>(ScriptsBaseDeDatos.Part_Llenar, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
         }
 
         public RequestStatus Insert(tbPartidos item)

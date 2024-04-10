@@ -1,6 +1,7 @@
 ﻿@model Frontend_Sistema_Votaciones.Models.PartidoViewModel
 
 @{
+    var Part_Id = Model != null ? Model.Part_Id : 0;
     var Part_Descripcion = Model != null ? Model.Part_Descripcion : null;
     var Part_Color = Model != null ? Model.Part_Color : null;
     var Part_Imagen = Model != null ? Model.Part_Imagen : null;
@@ -22,12 +23,13 @@
                 <div class="d-flex flex-wrap justify-content-around">
                     <div class="form-group col-sm-5 mb-4">
                         <label asp-for="Part_Descripcion" style="color: #3dbdd9"></label>
+                        <input asp-for="Part_Id" value="@Part_Id" type="hidden" class="form-control" />
                         <input asp-for="Part_Descripcion" value="@Part_Descripcion" type="text" class="form-control" />
                         <span asp-validation-for="Part_Descripcion" class="text-danger"></span>
                     </div>
                     <div class="form-group col-sm-5 mb-4">
                         <label asp-for="Part_Color" style="color: #3dbdd9"></label>
-                        <input asp-for="Part_Color" class="form-control form-control-color" type="color">
+                        <input asp-for="Part_Color" value="@Part_Color" class="form-control form-control-color" type="color">
                     </div>
                 </div>
                 <div class="d-flex flex-wrap justify-content-around">

@@ -33,7 +33,7 @@
             Administrar roles
         </a>
     </header>
-    <table id="dtDepartamentos" class="table datatable display" style="width: 100%;">
+    <table id="dtRoles" class="table datatable display" style="width: 100%;">
         <thead style="color: #78e7ff;">
             <tr style="background: rgb(0,0,0)">
                 <th>
@@ -86,7 +86,7 @@
 </div>
 <script>
 $(document).ready(function () {
-    $('#dtDepartamentos').DataTable();
+    $('#dtRoles').DataTable();
     $('#modal' + '@abrirModal').modal('show');
     @if (rol != null)
     {
@@ -115,12 +115,12 @@ $('#btnNuevo').click(function () {
 $('.btnEditar').click(function () {
     var id = $(this).data("id");
     $.ajax({
-        url: `/Departamento/Edit/${id}`,
+        url: `/Roles/Edit/${id}`,
         method: "GET",
         success: function (rol) {
             console.log(rol, "rol")
-            $('#Rol_Id_Edit').val(rol.dept_Codigo);
-            $('#Rol_Descripcion_Edit').val(rol.dept_Descripcion);
+            $('#Rol_Id_Edit').val(rol.rol_Id);
+            $('#Rol_Descripcion_Edit').val(rol.rol_Descripcion);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error al cargar los datos del rol:", errorThrown);

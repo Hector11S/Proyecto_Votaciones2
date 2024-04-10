@@ -1,4 +1,6 @@
-
+alter table [Acce].[tbRoles]
+add constraint UQ_tbRoles_Rol_Descripcion UNIQUE(Rol_Descripcion)
+----------------------------------------
 alter table [Acce].[tbPantallas]
 add Pant_Controlador varchar(50)
 go

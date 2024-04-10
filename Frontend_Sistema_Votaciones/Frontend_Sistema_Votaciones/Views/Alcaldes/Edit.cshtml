@@ -107,7 +107,7 @@
                     <div class="form-group col">
                         <label class="mb-2" style="color: #3dbdd9">Fototografia del candidato: </label>
                         <input asp-for="Alca_Imagen" type="hidden" class="form-control" />
-                        <input id="inputFileAlcalde" type="file" class="form-control" />
+                        <input id="inputFileAlcaldes" type="file" class="form-control" />
                         <span asp-validation-for="Alca_Imagen" class="text-danger"></span>
                     </div>
                 </div>
@@ -267,7 +267,7 @@
             txtDNI.value = val;
             if (txtDNI.value.length === 13) {
                 $.ajax({
-                    url: `/Alcalde/ObtenerVotantePorDNI/${txtDNI.value}`,
+                    url: `/Alcaldes/ObtenerVotantePorDNI/${txtDNI.value}`,
                     method: "GET",
                     success: function (response) {
                         console.log(response, "ObtenerVotantePorDNI");
@@ -297,7 +297,7 @@
         const ddlMunicipios = document.getElementById("Muni_Codigo");
         ddlDepartamentos.addEventListener("change", () => {
             $.ajax({
-                url: `/Alcalde/ObtenerMunicipiosPorDept/${ddlDepartamentos.value}`,
+                url: `/Alcaldes/ObtenerMunicipiosPorDept/${ddlDepartamentos.value}`,
                 method: "GET",
                 success: function (response) {
                     console.log(response, "ObtenerMunicipiosPorDept");
@@ -330,16 +330,16 @@
             });
         })
 
-        const inputFileAlcalde = document.getElementById("inputFileAlcalde");
+        const inputFileAlcaldes = document.getElementById("inputFileAlcaldes");
         const Alca_Id = document.getElementById("Alca_Id");
         const Alca_Imagen = document.getElementById("Alca_Imagen");
-        inputFileAlcalde.addEventListener("change", () => {
-            if (Alca_Id.value && inputFileAlcalde.files[0]) {
+        inputFileAlcaldes.addEventListener("change", () => {
+            if (Alca_Id.value && inputFileAlcaldes.files[0]) {
                 const formData = new FormData();
-                formData.append("Imagen", inputFileAlcalde.files[0])
+                formData.append("Imagen", inputFileAlcaldes.files[0])
                 formData.append("Alca_Id", Alca_Id.value)
                 $.ajax({
-                    url: `/Alcalde/SubirImagen`,
+                    url: `/Alcaldes/SubirImagen`,
                     method: "POST",
                     contentType: false,
                     data: formData,
