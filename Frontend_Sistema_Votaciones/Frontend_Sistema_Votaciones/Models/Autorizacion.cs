@@ -26,6 +26,7 @@ namespace Frontend_Sistema_Votaciones.Models
                     var pantalla = new PantallasViewModel();
                     pantalla.Pant_Id = item.Pant_Id;
                     pantalla.Pant_Descripcion = item.Pant_Descripcion;
+                    pantalla.Pant_IconoBootstrap = "bi bi-circle";
                     pantalla.Pant_Controlador = item.Pant_Controlador;
 
                     pantallasPorRoles[item.Rol_Id].Add(pantalla);
