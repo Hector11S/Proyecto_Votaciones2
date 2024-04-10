@@ -1,0 +1,252 @@
+﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.VotosPorMesasViewModel>
+
+@{
+    var listaVotosAlcaldes = ViewBag.ListaVotosAlcaldes as IEnumerable<VotosPorMesasViewModel>;
+    //var listaVotosAlcaldes = (List<VotosPorMesasViewModel>)ViewBag.ListaVotosAlcaldes;
+    var listaVotosPresidentes = ViewBag.ListaVotosPresidentes as IEnumerable<VotosPorMesasViewModel>;
+    var municipios = (List<MunicipioViewModel>)ViewBag.Municipios;
+    var VotosPorMEsas = ViewBag.votosPorMesa as IEnumerable<VotosPorMesasViewModel>;
+    var Muni_Codigo = ViewBag.Muni_Codigo;
+
+    ViewData["Title"] = "VotosPorMesa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="w-100 d-flex justify-content-between align-items-center p-2 text-center" style="background: rgb(255,255,255); min-height: 12vh;">
+    <h1>Conteo de Votos</h1>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Votar</a>
+</header>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <label class="mb-2" style="color: #3dbdd9">Municipio: </label>
+            <select id="ddlMunicipios" class="form-select">
+                <option value="">-- Seleccione un municipio --</option>
+                @if (municipios != null)
+                {
+                    foreach (var item in municipios)
+                    {
+                        if (item.Muni_Codigo == Muni_Codigo)
+                        {
+                            <option value="@item.Muni_Codigo" selected>@item.Muni_Descripcion</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Muni_Codigo">@item.Muni_Descripcion</option>
+                        }
+                    }
+                }
+            </select>
+            <span class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Alcaldes</h5>
+                <div id="pieChartAlcaldes"></div>
+                <script>
+                    var chartAlcaldes;
+
+                    document.addEventListener("DOMContentLoaded", () => {
+                        var seriesData = @Html.Raw(Json.Serialize(listaVotosAlcaldes.Select(m => m.TotalVotosAlcalde)));
+                        var labelsData = @Html.Raw(Json.Serialize(listaVotosAlcaldes.Select(m => m.NombreAlcalde + " " + m.ApellidoAlcalde)));
+                        var colorsData = @Html.Raw(Json.Serialize(listaVotosAlcaldes.Select(m => m.ColorPartido)));
+
+                        colorsData = colorsData.map(color => {
+                            if (color === null) {
+                                color = '000000';
+                            }
+                            if (!color.startsWith('#')) {
+                                color = '#' + color;
+                            }
+                            return color;
+                        });
+
+                        chartAlcaldes = new ApexCharts(document.querySelector("#pieChartAlcaldes"), {
+                            series: seriesData,
+                            chart: {
+                                height: 350,
+                                type: 'pie',
+                                toolbar: {
+                                    show: true
+                                }
+                            },
+                            labels: labelsData,
+                            colors: colorsData,
+                        });
+
+                        chartAlcaldes.render();
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Presidentes</h5>
+                <div id="pieChartPresidentes"></div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                        var seriesData = @Html.Raw(Json.Serialize(listaVotosPresidentes.Select(m => m.TotalVotosPresidentes)));
+                        var labelsData = @Html.Raw(Json.Serialize(listaVotosPresidentes.Select(m => m.NombrePresidente + " " + m.ApellidoPresidente)));
+                        var colorsData = @Html.Raw(Json.Serialize(listaVotosPresidentes.Select(m => m.ColorPartido)));
+
+
+                        colorsData = colorsData.map(color => {
+
+                            if (color === null) {
+                                color = '000000';
+                            }
+
+                            if (!color.startsWith('#')) {
+                                color = '#' + color;
+                            }
+                            return color;
+                        });
+
+                        new ApexCharts(document.querySelector("#pieChartPresidentes"), {
+                            series: seriesData,
+                            chart: {
+                                height: 350,
+                                type: 'pie',
+                                toolbar: {
+                                    show: true
+                                }
+                            },
+                            labels: labelsData,
+                            colors: colorsData,
+                        }).render();
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card m-2 mt-4 p-3">
+    <table id="dtVotosPorMesas" class="table" style="width:100%">
+        <thead style="color: #78e7ff;">
+            <tr style="background: rgb(0,0,0)">
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Apellidos)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cargo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CandidatoId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalVotos)
+                </th>
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var mesa in VotosPorMEsas)
+            {
+                <tr>
+                    @if (mesa.Nombre == "Presidente" || mesa.Nombre == "Alcalde")
+                    {
+                        <td style="background-color:#ffd800">
+                            @Html.DisplayFor(modelItem => mesa.Nombre)
+                        </td>
+
+                        <td style="background-color: #ffd800">
+                            @Html.DisplayFor(modelItem => mesa.Apellidos)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => mesa.Cargo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => mesa.CandidatoId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => mesa.TotalVotos)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => mesa.Nombre)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => mesa.Apellidos)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => mesa.Cargo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => mesa.CandidatoId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => mesa.TotalVotos)
+                        </td>
+                    }
+
+
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@@section Scripts {
+<script>
+    function actualizarGraficoAlcaldes(datos) {
+        var seriesData = datos.map(item => item.totalVotosAlcalde);
+        var labelsData = datos.map(item => item.nombreAlcalde + " " + item.apellidoAlcalde);
+        var colorsData = datos.map(item => item.colorPartido ?? '#000000');
+
+        chartAlcaldes.updateOptions({
+            series: seriesData,
+            labels: labelsData,
+            colors: colorsData,
+        });
+    }
+
+    $(document).ready(function () {
+        $('#dtVotosPorMesas').DataTable();
+
+        $('#ddlMunicipios').change(function () {
+            var municipioSeleccionado = $(this).val();
+            if (municipioSeleccionado !== '') {
+                $.ajax({
+                    url: '/VotosPorMesa/VerAlclades',
+                    method: 'GET',
+                    data: { muniCodigo: municipioSeleccionado },
+                    success: function (data) {
+                        console.log(data, "data")
+                        actualizarGraficoAlcaldes(data.listAlcaldes);
+                        $("#graficoAlcaldesContainer").show();
+                    },
+                    error: function () {
+                        alert('Error al obtener datos de votos de alcaldes.');
+                    }
+                });
+            }
+            else {
+                $("#graficoAlcaldesContainer").hide();
+            }
+        });
+    });
+</script>
+}
