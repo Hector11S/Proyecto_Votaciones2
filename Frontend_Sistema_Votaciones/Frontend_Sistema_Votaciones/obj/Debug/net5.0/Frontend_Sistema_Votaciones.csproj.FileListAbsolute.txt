@@ -750,3 +750,9 @@ C:\repositorio\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema
 C:\repositorio\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Empleados\_Delete.cshtml.g.cs
 C:\repositorio\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Votantes\Edit.cshtml.g.cs
 C:\repositorio\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Votantes\Create.cshtml.g.cs
+C:\repositorio\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Presidentes\Create.cshtml.g.cs
+C:\repositorio\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Presidentes\Details.cshtml.g.cs
+C:\repositorio\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Presidentes\Edit.cshtml.g.cs
+C:\repositorio\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Presidentes\Index.cshtml.g.cs
+C:\repositorio\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Presidentes\_Delete.cshtml.g.cs
+C:\repositorio\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Votantes\Details.cshtml.g.cs
