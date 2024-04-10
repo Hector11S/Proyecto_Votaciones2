@@ -17,6 +17,31 @@ namespace Frontend_Sistema_Votaciones.Servicios
             _api = api;
             _blobStorage = blobStorage;
         }
+        public async Task<ServiceResult> IniciarSesion(UsuariosViewModel item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Post<UsuariosViewModel, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Usuarios/IniciarSesion";
+                    req.Content = item;
+                });
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Message, response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
         public async Task<ServiceResult> SubirImagen(string localFilePath)
         {
             var result = new ServiceResult();
@@ -63,6 +88,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+        
         public async Task<ServiceResult> ObtenerUsuarioPorEmplId(int Empl_Id)
         {
             var result = new ServiceResult();
@@ -111,7 +137,6 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
-
 
         public async Task<ServiceResult> CrearUsuarios(UsuariosViewModel item)
         {

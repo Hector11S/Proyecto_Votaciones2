@@ -11,13 +11,13 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class PartidoController : Controller
+    public class PartidosController : Controller
     {
         private readonly PartidoServicios _partidoServicios;
         private readonly IWebHostEnvironment _hostingEnviroment;
 
 
-        public PartidoController(
+        public PartidosController(
             PartidoServicios partidoServicios,
             IWebHostEnvironment hostingEnviroment)
         {

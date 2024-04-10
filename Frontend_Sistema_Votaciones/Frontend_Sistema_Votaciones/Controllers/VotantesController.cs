@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class VotanteController : Controller
+    public class VotantesController : Controller
     {
         private readonly VotanteServicios _votanteServicios;
         private readonly DepartamentoServicios _departamentoServicios;
@@ -20,7 +20,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
         private readonly IWebHostEnvironment _hostingEnviroment;
 
 
-        public VotanteController(
+        public VotantesController(
             VotanteServicios votanteServicios,
             DepartamentoServicios departamentoServicios,
             MunicipioServicios municipioServicios,
