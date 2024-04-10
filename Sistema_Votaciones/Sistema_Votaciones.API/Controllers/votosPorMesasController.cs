@@ -124,7 +124,7 @@ namespace Sistema_Votaciones.API.Controllers
         }
 
 
-        [HttpPost("API/[controller]/MarcarVotanteComoYaVoto")]
+        [HttpPut("API/[controller]/MarcarVotanteComoYaVoto")]
         public IActionResult MarcarVotanteComoYaVoto(string Vota_DNI)
         {
             if (string.IsNullOrEmpty(Vota_DNI))

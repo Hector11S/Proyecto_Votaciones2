@@ -348,7 +348,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var status = _votosPorMesasRepository.MarcarVotanteComoYaVoto(Vota_DNI);
+                var status = _votosPorMesasRepository.MarcarVotanteComoYaVotoo(Vota_DNI);
                 if (status.CodeStatus > 0)
                 {
                     return result.Ok("Votante marcado como que ya ha votado.");

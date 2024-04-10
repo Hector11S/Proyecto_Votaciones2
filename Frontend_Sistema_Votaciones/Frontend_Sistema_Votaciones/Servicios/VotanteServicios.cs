@@ -147,8 +147,8 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Put<string, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Votante/MarcarComoYaVoto?Vota_DNI={Vota_DNI}";
-                   
+                    req.Path = $"API/votosPorMesas/MarcarVotanteComoYaVoto?Vota_DNI={Vota_DNI}";
+                    req.Content = $"{Vota_DNI}";
                 });
 
                 if (!response.Success)
