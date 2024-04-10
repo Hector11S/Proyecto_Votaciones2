@@ -149,6 +149,20 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult IniciarSesion(tbUsuarios item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuariosRepository.Find(item);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Usuario o contraseña incorrectos");
+            }
+        }
         public ServiceResult FindUsua(int Usua_Id)
         {
             var result = new ServiceResult();
