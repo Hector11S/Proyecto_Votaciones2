@@ -1,0 +1,33 @@
+﻿@model Frontend_Sistema_Votaciones.Models.DepartamentoViewModel
+
+@{
+    ViewData["Title"] = "tbDepartamentos".Substring(2);
+    ViewData["ViewName"] = "_Edit".Substring(1);
+}
+<h1 class="text-primary">Crear </h1>
+<h4 class="text-primary">@ViewData["Title"]</h4>
+<hr class="border border-primary" />
+<div>
+    <div>
+        <form asp-action="@ViewData["ViewName"]" asp-controller="Departamento" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="d-flex flex-wrap justify-content-around">
+                <input type="hidden" id="Dept_Codigo_Edit" name="Dept_Codigo" />
+                <div class="form-group col-sm-5 mb-4">
+                    <label for="Dept_Descripcion" class="control-label"></label>
+                    <input id="Dept_Descripcion_Edit" name="Dept_Descripcion" class="form-control" @*value="@Model.Dept_Descripcion"*@ />
+                    <span asp-validation-for="Dept_Descripcion" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group d-flex justify-content-end">
+                <div class="form-row">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-outline-primary">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
