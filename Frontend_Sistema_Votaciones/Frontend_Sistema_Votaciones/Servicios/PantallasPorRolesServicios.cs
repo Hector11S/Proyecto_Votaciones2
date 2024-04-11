@@ -39,6 +39,30 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+        public async Task<ServiceResult> ObtenerParoList(int Rol_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<PantallasPorRolesViewModel>, IEnumerable<PantallasPorRolesViewModel>>(req =>
+                {
+                    req.Path = $"API/PantallasPorRoles/Find?Rol_Id={Rol_Id}";
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
 
         public async Task<ServiceResult> CrearParo(PantallasPorRolesViewModel item)
         {
@@ -74,6 +98,59 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 var response = await _api.Delete<string, ServiceResult>(req =>
                 {
                     req.Path = $"API/PantallasPorRoles/Delete?Rol_Id={Rol_Id}&Pant_Id={Pant_Id}";
+                });
+
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Message, response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+            }
+        }
+
+
+
+        public async Task<ServiceResult> CrearParoPorEsqu(PantallasPorRolesViewModel item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Post<PantallasPorRolesViewModel, ServiceResult>(req =>
+                {
+                    req.Path = $"API/PantallasPorRoles/CreatePorEsqu";
+                    req.Content = item;
+                });
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Message, response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
+        public async Task<ServiceResult> EliminarParoPorEsqu(int Rol_Id, int Esqu_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Delete<string, ServiceResult>(req =>
+                {
+                    req.Path = $"API/PantallasPorRoles/DeletePorEsqu?Rol_Id={Rol_Id}&Esqu_Id={Esqu_Id}";
                 });
 
                 if (!response.Success)

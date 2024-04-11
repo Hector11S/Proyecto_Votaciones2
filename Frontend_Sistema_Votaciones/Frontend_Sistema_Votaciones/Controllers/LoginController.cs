@@ -52,35 +52,37 @@ namespace Frontend_Sistema_Votaciones.Controllers
                     return View(item);
                 }
 
-                var resultPantallasPorRoles = await _pantallasPorRolesServicios.ObtenerParoList();
-                if (resultPantallasPorRoles.Success)
+                var result = await _usuariosServicios.IniciarSesion(item);
+                if (result.Success)
                 {
-                    var pantallasPorRolesList = (List<PantallasPorRolesViewModel>)resultPantallasPorRoles.Data;
-                    Dictionary<int, HashSet<PantallasViewModel>> paroDictionary = Autorizacion.SetearPantallasPorRoles(pantallasPorRolesList);
-                    string paroStr = JsonConvert.SerializeObject(paroDictionary);
-                    HttpContext.Session.SetString("paroDictionary", paroStr);
-                    var result = await _usuariosServicios.IniciarSesion(item);
-                    if (result.Success)
+                    UsuariosViewModel usuario = (UsuariosViewModel) result.Data;
+                    if ((bool)usuario.Usua_Activo)
                     {
-                        UsuariosViewModel usuario = (UsuariosViewModel) result.Data;
-                        if ((bool)usuario.Usua_Activo)
+                        HttpContext.Session.SetInt32("Rol_Id", usuario.Rol_Id);
+                        HttpContext.Session.SetString("Vota_NombreCompleto", usuario.Vota_NombreCompleto);
+                        HttpContext.Session.SetString("Usua_Imagen", usuario.Usua_Imagen);
+                        HttpContext.Session.SetString("Muni_Codigo", usuario.Muni_Codigo);
+                        var resultPantallasPorRoles = await _pantallasPorRolesServicios.ObtenerParoList(usuario.Rol_Id);
+                        if (resultPantallasPorRoles.Success)
                         {
-                            HttpContext.Session.SetInt32("Rol_Id", usuario.Rol_Id);
-                            HttpContext.Session.SetString("Vota_NombreCompleto", usuario.Vota_NombreCompleto);
-                            HttpContext.Session.SetString("Usua_Imagen", usuario.Usua_Imagen);
-                            HttpContext.Session.SetString("Muni_Codigo", usuario.Muni_Codigo);
-                            //TempData["Exito"] = result.Message;
+                            var pantallasPorRolesList = (List<PantallasPorRolesViewModel>)resultPantallasPorRoles.Data;
+                            Dictionary<int, HashSet<PantallasViewModel>> paroDictionary = Autorizacion.SetearPantallasPorRoles(pantallasPorRolesList);
+                            string paroStr = JsonConvert.SerializeObject(paroDictionary);
+                            HttpContext.Session.SetString("paroDictionary", paroStr);
+                            Dictionary<int, string> esquemasDictionary = Autorizacion.ObtenerEsquemas();
+                            string esquemasStr = JsonConvert.SerializeObject(esquemasDictionary);
+                            HttpContext.Session.SetString("esquemasDictionary", esquemasStr);
                             return RedirectToAction("Index", "Home");
                         }
-                    }
-                    else
-                    {
-                        TempData["Advertencia"] = result.Message;
+                        else
+                        {
+                            TempData["Advertencia"] = resultPantallasPorRoles.Message;
+                        }
                     }
                 }
                 else
                 {
-                    TempData["Advertencia"] = resultPantallasPorRoles.Message;
+                    TempData["Advertencia"] = result.Message;
                 }
             }
             catch (Exception ex)

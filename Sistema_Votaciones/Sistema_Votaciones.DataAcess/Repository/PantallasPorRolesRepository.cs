@@ -14,6 +14,17 @@ namespace Sistema_Votaciones.DataAcess.Repository
 {
     public partial class PantallasPorRolesRepository : IRepository<tbPantallasPorRoles>
     {
+
+        public RequestStatus Delete(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public tbPantallasPorRoles Find(int? id)
+        {
+            throw new NotImplementedException();
+        }
+
         public RequestStatus Delete(int? Rol_Id, int? Pant_Id)
         {
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
@@ -26,17 +37,6 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
-
-        public RequestStatus Delete(int? id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public tbPantallasPorRoles Find(int? id)
-        {
-            throw new NotImplementedException();
-        }
-
         public RequestStatus Insert(tbPantallasPorRoles item)
         {
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
@@ -49,6 +49,32 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
+        public RequestStatus DeletePorEsqu(int? Rol_Id, int? Esqu_Id)
+        {
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Rol_Id", Rol_Id);
+                parameter.Add("Esqu_Id", Esqu_Id);
+
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Paro_EliminarPorEsqu, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+            }
+        }
+
+        public RequestStatus InsertPorEsqu(tbPantallasPorRoles item)
+        {
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Rol_Id", item.Rol_Id);
+                parameter.Add("Esqu_Id", item.Esqu_Id);
+
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Paro_InsertarPorEsqu, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+            }
+        }
+
 
         public IEnumerable<tbPantallasPorRoles> List()
         {
@@ -57,6 +83,20 @@ namespace Sistema_Votaciones.DataAcess.Repository
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
                 result = db.Query<tbPantallasPorRoles>(ScriptsBaseDeDatos.Paro_Listar, commandType: CommandType.Text).ToList();
+                return result;
+            }
+
+        }
+        public IEnumerable<tbPantallasPorRoles> List(int Rol_Id)
+        {
+
+            List<tbPantallasPorRoles> result = new List<tbPantallasPorRoles>();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Rol_Id", Rol_Id);
+
+                result = db.Query<tbPantallasPorRoles>(ScriptsBaseDeDatos.Paro_ListarPorRol, parameter, commandType: CommandType.StoredProcedure).ToList();
                 return result;
             }
 

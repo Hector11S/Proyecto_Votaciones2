@@ -8,6 +8,7 @@ namespace Frontend_Sistema_Votaciones.WebAPI
 {
     public interface IApiResult
     {
+        public int Id { get; set; }
         public HttpStatusCode StatusCode { get; set; }
         public bool Success { get; }
         public ApiResultType Type { get; set; }
@@ -18,6 +19,8 @@ namespace Frontend_Sistema_Votaciones.WebAPI
 
     public class ApiResult<T> : IApiResult
     {
+        public int Id { get; set; }
+
         public HttpStatusCode StatusCode { get; set; }
 
         public bool Success { get; set; }
@@ -65,6 +68,8 @@ namespace Frontend_Sistema_Votaciones.WebAPI
 
     public class ApiResult : IApiResult
     {
+        public int Id { get; set; }
+
         public HttpStatusCode StatusCode { get; set; }
 
         public bool Success { get; set; }

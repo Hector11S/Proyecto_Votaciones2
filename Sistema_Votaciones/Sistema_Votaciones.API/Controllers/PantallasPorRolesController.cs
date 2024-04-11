@@ -30,6 +30,14 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
+        [HttpGet("API/[controller]/Find")]
+        public IActionResult Find(int Rol_Id)
+        {
+
+            var list = _accesoServices.ListParo(Rol_Id);
+            return Ok(list);
+        }
+
 
         [HttpPost("API/[controller]/Insert")]
         public IActionResult Create(PantallasPorRolesViewModel json)
@@ -48,6 +56,26 @@ namespace Sistema_Votaciones.API.Controllers
         public IActionResult Delete(int Rol_Id, int Pant_Id)
         {
             var list = _accesoServices.EliminarParo(Rol_Id, Pant_Id);
+            return Ok(list);
+        }
+
+        [HttpPost("API/[controller]/CreatePorEsqu")]
+        public IActionResult CreatePorEsqu(PantallasPorRolesViewModel json)
+        {
+            _mapper.Map<tbPantallasPorRoles>(json);
+            var modelo = new tbPantallasPorRoles()
+            {
+                Rol_Id = json.Rol_Id,
+                Esqu_Id = json.Esqu_Id
+            };
+            var response = _accesoServices.CrearParoPorEsqu(modelo);
+            return Ok(response);
+        }
+
+        [HttpDelete("API/[controller]/DeletePorEsqu")]
+        public IActionResult DeletePorEsqu(int Rol_Id, int Esqu_Id)
+        {
+            var list = _accesoServices.EliminarParoPorEsqu(Rol_Id, Esqu_Id);
             return Ok(list);
         }
     }

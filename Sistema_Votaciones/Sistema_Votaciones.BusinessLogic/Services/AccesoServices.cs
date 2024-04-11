@@ -268,6 +268,20 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error de capa 8");
             }
         }
+        public ServiceResult ListParo(int Rol_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _pantallasPorRolesRepository.List(Rol_Id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
         public ServiceResult FindParo(int Paro_Id)
         {
             var result = new ServiceResult();
@@ -321,6 +335,47 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             catch (Exception ex)
             {
                 return result.Error("Error al desactivar la pantalla");
+            }
+        }
+        public ServiceResult CrearParoPorEsqu(tbPantallasPorRoles item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var reponse = _pantallasPorRolesRepository.InsertPorEsqu(item);
+                if (reponse.CodeStatus == 1)
+                {
+                    return result.Ok("Pantallas vinculadas con exito", reponse);
+                }
+                else
+                {
+                    return result.Error($"Error al vincular las pantallas a {item.Rol}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error($"Error al vincular las pantallas a {item.Rol}");
+            }
+        }
+
+        public ServiceResult EliminarParoPorEsqu(int Rol_Id, int Esqu_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var reponse = _pantallasPorRolesRepository.DeletePorEsqu(Rol_Id, Esqu_Id);
+                if (reponse.CodeStatus == 1)
+                {
+                    return result.Ok($"Pantallas desactivadas", reponse);
+                }
+                else
+                {
+                    return result.Error("Error al desactivar las pantallas");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al desactivar las pantallas");
             }
         }
         #endregion

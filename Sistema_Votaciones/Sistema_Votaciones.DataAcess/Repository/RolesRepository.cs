@@ -48,7 +48,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Rol_FechaCreacion", item.Rol_FechaCreacion);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Rol_Insertar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+                return new RequestStatus { Id = result.id, CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
 

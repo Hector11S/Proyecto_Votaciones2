@@ -43,7 +43,7 @@ namespace Sistema_Votaciones.API.Controllers
             _mapper.Map<tbRoles>(json);
             var modelo = new tbRoles()
             {
-                Rol_Id = json.Rol_Id,
+        
                 Rol_Descripcion = json.Rol_Descripcion,
                 Rol_UsuarioCreacion = json.Rol_UsuarioCreacion,
                 Rol_FechaCreacion = json.Rol_FechaCreacion

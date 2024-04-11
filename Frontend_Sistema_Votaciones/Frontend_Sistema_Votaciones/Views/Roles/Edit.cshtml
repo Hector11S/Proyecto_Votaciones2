@@ -2,11 +2,20 @@
 @using Newtonsoft.Json;
 @{
     var Rol_Id = Model != null ? Model.Rol_Id : 0;
+    var Rol_Descripcion = Model != null ? Model.Rol_Descripcion : null;
     var roles = ViewBag.Roles;
     var pantallas = ViewBag.Pantallas;
     var esquemas = (Dictionary<int, string>)ViewBag.Esquemas;
     var pantallasPorRoles = ViewBag.PantallasPorRoles;
     ViewData["Title"] = "Roles";
+    var abrirModal = TempData["AbrirModal"];
+    string serializedItem = (string)TempData["Item"];
+
+    RolesViewModel rol = null;
+    if (!String.IsNullOrEmpty(serializedItem))
+    {
+        rol = JsonConvert.DeserializeObject<RolesViewModel>(serializedItem);
+    }
 }
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
@@ -18,9 +27,18 @@
 </header>
 <div class="card m-2 mt-4 p-3" style="overflow-x: auto">
     <div class="d-flex align-items-center flex-column" style="min-height: 50vh; justify-content: start;">
-        <form asp-action="Create" asp-controller="Roles" method="post">
+        <form asp-action="Edit" asp-controller="Roles" method="post">
             <div style="min-width: 280px; display: flex; gap: 20px;">
                 @if (Rol_Id != 0)
+                {
+                    <div>
+                        <label style="color: #3dbdd9">Rol</label>
+                        <input asp-for="Rol_Id" type="hidden" value="@Rol_Id" style="max-width: 280px;" />
+                        <input asp-for="Rol_Descripcion" value="@Rol_Descripcion" class="form-control" style="max-width: 280px;" />
+                    </div>
+                    <button id="btnRol_Id" class="btn btn-primary" style=" max-height: 40px; align-self: end;" type="submit">Guardar</button>
+                }
+                else
                 {
                     <div>
                         <label style="color: #3dbdd9">Rol</label>
@@ -28,15 +46,6 @@
                         <input asp-for="Rol_Descripcion" class="form-control" style="max-width: 280px;" disabled/>
                     </div>
                     <button id="btnRol_Id" class="btn btn-primary" style=" max-height: 40px; align-self: end;" type="submit" disabled>Guardar</button>
-                }
-                else
-                {
-                    <div>
-                        <label style="color: #3dbdd9">Rol</label>
-                        <input asp-for="Rol_Id" type="hidden" value="@Rol_Id" style="max-width: 280px;" />
-                        <input asp-for="Rol_Descripcion" class="form-control" style="max-width: 280px;" />
-                    </div>
-                    <button id="btnRol_Id" class="btn btn-primary" style=" max-height: 40px; align-self: end;" type="submit">Guardar</button>
                 }
             </div>
         </form>
@@ -121,20 +130,14 @@
         });
     }
 
+    const pantallasPorRolesJSON = JSON.parse('@Html.Raw(pantallasPorRoles)');
+    console.log(pantallasPorRolesJSON);
+
+    let dropdownChangedByUser = true;
+
     const rolId = document.getElementById("Rol_Id").value;
+    console.log(rolId, "rolId")
     $(document).ready(function () {
-        @if (Rol_Id == 0)
-        {
-            <text>
-            iziToast.info({
-                title: 'Habilitar tree view',
-                message: "Primero cree un rol para habilitar el tree view",
-                position: 'topRight',
-                transitionIn: 'flipInX',
-                transitionOut: 'flipOutX'
-            });
-            </text>
-        }
         $('.Pant_CkBox').change(function () {
             if (parseInt(rolId) !== 0) {
                 var isChecked = $(this).is(':checked');
@@ -221,6 +224,17 @@
                 });
             }
         })
+    });
+
+    const ddlRoles = document.getElementById("Rol_Id");
+    ddlRoles.addEventListener("change", () => {
+        dropdownChangedByUser = true;
+        const pantallasToCheck = pantallasPorRolesJSON.filter(item => item.Rol_Id === parseInt(ddlRoles.value));
+        console.log(pantallasToCheck);
+        pantallasToCheck.forEach(pantalla => {
+            const nodeId = pantalla.Pant_Id.toString();
+            $('#ParoTreeView').jstree('check_node', nodeId);
+        });
     });
 
 </script>

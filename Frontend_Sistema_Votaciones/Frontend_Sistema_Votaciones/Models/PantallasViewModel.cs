@@ -17,8 +17,8 @@ namespace Frontend_Sistema_Votaciones.Models
         public string Pant_Esquema { get; set; }
         public string Pant_Controlador { get; set; }
         public int Esqu_Id { get; set; }
-        public string Pant_IconoBootstrap { get; set; }
         public string Esqu_Descripcion { get; set; }
+        public string Pant_IconoBootstrap { get; set; }
 
     }
 }

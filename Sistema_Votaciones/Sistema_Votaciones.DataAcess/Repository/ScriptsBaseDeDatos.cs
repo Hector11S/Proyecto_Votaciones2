@@ -32,8 +32,11 @@ namespace Sistema_Votaciones.DataAcess.Repository
         
         #region PantallasPorRoles
         public static string Paro_Listar = "[Acce].[SP_PantallasPorRoles_Mostrar]";
+        public static string Paro_ListarPorRol = "[Acce].[SP_PantallasPorRoles_MostrarPorRol]";
+        public static string Paro_InsertarPorEsqu = "[Acce].[SP_PantallasPorRoles_InsertarPorEsqu]";
         public static string Paro_Insertar = "[Acce].[SP_PantallasPorRoles_Insertar]";
         public static string Paro_Eliminar = "[Acce].[SP_PantallasPorRoles_Eliminar]";
+        public static string Paro_EliminarPorEsqu = "[Acce].[SP_PantallasPorRoles_EliminarPorEsqu]";
         #endregion
 
         #region Departamentos
