@@ -76,6 +76,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Empl_Insertar = "[Gral].[SP_Empleados_Insertar]";
         public static string Empl_Editar = "[Gral].[SP_Empleados_Editar]";
         public static string Empl_ActivarDesactivar = "[Gral].[SP_Empleados_ActivarDesactivar]";
+
+        public static string Empl_LlenarByEmpl = "[Acce].[SP_Empleados_LlenarByEmpl]";
         #endregion
 
         #region Sedes
@@ -138,6 +140,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Vota_Editar = "[Gral].[SP_Votantes_Editar]";
         public static string Vota_Eliminar = "[Gral].[SP_Votantes_Eliminar]";
         public static string Vota_ListarCandidatos = "[Gral].[SP_Votantes_MostrarCandidatos]";
+
+        public static string Vota_LlenarByEmpl = "[Acce].[SP_Votantes_LlenarByEmpl]";
         #endregion
 
 

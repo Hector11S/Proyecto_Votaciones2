@@ -18,22 +18,31 @@ namespace Frontend_Sistema_Votaciones.Controllers
         private readonly DepartamentoServicios _departamentoServicios;
         private readonly MunicipioServicios _municipioServicios;
         private readonly PartidoServicios _partidoServicios;
+        private readonly CargoServicios _cargoServicios;
+        private readonly SedesServicios _sedesServicios;
+        private readonly MesasServicios _mesasServicios;
         private readonly IWebHostEnvironment _hostingEnviroment;
 
 
         public EmpleadosController(
-            EmpleadoServicios alcaldeServicios,
+            EmpleadoServicios empleadoServicios,
             VotanteServicios votanteServicios,
             DepartamentoServicios departamentoServicios,
             MunicipioServicios municipioServicios,
             PartidoServicios partidoServicios,
+            CargoServicios cargoServicios,
+            SedesServicios sedesServicios,
+            MesasServicios mesasServicios,
             IWebHostEnvironment hostingEnviroment)
         {
-            _empleadoServicios = alcaldeServicios;
+            _cargoServicios = cargoServicios;
+            _empleadoServicios = empleadoServicios;
             _votanteServicios = votanteServicios;
             _departamentoServicios = departamentoServicios;
             _municipioServicios = municipioServicios;
             _partidoServicios = partidoServicios;
+            _sedesServicios = sedesServicios;
+            _mesasServicios = mesasServicios;
             _hostingEnviroment = hostingEnviroment;
         }
 
@@ -45,10 +54,10 @@ namespace Frontend_Sistema_Votaciones.Controllers
 
                 var reponseVotante = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
                 VotanteViewModel votante = (VotanteViewModel)reponseVotante.Data;
-                var responseEmpleado = await _empleadoServicios.ObtenerEmpleado(votante.Vota_Id);
-                if (responseEmpleado.Success)
+                var responseAlcalde = await _empleadoServicios.ObtenerEmpleado(Convert.ToInt32(votante.Vota_Id));
+                if (responseAlcalde.Success)
                 {
-                    return Json(new { message = "Ya existe un registro de este alcalde." });
+                    return Json(new { message = "Ya existe un registro de este Empleado." });
                 }
                 else
                 {
@@ -60,6 +69,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 return Json("Error al obtener la persona por el DNI");
             }
         }
+
         [HttpGet("[controller]/ObtenerMunicipiosPorDept/{Dept_Codigo}")]
         public async Task<IActionResult> ObtenerMunicipios(string Dept_Codigo)
         {
@@ -79,6 +89,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             {
                 var model = new List<EmpleadoViewModel>();
                 var list = await _empleadoServicios.ObtenerEmpleadoList();
+                
                 return View(list.Data);
             }
             catch (Exception ex)
@@ -110,6 +121,15 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 var partidosList = await _partidoServicios.ObtenerPartidoList();
                 ViewBag.Departamentos = departamentosList.Data;
                 ViewBag.Partidos = partidosList.Data;
+
+                var sedes = await _sedesServicios.ObtenerSedesList();
+                ViewBag.Sedes = sedes.Data;
+
+                var Mesas = await _mesasServicios.ObtenerMesasList();
+                ViewBag.Mesas = Mesas.Data;
+
+                var CargosList = await _cargoServicios.ObtenerCargoList();
+                ViewBag.Cargos = CargosList.Data;
             }
             catch (Exception ex)
             {
@@ -141,7 +161,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error al crear el alcalde.";
+                TempData["Error"] = "Error al crear el empleado.";
             }
             return View(item);
         }

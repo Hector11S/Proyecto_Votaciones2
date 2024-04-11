@@ -350,6 +350,20 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         #endregion
 
         #region Empleados
+        public ServiceResult FindEmpleByEmpl(int Empl_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.FindByEmpl(Empl_Id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
         public ServiceResult ListEmpl()
         {
             var result = new ServiceResult();

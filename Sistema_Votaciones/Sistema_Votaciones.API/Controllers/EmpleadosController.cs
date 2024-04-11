@@ -29,6 +29,12 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _generalServices.ListEmpl();
             return Ok(list);
         }
+        [HttpGet("API/[controller]/FindByEmpl")]
+        public IActionResult FindByEmpl(int Empl_Id)
+        {
+            var list = _generalServices.FindEmpleByEmpl(Empl_Id);
+            return Ok(list);
+        }
 
         [HttpGet("API/[controller]/Find")]
         public IActionResult Find(int Empl_Id)

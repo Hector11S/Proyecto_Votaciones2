@@ -68,6 +68,17 @@ namespace Sistema_Votaciones.DataAcess.Repository
             }
 
         }
+        public tbEmpleados FindByEmpl(int? id)
+        {
+            tbEmpleados result = new tbEmpleados();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Empl_Id", id);
+                result = db.QueryFirst<tbEmpleados>(ScriptsBaseDeDatos.Empl_LlenarByEmpl, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
+        }
 
         public RequestStatus Update(tbEmpleados item)
         {

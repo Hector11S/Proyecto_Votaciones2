@@ -43,6 +43,7 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _accesoServices.FindUsuaByEmpl(Empl_Id);
             return Ok(list);
         }
+
         [HttpPost("API/[controller]/IniciarSesion")]
         public IActionResult IniciarSesion(UsuariosViewModel json)
         {

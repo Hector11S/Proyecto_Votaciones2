@@ -1,6 +1,15 @@
 ﻿@model Frontend_Sistema_Votaciones.Models.EmpleadoViewModel
 
 @{
+    var Empl_Id = Model != null ? Model.Empl_Id : 0;
+    var Vota_DNI = Model != null ? Model.Vota_DNI : null;
+    var Vota_NombreCompleto = Model != null ? Model.Vota_NombreCompleto : null;
+    var Partidos = (List<PartidoViewModel>)ViewBag.Partidos;
+    var Cargos = (List<CargoViewModel>)ViewBag.Cargos;
+    var Sedes = (List<SedesViewModel>)ViewBag.Sedes;
+    var Mesas = (List<MesasViewModel>)ViewBag.Mesas;
+    var departamentos = ViewBag.Departamentos;
+    var Muni_Codigo = Model != null ? Model.Muni_Codigo : null;
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -12,67 +21,94 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Empl_UsuarioCreacion" class="control-label"></label>
-                <input asp-for="Empl_UsuarioCreacion" class="form-control" />
-                <span asp-validation-for="Empl_UsuarioCreacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Empl_FechaCreacion" class="control-label"></label>
-                <input asp-for="Empl_FechaCreacion" class="form-control" />
-                <span asp-validation-for="Empl_FechaCreacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Empl_UsuarioModifica" class="control-label"></label>
-                <input asp-for="Empl_UsuarioModifica" class="form-control" />
-                <span asp-validation-for="Empl_UsuarioModifica" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Empl_FechaModifica" class="control-label"></label>
-                <input asp-for="Empl_FechaModifica" class="form-control" />
-                <span asp-validation-for="Empl_FechaModifica" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Empl_Estado" /> @Html.DisplayNameFor(model => model.Empl_Estado)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Part_Id" class="control-label"></label>
-                <input asp-for="Part_Id" class="form-control" />
+
+            <div class="form-group col-sm-5 mb-4">
+                <label for="Part_Id" class="control-label">Partido</label>
+                <select asp-for="Part_Id" id="Part_Id_Create" class="form-select">
+                    <option value="">-- Partidos --</option>
+                    @foreach (var item in Partidos)
+                    {
+                        <option value="@item.Part_Id">@item.Part_Descripcion</option>
+                    }
+                </select>
                 <span asp-validation-for="Part_Id" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Carg_Id" class="control-label"></label>
-                <input asp-for="Carg_Id" class="form-control" />
+            <div class="form-group col-sm-5 mb-4">
+                <label for="Carg_Id" class="control-label">Cargo</label>
+                <select asp-for="Carg_Id" id="Carg_Id_Create" class="form-select">
+                    <option value="">-- Cargo --</option>
+                    @foreach (var item in Cargos)
+                    {
+                        <option value="@item.Carg_Id">@item.Carg_Descripcion</option>
+                    }
+                </select>
                 <span asp-validation-for="Carg_Id" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Empl_Id" class="control-label"></label>
-                <input asp-for="Empl_Id" class="form-control" />
-                <span asp-validation-for="Empl_Id" class="text-danger"></span>
+
+            <div class="row mt-3">
+                <div class="form-group col">
+                    <label class="mb-2" style="color: #3dbdd9">Buscar por numero de identidad:</label>
+                    <input asp-for="Empl_Id" value="@Empl_Id" type="hidden" class="form-control" />
+                    <input asp-for="Vota_DNI" value="@Vota_DNI" type="text" class="form-control" />
+                    <span asp-validation-for="Empl_Id" class="text-danger"></span>
+                </div>
+                <div class="form-group col">
+                    <label class="mb-2" style="color: #3dbdd9">Nombre completo:</label>
+                    <input asp-for="Vota_NombreCompleto" value="@Vota_NombreCompleto" class="form-control" disabled />
+                    <span class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Dept_Codigo" class="control-label"></label>
-                <input asp-for="Dept_Codigo" class="form-control" />
-                <span asp-validation-for="Dept_Codigo" class="text-danger"></span>
+            <div class="row mt-3">
+                <div class="form-group col">
+                    <label class="mb-2" style="color: #3dbdd9">Departamento: </label>
+                    <select id="ddlDepartamentos" class="form-select">
+                        <option value="">-- Departamento --</option>
+                        @if (departamentos != null)
+                        {
+                            foreach (var item in departamentos)
+                            {
+                                <option value="@item.Dept_Codigo">@item.Dept_Descripcion</option>
+                            }
+                        }
+                    </select>
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-group col">
+                    <label asp-for="Muni_Codigo" class="mb-2" style="color: #3dbdd9">Municipio al que se postula:</label>
+                    <select class="form-select" asp-for="Muni_Codigo">
+                        <option>-- Municipio --</option>
+                    </select>
+                    <span asp-validation-for="Muni_Codigo" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Sede_Id" class="control-label"></label>
-                <input asp-for="Sede_Id" class="form-control" />
+            @*<div class="form-group">
+            <label asp-for="MePS_Id" class="control-label"></label>
+            <input asp-for="MePS_Id" class="form-control" />
+            <span asp-validation-for="MePS_Id" class="text-danger"></span>
+        </div>*@
+            <div class="form-group col-sm-5 mb-4">
+                <label for="Sede_Id" class="control-label">Sedes</label>
+                <select asp-for="Sede_Id" id="Sede_Id_Create" class="form-select">
+                    <option value="">-- Sedes --</option>
+                    @foreach (var item in Sedes)
+                    {
+                        <option value="@item.Sede_Id">@item.Sede_Descripcion</option>
+                    }
+                </select>
                 <span asp-validation-for="Sede_Id" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Mesa_Id" class="control-label"></label>
-                <input asp-for="Mesa_Id" class="form-control" />
+            <div class="form-group col-sm-5 mb-4">
+                <label for="Mesa_Id" class="control-label">Numero de Mesa</label>
+                <select asp-for="Mesa_Id" id="Mesa_Id_Create" class="form-select">
+                    <option value="">-- Numero de Mesa --</option>
+                    @foreach (var item in Mesas)
+                    {
+                        <option value="@item.Mesa_Id">@item.Mesa_Numero</option>
+                    }
+                </select>
                 <span asp-validation-for="Mesa_Id" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Vota_NombreCompleto" class="control-label"></label>
-                <input asp-for="Vota_NombreCompleto" class="form-control" />
-                <span asp-validation-for="Vota_NombreCompleto" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -84,6 +120,187 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+<script>
+        const txtNombreVotante = document.getElementById("Vota_NombreCompleto");
+   
+
+        let departamentosJS = [];
+        let partidosJS = [];
+        let municipios = [];
+
+        function llenarSelectsDesdeElSessionStorage() {
+            txtNombreVotante.setAttribute("disabled", "disabled");
+            const departamentosJSON = sessionStorage.getItem('departamentosJS');
+            const partidosJSON = sessionStorage.getItem('partidosJS');
+            const municipiosJSON = sessionStorage.getItem('municipios');
+
+            departamentosJS = JSON.parse(departamentosJSON);
+            partidosJS = JSON.parse(partidosJSON);
+            municipios = JSON.parse(municipiosJSON);
+
+            console.log(departamentosJS, "departamentosJS", partidosJS, "partidosJSON", municipios, "municipios")
+
+            llenarSelect('ddlDepartamentos', departamentosJS);
+            llenarSelect('Part_Id', partidosJS);
+            llenarSelect('Muni_Codigo', municipios);
+        }
+
+        function llenarSelect(selectId, options) {
+            const selectElement = document.getElementById(selectId);
+            switch (selectId) {
+                case "ddlDepartamentos":
+                    options.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option.Dept_Codigo;
+                        optionElement.textContent = option.Dept_Descripcion;
+                        selectElement.appendChild(optionElement);
+                    });
+                    break;
+
+                case "Muni_Codigo":
+                    options.forEach(option => {
+                        const optionElement = document.createElement('option');
+                        optionElement.value = option.muni_Codigo;
+                        optionElement.textContent = option.muni_Descripcion;
+                        selectElement.appendChild(optionElement);
+                        @if (Muni_Codigo != null)
+                        {
+                            <text>
+                            const departamentosElement = document.getElementById("ddlDepartamentos");
+                            if (option.muni_Codigo === "@Muni_Codigo") {
+                                selectElement.value = option.muni_Codigo;
+                                departamentosElement.value = option.dept_Codigo;
+                            }
+                            </text>
+
+                        }
+                    });
+                    break;
+                default:
+                    console.log("No entró en el switch")
+                    break;
+            }
+        }
+
+        @if (departamentos != null)
+        {
+            foreach (var item in departamentos)
+            {
+                <text>
+                departamentosJS.push({
+                    Dept_Codigo: '@item.Dept_Codigo',
+                    Dept_Descripcion: '@Html.Raw(item.Dept_Descripcion)'
+                });
+                </text>
+            }
+
+        }
+        else {
+
+
+        }
+
+
+        function guardarArreglos() {
+            txtNombreVotante.removeAttribute("disabled");
+
+            const departamentosJSON = JSON.stringify(departamentosJS);
+            const partidosJSON = JSON.stringify(partidosJS);
+            const municipiosJSON = JSON.stringify(municipios);
+
+            sessionStorage.setItem('departamentosJS', departamentosJSON);
+            sessionStorage.setItem('partidosJS', partidosJSON);
+            sessionStorage.setItem('municipios', municipiosJSON);
+        }
+
+
+        const txtDNI = document.getElementById("Vota_DNI");
+        txtDNI.addEventListener("blur", () => {
+            if (txtDNI.value.length !== 13 && txtDNI.value.length > 0) {
+                iziToast.warning({
+                    title: 'Identidad incorrecta',
+                    message: "La identidad debe ser de 13 digitos y no debe llevar guiones",
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            }
+        })
+        txtDNI.addEventListener("input", () => {
+            const val = txtDNI.value.replace(/[^0-9]/g, '');
+            txtDNI.value = val;
+            if (txtDNI.value.length === 13) {
+                $.ajax({
+                    url: `/Empleados/ObtenerVotantePorDNI/${txtDNI.value}`,
+                    method: "GET",
+                    success: function (response) {
+                        console.log(response, "ObtenerVotantePorDNI");
+                        if (response.votante) {
+                            $('#Empl_Id').val(response.votante.vota_Id);
+                            txtNombreVotante.value = response.votante.vota_Nombre + " " + response.votante.vota_Apellidos;
+                        } else {
+                            iziToast.warning({
+                                title: 'No encontrado',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                            $('#Empl_Id').val("");
+                            txtNombreVotante.value = "";
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error("Error al buscar votante por el DNI:", errorThrown);
+                    }
+                });
+            } else {
+                $('#Empl_Id').val("");
+                txtNombreVotante.value = "";
+            }
+        })
+
+        const ddlDepartamentos = document.getElementById("ddlDepartamentos");
+        const ddlMunicipios = document.getElementById("Muni_Codigo");
+        ddlDepartamentos.addEventListener("change", () => {
+            $.ajax({
+                url: `/Empleados/ObtenerMunicipiosPorDept/${ddlDepartamentos.value}`,
+                method: "GET",
+                success: function (response) {
+                    console.log(response, "ObtenerMunicipiosPorDept");
+                    if (response.municipios) {
+                        ddlMunicipios.innerHTML = "<option value=''>-- Municipio --</option>"
+                        response.municipios.forEach(muni => {
+                            municipios.push(muni);
+                            //const indiceDelMunicipioEncontrado = municipios.findIndex(mu => mu.muni_Codigo === muni.muni_Codigo);
+                            //if (indiceDelMunicipioEncontrado === -1) {
+                            //    municipios.push(muni);
+                            //}
+                            const newOptionElement = document.createElement("option");
+                            newOptionElement.value = muni.muni_Codigo;
+                            newOptionElement.textContent = muni.muni_Descripcion;
+                            ddlMunicipios.append(newOptionElement);
+                        })
+                        ddlMunicipios.selectedIndex = 1;
+                    } else {
+                        iziToast.error({
+                            title: 'Error',
+                            message: response.message,
+                            position: 'topRight',
+                            transitionIn: 'flipInX',
+                            transitionOut: 'flipOutX'
+                        });
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(`Error al cargar los municipios del departamento:${ddlDepartamentos.value}`, errorThrown);
+                }
+            });
+        })
+
+
+
+</script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -22,72 +22,94 @@
         <thead style="color: #78e7ff;">
             <tr style="background: rgb(0,0,0)">
                 <th>
-                    @Html.DisplayNameFor(model => model.Part_Id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Carg_Id)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Empl_Id)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Dept_Codigo)
+                    @Html.DisplayNameFor(model => model.Vota_NombreCompleto)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Sede_Id)
+                    @Html.DisplayNameFor(model => model.Vota_DNI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Part_Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Carg_Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sede_Descripcion)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Mesa_Id)
                 </th>
+          
+                <th>
+                    @Html.DisplayNameFor(model => model.Mesa_Numero)
+                </th>
+           
+
+
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Part_Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Carg_Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Empl_Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Dept_Codigo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Sede_Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Mesa_Id)
-                    </td>
-                    <td style="width: 5%">
-                        <div class="w-100" style="max-width: 250px">
-                            <div class="d-flex w-100" style="gap: 5px;">
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Edit", new { Alca_Id=item.Empl_Id })">
-                                    <i class="bi bi-pencil"></i>
-                                    Editar
-                                </a>
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { Alca_Id=item.Empl_Id })">
-                                    <i class="bi bi-eye"></i>
-                                    Detalles
-                                </a>
-                            </div>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empl_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vota_NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vota_DNI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Part_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carg_Descripcion)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sede_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mesa_Numero)
+                </td>
+          
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mesa_Numero)
+                </td>
+         
+
+
+                <td style="width: 5%">
+                    <div class="w-100" style="max-width: 250px">
+                        <div class="d-flex w-100" style="gap: 5px;">
+                            <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action(" Edit", new { Alca_Id=item.Empl_Id })">
+                                <i class="bi bi-pencil"></i>
+                                Editar
+                            </a>
+                            <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action(" Details", new { Alca_Id=item.Empl_Id })">
+                                <i class="bi bi-eye"></i>
+                                Detalles
+                            </a>
                         </div>
-                    </td>
-                </tr>
+                    </div>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
 </div>
 
-    @section Scripts {
-        <script>
+@section Scripts {
+    <script>
         $(document).ready(function () {
             $('#dtEmpleado').DataTable();
         });
-        </script>
-    }
+    </script>
+}
