@@ -31,10 +31,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-<script>
-    const txtCarg_Descripcion = document.getElementById("Carg_Descripcion_Create");
-    txtCarg_Descripcion.addEventListener("input", () => {
-        const val = txtCarg_Descripcion.value.replace(/[^a-zA-Z]/g, '');
-        txtCarg_Descripcion.value = val;
-    })
-</script>

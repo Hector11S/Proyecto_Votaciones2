@@ -10,10 +10,13 @@ namespace Frontend_Sistema_Votaciones.Models
     {
         [Display(Name = "Codigo")]
         public string Muni_Codigo { get; set; }
-        [Display(Name = "Nombre")]
+        [Display(Name = "Municipio")]
         public string Muni_Descripcion { get; set; }
         [Display(Name = "Codigo Departamento")]
         public string Dept_Codigo { get; set; }
+        [Display(Name = "Departamento")]
+        public string Dept_Descripcion { get; set; }
+
         [Display(Name = "Usuario creacion")]
         public int Muni_UsuarioCreacion { get; set; }
         [Display(Name = "Fecha creacion")]

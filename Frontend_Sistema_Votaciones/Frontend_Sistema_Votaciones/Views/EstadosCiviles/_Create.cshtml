@@ -36,10 +36,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-<script>
-    const txtEsta_Id = document.getElementById("Esta_Id_Create");
-    txtEsta_Id.addEventListener("input", () => {
-        const val = txtEsta_Id.value.replace(/[^0-9]/g, '');
-        txtEsta_Id.value = val.substr(0, 2);
-    })
-</script>

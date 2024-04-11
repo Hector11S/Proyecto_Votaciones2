@@ -104,16 +104,17 @@
     });
     $('.btnEditar').click(function () {
         var id = $(this).data("id");
+        console.log(id);
         $.ajax({
-            url: `/Departamento/Edit/${id}`,
+            url: `/Cargos/Edit/${id}`,
             method: "GET",
-            success: function (departamento) {
-                console.log(departamento, "departamento")
-                $('#Carg_Id_Edit').val(departamento.dept_Codigo);
-                $('#Carg_Descripcion_Edit').val(departamento.dept_Descripcion);
+            success: function (cargo) {
+                console.log(cargo, "cargo")
+                $('#Carg_Id_Edit').val(cargo.carg_Id);
+                $('#Carg_Descripcion_Edit').val(cargo.carg_Descripcion);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.error("Error al cargar los datos del departamento:", errorThrown);
+                console.error("Error al cargar los datos del cargo:", errorThrown);
             }
         });
         $('#modalEditar').modal('show');
@@ -165,3 +166,15 @@
         </div>
     </div>
 </div>
+<script>
+    const txtCarg_Descripcion_Create = document.getElementById("Carg_Descripcion_Create");
+    txtCarg_Descripcion_Create.addEventListener("input", () => {
+        const val = txtCarg_Descripcion_Create.value.replace(/[^a-zA-Z]/g, '');
+        txtCarg_Descripcion_Create.value = val;
+    })
+    const txtCarg_Descripcion_Edit = document.getElementById("Carg_Descripcion_Edit");
+    txtCarg_Descripcion_Edit.addEventListener("input", () => {
+        const val = txtCarg_Descripcion_Edit.value.replace(/[^a-zA-Z]/g, '');
+        txtCarg_Descripcion_Edit.value = val;
+    })
+</script>

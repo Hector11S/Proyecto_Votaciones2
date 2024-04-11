@@ -79,21 +79,23 @@
 
                                         <div class="col-12">
                                             <label asp-for="Usua_Contra" class="form-label">Contraseña</label>
-                                            <input asp-for="Usua_Contra" type="password" class="form-control" required>
-                                            @if (Usua_Contra_Message != null)
-                                            {
-                                                <div id="Usua_Contra_Validacion" style="color: orangered; font-size: 11px; width: 100%">@Usua_Contra_Message</div>
-                                            }
-                                        </div>
-
-                                        <div class="col-12">
-                                            <button class="btn btn-primary w-100" type="submit">Iniciar sesión</button>
+                                            <div class="input-group has-validation mb-4">
+                                                <span class="input-group-text" id="inputGroupPrepend">
+                                                    <i class="bi bi-lock-fill"></i>
+                                                </span>
+                                                <input asp-for="Usua_Contra" type="password" class="form-control" required>
+                                                @if (Usua_Contra_Message != null)
+                                                {
+                                                    <div id="Usua_Contra_Validacion" style="color: orangered; font-size: 11px; width: 100%">@Usua_Contra_Message</div>
+                                                }
+                                            </div>
+                                            <div class="col-12">
+                                                <button class="btn btn-primary w-100" type="submit">Iniciar sesión</button>
+                                            </div>
                                         </div>
                                     </form>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

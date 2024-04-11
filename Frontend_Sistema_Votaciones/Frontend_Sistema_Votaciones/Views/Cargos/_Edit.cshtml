@@ -9,7 +9,7 @@
 <hr class="border border-primary" />
 <div>
     <div>
-        <form asp-action="@ViewData["ViewName"]" asp-controller="Departamento" method="post">
+        <form asp-action="@ViewData["ViewName"]" asp-controller="Cargos" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="d-flex flex-wrap justify-content-around">
                 <input type="hidden" id="Carg_Id_Edit" name="Carg_Id" />
@@ -31,10 +31,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-<script>
-    const txtCarg_Descripcion = document.getElementById("Carg_Descripcion_Edit");
-    txtCarg_Descripcion.addEventListener("input", () => {
-        const val = txtCarg_Descripcion.value.replace(/[^a-zA-Z]/g, '');
-        txtCarg_Descripcion.value = val;
-    })
-</script>

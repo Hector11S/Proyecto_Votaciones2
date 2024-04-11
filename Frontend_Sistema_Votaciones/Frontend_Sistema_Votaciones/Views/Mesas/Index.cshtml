@@ -157,6 +157,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -165,3 +166,10 @@
         </div>
     </div>
 </div>
+<script>
+    const txtMesa_Numero = document.getElementById("Mesa_Numero_Create");
+    txtMesa_Numero.addEventListener("input", () => {
+        const val = txtMesa_Numero.value.replace(/[^0-9]/g, '');
+        txtMesa_Numero.value = val.substr(0, 2);
+    })
+</script>

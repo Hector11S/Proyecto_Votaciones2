@@ -31,10 +31,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-<script>
-    const txtMesa_Numero = document.getElementById("Mesa_Numero_Create");
-    txtMesa_Numero.addEventListener("input", () => {
-        const val = txtMesa_Numero.value.replace(/[^0-9]/g, '');
-        txtMesa_Numero.value = val.substr(0, 2);
-    })
-</script>

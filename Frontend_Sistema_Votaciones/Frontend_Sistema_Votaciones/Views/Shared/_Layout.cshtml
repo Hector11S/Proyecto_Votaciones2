@@ -129,11 +129,11 @@
                     foreach (var esquema in esquemasDictionary)
                     {
                         <li class="nav-item">
-                            <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                            <a id="@esquema.Key" class="nav-link collapsed" data-bs-target="#@esquema.Key" data-bs-toggle="collapse" href="#">
                                 @switch (esquema.Value)
                                 {
-                                    case "Accesos":
-                                        <i class="bi bi-menu-button-wide"></i>
+                                    case "Acceso":
+                                        <i class="bi bi-lock-fill"></i>
                                         break;
                                     case "General":
                                         <i class="ri ri-admin-fill"></i>
@@ -147,7 +147,7 @@
                                 }
                                 <span>@esquema.Value</span><i class="bi bi-chevron-down ms-auto"></i>
                             </a>
-                            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                            <ul id="@esquema.Key" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                                 @if (paroDictionary != null)
                                 {
                                     foreach (var pantalla in paroDictionary[Rol_Id])
@@ -156,7 +156,7 @@
                                         {
                                             <li class="nav-item">
                                                 <a class="nav-link " asp-controller="@pantalla.Pant_Controlador" asp-action="Index">
-                                                    <i class="@pantalla.Pant_IconoBootstrap"></i>
+                                                    <i class="bi bi-circle"></i>
                                                     <span>@pantalla.Pant_Descripcion</span>
                                                 </a>
                                             </li>
@@ -191,6 +191,36 @@
     <script src="~/lib/jstree/jstree.min.js"></script>
 
     <script>
+        const nav_items = document.querySelectorAll(".nav-item");
+        const nav_links = document.querySelectorAll(".nav-link");
+        const nav_contents = document.querySelectorAll(".nav-content");
+        nav_items.forEach(li => {
+            li.addEventListener("click", () => {
+                //nav_links.forEach(a => {
+                //    a.classList.add("collapsed");
+                //    a.setAttribute("aria-expanded", "false");
+                //})
+                //nav_contents.forEach(ul => {
+                //    console.log(ul);
+                //    ul.classList.replace("collapsing", "collapse");
+                //    ul.classList.remove("show");
+                //})
+
+                //const nav_link = li.querySelector(".nav-link");
+                //console.log(nav_link);
+                //if (nav_link.classList.contains("collapsed")) {
+                //    nav_link.classList.remove("collapsed");
+                //}
+                //if (li.getAttribute("aria-expanded") === "false") {
+                //    li.setAttribute("aria-expanded", "true");
+                //}
+                //const nav_content = li.querySelector(".nav-content");
+                //console.log(nav_content);
+                //if (!nav_content.classList.contains("collapsing")) {
+                //    nav_content.classList.replace("collapsing", "collapse");
+                //}
+            })
+        })
         window.addEventListener('pageshow', function (event) {
             if (event.persisted) {
             window.location.reload();
@@ -243,10 +273,7 @@
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
         <div class="copyright">
-            &copy; Copyright <strong><span>Votaciones</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-            Designed by <a href="https://bootstrapmade.com/">Honduras</a>
+            &copy; Copyright <strong><span>Votaciones</span></strong>. Todos los derechos reservados.
         </div>
     </footer><!-- End Footer -->
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
@@ -22,16 +23,33 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                var model = new List<MunicipioViewModel>();
-                var list = await _municipioServicios.ObtenerMunicipioList();
-                var departamentosResult = await _departamentoServicios.ObtenerDepartamentoList();
-                ViewBag.Departamentos = departamentosResult.Data;
-                return View(list.Data);
+                var rol = HttpContext.Session.GetInt32("Rol_Id");
+                if (rol != null)
+                {
+                    bool autorizado = Autorizacion.Autorizar(Convert.ToInt32(rol), ControllerContext.ActionDescriptor.ControllerName);
+                    if (autorizado)
+                    {
+                        var model = new List<MunicipioViewModel>();
+                        var list = await _municipioServicios.ObtenerMunicipioList();
+                        var departamentosResult = await _departamentoServicios.ObtenerDepartamentoList();
+                        ViewBag.Departamentos = departamentosResult.Data;
+                        return View(list.Data);
+                    }
+                    else
+                    {
+                        TempData["Advertencia"] = "No está autorizado para acceder a esta pantalla.";
+                    }
+                }
+                else
+                {
+                    TempData["Advertencia"] = "Debe iniciar sesión para acceder a esta pantalla.";
+                }
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index", "Home");
+                TempData["Error"] = "Error al cargar el listado.";
             }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet("[controller]/Details/{Muni_Codigo}")]

@@ -36,16 +36,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-<script>
-    const txtDept_Codigo = document.getElementById("Dept_Codigo_Create");
-    txtDept_Codigo.addEventListener("input", () => {
-        const val = txtDept_Codigo.value.replace(/[^0-9]/g, '');
-        txtDept_Codigo.value = val.substr(0, 2);
-    })
-
-    const txtDept_Descripcion = document.getElementById("Dept_Descripcion_Create");
-    txtDept_Descripcion.addEventListener("input", () => {
-        const val = txtDept_Descripcion.value.replace(/[^a-zA-Z]/g, '');
-        txtDept_Descripcion.value = val;
-    })
-</script>

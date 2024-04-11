@@ -1,8 +1,17 @@
-﻿@model Frontend_Sistema_Votaciones.Models.DepartamentoViewModel
+﻿@model Frontend_Sistema_Votaciones.Models.MesasViewModel
+
+@using Newtonsoft.Json;
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Mesas";
+    var abrirModal = TempData["AbrirModal"];
+    string serializedItem = (string)TempData["Item"];
+
+    MesasViewModel itemModal = null;
+    if (!String.IsNullOrEmpty(serializedItem))
+    {
+        itemModal = JsonConvert.DeserializeObject<MesasViewModel>(serializedItem);
+    }
 }
 
 <h1 class="text-center">Detalles</h1>
@@ -17,20 +26,20 @@
             <div class="col-sm-6">
                 <dl>
                     <dt>
-                        @Html.DisplayNameFor(model => model.Dept_Codigo)
+                        @Html.DisplayNameFor(model => model.Mesa_Id)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.Dept_Codigo)
+                        @Html.DisplayFor(model => model.Mesa_Id)
                     </dd>
                 </dl>
             </div>
             <div class="col-sm-6">
                 <dl>
                     <dt>
-                        @Html.DisplayNameFor(model => model.Dept_Descripcion)
+                        @Html.DisplayNameFor(model => model.Mesa_Numero)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.Dept_Descripcion)
+                        @Html.DisplayFor(model => model.Mesa_Numero)
                     </dd>
                 </dl>
             </div>
@@ -40,7 +49,11 @@
 
 <hr />
 <div class="mx-3">
-    <a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Dept_Codigo })">Editar</a>
+    @*<a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Mesa_Id })">Editar</a>*@
+    <button data-id="@Model.Mesa_Id" class="btnEditar btn btn-primary" style="max-width: 100px">
+        <i class="bi bi-pencil"></i>
+        Editar
+    </button>
     <a class="btn btn-secondary" href="@Url.Action("Index")">Regresar</a>
 </div>
 
@@ -52,31 +65,94 @@
     <div class="card-body">
         <dl class="row">
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_UsuarioCreacion)
+                @Html.DisplayNameFor(model => model.Mesa_UsuarioCreacion)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_UsuarioCreacion)
+                @Html.DisplayFor(model => model.Mesa_UsuarioCreacion)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_FechaCreacion)
+                @Html.DisplayNameFor(model => model.Mesa_FechaCreacion)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_FechaCreacion)
+                @Html.DisplayFor(model => model.Mesa_FechaCreacion)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_UsuarioModifica)
+                @Html.DisplayNameFor(model => model.Mesa_UsuarioModifica)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_UsuarioModifica)
+                @Html.DisplayFor(model => model.Mesa_UsuarioModifica)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_FechaModifica)
+                @Html.DisplayNameFor(model => model.Mesa_FechaModifica)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_FechaModifica)
+                @Html.DisplayFor(model => model.Mesa_FechaModifica)
             </dd>
         </dl>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#dtMesas').DataTable();
+        $('#modal' + '@abrirModal').modal('show');
+        @if (itemModal != null)
+        {
+            switch (abrirModal)
+            {
+                case "Nuevo":
+                    <text>
+                        $('#Mesa_Id_Create').val("@itemModal.Mesa_Id");
+                        $('#Mesa_Numero_Create').val("@Html.Raw(itemModal.Mesa_Numero)");
+                    </text>
+                    break;
+                 case "Editar":
+                    <text>
+                        $('#Mesa_Id_Edit').val("@itemModal.Mesa_Id");
+                        $('#Mesa_Numero_Edit').val("@Html.Raw(itemModal.Mesa_Numero)");
+                    </text>
+                    break;
+                default:
+                    break;
+            }
+        }
+    })
+    $('#btnNuevo').click(function () {
+        $('#modalNuevo').modal('show');
+    });
+    $('.btnEditar').click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            url: `/Mesas/Edit/${id}`,
+            method: "GET",
+            success: function (itemModal) {
+                console.log(itemModal, "itemModal")
+                $('#Mesa_Id_Edit').val(itemModal.mesa_Id);
+                $('#Mesa_Numero_Edit').val(itemModal.mesa_Numero);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error al cargar los datos del itemModal:", errorThrown);
+            }
+        });
+        $('#modalEditar').modal('show');
+    });
 
+    function Eliminar(Mesa_Id) {
+        $("#Mesa_Id_Delete").val(Mesa_Id);
+        localStorage.setItem("#Mesa_Id_Delete", Mesa_Id);
+        $('#modalEliminar').modal('show');
+    }
+</script>
+
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_Edit", new Frontend_Sistema_Votaciones.Models.MesasViewModel())
+            </div>
+        </div>
+    </div>
+</div>
 

@@ -1,8 +1,18 @@
-﻿@model Frontend_Sistema_Votaciones.Models.DepartamentoViewModel
+﻿@model Frontend_Sistema_Votaciones.Models.EstadosCivilesViewModel
+
+@using Newtonsoft.Json;
+
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Roles";
+    var abrirModal = TempData["AbrirModal"];
+    string serializedItem = (string)TempData["Item"];
+
+    EstadosCivilesViewModel estadoCivil = null;
+    if (!String.IsNullOrEmpty(serializedItem))
+    {
+        estadoCivil = JsonConvert.DeserializeObject<EstadosCivilesViewModel>(serializedItem);
+    }
 }
 
 <h1 class="text-center">Detalles</h1>
@@ -10,27 +20,27 @@
 
 <div class="card m-3">
     <div class="card-header text-center">
-        Información del Departamento
+        Información del Estado Civil
     </div>
     <div class="card-body">
         <dl class="row">
             <div class="col-sm-6">
                 <dl>
                     <dt>
-                        @Html.DisplayNameFor(model => model.Dept_Codigo)
+                        @Html.DisplayNameFor(model => model.Esta_Id)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.Dept_Codigo)
+                        @Html.DisplayFor(model => model.Esta_Id)
                     </dd>
                 </dl>
             </div>
             <div class="col-sm-6">
                 <dl>
                     <dt>
-                        @Html.DisplayNameFor(model => model.Dept_Descripcion)
+                        @Html.DisplayNameFor(model => model.Esta_Descripcion)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.Dept_Descripcion)
+                        @Html.DisplayFor(model => model.Esta_Descripcion)
                     </dd>
                 </dl>
             </div>
@@ -40,7 +50,11 @@
 
 <hr />
 <div class="mx-3">
-    <a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Dept_Codigo })">Editar</a>
+    @*<a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Esta_Id })">Editar</a>*@
+    <button data-id="@Model.Esta_Id" class="btnEditar btn btn-primary" style="max-width: 100px">
+        <i class="bi bi-pencil"></i>
+        Editar
+    </button>
     <a class="btn btn-secondary" href="@Url.Action("Index")">Regresar</a>
 </div>
 
@@ -52,31 +66,94 @@
     <div class="card-body">
         <dl class="row">
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_UsuarioCreacion)
+                @Html.DisplayNameFor(model => model.Esta_UsuarioCreacion)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_UsuarioCreacion)
+                @Html.DisplayFor(model => model.Esta_UsuarioCreacion)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_FechaCreacion)
+                @Html.DisplayNameFor(model => model.Esta_FechaCreacion)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_FechaCreacion)
+                @Html.DisplayFor(model => model.Esta_FechaCreacion)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_UsuarioModifica)
+                @Html.DisplayNameFor(model => model.Esta_UsuarioModifica)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_UsuarioModifica)
+                @Html.DisplayFor(model => model.Esta_UsuarioModifica)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_FechaModifica)
+                @Html.DisplayNameFor(model => model.Esta_FechaModifica)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_FechaModifica)
+                @Html.DisplayFor(model => model.Esta_FechaModifica)
             </dd>
         </dl>
     </div>
 </div>
+<script>
+$(document).ready(function () {
+    $('#dtEstadosCiviles').DataTable();
+    $('#modal' + '@abrirModal').modal('show');
+    @if (estadoCivil != null)
+    {
+        switch (abrirModal)
+        {
+            case "Nuevo":
+                <text>
+                    $('#Esta_Id_Create').val("@estadoCivil.Esta_Id");
+                    $('#Esta_Descripcion_Create').val("@Html.Raw(estadoCivil.Esta_Descripcion)");
+                </text>
+                break;
+                case "Editar":
+                <text>
+                    $('#Esta_Id_Edit').val("@estadoCivil.Esta_Id");
+                    $('#Esta_Descripcion_Edit').val("@Html.Raw(estadoCivil.Esta_Descripcion)");
+                </text>
+                break;
+            default:
+                break;
+        }
+    }
+})
+$('#btnNuevo').click(function () {
+    $('#modalNuevo').modal('show');
+});
+$('.btnEditar').click(function () {
+    var id = $(this).data("id");
+    $.ajax({
+        url: `/EstadosCiviles/Edit/${id}`,
+        method: "GET",
+        success: function (estadoCivil) {
+            console.log(estadoCivil, "estadoCivil")
+            $('#Esta_Id_Edit').val(estadoCivil.esta_Id);
+            $('#Esta_Descripcion_Edit').val(estadoCivil.esta_Descripcion);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error("Error al cargar los datos del estadoCivil:", errorThrown);
+        }
+    });
+    $('#modalEditar').modal('show');
+});
 
+function Eliminar(Esta_Id) {
+    $("#Esta_Id_Delete").val(Esta_Id);
+    localStorage.setItem("#Esta_Id_Delete", Esta_Id);
+    $('#modalEliminar').modal('show');
+}
+</script>
+
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_Edit", new Frontend_Sistema_Votaciones.Models.EstadosCivilesViewModel())
+            </div>
+        </div>
+    </div>
+</div>
 

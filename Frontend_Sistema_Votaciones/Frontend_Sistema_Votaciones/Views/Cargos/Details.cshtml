@@ -1,8 +1,17 @@
-﻿@model Frontend_Sistema_Votaciones.Models.DepartamentoViewModel
+﻿@model Frontend_Sistema_Votaciones.Models.CargoViewModel
+
+@using Newtonsoft.Json;
 
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Cargos";
+    var abrirModal = TempData["AbrirModal"];
+    string serializedItem = (string)TempData["Item"];
+
+    CargoViewModel itemModel = null;
+    if (!String.IsNullOrEmpty(serializedItem))
+    {
+        itemModel = JsonConvert.DeserializeObject<CargoViewModel>(serializedItem);
+    }
 }
 
 <h1 class="text-center">Detalles</h1>
@@ -10,27 +19,27 @@
 
 <div class="card m-3">
     <div class="card-header text-center">
-        Información del Departamento
+        Información del Cargo
     </div>
     <div class="card-body">
         <dl class="row">
             <div class="col-sm-6">
                 <dl>
                     <dt>
-                        @Html.DisplayNameFor(model => model.Dept_Codigo)
+                        @Html.DisplayNameFor(model => model.Carg_Id)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.Dept_Codigo)
+                        @Html.DisplayFor(model => model.Carg_Id)
                     </dd>
                 </dl>
             </div>
             <div class="col-sm-6">
                 <dl>
                     <dt>
-                        @Html.DisplayNameFor(model => model.Dept_Descripcion)
+                        @Html.DisplayNameFor(model => model.Carg_Descripcion)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.Dept_Descripcion)
+                        @Html.DisplayFor(model => model.Carg_Descripcion)
                     </dd>
                 </dl>
             </div>
@@ -40,7 +49,11 @@
 
 <hr />
 <div class="mx-3">
-    <a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Dept_Codigo })">Editar</a>
+    @*<a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Carg_Id })">Editar</a>*@
+    <button data-id="@Model.Carg_Id" class="btnEditar btn btn-primary" style="max-width: 100px">
+        <i class="bi bi-pencil"></i>
+        Editar
+    </button>
     <a class="btn btn-secondary" href="@Url.Action("Index")">Regresar</a>
 </div>
 
@@ -52,31 +65,93 @@
     <div class="card-body">
         <dl class="row">
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_UsuarioCreacion)
+                @Html.DisplayNameFor(model => model.Carg_UsuarioCreacion)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_UsuarioCreacion)
+                @Html.DisplayFor(model => model.Carg_UsuarioCreacion)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_FechaCreacion)
+                @Html.DisplayNameFor(model => model.Carg_FechaCreacion)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_FechaCreacion)
+                @Html.DisplayFor(model => model.Carg_FechaCreacion)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_UsuarioModifica)
+                @Html.DisplayNameFor(model => model.Carg_UsuarioModifica)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_UsuarioModifica)
+                @Html.DisplayFor(model => model.Carg_UsuarioModifica)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Dept_FechaModifica)
+                @Html.DisplayNameFor(model => model.Carg_FechaModifica)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Dept_FechaModifica)
+                @Html.DisplayFor(model => model.Carg_FechaModifica)
             </dd>
         </dl>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#dtCargos').DataTable();
+        $('#modal' + '@abrirModal').modal('show');
+        @if (itemModel != null)
+        {
+            switch (abrirModal)
+            {
+                case "Nuevo":
+                    <text>
+                        $('#Carg_Id_Create').val("@itemModel.Carg_Id");
+                        $('#Carg_Descripcion_Create').val("@Html.Raw(itemModel.Carg_Descripcion)");
+                    </text>
+                    break;
+                 case "Editar":
+                    <text>
+                        $('#Carg_Id_Edit').val("@itemModel.Carg_Id");
+                        $('#Carg_Descripcion_Edit').val("@Html.Raw(itemModel.Carg_Descripcion)");
+                    </text>
+                    break;
+                default:
+                    break;
+            }
+        }
+    })
+    $('#btnNuevo').click(function () {
+        $('#modalNuevo').modal('show');
+    });
+    $('.btnEditar').click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            url: `/Cargos/Edit/${id}`,
+            method: "GET",
+            success: function (cargo) {
+                console.log(cargo, "cargo")
+                $('#Carg_Id_Edit').val(cargo.carg_Id);
+                $('#Carg_Descripcion_Edit').val(cargo.carg_Descripcion);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error al cargar los datos del cargo:", errorThrown);
+            }
+        });
+        $('#modalEditar').modal('show');
+    });
 
+    function Eliminar(Carg_Id) {
+        $("#Carg_Id_Delete").val(Carg_Id);
+        localStorage.setItem("#Carg_Id_Delete", Carg_Id);
+        $('#modalEliminar').modal('show');
+    }
+</script>
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_Edit", new Frontend_Sistema_Votaciones.Models.CargoViewModel())
+            </div>
+        </div>
+    </div>
+</div>
 

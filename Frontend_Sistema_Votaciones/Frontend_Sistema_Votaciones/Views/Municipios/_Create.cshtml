@@ -48,15 +48,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-<script>
-    const txtMuni_Codigo = document.getElementById("Muni_Codigo_Create");
-    txtMuni_Codigo.addEventListener("input", () => {
-        const val = txtMuni_Codigo.value.replace(/[^0-9]/g, '');
-        txtMuni_Codigo.value = val.substr(0, 2);
-    })
-    const txtMuni_Descripcion = document.getElementById("Muni_Descripcion_Create");
-    txtMuni_Descripcion.addEventListener("input", () => {
-        const val = txtMuni_Descripcion.value.replace(/[^a-zA-Z]/g, '');
-        txtMuni_Descripcion.value = val;
-    })
-</script>

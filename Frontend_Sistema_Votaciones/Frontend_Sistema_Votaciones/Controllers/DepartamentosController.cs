@@ -36,19 +36,18 @@ namespace Frontend_Sistema_Votaciones.Controllers
                     else
                     {
                         TempData["Advertencia"] = "No está autorizado para acceder a esta pantalla.";
-                        return RedirectToAction("Index", "Home");
                     }
                 }
                 else
                 {
                     TempData["Advertencia"] = "Debe iniciar sesión para acceder a esta pantalla.";
-                    return RedirectToAction("Index", "Home");
                 }
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index", "Home");
+                TempData["Error"] = "Error al cargar el listado.";
             }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet("[controller]/Details/{Dept_Codigo}")]
@@ -128,23 +127,20 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 {
                     TempData["AbrirModal"] = null;
                     TempData["Exito"] = result.Message;
-                    return RedirectToAction("Index");
                 }
                 else
                 {
                     TempData["AbrirModal"] = TiposDeModal.Editar;
                     TempData["Item"] = JsonConvert.SerializeObject(item);
                     TempData["Advertencia"] = result.Message;
-                    return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
             {
                 TempData["Error"] = "Error al editar el departamento";
                 TempData["Item"] = JsonConvert.SerializeObject(item);
-                return RedirectToAction("Index");
-                throw;
             }
+            return RedirectToAction("Index");
         }
 
         [HttpPost("/[controller]/DeleteConfirmed")]

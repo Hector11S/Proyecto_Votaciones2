@@ -16,10 +16,10 @@
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
     <h2>Listado de @ViewData["Title"]</h2>
-    <button href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
+    <a href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
         <i class="bi bi-house-door-fill"></i>
         Inicio
-    </button>
+    </a>
 </header>
 <div class="card m-2 mt-4 p-3" style="overflow-x: auto">
     <header class="mb-4">
@@ -110,7 +110,7 @@
     $('.btnEditar').click(function () {
         var id = $(this).data("id");
         $.ajax({
-            url: `/Departamento/Edit/${id}`,
+            url: `/Departamentos/Edit/${id}`,
             method: "GET",
             success: function (departamento) {
                 console.log(departamento, "departamento")
@@ -129,6 +129,7 @@
         localStorage.setItem("#Dept_Codigo_Delete", Dept_Codigo);
         $('#modalEliminar').modal('show');
     }
+
 </script>
 
 <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -170,3 +171,21 @@
         </div>
     </div>
 </div>
+<script>
+    const txtDept_Codigo = document.getElementById("Dept_Codigo_Create");
+    txtDept_Codigo.addEventListener("input", () => {
+        const val = txtDept_Codigo.value.replace(/[^0-9]/g, '');
+        txtDept_Codigo.value = val.substr(0, 2);
+    })
+
+    const txtDept_Descripcion_Create = document.getElementById("Dept_Descripcion_Create");
+    txtDept_Descripcion_Create.addEventListener("input", () => {
+        const val = txtDept_Descripcion_Create.value.replace(/[^a-zA-Z]/g, '');
+        txtDept_Descripcion_Create.value = val;
+    })
+    const txtDept_Descripcion_Edit = document.getElementById("Dept_Descripcion_Edit");
+    txtDept_Descripcion_Edit.addEventListener("input", () => {
+        const val = txtDept_Descripcion_Edit.value.replace(/[^a-zA-Z]/g, '');
+        txtDept_Descripcion_Edit.value = val;
+    })
+</script>

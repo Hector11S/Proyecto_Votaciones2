@@ -1,8 +1,17 @@
 ﻿@model Frontend_Sistema_Votaciones.Models.DepartamentoViewModel
 
+@using Newtonsoft.Json;
+
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Departamentos";
+    var abrirModal = TempData["AbrirModal"];
+    string serializedItem = (string)TempData["Item"];
+
+    DepartamentoViewModel departamento = null;
+    if (!String.IsNullOrEmpty(serializedItem))
+    {
+        departamento = JsonConvert.DeserializeObject<DepartamentoViewModel>(serializedItem);
+    }
 }
 
 <h1 class="text-center">Detalles</h1>
@@ -40,7 +49,10 @@
 
 <hr />
 <div class="mx-3">
-    <a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Dept_Codigo })">Editar</a>
+    <button data-id="@Model.Dept_Codigo" class="btnEditar btn btn-primary" style="max-width: 100px">
+        <i class="bi bi-pencil"></i>
+        Editar
+    </button>
     <a class="btn btn-secondary" href="@Url.Action("Index")">Regresar</a>
 </div>
 
@@ -78,5 +90,74 @@
         </dl>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('#dtDepartamentos').DataTable();
+        $('#modal' + '@abrirModal').modal('show');
+        @if (departamento != null)
+        {
+            switch (abrirModal)
+            {
+                case "Nuevo":
+                    <text>
+                        $('#Dept_Codigo_Create').val("@departamento.Dept_Codigo");
+                        $('#Dept_Descripcion_Create').val("@Html.Raw(departamento.Dept_Descripcion)");
+                    </text>
+                    break;
+                 case "Editar":
+                    <text>
+                        $('#Dept_Codigo_Edit').val("@departamento.Dept_Codigo");
+                        $('#Dept_Descripcion_Edit').val("@Html.Raw(departamento.Dept_Descripcion)");
+                    </text>
+                    break;
+                default:
+                    break;
+            }
+        }
+    })
+    $('#btnNuevo').click(function () {
+        $('#modalNuevo').modal('show');
+    });
+    $('.btnEditar').click(function () {
+        var id = $(this).data("id");
+        $.ajax({
+            url: `/Departamentos/Edit/${id}`,
+            method: "GET",
+            success: function (departamento) {
+                console.log(departamento, "departamento")
+                $('#Dept_Codigo_Edit').val(departamento.dept_Codigo);
+                $('#Dept_Descripcion_Edit').val(departamento.dept_Descripcion);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error al cargar los datos del departamento:", errorThrown);
+            }
+        });
+        $('#modalEditar').modal('show');
+    });
 
+    function Eliminar(Dept_Codigo) {
+        $("#Dept_Codigo_Delete").val(Dept_Codigo);
+        localStorage.setItem("#Dept_Codigo_Delete", Dept_Codigo);
+        $('#modalEliminar').modal('show');
+    }
+</script>
 
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_Edit", new Frontend_Sistema_Votaciones.Models.DepartamentoViewModel())
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const txtDept_Descripcion = document.getElementById("Dept_Descripcion_Edit");
+    txtDept_Descripcion.addEventListener("input", () => {
+        const val = txtDept_Descripcion.value.replace(/[^a-zA-Z]/g, '');
+        txtDept_Descripcion.value = val;
+    })
+</script>

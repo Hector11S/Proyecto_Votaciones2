@@ -4,7 +4,7 @@
 
 
 @{
-    ViewData["Title"] = "Roles";
+    ViewData["Title"] = "Estados Civiles";
     var abrirModal = TempData["AbrirModal"];
     string serializedItem = (string)TempData["Item"];
 
@@ -115,8 +115,8 @@ $('.btnEditar').click(function () {
         method: "GET",
         success: function (estadoCivil) {
             console.log(estadoCivil, "estadoCivil")
-            $('#Esta_Id_Edit').val(estadoCivil.estadoCivil_Id);
-            $('#Esta_Descripcion_Edit').val(estadoCivil.estadoCivil_Descripcion);
+            $('#Esta_Id_Edit').val(estadoCivil.esta_Id);
+            $('#Esta_Descripcion_Edit').val(estadoCivil.esta_Descripcion);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error("Error al cargar los datos del estadoCivil:", errorThrown);
@@ -171,3 +171,15 @@ function Eliminar(Esta_Id) {
         </div>
     </div>
 </div>
+<script>
+    const txtEsta_Descripcion_Create = document.getElementById("Esta_Descripcion_Create");
+    txtEsta_Descripcion_Create.addEventListener("input", () => {
+        const val = txtEsta_Descripcion_Create.value.replace(/[^a-zA-Z]/g, '');
+        txtEsta_Descripcion_Create.value = val;
+    })
+    const txtEsta_Descripcion_Edit = document.getElementById("Esta_Descripcion_Edit");
+    txtEsta_Descripcion_Edit.addEventListener("input", () => {
+        const val = txtEsta_Descripcion_Edit.value.replace(/[^a-zA-Z]/g, '');
+        txtEsta_Descripcion_Edit.value = val;
+    })
+</script>

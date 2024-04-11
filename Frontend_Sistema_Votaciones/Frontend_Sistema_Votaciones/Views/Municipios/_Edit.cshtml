@@ -43,10 +43,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-<script>
-    const txtMuni_Descripcion = document.getElementById("Muni_Descripcion_Edit");
-    txtMuni_Descripcion.addEventListener("input", () => {
-        const val = txtMuni_Descripcion.value.replace(/[^a-zA-Z]/g, '');
-        txtMuni_Descripcion.value = val;
-    })
-</script>
