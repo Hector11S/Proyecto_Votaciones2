@@ -7,6 +7,7 @@
     var pantallas = ViewBag.Pantallas;
     var esquemas = (Dictionary<int, string>)ViewBag.Esquemas;
     var pantallasPorRoles = ViewBag.PantallasPorRoles;
+    var paroIEnumerable = ViewBag.ParoIEnumerable as IEnumerable<PantallasPorRolesViewModel>;
     ViewData["Title"] = "Roles";
     var abrirModal = TempData["AbrirModal"];
     string serializedItem = (string)TempData["Item"];
@@ -57,13 +58,13 @@
                     </span>
                     @if (Rol_Id != 0)
                     {
-                        <input id="checkboxSistemaElectoral" type="checkbox" style="margin-left: 10px;">
+                <input id="checkboxSistemaElectoral" type="checkbox" style="margin-left: 10px;" class="Sist_CkBox">
                     }
                     else
                     {
-                        <input id="checkboxSistemaElectoral" type="checkbox" style="margin-left: 10px;" disabled/>
+                        <input id="checkboxSistemaElectoral" type="checkbox" style="margin-left: 10px;" class="Sist_CkBox" disabled/>
                     }
-                    <ul class="nested" style="border-left: 3px dashed gray; left: -26px; position: relative; top: -6px; padding-left: 0; margin-left: 32px; ">
+                    <ul id="root" class="nested" style="border-left: 3px dashed gray; left: -26px; position: relative; top: -6px; padding-left: 0; margin-left: 32px; ">
                         @if (esquemas != null && pantallas != null)
                         {
                             foreach (var esquema in esquemas)
@@ -81,7 +82,7 @@
                                         {
                                             <input id="@esquema.Key" class="Esqu_CkBox" type="checkbox" style="margin-left: 10px;" disabled>
                                         }
-                                        <ul class="nested" style="left: -26px; position: relative; top: -6px; border-left: 3px dashed gray; padding-left: 0; margin-left: 32px;">
+                                        <ul class="nested esquemaRoot" style="left: -26px; position: relative; top: -6px; border-left: 3px dashed gray; padding-left: 0; margin-left: 32px;">
                                             @foreach (var pantalla in pantallas)
                                             {
                                                 if (pantalla.Esqu_Id == esquema.Key)
@@ -90,7 +91,15 @@
                                                         <div style=" position: absolute; top: 50%; min-width: 300px; z-index: 1; background: #fff; left: 15px;">
                                                             @if (Rol_Id != 0)
                                                             {
-                                                                <input id="@pantalla.Pant_Id" type="checkbox" class="Pant_CkBox" />
+                                                                var estaRelacionada = paroIEnumerable.Any(paro => paro.Rol_Id == Rol_Id && paro.Pant_Id == pantalla.Pant_Id);
+                                                                @if (estaRelacionada)
+                                                                {
+                                                                    <input id="@pantalla.Pant_Id" type="checkbox" class="Pant_CkBox" checked />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <input id="@pantalla.Pant_Id" type="checkbox" class="Pant_CkBox" />
+                                                                }
                                                             }
                                                             else
                                                             {
@@ -116,6 +125,16 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 <script>
+    const esquemasRoots = document.querySelectorAll(".esquemaRoot");
+    //let checkBoxesDentroDelEsquema = [];
+    esquemasRoots.forEach(esqu => {
+        const inputs = [...esqu.querySelectorAll("input")];
+        if (inputs.every(input => input.checked)) {
+            esqu.parentElement.querySelector("input").setAttribute("checked", "checked");
+        }
+    })
+    //console.log(checkBoxesDentroDelEsquema, "checkBoxesDentroDelEsquema");
+
     var toggler = document.getElementsByClassName("caret");
     var i;
 
@@ -138,6 +157,69 @@
     const rolId = document.getElementById("Rol_Id").value;
     console.log(rolId, "rolId")
     $(document).ready(function () {
+        $('.Sist_CkBox').change(function () {
+            if (parseInt(rolId) !== 0) {
+                var isChecked = $(this).is(':checked');
+                var method = isChecked ? 'GET' : 'DELETE';
+                let esquemasIds = [];
+                const esquemasRoots = document.querySelectorAll(".esquemaRoot");
+                esquemasRoots.forEach(esqu => esqu.parentElement.querySelector("input").id);
+                console.log(esquemasIds, "esquemasIds");
+
+                const root = document.getElementById("root");
+
+                let count = 0;
+                for (let i = 0; i < root.children.length; i++) {
+                    $.ajax({
+                        url: `/Roles/${method === "GET" ? "Create" : "Delete"}EsquemaPorRoles?Rol_Id=${ddlRoles.value}&Esqu_Id=${esquemasIds[i]}`,
+                        method: method,
+                        success: function (response) {
+                            console.log(response, "response pantallas por roles AJAX");
+                            if (response.result === true) {
+                                count++;
+                                if (isChecked) {
+                                    console.log(i, 'i');
+                                    console.log(root.children[i].children[0].querySelector("input"), 'root.children[i - 1].children[0].querySelector("input")');
+                                    root.children[i].children[0].querySelector("input").setAttribute("checked", "checked");
+                                } else {
+                                    console.log(i, 'i');
+                                    console.log(root.children[i].children[0].querySelector("input"), 'root.children[i - 1].children[0].querySelector("input")');
+                                    root.children[i].children[0].querySelector("input").removeAttribute("checked");
+                                }
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.error(`Error al asignar las pantallas al rol`, errorThrown);
+                        }
+                    });
+                }
+                if (count === 3) {
+                    iziToast.success({
+                        title: 'Exito',
+                        message: `Pantallas ${isChecked ? "activadas" : "desactivadas"}`,
+                        position: 'topRight',
+                        transitionIn: 'flipInX',
+                        transitionOut: 'flipOutX'
+                    });
+                } else {
+                    iziToast.error({
+                        title: 'Exito',
+                        message: `Ha ocurrido un error ${isChecked ? "activando" : "desactivando"} las pantallas`,
+                        position: 'topRight',
+                        transitionIn: 'flipInX',
+                        transitionOut: 'flipOutX'
+                    });
+                }
+            } else {
+                iziToast.warning({
+                    title: 'Error',
+                    message: "No hay un rol al cual vincular las pantallas",
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            }
+        });
         $('.Pant_CkBox').change(function () {
             if (parseInt(rolId) !== 0) {
                 var isChecked = $(this).is(':checked');
@@ -187,6 +269,7 @@
                 var method = isChecked ? 'GET' : 'DELETE';
                 var esquId = $(this).attr('id');
 
+
                 $.ajax({
                     url: `/Roles/${method === "GET" ? "Create" : "Delete"}EsquemaPorRoles?Rol_Id=${ddlRoles.value}&Esqu_Id=${esquId}`,
                     method: method,
@@ -200,6 +283,15 @@
                                 transitionIn: 'flipInX',
                                 transitionOut: 'flipOutX'
                             });
+                            const esquemasRoots = document.querySelectorAll(".esquemaRoot");
+                            esquemasRoots.forEach(esqu => {
+                                const inputs = [...esqu.querySelectorAll("input")];
+                                if (isChecked) {
+                                    inputs.forEach(input => input.setAttribute("checked", "checked"));
+                                } else {
+                                    inputs.forEach(input => input.removeAttribute("checked"));
+                                }
+                            })
                         } else {
                             iziToast.error({
                                 title: 'Error',

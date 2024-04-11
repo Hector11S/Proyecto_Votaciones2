@@ -155,7 +155,7 @@
                                         if (pantalla.Esqu_Id == esquema.Key)
                                         {
                                             <li class="nav-item">
-                                                <a class="nav-link " asp-controller="@pantalla.Pant_Controlador" asp-action="Index">
+                                                <a class="nav-link " asp-controller="@pantalla.Pant_Controlador" asp-action="Index" controlador="@pantalla.Pant_Controlador">
                                                     <i class="bi bi-circle"></i>
                                                     <span>@pantalla.Pant_Descripcion</span>
                                                 </a>
@@ -191,35 +191,24 @@
     <script src="~/lib/jstree/jstree.min.js"></script>
 
     <script>
+        const controller = window.location.pathname.split("/")[1];
         const nav_items = document.querySelectorAll(".nav-item");
         const nav_links = document.querySelectorAll(".nav-link");
         const nav_contents = document.querySelectorAll(".nav-content");
         nav_items.forEach(li => {
-            li.addEventListener("click", () => {
-                //nav_links.forEach(a => {
-                //    a.classList.add("collapsed");
-                //    a.setAttribute("aria-expanded", "false");
-                //})
-                //nav_contents.forEach(ul => {
-                //    console.log(ul);
-                //    ul.classList.replace("collapsing", "collapse");
-                //    ul.classList.remove("show");
-                //})
+            const nav_link = li.querySelector(".nav-link");
+            if (nav_link) {
+                const aControAttr = nav_link.getAttribute("controlador");
+                if (controller === aControAttr) {
+                    const nav_item = li.parentElement.parentElement;
+                    const a = nav_item.querySelector(".nav-link");
+                    a.setAttribute("aria-expanded", "true");
+                    a.classList.replace("collapsed", "collapse");
 
-                //const nav_link = li.querySelector(".nav-link");
-                //console.log(nav_link);
-                //if (nav_link.classList.contains("collapsed")) {
-                //    nav_link.classList.remove("collapsed");
-                //}
-                //if (li.getAttribute("aria-expanded") === "false") {
-                //    li.setAttribute("aria-expanded", "true");
-                //}
-                //const nav_content = li.querySelector(".nav-content");
-                //console.log(nav_content);
-                //if (!nav_content.classList.contains("collapsing")) {
-                //    nav_content.classList.replace("collapsing", "collapse");
-                //}
-            })
+                    const nav_content = nav_item.querySelector(".nav-content");
+                    nav_content.classList.add("show");
+                }
+            }
         })
         window.addEventListener('pageshow', function (event) {
             if (event.persisted) {

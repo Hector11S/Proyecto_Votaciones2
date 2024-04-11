@@ -117,6 +117,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 var pantallasPorRolesList = await _pantallasPorRolesServicios.ObtenerParoList();
                 ViewBag.Roles = rolesList.Data;
                 ViewBag.Pantallas = pantallasList.Data;
+                ViewBag.ParoIEnumerable = pantallasPorRolesList.Data;
                 ViewBag.PantallasPorRoles = JsonConvert.SerializeObject(pantallasPorRolesList.Data);
 
                 Dictionary<int, string> uniqueEsquemas = new Dictionary<int, string>();
