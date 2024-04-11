@@ -6,11 +6,7 @@
     var Pres_Imagen = Model != null ? Model.Pres_Imagen : null;
     var Pres_Id = Model != null ? Model.Pres_Id : 0;
     var Part_Id = Model != null ? Model.Part_Id : 0;
-    //var Muni_Codigo = Model != null ? Model.Muni_Codigo : null;
-    //var Dept_Codigo = Model != null ? Model.Dept_Codigo : null;
-    var departamentos = ViewBag.Departamentos;
     var partidos = ViewBag.Partidos;
-    var municipios = ViewBag.Municipios;
     ViewData["Title"] = "Presidente";
 }
 
@@ -30,7 +26,7 @@
                     <div class="form-group col">
                         <label class="mb-2" style="color: #3dbdd9">Buscar por numero de identidad:</label>
                         <input asp-for="Pres_Id" value="@Pres_Id" type="hidden" class="form-control" />
-                        <input asp-for="Vota_DNI" value="@Vota_DNI" type="text" class="form-control" disabled/>
+                        <input asp-for="Vota_DNI" value="@Vota_DNI" type="text" class="form-control" disabled />
                         <span asp-validation-for="Pres_Id" class="text-danger"></span>
                     </div>
                     <div class="form-group col">
@@ -39,7 +35,6 @@
                         <span class="text-danger"></span>
                     </div>
                 </div>
-              
                 <div class="row mt-3">
                     <div class="form-group col">
                         <label class="mb-2" style="color: #3dbdd9">Partido al que pertenece:</label>
@@ -64,7 +59,7 @@
                     <div class="form-group col">
                         <label class="mb-2" style="color: #3dbdd9">Fototografia del candidato: </label>
                         <input asp-for="Pres_Imagen" type="hidden" class="form-control" />
-                        <input id="inputFileAlcalde" type="file" class="form-control" />
+                        <input id="inputFilePresidente" type="file" class="form-control" />
                         <span asp-validation-for="Pres_Imagen" class="text-danger"></span>
                     </div>
                 </div>
@@ -82,130 +77,6 @@
     <script>
         const txtNombreVotante = document.getElementById("Vota_NombreCompleto");
         const imgPres_Imagen = document.getElementById("imgPres_Imagen");
-        //let departamentosJS = [];
-        //let partidosJS = [];
-        let municipios = [];
-
-        @*function llenarSelectsDesdeElSessionStorage() {
-            txtNombreVotante.setAttribute("disabled", "disabled");
-            const departamentosJSON = sessionStorage.getItem('departamentosJS');
-            const partidosJSON = sessionStorage.getItem('partidosJS');
-            const municipiosJSON = sessionStorage.getItem('municipios');
-
-            departamentosJS = JSON.parse(departamentosJSON);
-            partidosJS = JSON.parse(partidosJSON);
-            municipios = JSON.parse(municipiosJSON);
-
-            console.log(departamentosJS, "departamentosJS", partidosJS, "partidosJSON", municipios, "municipios")
-
-            llenarSelect('ddlDepartamentos', departamentosJS);
-            llenarSelect('Part_Id', partidosJS);
-            llenarSelect('Muni_Codigo', municipios);
-        }
-
-        function llenarSelect(selectId, options) {
-            const selectElement = document.getElementById(selectId);
-            switch (selectId) {
-                case "ddlDepartamentos":
-                    options.forEach(option => {
-                        const optionElement = document.createElement('option');
-                        optionElement.value = option.Dept_Codigo;
-                        optionElement.textContent = option.Dept_Descripcion;
-                        selectElement.appendChild(optionElement);
-                    });
-                    break;
-                case "Part_Id":
-                    options.forEach(option => {
-                        const optionElement = document.createElement('option');
-                        optionElement.value = option.Part_Id;
-                        optionElement.textContent = option.Part_Descripcion;
-                        selectElement.appendChild(optionElement);
-                        @if (partidos == null)
-                        {
-                            if (Part_Id != null)
-                            {
-                                <text>
-                                if (option.Part_Id === "@Part_Id") {
-                                    selectElement.value = option.Part_Id;
-                                }
-                                </text>
-                            }
-                        }
-                    });
-                    break;
-                case "Muni_Codigo":
-                    options.forEach(option => {
-                        const optionElement = document.createElement('option');
-                        optionElement.value = option.muni_Codigo;
-                        optionElement.textContent = option.muni_Descripcion;
-                        selectElement.appendChild(optionElement);
-                        @if (Muni_Codigo != null)
-                        {
-                            <text>
-                            const departamentosElement = document.getElementById("ddlDepartamentos");
-                            if (option.muni_Codigo === "@Muni_Codigo") {
-                                selectElement.value = option.muni_Codigo;
-                                departamentosElement.value = option.dept_Codigo;
-                            }
-                            </text>
-
-                        }
-                    });
-                    break;
-                default:
-                    console.log("No entró en el switch")
-                    break;
-            }
-        }
-
-        @if (departamentos != null)
-        {
-            foreach (var item in departamentos)
-            {
-                <text>
-                departamentosJS.push({
-                    Dept_Codigo: '@item.Dept_Codigo',
-                    Dept_Descripcion: '@Html.Raw(item.Dept_Descripcion)'
-                });
-                </text>
-            }
-            foreach (var item in partidos)
-            {
-                <text>
-                partidosJS.push({
-                    Part_Id: '@item.Part_Id',
-                    Part_Descripcion: '@Html.Raw(item.Part_Descripcion)'
-                });
-                </text>
-            }
-
-        }
-        else {
-
-            if (Pres_Imagen != null)
-            {
-                <text>
-                imgPres_Imagen.setAttribute("src", "@Pres_Imagen");
-                imgPres_Imagen.classList.remove("d-none");
-                </text>
-            }
-            <text>
-            llenarSelectsDesdeElSessionStorage();
-            </text>
-        }
-
-
-        function guardarArreglos() {
-            txtNombreVotante.removeAttribute("disabled");
-
-            const departamentosJSON = JSON.stringify(departamentosJS);
-            const partidosJSON = JSON.stringify(partidosJS);
-            const municipiosJSON = JSON.stringify(municipios);
-
-            sessionStorage.setItem('departamentosJS', departamentosJSON);
-            sessionStorage.setItem('partidosJS', partidosJSON);
-            sessionStorage.setItem('municipios', municipiosJSON);
-        }*@
 
         const txtDNI = document.getElementById("Vota_DNI");
         txtDNI.addEventListener("blur", () => {
@@ -224,7 +95,7 @@
             txtDNI.value = val;
             if (txtDNI.value.length === 13) {
                 $.ajax({
-                    url: `/Alcalde/ObtenerVotantePorDNI/${txtDNI.value}`,
+                    url: `/Presidente/ObtenerVotantePorDNI/${txtDNI.value}`,
                     method: "GET",
                     success: function (response) {
                         console.log(response, "ObtenerVotantePorDNI");
@@ -250,53 +121,16 @@
             }
         })
 
-        const ddlDepartamentos = document.getElementById("ddlDepartamentos");
-        const ddlMunicipios = document.getElementById("Muni_Codigo");
-        ddlDepartamentos.addEventListener("change", () => {
-            $.ajax({
-                url: `/Alcalde/ObtenerMunicipiosPorDept/${ddlDepartamentos.value}`,
-                method: "GET",
-                success: function (response) {
-                    console.log(response, "ObtenerMunicipiosPorDept");
-                    if (response.municipios) {
-
-                        response.municipios.forEach(muni => {
-                            const indiceDelMunicipioEncontrado = municipios.findIndex(mu => mu.muni_Codigo === muni.muni_Codigo);
-                            if (indiceDelMunicipioEncontrado === -1) {
-                                municipios.push(muni);
-                            }
-                            const newOptionElement = document.createElement("option");
-                            newOptionElement.value = muni.muni_Codigo;
-                            newOptionElement.textContent = muni.muni_Descripcion;
-                            ddlMunicipios.append(newOptionElement);
-                        })
-                        ddlMunicipios.selectedIndex = 1;
-                    } else {
-                        iziToast.error({
-                            title: 'Error',
-                            message: response.message,
-                            position: 'topRight',
-                            transitionIn: 'flipInX',
-                            transitionOut: 'flipOutX'
-                        });
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    console.error(`Error al cargar los municipios del departamento:${ddlDepartamentos.value}`, errorThrown);
-                }
-            });
-        })
-
-        const inputFileAlcalde = document.getElementById("inputFileAlcalde");
+        const inputFilePresidente = document.getElementById("inputFilePresidente");
         const Pres_Id = document.getElementById("Pres_Id");
         const Pres_Imagen = document.getElementById("Pres_Imagen");
-        inputFileAlcalde.addEventListener("change", () => {
-            if (Pres_Id.value && inputFileAlcalde.files[0]) {
+        inputFilePresidente.addEventListener("change", () => {
+            if (Pres_Id.value && inputFilePresidente.files[0]) {
                 const formData = new FormData();
-                formData.append("Imagen", inputFileAlcalde.files[0])
+                formData.append("Imagen", inputFilePresidente.files[0])
                 formData.append("Pres_Id", Pres_Id.value)
                 $.ajax({
-                    url: `/Alcalde/SubirImagen`,
+                    url: `/Presidente/SubirImagen`,
                     method: "POST",
                     contentType: false,
                     data: formData,
@@ -324,7 +158,7 @@
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        console.error(`Error al cargar la imagen del alcalde`, errorThrown);
+                        console.error(`Error al cargar la imagen del Presidente`, errorThrown);
                     }
                 });
             }

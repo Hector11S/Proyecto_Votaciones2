@@ -20,9 +20,11 @@ namespace Sistema_Votaciones.Entities.Entities
         public int? Pres_UsuarioModifica { get; set; }
         public DateTime? Pres_FechaModifica { get; set; }
         public bool? Pres_Estado { get; set; }
+        public string Vota_DNI { get; set; }
         public string Vota_NombreCompleto { get; set; }
         public virtual tbPartidos Part { get; set; }
         public virtual tbVotantes Pres { get; set; }
+
         public virtual tbUsuarios Pres_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Pres_UsuarioModificaNavigation { get; set; }
     }

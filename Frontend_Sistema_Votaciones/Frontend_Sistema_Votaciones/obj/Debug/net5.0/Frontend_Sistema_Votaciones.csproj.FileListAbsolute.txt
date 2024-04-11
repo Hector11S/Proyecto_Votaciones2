@@ -723,11 +723,6 @@ C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_V
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Mesas\_Create.cshtml.g.cs
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Mesas\_Delete.cshtml.g.cs
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Mesas\_Edit.cshtml.g.cs
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Municipio\Details.cshtml.g.cs
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Municipio\Index.cshtml.g.cs
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Municipio\_Create.cshtml.g.cs
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Municipio\_Delete.cshtml.g.cs
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Municipio\_Edit.cshtml.g.cs
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Partidos\Create.cshtml.g.cs
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Partidos\Edit.cshtml.g.cs
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Partidos\Index.cshtml.g.cs
@@ -777,3 +772,9 @@ C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_V
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\ref\Frontend_Sistema_Votaciones.dll
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Frontend_Sistema_Votaciones.pdb
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Frontend_Sistema_Votaciones.genruntimeconfig.cache
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Frontend_Sistema_Votaciones.csproj.AssemblyReference.cache
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Municipios\Details.cshtml.g.cs
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Municipios\Index.cshtml.g.cs
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Municipios\_Create.cshtml.g.cs
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Municipios\_Delete.cshtml.g.cs
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Municipios\_Edit.cshtml.g.cs

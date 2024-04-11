@@ -22,7 +22,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<EmpleadoViewModel>, IEnumerable<EmpleadoViewModel>>(req =>
                 {
-                    req.Path = $"API/Empleado/List";
+                    req.Path = $"API/Empleados/List";
                 });
                 if (!response.Success)
                 {

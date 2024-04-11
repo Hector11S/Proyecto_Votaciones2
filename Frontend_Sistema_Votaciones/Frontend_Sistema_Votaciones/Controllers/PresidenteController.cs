@@ -14,32 +14,34 @@ namespace Frontend_Sistema_Votaciones.Controllers
     public class PresidenteController : Controller
     {
         private readonly PresidenteServicios _presidenteServicios;
-        private readonly AlcaldeServicios _alcaldeServicios;
+        private readonly PresidenteServicios _PresidenteServicios;
         private readonly VotanteServicios _votanteServicios;
         private readonly DepartamentoServicios _departamentoServicios;
         private readonly MunicipioServicios _municipioServicios;
         private readonly PartidoServicios _partidoServicios;
         private readonly IWebHostEnvironment _hostingEnviroment;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
 
         public PresidenteController(
             PresidenteServicios presidenteServicios,
-            AlcaldeServicios alcaldeServicios,
+            PresidenteServicios PresidenteServicios,
             VotanteServicios votanteServicios,
             DepartamentoServicios departamentoServicios,
             MunicipioServicios municipioServicios,
             PartidoServicios partidoServicios,
-            IWebHostEnvironment hostingEnviroment)
+            IWebHostEnvironment hostingEnviroment,
+            IHttpContextAccessor httpContextAccessor)
         {
             _presidenteServicios = presidenteServicios;
-            _alcaldeServicios = alcaldeServicios;
+            _PresidenteServicios = PresidenteServicios;
             _votanteServicios = votanteServicios;
             _departamentoServicios = departamentoServicios;
             _municipioServicios = municipioServicios;
             _partidoServicios = partidoServicios;
             _hostingEnviroment = hostingEnviroment;
+            _httpContextAccessor = httpContextAccessor;
         }
-
         [HttpPost]
         public async Task<IActionResult> SubirImagen(IFormCollection formData, IFormFile imagen)
         {
@@ -49,24 +51,28 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 {
                     var Pres_Id = formData["Pres_Id"];
                     var extensionDeLaImagen = imagen.FileName.Split('.')[1];
-                    var nombreDeLaImagen = $"Alcalde_{Pres_Id}.{extensionDeLaImagen}";
-                    var rutaCarpeta = Path.Combine(_hostingEnviroment.WebRootPath, "assets", "alcaldes");
+                    var nombreDeLaImagen = $"Presidente_{Pres_Id}.{extensionDeLaImagen}";
+                    var rutaCarpeta = Path.Combine(_hostingEnviroment.WebRootPath, "assets", "presidentes");
                     var rutaImagen = Path.Combine(rutaCarpeta, nombreDeLaImagen);
                     using (var fileStream = new FileStream(rutaImagen, FileMode.Create))
                     {
                         await imagen.CopyToAsync(fileStream);
                     }
-                    var result = await _presidenteServicios.SubirImagen(rutaImagen);
+                    var result = await _PresidenteServicios.SubirImagen(rutaImagen);
+                    if (System.IO.File.Exists(rutaImagen))
+                    {
+                        System.IO.File.Delete(rutaImagen);
+                    }
                     return Json(new { message = result.Message, urlImagen = result.Data });
                 }
                 else
                 {
-                    return Json("No se recibió ninguna imagen");
+                    return Json(new { message = "No se recibió ninguna imagen" });
                 }
             }
             catch (Exception ex)
             {
-                return Json("Error de capa 8");
+                return Json(new { message = "Error al subir la imagen" });
             }
         }
         [HttpGet("[controller]/ObtenerVotantePorDNI/{Vota_DNI}")]
@@ -74,12 +80,22 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                var reponse = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
-                return Json(new { votante = reponse.Data, message = reponse.Message });
+
+                var reponseVotante = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
+                VotanteViewModel votante = (VotanteViewModel)reponseVotante.Data;
+                var responsePresidente = await _PresidenteServicios.ObtenerPresidente(Convert.ToString(votante.Vota_Id));
+                if (responsePresidente.Success)
+                {
+                    return Json(new { message = "Ya existe un registro de este Presidente." });
+                }
+                else
+                {
+                    return Json(new { votante = reponseVotante.Data, message = reponseVotante.Message });
+                }
             }
             catch (Exception ex)
             {
-                return Json("Error de capa 8");
+                return Json("Error al obtener la persona por el DNI");
             }
         }
         //[HttpGet("[controller]/ObtenerMunicipiosPorDept/{Dept_Codigo}")]
@@ -99,9 +115,27 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                var model = new List<PresidenteViewModel>();
-                var list = await _presidenteServicios.ObtenerPresidenteList();
-                return View(list.Data);
+                var rol = HttpContext.Session.GetInt32("Rol_Id");
+                if (rol != null)
+                {
+                    bool autorizado = Autorizacion.Autorizar(Convert.ToInt32(rol), ControllerContext.ActionDescriptor.ControllerName);
+                    if (autorizado)
+                    {
+                        var model = new List<PresidenteViewModel>();
+                        var list = await _presidenteServicios.ObtenerPresidenteList();
+                        return View(list.Data);
+                    }
+                    else
+                    {
+                        TempData["Advertencia"] = "No está autorizado para acceder a esta pantalla.";
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    TempData["Advertencia"] = "Debe iniciar sesión para acceder a esta pantalla.";
+                    return RedirectToAction("Index", "Home");
+                }
             }
             catch (Exception ex)
             {
@@ -109,7 +143,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
         }
 
-        [HttpGet("[controller]/Details/{Pres_Id}")]
+        [HttpGet("[controller]/Details/{Alca_Id}")]
         public async Task<IActionResult> Details(string Pres_Id)
         {
             try
@@ -163,23 +197,30 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error al crear el alcalde.";
+                TempData["Error"] = "Error al crear el Presidente.";
             }
             return View(item);
         }
 
 
-        [HttpGet("[controller]/Edit/{Dept_Codigo}")]
         public async Task<IActionResult> Edit(string Pres_Id)
         {
             try
             {
-                var model = await _presidenteServicios.ObtenerPresidente(Pres_Id);
-                return Json(model.Data);
+                var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
+                var partidosList = await _partidoServicios.ObtenerPartidoList();
+                ViewBag.Departamentos = departamentosList.Data;
+                ViewBag.Partidos = partidosList.Data;
+                var response = await _presidenteServicios.ObtenerPresidente(Pres_Id);
+                PresidenteViewModel presidenteViewModel = (PresidenteViewModel)response.Data;
+                //var municipios = await _municipioServicios.ObtenerMunicipiosList(presidenteViewModel.Dept_Codigo);
+                //ViewBag.Municipios = municipios.Data;
+                return View(response.Data);
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index");
+                TempData["Error"] = $"Error al cargar informacion del Presidente {Pres_Id}.";
+                return View();
             }
         }
 
@@ -193,21 +234,24 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 var result = await _presidenteServicios.EditarPresidente(item);
                 if (result.Success)
                 {
+                    TempData["AbrirModal"] = null;
+                    TempData["Exito"] = result.Message;
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    return View("Index", item);
+                    TempData["Advertencia"] = result.Message;
                 }
             }
             catch (Exception ex)
             {
-                return View(item);
-                throw;
+                TempData["Error"] = "Error al editar el presidente.";
             }
+            return RedirectToAction("Edit", "Presidente", new { Pres_Id = item.Pres_Id });
         }
+    
 
-        [HttpPost("/[controller]/DeleteConfirmed")]
+    [HttpPost("/[controller]/DeleteConfirmed")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed([FromForm] int Pres_Id)
         {
@@ -227,7 +271,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error al eliminar el alcalde";
+                TempData["Error"] = "Error al eliminar el Presidente";
                 return RedirectToAction("Index");
             }
         }

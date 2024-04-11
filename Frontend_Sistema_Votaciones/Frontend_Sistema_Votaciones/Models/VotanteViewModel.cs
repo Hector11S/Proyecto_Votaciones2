@@ -18,7 +18,7 @@ namespace Frontend_Sistema_Votaciones.Models
         public string Vota_DNI { get; set; }
         [Display(Name = "Ya Voto")]
         public bool Vota_YaVoto { get; set; }
-        [Display(Name = "Codigo de Municipio")]
+        [Display(Name = "Codigo Municipio")]
         public string Muni_Codigo { get; set; }
         [Display(Name = "Estado Civil Id")]
         public int Esta_Id { get; set; }
@@ -34,5 +34,20 @@ namespace Frontend_Sistema_Votaciones.Models
         public int? MePS_Id { get; set; }
         [Display(Name = "Voto Permitido")]
         public bool Vota_Permitido { get; set; }
+
+        [Display(Name = "Municipio")]
+        public string Muni_Descripcion { get; set; }
+
+        [Display(Name = "Estado Civil")]
+        public string Esta_Descripcion { get; set; }
+
+        public int Sede_Id { get; set; }
+        [Display(Name = "Numero de Mesa")]
+        public int Mesa_Numero { get; set; }
+
+        [Display(Name = "Sede")]
+        public string Sede_Descripcion { get; set; }
+        public int Mesa_Id { get; set; }
+
     }
 }

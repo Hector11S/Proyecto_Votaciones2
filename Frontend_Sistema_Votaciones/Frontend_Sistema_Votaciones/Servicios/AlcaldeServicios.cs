@@ -41,6 +41,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+
         public async Task<ServiceResult> ObtenerAlcaldeList()
         {
             var result = new ServiceResult();

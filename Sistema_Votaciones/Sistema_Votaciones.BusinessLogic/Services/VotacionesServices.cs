@@ -177,12 +177,12 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 }
                 else
                 {
-                    return result.Error("Ya existe un Presidente con ese DNI");
+                    return result.Error("Por favor rellene todos los campos");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al guardar la informacion del presidente");
             }
         }
 

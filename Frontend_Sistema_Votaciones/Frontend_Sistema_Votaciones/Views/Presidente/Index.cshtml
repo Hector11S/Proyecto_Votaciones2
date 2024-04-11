@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.PresidenteViewModel>
 
 @{
-    ViewData["Title"] = "Presidentes";
+    ViewData["Title"] = "Presidente";
 }
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
@@ -57,11 +57,11 @@
                     <td style="width: 5%">
                         <div class="w-100" style="max-width: 250px">
                             <div class="d-flex w-100" style="gap: 5px;">
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Edit", new { Alca_Id=item.Pres_Id })">
+                                <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Edit", new { Pres_Id=item.Pres_Id })">
                                     <i class="bi bi-pencil"></i>
                                     Editar
                                 </a>
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { Alca_Id=item.Pres_Id })">
+                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { Pres_Id=item.Pres_Id })">
                                     <i class="bi bi-eye"></i>
                                     Detalles
                                 </a>

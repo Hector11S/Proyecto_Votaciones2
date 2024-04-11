@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\assets\alcaldes\" />
+    <Folder Include="wwwroot\assets\presidentes\" />
   </ItemGroup>
 
 </Project>
