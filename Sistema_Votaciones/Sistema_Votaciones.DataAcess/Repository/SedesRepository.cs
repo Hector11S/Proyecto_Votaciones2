@@ -37,6 +37,17 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 return result;
             }
         }
+        public List<tbMunicipios> ListMunicipoSedes(string Muni_Codigo)
+        {
+            List<tbMunicipios> result = new List<tbMunicipios>();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Muni_Codigo", Muni_Codigo);
+                result = db.Query<tbMunicipios>(ScriptsBaseDeDatos.Muni_MunicipiosPorSedes, parameter, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
 
         public RequestStatus Insert(tbSedes item)
         {

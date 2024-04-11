@@ -39,6 +39,32 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+
+        public async Task<ServiceResult> ObtenerMunicipioSedesList(string Muni_Codigo)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<SedesViewModel>, IEnumerable<SedesViewModel>>(req =>
+                {
+                    req.Path = $"API/Sedes/ListMunisPorSedes?Muni_Codigo={Muni_Codigo}";
+                });
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
         public async Task<ServiceResult> ObtenerSedes(int Sede_Id)
         {
             var result = new ServiceResult();

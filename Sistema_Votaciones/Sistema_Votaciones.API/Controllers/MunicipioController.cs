@@ -36,6 +36,13 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
 
+        [HttpGet("API/[controller]/List/{Muni_Codigo}")]
+        public IActionResult ListMunicipiosPorSedes(string Muni_Codigo)
+        {
+            var list = _generalServices.ListMunisPorSedes(Muni_Codigo);
+            return Ok(list);
+        }
+
         [HttpGet("API/[controller]/Find")]
 
         public IActionResult Find(string Muni_Codigo)

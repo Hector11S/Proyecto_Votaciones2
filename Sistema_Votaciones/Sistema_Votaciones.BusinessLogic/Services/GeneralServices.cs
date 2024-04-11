@@ -170,6 +170,28 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error al cargar el municipios");
             }
         }
+
+        public ServiceResult ListMunisPorSedes(string Muni_Codigo)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _sedesRepository.ListMunicipoSedes(Muni_Codigo);
+                if (list.Count > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error("No se encontraron municipios");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error al cargar el municipios");
+            }
+        }
+
         public ServiceResult FindMuni(string Muni_Codigo)
         {
             var result = new ServiceResult();

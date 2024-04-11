@@ -21,7 +21,8 @@ namespace Sistema_Votaciones.Entities.Entities
         public DateTime Muni_FechaCreacion { get; set; }
         public int? Muni_UsuarioModifica { get; set; }
         public DateTime? Muni_FechaModifica { get; set; }
-
+        public int Sede_Id { get; set; }
+        public string Sede_Descripcion { get; set; }
         public virtual tbDepartamentos Dept_CodigoNavigation { get; set; }
         public virtual tbUsuarios Muni_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Muni_UsuarioModificaNavigation { get; set; }

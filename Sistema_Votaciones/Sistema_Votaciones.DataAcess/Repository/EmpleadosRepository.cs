@@ -80,6 +80,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
             }
         }
 
+
         public RequestStatus Update(tbEmpleados item)
         {
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))

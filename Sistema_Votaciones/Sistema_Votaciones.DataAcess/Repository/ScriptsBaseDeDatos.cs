@@ -51,6 +51,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Muni_Insertar = "[Gral].[SP_Municipios_Insertar]";
         public static string Muni_Editar = "[Gral].[SP_Municipios_Editar]";
         public static string Muni_Eliminar = "[Gral].[SP_Municipios_Eliminar]";
+        public static string Muni_MunicipiosPorSedes = "SP_ObtenerSedesPorMunicipio";
         #endregion
 
         #region Cargos
@@ -76,7 +77,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Empl_Insertar = "[Gral].[SP_Empleados_Insertar]";
         public static string Empl_Editar = "[Gral].[SP_Empleados_Editar]";
         public static string Empl_ActivarDesactivar = "[Gral].[SP_Empleados_ActivarDesactivar]";
-
+    
         public static string Empl_LlenarByEmpl = "[Acce].[SP_Empleados_LlenarByEmpl]";
         #endregion
 

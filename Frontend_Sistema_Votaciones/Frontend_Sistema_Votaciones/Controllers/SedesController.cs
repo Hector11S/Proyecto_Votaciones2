@@ -103,6 +103,19 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 return RedirectToAction("Index");
             }
         }
+        [HttpGet("[controller]/ObtenerMunicipioSedesList/{Muni_Codigo}")]
+        public async Task<IActionResult> ObtenerMunicipioSedes(string Muni_Codigo)
+        {
+            try
+            {
+                var response = await _sedesServicios.ObtenerMunicipioSedesList(Muni_Codigo);
+                return Json(new { municipios = response.Data, message = response.Message });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { message = "Error al cargar los municipios" });
+            }
+        }
 
         [HttpPost("[controller]/Edit")]
         public async Task<IActionResult> Edit(SedesViewModel item)

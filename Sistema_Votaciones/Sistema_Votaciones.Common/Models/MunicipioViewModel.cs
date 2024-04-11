@@ -15,5 +15,7 @@ namespace Sistema_Votaciones.Common.Models
         public DateTime Muni_FechaCreacion { get; set; }
         public int? Muni_UsuarioModifica { get; set; }
         public DateTime? Muni_FechaModifica { get; set; }
+        public int Sede_Id { get; set; }
+        public string Sede_Descripcion { get; set; }
     }
 }

@@ -73,6 +73,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 return result;
             }
         }
+      
 
         public tbMunicipios Find(string Muni_Codigo)
         {
