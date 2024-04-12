@@ -72,7 +72,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                             Dictionary<int, string> esquemasDictionary = Autorizacion.ObtenerEsquemas();
                             string esquemasStr = JsonConvert.SerializeObject(esquemasDictionary);
                             HttpContext.Session.SetString("esquemasDictionary", esquemasStr);
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "VotosPorMesa");
                         }
                         else
                         {

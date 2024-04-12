@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace Frontend_Sistema_Votaciones.Controllers
 {
-    public class PresidenteController : Controller
+    public class PresidentesController : Controller
     {
         private readonly PresidenteServicios _presidenteServicios;
         private readonly AlcaldeServicios _alcaldeServicios;
@@ -22,7 +22,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
         private readonly IWebHostEnvironment _hostingEnviroment;
 
 
-        public PresidenteController(
+        public PresidentesController(
             PresidenteServicios presidenteServicios,
             AlcaldeServicios alcaldeServicios,
             VotanteServicios votanteServicios,

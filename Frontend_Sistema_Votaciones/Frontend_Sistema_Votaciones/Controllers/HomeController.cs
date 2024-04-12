@@ -1,5 +1,6 @@
 ﻿using Frontend_Sistema_Votaciones.Models;
 using Frontend_Sistema_Votaciones.Servicios;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -75,7 +76,16 @@ namespace Frontend_Sistema_Votaciones.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var rol = HttpContext.Session.GetInt32("Rol_Id");
+            if (rol == null)
+            {
+                return View();
+            }
+            else
+            {
+                TempData["Advertencia"] = "Los asistentes electorales no pueden acceder a votar.";
+                return RedirectToAction("Index", "VotosPorMesa");
+            }
         }
 
         public IActionResult Privacy()

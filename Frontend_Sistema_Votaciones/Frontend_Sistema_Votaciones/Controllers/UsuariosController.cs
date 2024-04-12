@@ -72,21 +72,32 @@ namespace Frontend_Sistema_Votaciones.Controllers
             try
             {
                 var reponseVotante = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
-                VotanteViewModel votante = (VotanteViewModel)reponseVotante.Data;
-                var reponseEmpleado = await _empleadoServicios.ObtenerEmpleado(votante.Vota_Id);
-                if (reponseEmpleado.Success)
+                if (reponseVotante.Data == null)
                 {
-                    EmpleadoViewModel empleado = (EmpleadoViewModel)reponseEmpleado.Data;
-                    if (empleado.Empl_Estado)
+                    return Json(new { message = "No se encontró el registro de esa persona." });
+                }
+                else
+                {
+                    VotanteViewModel votante = (VotanteViewModel)reponseVotante.Data;
+                    var reponseEmpleado = await _empleadoServicios.ObtenerEmpleado(votante.Vota_Id);
+                    if (reponseEmpleado.Success)
                     {
-                        var responseUsuario = await _usuariosServicios.ObtenerUsuarioPorEmplId(empleado.Empl_Id);
-                        if (responseUsuario.Success)
+                        EmpleadoViewModel empleado = (EmpleadoViewModel)reponseEmpleado.Data;
+                        if (empleado.Empl_Estado)
                         {
-                            return Json(new { message = "Ya existe un usuario para esta persona." });
+                            var responseUsuario = await _usuariosServicios.ObtenerUsuarioPorEmplId(empleado.Empl_Id);
+                            if (responseUsuario.Success)
+                            {
+                                return Json(new { message = "Ya existe un usuario para esta persona." });
+                            }
+                            else
+                            {
+                                 return Json(new { empleado = reponseEmpleado.Data, message = reponseEmpleado.Message });
+                            }
                         }
                         else
                         {
-                             return Json(new { empleado = reponseEmpleado.Data, message = reponseEmpleado.Message });
+                            return Json(new { message = "No existe un miembro de partido con este DNI." });
                         }
                     }
                     else
@@ -94,14 +105,10 @@ namespace Frontend_Sistema_Votaciones.Controllers
                         return Json(new { message = "No existe un miembro de partido con este DNI." });
                     }
                 }
-                else
-                {
-                    return Json(new { message = "No existe un miembro de partido con este DNI." });
-                }
             }
             catch (Exception ex)
             {
-                return Json("Error al obtener la persona por el DNI");
+                return Json(new { message = "Error al obtener la persona por el DNI" });
             }
         }
         public async Task<IActionResult> Index()
@@ -227,7 +234,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             try
             {
                 var model = await _usuariosServicios.ObtenerUsuario(Usua_Id);
-                return Json(model.Data);
+                return View(model.Data);
             }
             catch (Exception ex)
             {
