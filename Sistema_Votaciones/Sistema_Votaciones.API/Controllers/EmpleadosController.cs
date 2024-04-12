@@ -29,6 +29,12 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _generalServices.ListEmpl();
             return Ok(list);
         }
+        [HttpGet("API/[controller]/FindByEmpl")]
+        public IActionResult FindByEmpl(int Empl_Id)
+        {
+            var list = _generalServices.FindEmpleByEmpl(Empl_Id);
+            return Ok(list);
+        }
 
         [HttpGet("API/[controller]/Find")]
         public IActionResult Find(int Empl_Id)
@@ -54,6 +60,7 @@ namespace Sistema_Votaciones.API.Controllers
             var response = _generalServices.CrearEmpl(modelo);
             return Ok(response);
         }
+
         [HttpPut("API/[controller]/Update")]
         public IActionResult Update(EmpleadosViewModel json)
         {
@@ -77,5 +84,13 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _generalServices.ActivarDesactivarEmpl(Empl_Id);
             return Ok(list);
         }
+
+        [HttpGet("API/[controller]/ObtenerSedesPorMunicipio")]
+        public IActionResult ObtenerSedesPorMunicipio(string muniCodigo)
+        {
+            var sedes = _generalServices.ObtenerSedesPorMunicipio(muniCodigo);
+            return Ok(sedes);
+        }
+
     }
 }

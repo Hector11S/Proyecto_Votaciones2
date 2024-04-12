@@ -5,81 +5,107 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1 class="text-center">Detalles</h1>
 
+
+<div class="card mt-3">
+    <div class="card-header text-center">
+        Información del Alcalde
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <div class="col-sm-6">
+                <dl class="row">
+                    <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.Alca_Id)
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Alca_Id)
+                    </dd>
+                    <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.Vota_NombreCompleto)
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Vota_NombreCompleto)
+                    </dd>
+                    <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.Alca_Imagen)
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Alca_Imagen)
+                    </dd>
+                    <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.Muni_Codigo)
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Muni_Codigo)
+                    </dd>
+                    <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.Muni_Descripcion)
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Muni_Descripcion)
+                    </dd>
+                    <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.Part_Id)
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Part_Id)
+                    </dd>
+                    <dt class="col-sm-6">
+                        @Html.DisplayNameFor(model => model.Part_Descripcion)
+                    </dt>
+                    <dd class="col-sm-6">
+                        @Html.DisplayFor(model => model.Part_Descripcion)
+                    </dd>
+                </dl>
+            </div>
+        </dl>
+    </div>
+
+</div>
+
+<hr />
 <div>
-    <h4>AlcaldeViewModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Alca_Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Alca_Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Vota_NombreCompleto)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Vota_NombreCompleto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Alca_Imagen)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Alca_Imagen)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Muni_Codigo)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Muni_Codigo)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Muni_Descripcion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Muni_Descripcion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Part_Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Part_Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Part_Descripcion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Part_Descripcion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Alca_UsuarioCreacion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Alca_UsuarioCreacion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Alca_FechaCreacion)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Alca_FechaCreacion)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Alca_UsuarioModifica)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Alca_UsuarioModifica)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Alca_FechaModifica)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Alca_FechaModifica)
-        </dd>
+    <a class="btn btn-primary" href="@Url.Action("_Edit", new { id = Model.Alca_Id })">Editar</a>
+    <a class="btn btn-secondary" href="@Url.Action("Index")">Regresar</a>
+</div>
+
+<hr />
+<div class="card">
+    <div class="card-header text-center">
+        Auditoría
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Alca_UsuarioCreacion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Alca_UsuarioCreacion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Alca_FechaCreacion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Alca_FechaCreacion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Alca_UsuarioModifica)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Alca_UsuarioModifica)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Alca_FechaModifica)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Alca_FechaModifica)
+            </dd>
+        </dl>
+    </div>
     </dl>
 </div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+

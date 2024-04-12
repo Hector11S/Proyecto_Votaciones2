@@ -26,6 +26,14 @@ namespace Sistema_Votaciones.API.Controllers
         }
 
 
+        [HttpGet("API/[controller]/Listar")]
+        public IActionResult Listar(string Vota_DNI)
+        {
+            var list = _votacionesServices.ListAlcaldePorDNI(Vota_DNI);
+            return Ok(list);
+        }
+
+        
         [HttpGet("API/[controller]/List")]
         public IActionResult List()
         {
@@ -33,7 +41,7 @@ namespace Sistema_Votaciones.API.Controllers
             var list = _votacionesServices.ListAlcalde();
             return Ok(list);
         }
-        
+
         [HttpGet("API/[controller]/Find")]
         public IActionResult Find(int Alca_Id)
         {

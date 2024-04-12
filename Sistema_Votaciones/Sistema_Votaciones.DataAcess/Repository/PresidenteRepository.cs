@@ -44,7 +44,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Pres_Id", item.Pres_Id);
-                parameter.Add("Alca_Imagen", item.Pres_Imagen);
+                parameter.Add("Pres_Imagen", item.Pres_Imagen);
                 parameter.Add("Part_Id", item.Part_Id);
                 parameter.Add("Pres_UsuarioCreacion", item.Pres_UsuarioCreacion);
                 parameter.Add("Pres_FechaCreacion", item.Pres_FechaCreacion);
@@ -72,7 +72,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("Pres_Id", item.Pres_Id);
-                parameter.Add("Alca_Imagen", item.Pres_Imagen);
+                parameter.Add("Pres_Imagen", item.Pres_Imagen);
                 parameter.Add("Part_Id", item.Part_Id);
                 parameter.Add("Pres_UsuarioModifica", item.Pres_UsuarioModifica);
                 parameter.Add("Pres_FechaModifica", item.Pres_FechaModifica);

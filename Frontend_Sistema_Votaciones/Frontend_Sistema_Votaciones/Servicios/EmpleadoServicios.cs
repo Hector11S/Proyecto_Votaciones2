@@ -22,7 +22,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<EmpleadoViewModel>, IEnumerable<EmpleadoViewModel>>(req =>
                 {
-                    req.Path = $"API/Empleado/List";
+                    req.Path = $"API/Empleados/List";
                 });
                 if (!response.Success)
                 {
@@ -63,6 +63,30 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+        public async Task<ServiceResult> ObtenerEmpleadoPorEmplId(int Empl_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<EmpleadoViewModel>, EmpleadoViewModel>(req =>
+                {
+                    req.Path = $"API/Empleados/FindByEmpl?Empl_Id={Empl_Id}";
+                });
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
         public async Task<ServiceResult> CrearEmpleado(EmpleadoViewModel item)
         {
             var result = new ServiceResult();
@@ -70,7 +94,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Post<EmpleadoViewModel, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Empleado/Insert";
+                    req.Path = $"API/Empleados/Insert";
                     req.Content = item;
                 });
                 if (!response.Success)
@@ -138,5 +162,30 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 return result.Error(Helpers.GetMessage(ex));
             }
         }
+
+        public async Task<ServiceResult> ObtenerSedesPorMunicipio(string muniCodigo)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<SedesViewModel>, SedesViewModel>(req =>
+                {
+                    req.Path = $"API/Empleados/ObtenerSedesPorMunicipio?Muni_Codigo={muniCodigo}";
+                });
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+            }
+        }
+
     }
 }

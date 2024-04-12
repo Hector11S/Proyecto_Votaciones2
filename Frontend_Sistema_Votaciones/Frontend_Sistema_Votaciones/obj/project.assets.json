@@ -6518,11 +6518,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\test\\Downloads\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
+      "projectUniqueName": "C:\\Users\\test\\OneDrive\\Escritorio\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
       "projectName": "Frontend_Sistema_Votaciones",
-      "projectPath": "C:\\Users\\test\\Downloads\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
+      "projectPath": "C:\\Users\\test\\OneDrive\\Escritorio\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones.csproj",
       "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\test\\Downloads\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\obj\\",
+      "outputPath": "C:\\Users\\test\\OneDrive\\Escritorio\\Frontend_Sistema_Votaciones\\Frontend_Sistema_Votaciones\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config",

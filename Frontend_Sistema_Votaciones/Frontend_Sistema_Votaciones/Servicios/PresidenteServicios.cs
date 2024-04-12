@@ -41,6 +41,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+
         public async Task<ServiceResult> ObtenerPresidenteList()
         {
             var result = new ServiceResult();
@@ -72,11 +73,11 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Get<IEnumerable<PresidenteViewModel>, PresidenteViewModel>(req =>
                 {
-                    req.Path = $"API/Presidente/Fill?Pres_Id={Pres_Id}";
+                    req.Path = $"API/Presidente/Find?Pres_Id={Pres_Id}";
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
@@ -101,11 +102,11 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
-                    return result.Ok(response.Data);
+                    return result.Ok(response.Message, response.Data);
                 }
             }
             catch (Exception ex)
@@ -126,11 +127,11 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error(response.Message);
                 }
                 else
                 {
-                    return result.Ok(response.Data);
+                    return result.Ok(response.Message, response.Data);
                 }
             }
             catch (Exception ex)

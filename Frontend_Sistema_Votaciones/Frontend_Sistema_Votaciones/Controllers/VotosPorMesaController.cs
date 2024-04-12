@@ -157,16 +157,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-
-                var alcaldes = await _alcaldeServicios.ObtenerAlcaldeList();
+                var alcaldes = await _alcaldeServicios.ObtenerAlcaldeListar(Vota_DNI);
                 var votante = await _votanteServicios.ObtenerVotanteList();
                 var partido = await _partidoServicios.ObtenerPartidoList();
-            
 
                 ViewBag.Alcaldes = alcaldes.Data;
                 ViewBag.Votante = votante.Data;
                 ViewBag.Partidos = partido.Data;
-            
 
                 var model = new VotosPorMesasViewModel();
 
@@ -174,10 +171,10 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-
                 return RedirectToAction("Index");
             }
         }
+
 
 
         [HttpPost]
@@ -196,7 +193,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                     if (result.Success)
                     {
                         TempData["Exito"] = "El voto por el Alcalde se ha creado correctamente.";
-                        return RedirectToAction("Index");
+                        return RedirectToAction("CreatePresi", "VotosPorMesa");
                     }
                     else
                     {
@@ -262,7 +259,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                     if (result.Success)
                     {
                         TempData["Exito"] = "El voto por el presidente se ha creado correctamente.";
-                        return RedirectToAction("Create", "VotosPorMesa");
+                        return RedirectToAction("Index");
                     }
                     else
                     {

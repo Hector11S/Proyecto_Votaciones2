@@ -22,7 +22,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 parameter.Add("Esta_Id", id);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Esta_Eliminar, parameter, commandType: CommandType.StoredProcedure);
-                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Éxito" : "Error" };
             }
         }
 

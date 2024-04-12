@@ -1,0 +1,119 @@
+﻿@model Frontend_Sistema_Votaciones.Models.VotanteViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Detalles</h1>
+
+
+<div class="card mt-3">
+    <div class="card-header text-center">
+        Información del Votante
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <div class="col-sm-6">
+                <dl>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vota_Id)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Vota_Id)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vota_Nombre)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Vota_Nombre)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vota_Apellidos)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Vota_Apellidos)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vota_DNI)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Vota_DNI)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Vota_YaVoto)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Vota_YaVoto)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Muni_Codigo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Muni_Codigo)
+                    </dd>
+                </dl>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<hr />
+<div>
+    <a class="btn btn-primary" href="@Url.Action("_Edit", new { id = Model.Vota_Id })">Editar</a>
+    <a class="btn btn-secondary" href="@Url.Action("Index")">Regresar</a>
+</div>
+
+<hr />
+<div class="card">
+    <div class="card-header text-center">
+        Auditoría
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Esta_Id)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Esta_Id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Vota_UsuarioCreacion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Vota_UsuarioCreacion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Vota_FechaCreacion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Vota_FechaCreacion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Vota_UsuarioModifica)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Vota_UsuarioModifica)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Vota_FechaModifica)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Vota_FechaModifica)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MePS_Id)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MePS_Id)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Vota_Permitido)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Vota_Permitido)
+            </dd>
+        </dl>
+    </div>
+    </dl>
+</div>

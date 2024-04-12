@@ -53,8 +53,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Pres_UsuarioCreacion = json.Pres_UsuarioCreacion,
                 Pres_FechaCreacion = json.Pres_FechaCreacion
             };
-            var list = _votacionesServices.CrearPresidente(modelo);
-            return Ok(list);
+            var response = _votacionesServices.CrearPresidente(modelo);
+            return Ok(response);
         }
 
         [HttpPut("API/[controller]/Update")]

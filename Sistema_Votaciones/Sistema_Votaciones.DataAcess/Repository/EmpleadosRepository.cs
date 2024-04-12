@@ -68,6 +68,17 @@ namespace Sistema_Votaciones.DataAcess.Repository
             }
 
         }
+        public tbEmpleados FindByEmpl(int? id)
+        {
+            tbEmpleados result = new tbEmpleados();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Empl_Id", id);
+                result = db.QueryFirst<tbEmpleados>(ScriptsBaseDeDatos.Empl_LlenarByEmpl, parameter, commandType: CommandType.StoredProcedure);
+                return result;
+            }
+        }
 
         public RequestStatus Update(tbEmpleados item)
         {
@@ -86,6 +97,20 @@ namespace Sistema_Votaciones.DataAcess.Repository
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             }
         }
+
+    
+        public IEnumerable<tbSedes> ObtenerSedesPorMunicipio(string muniCodigo)
+        {
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@Muni_Codigo", muniCodigo);
+
+                return db.Query<tbSedes>(ScriptsBaseDeDatos.ObtenerSedesPorMunicipio, parameter, commandType: CommandType.StoredProcedure);
+            }
+        }
+
+
 
         public RequestStatus Delete(int? id)
         {

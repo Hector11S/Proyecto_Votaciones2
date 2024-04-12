@@ -113,6 +113,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+
         public async Task<ServiceResult> ObtenerUsuario(string Usua_Id)
         {
             var result = new ServiceResult();

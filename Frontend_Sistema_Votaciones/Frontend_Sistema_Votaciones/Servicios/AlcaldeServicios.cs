@@ -41,6 +41,32 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+
+        public async Task<ServiceResult> ObtenerAlcaldeListar(string Vota_DNI)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<AlcaldeViewModel>, IEnumerable<AlcaldeViewModel>>(req =>
+                {
+                    req.Path = $"API/ALcalde/Listar?Vota_DNI={Vota_DNI}";
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
         public async Task<ServiceResult> ObtenerAlcaldeList()
         {
             var result = new ServiceResult();
@@ -65,6 +91,9 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+
+
+
         public async Task<ServiceResult> ObtenerAlcalde(string Alca_Id)
         {
             var result = new ServiceResult();

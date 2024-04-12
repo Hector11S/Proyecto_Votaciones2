@@ -72,7 +72,7 @@ namespace Frontend_Sistema_Votaciones.Servicios
             {
                 var response = await _api.Post<VotanteViewModel, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Votante/Insert";
+                    req.Path = $"/API/Votante/Insert";
                     req.Content = item;
                 });
                 if (!response.Success)

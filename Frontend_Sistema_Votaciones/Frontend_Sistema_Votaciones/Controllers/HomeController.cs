@@ -15,11 +15,15 @@ namespace Frontend_Sistema_Votaciones.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly VotanteServicios _votanteServicios;
 
-        public HomeController(ILogger<HomeController> logger, VotanteServicios votanteServicios)
+        private readonly AlcaldeServicios _alcaldeServicios;
+
+        public HomeController(ILogger<HomeController> logger, VotanteServicios votanteServicios, AlcaldeServicios alcaldeServicios)
         {
             _logger = logger;
             _votanteServicios = votanteServicios;
+            _alcaldeServicios = alcaldeServicios;
         }
+
         [HttpGet("[controller]/ObtenerVotantePorDNI")]
         public async Task<IActionResult> ObtenerVotantePorDNI(string Vota_DNI)
         {
@@ -58,7 +62,8 @@ namespace Frontend_Sistema_Votaciones.Controllers
                     }
 
                     var resultYaVoto = await _votanteServicios.MarcarVotanteComoYaVoto(Vota_DNI);
-                    return RedirectToAction("CreatePresi", "VotosPorMesa");
+                    return RedirectToAction("Create", "VotosPorMesa", new { Vota_DNI = Vota_DNI });
+
                 }
             }
             catch (Exception ex)

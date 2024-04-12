@@ -39,13 +39,14 @@ namespace Sistema_Votaciones.API.Controllers
                 Vota_Nombre = json.Vota_Nombre,
                 Vota_Apellidos = json.Vota_Apellidos,
                 Vota_DNI = json.Vota_DNI,
-                Vota_YaVoto = true,
+                Vota_YaVoto = json.Vota_YaVoto,
                 Muni_Codigo = json.Muni_Codigo,
                 Esta_Id = json.Esta_Id,
                 Sede_Id = json.Sede_Id,
                 Mesa_Id = json.Mesa_Id,
                 Vota_UsuarioCreacion = json.Vota_UsuarioCreacion,
-                Vota_FechaCreacion = json.Vota_FechaCreacion
+                Vota_FechaCreacion = json.Vota_FechaCreacion,
+                Vota_Permitido = json.Vota_Permitido
             };
             var list = _generalServices.CrearVotante(modelo);
             return Ok(list);
@@ -68,7 +69,8 @@ namespace Sistema_Votaciones.API.Controllers
                 Sede_Id = json.Sede_Id,
                 Mesa_Id = json.Mesa_Id,
                 Vota_UsuarioModifica = json.Vota_UsuarioModifica,
-                Vota_FechaModifica = json.Vota_FechaModifica
+                Vota_FechaModifica = json.Vota_FechaModifica,
+                Vota_Permitido = json.Vota_Permitido
             };
             var list = _generalServices.EditarVotante(modelo);
             return Ok(list);

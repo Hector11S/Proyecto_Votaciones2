@@ -14,12 +14,12 @@ namespace Sistema_Votaciones.DataAcess.Repository
 {
     public partial class MesasRepository : IRepository<tbMesas>
     {
-        public RequestStatus Delete(int? id)
+        public RequestStatus Delete(int? Mesa_Id)
         {
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {
                 var parameter = new DynamicParameters();
-                parameter.Add("Mesa_Id", id);
+                parameter.Add("Mesa_Id", Mesa_Id);
 
                 var result = db.QueryFirst(ScriptsBaseDeDatos.Mesa_Eliminar, parameter, commandType: CommandType.StoredProcedure);
                 return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };

@@ -114,7 +114,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
             }
         }
 
-        public RequestStatus MarcarVotanteComoYaVoto(string Vota_DNI)
+        public RequestStatus MarcarVotanteComoYaVotoo(string Vota_DNI)
         {
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {

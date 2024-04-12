@@ -30,6 +30,21 @@ namespace Sistema_Votaciones.BusinessLogic.Services
 
 
         #region Alcaldes
+        public ServiceResult ListAlcaldePorDNI(string Vota_DNI)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _alcaldeRepository.Listar(Vota_DNI);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
+
         public ServiceResult ListAlcalde()
         {
             var result = new ServiceResult();
@@ -177,12 +192,12 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 }
                 else
                 {
-                    return result.Error("Ya existe un Presidente con ese DNI");
+                    return result.Error("Por favor rellene todos los campos");
                 }
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al guardar la informacion del presidente");
             }
         }
 
@@ -368,7 +383,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             var result = new ServiceResult();
             try
             {
-                var status = _votosPorMesasRepository.MarcarVotanteComoYaVoto(Vota_DNI);
+                var status = _votosPorMesasRepository.MarcarVotanteComoYaVotoo(Vota_DNI);
                 if (status.CodeStatus > 0)
                 {
                     return result.Ok("Votante marcado como que ya ha votado.");

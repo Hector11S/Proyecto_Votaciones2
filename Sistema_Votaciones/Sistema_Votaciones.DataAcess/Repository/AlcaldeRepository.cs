@@ -66,6 +66,18 @@ namespace Sistema_Votaciones.DataAcess.Repository
             }
 
         }
+        public IEnumerable<tbAlcaldes> Listar(string Vota_DNI)
+        {
+            List<tbAlcaldes> result = new List<tbAlcaldes>();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameters = new { Vota_DNI };
+                result = db.Query<tbAlcaldes>(ScriptsBaseDeDatos.Alca_ListarPOrDNI, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
+
+
 
         public RequestStatus Update(tbAlcaldes item)
         {

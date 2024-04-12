@@ -28,6 +28,51 @@ C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_V
 C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
 C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
 C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.deps.json
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.AssemblyReference.cache
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfoInputs.cache
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfo.cs
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CoreCompileInputs.cache
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CopyComplete
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.deps.json
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.AssemblyReference.cache
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfoInputs.cache
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfo.cs
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CoreCompileInputs.cache
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CopyComplete
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.deps.json
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.AssemblyReference.cache
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfoInputs.cache
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfo.cs
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CoreCompileInputs.cache
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CopyComplete
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
 C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.deps.json
 C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
 C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
@@ -58,48 +103,3 @@ C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.DataAces
 C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
 C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
 C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.deps.json
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.AssemblyReference.cache
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfoInputs.cache
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfo.cs
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CoreCompileInputs.cache
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CopyComplete
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
-C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.deps.json
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.AssemblyReference.cache
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfoInputs.cache
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfo.cs
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CoreCompileInputs.cache
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CopyComplete
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.deps.json
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.AssemblyReference.cache
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfoInputs.cache
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.AssemblyInfo.cs
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CoreCompileInputs.cache
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.csproj.CopyComplete
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\ref\Sistema_Votaciones.DataAcess.dll
-C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.DataAcess\obj\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb

@@ -50,10 +50,20 @@
                     @Html.DisplayNameFor(model => model.Muni_Codigo)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Esta_Id)
+                    @Html.DisplayNameFor(model => model.Muni_Descripcion)
+                </th>
+  
+                <th>
+                    @Html.DisplayNameFor(model => model.Esta_Descripcion)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.MePS_Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mesa_Numero)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sede_Descripcion)
                 </th>
                 <th></th>
             </tr>
@@ -61,50 +71,59 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Vota_Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Vota_Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Vota_Apellidos)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Vota_DNI)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Vota_YaVoto)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Muni_Codigo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Esta_Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.MePS_Id)
-                    </td>
-                    <td style="width: 5%">
-                        <div class="w-100" style="max-width: 250px">
-                            <div class="d-flex w-100" style="gap: 5px;">
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Edit", new { id=item.Vota_Id })">
-                                    <i class="bi bi-pencil"></i>
-                                    Editar
-                                </a>
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { id=item.Vota_Id })">
-                                    <i class="bi bi-eye"></i>
-                                    Detalles
-                                </a>
-                                <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Vota_Id')">
-                                    <i class="bi bi-trash-fill"></i>
-                                    Fallecida
-                                </button>
-                            </div>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vota_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vota_Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vota_Apellidos)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vota_DNI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vota_YaVoto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Muni_Codigo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Muni_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Esta_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MePS_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mesa_Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sede_Descripcion)
+                </td>
+                <td style="width: 5%">
+                    <div class="w-100" style="max-width: 250px">
+                        <div class="d-flex w-100" style="gap: 5px;">
+                            <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Edit", new { id=item.Vota_Id })">
+                                <i class="bi bi-pencil"></i>
+                                Editar
+                            </a>
+                            <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { id=item.Vota_Id })">
+                                <i class="bi bi-eye"></i>
+                                Detalles
+                            </a>
+                            <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Vota_Id')">
+                                <i class="bi bi-trash-fill"></i>
+                                Fallecida
+                            </button>
                         </div>
-                    </td>
-                </tr>
+                    </div>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

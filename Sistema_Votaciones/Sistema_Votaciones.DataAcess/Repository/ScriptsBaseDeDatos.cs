@@ -62,7 +62,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Carg_Llenar = "[Gral].[SP_Cargos_Llenar]";
         public static string Carg_Insertar = "[Gral].[SP_Cargos_Insertar]";
         public static string Carg_Editar = "[Gral].[SP_Cargos_Editar]";
-        public static string Carg_Eliminar = "[Acce].[SP_Cargos_Eliminar]";
+        public static string Carg_Eliminar = "[Gral].[SP_Cargos_Eliminar]";
         #endregion
 
         #region EstadosCiviles
@@ -70,7 +70,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Esta_Llenar = "[Gral].[SP_EstadosCiviles_Llenar]";
         public static string Esta_Insertar = "[Gral].[SP_EstadosCiviles_Insertar]";
         public static string Esta_Editar = "[Gral].[SP_EstadosCiviles_Editar]";
-        public static string Esta_Eliminar = "[Acce].[SP_EstadosCiviles_Eliminar]";
+        public static string Esta_Eliminar = "[Gral].[SP_EstadosCiviles_Eliminar]";
         #endregion
 
         #region Empleados
@@ -79,6 +79,10 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Empl_Insertar = "[Gral].[SP_Empleados_Insertar]";
         public static string Empl_Editar = "[Gral].[SP_Empleados_Editar]";
         public static string Empl_ActivarDesactivar = "[Gral].[SP_Empleados_ActivarDesactivar]";
+    
+        public static string ObtenerSedesPorMunicipio = "[dbo].[SP_ObtenerSedesPorMunicipio]";
+
+        public static string Empl_LlenarByEmpl = "[Acce].[SP_Empleados_LlenarByEmpl]";
         #endregion
 
         #region Sedes
@@ -86,7 +90,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Sede_Llenar = "[Gral].[SP_Sedes_Llenar]";
         public static string Sede_Insertar = "[Gral].[SP_Sedes_Insertar]";
         public static string Sede_Editar = "[Gral].[SP_Sedes_Editar]";
-        public static string Sede_Eliminar = "[Acce].[SP_Sedes_Eliminar]";
+        public static string Sede_Eliminar = "[Gral].[SP_Sedes_Eliminar]";
         #endregion
 
         #region Mesas
@@ -94,11 +98,13 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Mesa_Llenar = "[Gral].[SP_Mesas_Llenar]";
         public static string Mesa_Insertar = "[Gral].[SP_Mesas_Insertar]";
         public static string Mesa_Editar = "[Gral].[SP_Mesas_Editar]";
-        public static string Mesa_Eliminar = "[Acce].[SP_Mesas_Eliminar]";
+        public static string Mesa_Eliminar = "[Gral].[SP_Mesas_Eliminar]";
         #endregion
 
         #region Alcaldes
         public static string Alca_Listar = "[Vota].[SP_Alcaldes_Mostrar]";
+
+        public static string Alca_ListarPOrDNI = "[Vota].[SP_Alcaldes_MostrarPorDNI]";
         public static string Alca_Llenar = "[Vota].[SP_Alcaldes_Listar]";
         public static string Alca_Insertar = "[Vota].[SP_Alca_Insertar]";
         public static string Alca_Editar = "[Vota].[SP_Alca_Editar]";
@@ -141,6 +147,8 @@ namespace Sistema_Votaciones.DataAcess.Repository
         public static string Vota_Editar = "[Gral].[SP_Votantes_Editar]";
         public static string Vota_Eliminar = "[Gral].[SP_Votantes_Eliminar]";
         public static string Vota_ListarCandidatos = "[Gral].[SP_Votantes_MostrarCandidatos]";
+
+        public static string Vota_LlenarByEmpl = "[Acce].[SP_Votantes_LlenarByEmpl]";
         #endregion
 
 

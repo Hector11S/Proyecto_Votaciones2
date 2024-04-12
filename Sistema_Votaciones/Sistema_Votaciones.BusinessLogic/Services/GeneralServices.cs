@@ -350,6 +350,20 @@ namespace Sistema_Votaciones.BusinessLogic.Services
         #endregion
 
         #region Empleados
+        public ServiceResult FindEmpleByEmpl(int Empl_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _empleadosRepository.FindByEmpl(Empl_Id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error("Error de capa 8");
+            }
+        }
         public ServiceResult ListEmpl()
         {
             var result = new ServiceResult();
@@ -437,6 +451,13 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error al actualizar el empleado");
             }
         }
+
+  
+        public IEnumerable<tbSedes> ObtenerSedesPorMunicipio(string muniCodigo)
+        {
+            return _empleadosRepository.ObtenerSedesPorMunicipio(muniCodigo);
+        }
+
         #endregion
 
         #region EstadosCiviles
@@ -522,11 +543,11 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 var response = _estadosCivilesRepository.Delete(Esta_Id);
                 if (response.CodeStatus == 1)
                 {
-                    return result.Ok($"Estado civil {Esta_Id} eliminada con éxito", response);
+                    return result.Ok($"Estado civil {Esta_Id} eliminado con éxito", response);
                 }
                 else
                 {
-                    return result.Error("Hay personas que tienen este estado civil registrado");
+                    return result.Error("Error al eliminar el estado civil");
                 }
             }
             catch (Exception ex)
@@ -534,6 +555,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 return result.Error("Error al eliminar el estado civil");
             }
         }
+
         #endregion
 
         #region Sedes

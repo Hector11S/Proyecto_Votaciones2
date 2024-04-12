@@ -14,21 +14,40 @@ namespace Frontend_Sistema_Votaciones.Controllers
 {
     public class VotantesController : Controller
     {
+        private readonly EmpleadoServicios _empleadoServicios;
         private readonly VotanteServicios _votanteServicios;
         private readonly DepartamentoServicios _departamentoServicios;
         private readonly MunicipioServicios _municipioServicios;
+        private readonly PartidoServicios _partidoServicios;
+        private readonly CargoServicios _cargoServicios;
+        private readonly SedesServicios _sedesServicios;
+        private readonly MesasServicios _mesasServicios;
+        private readonly EstadosCivilesServicios _estadosCivilesServicios;
         private readonly IWebHostEnvironment _hostingEnviroment;
 
 
         public VotantesController(
+            EmpleadoServicios empleadoServicios,
             VotanteServicios votanteServicios,
             DepartamentoServicios departamentoServicios,
             MunicipioServicios municipioServicios,
+            PartidoServicios partidoServicios,
+            CargoServicios cargoServicios,
+            SedesServicios sedesServicios,
+            MesasServicios mesasServicios,
+            EstadosCivilesServicios estadosCivilesServicios,
+
             IWebHostEnvironment hostingEnviroment)
         {
+            _cargoServicios = cargoServicios;
+            _empleadoServicios = empleadoServicios;
             _votanteServicios = votanteServicios;
             _departamentoServicios = departamentoServicios;
             _municipioServicios = municipioServicios;
+            _partidoServicios = partidoServicios;
+            _sedesServicios = sedesServicios;
+            _mesasServicios = mesasServicios;
+            _estadosCivilesServicios = estadosCivilesServicios;
             _hostingEnviroment = hostingEnviroment;
         }
 
@@ -42,7 +61,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-                return Json("Error de capa 8");
+                return Json(new { message = "Error al cargar los municipios" });
             }
         }
         public async Task<IActionResult> Index()
@@ -90,17 +109,33 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 return RedirectToAction("Index");
             }
         }
+      
 
         public async Task<IActionResult> Create()
         {
             try
             {
                 var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
+                var partidosList = await _partidoServicios.ObtenerPartidoList();
                 ViewBag.Departamentos = departamentosList.Data;
+                ViewBag.Partidos = partidosList.Data;
+
+                var estados = await _estadosCivilesServicios.ObtenerEstadosCivilesList();
+                ViewBag.estadosCiviles = estados.Data;
+
+                var sedes = await _sedesServicios.ObtenerSedesList();
+                ViewBag.Sedes = sedes.Data;
+
+                var Mesas = await _mesasServicios.ObtenerMesasList();
+                ViewBag.Mesas = Mesas.Data;
+
+                var CargosList = await _cargoServicios.ObtenerCargoList();
+                ViewBag.Cargos = CargosList.Data;
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error al cargar los departamentos";
+                TempData["Error"] = "Error al cargar departamentos y partidos.";
+                throw;
             }
             return View();
         }
@@ -111,6 +146,8 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                item.Vota_YaVoto = false;
+                item.Vota_Permitido = false;
                 item.Vota_UsuarioCreacion = 4;
                 item.Vota_FechaCreacion = DateTime.Now;
                 var result = await _votanteServicios.CrearVotante(item);

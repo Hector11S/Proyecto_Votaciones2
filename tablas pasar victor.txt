@@ -1,0 +1,134 @@
+  alter table [Gral].[tbEmpleados]
+ ADD MePS_Id int
+
+
+    alter table [Gral].[tbEmpleados]
+	WITH CHECK ADD  CONSTRAINT FK_tbEmpleados_MePS_Id FOREIGN KEY(MePS_Id)
+REFERENCES [Vota].[tbMesasPorSedes] (MePS_Id)
+
+****************************************************************************************
+ALTER PROCEDURE [Gral].[SP_Empleados_Mostrar]
+AS
+BEGIN
+    BEGIN TRY
+        SELECT
+            Empl_Id,
+		   CONCAT(vot.Vota_Nombre, ' ', vot.Vota_Apellidos) AS Vota_NombreCompleto,
+            vot.Vota_DNI,
+            emple.Part_Id,
+			partido.Part_Descripcion,
+            emple.Carg_Id,
+			cargo.Carg_Descripcion,
+			 emple.MePS_Id,
+			mePs.Mesa_Id,
+			mesa.Mesa_Numero,
+			mePs.Sede_Id,
+			sedes.Sede_Descripcion,
+			Empl_Estado
+        FROM Gral.tbEmpleados as emple inner join  [Gral].[tbVotantes] as vot
+		on emple.Empl_Id= vot.Vota_Id  inner join [Gral].[tbCargos] as cargo
+		on cargo.Carg_Id = emple.Carg_Id inner join  [Vota].[tbPartidos] as partido
+		on partido.Part_Id = emple.Part_Id  inner join [Vota].[tbMesasPorSedes] as mePs
+		on mePs.MePS_Id = emple.MePS_Id inner join [Gral].[tbMesas] as mesa
+		on mesa.Mesa_Id = mePs.Mesa_Id inner join [Gral].[tbSedes] as sedes
+		on sedes.Sede_Id = mePs.Sede_Id
+        WHERE Empl_Estado = 1;
+        
+
+    END TRY
+    BEGIN CATCH
+        SELECT 0 AS Resultado;
+    END CATCH
+END;
+
+/////////////////////////////////////////////////////////////////////////
+USE [BD_SistemaVotaciones]
+GO
+/****** Object:  StoredProcedure [Acce].[SP_Usuarios_LlenarByEmpl]    Script Date: 11/4/2024 09:53:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER           PROCEDURE [Acce].[SP_Usuarios_LlenarByEmpl]
+(
+	@Empl_Id int
+)
+AS
+BEGIN
+	BEGIN TRY
+		SELECT * FROM Acce.tbUsuarios 
+		where tbUsuarios.Empl_Id = @Empl_Id
+	END TRY
+	BEGIN CATCH
+        SELECT 0 AS Resultado;
+	END CATCH
+END
+
+exec [Acce].[SP_Usuarios_LlenarByEmpl]  @Empl_Id=3
+
+
+create           PROCEDURE [Acce].[SP_Empleados_LlenarByEmpl]
+(
+	@Empl_Id int
+)
+AS
+BEGIN
+	BEGIN TRY
+		SELECT * FROM [Gral].[tbEmpleados]
+		where tbEmpleados.Empl_Id = @Empl_Id
+	END TRY
+	BEGIN CATCH
+        SELECT 0 AS Resultado;
+	END CATCH
+END
+
+-------------------------------------------------------------------
+create           PROCEDURE [Acce].[SP_Votantes_LlenarByEmpl]
+(
+	@Empl_Id int
+)
+AS
+BEGIN
+	BEGIN TRY
+		SELECT * FROM [Gral].[tbVotantes]
+		where tbVotantes.Vota_Id = @Empl_Id
+	END TRY
+	BEGIN CATCH
+        SELECT 0 AS Resultado;
+	END CATCH
+END
+
+exec [Acce].[SP_Votantes_LlenarByEmpl] @Empl_Id=3
+
+
+
+//////////////////////////////////////////////////////////////////////////
+ALTER PROCEDURE [Gral].[SP_Empleados_Insertar]
+@Empl_Id int,
+    @Empl_UsuarioCreacion INT,
+    @Empl_FechaCreacion DATETIME,
+    @Part_Id INT,
+    @Sede_Id INT,
+    @Mesa_Id INT,
+    @Carg_Id INT
+AS
+BEGIN
+    BEGIN TRY
+		BEGIN TRANSACTION
+		DECLARE @MePS_Id INT = (SELECT MePS_Id FROM Vota.tbMesasPorSedes WHERE Mesa_Id = @Mesa_Id AND Sede_Id = @Sede_Id)
+        INSERT INTO Gral.tbEmpleados (Empl_UsuarioCreacion, Empl_FechaCreacion, Part_Id, Carg_Id,MePS_Id, Empl_Id )
+        VALUES (@Empl_UsuarioCreacion, @Empl_FechaCreacion, @Part_Id, @Carg_Id, @MePS_Id, @Empl_Id);
+        COMMIT TRANSACTION
+		SELECT 1 AS Resultado;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        
+        SELECT 
+            ERROR_NUMBER() AS ErrorNumber,
+            ERROR_MESSAGE() AS ErrorMessage,
+            ERROR_LINE() AS ErrorLine,
+            0 AS Resultado;
+    END CATCH
+END;

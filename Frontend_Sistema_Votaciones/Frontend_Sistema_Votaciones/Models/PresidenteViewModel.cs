@@ -37,5 +37,8 @@ namespace Frontend_Sistema_Votaciones.Models
 
         [Display(Name = "Estado")]
         public bool? Pres_Estado { get; set; }
+
+        [Display(Name = "Nombre Completo")]
+        public string Vota_NombreCompleto { get; set; }
     }
 }

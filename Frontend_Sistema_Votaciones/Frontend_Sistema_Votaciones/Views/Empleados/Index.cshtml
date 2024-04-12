@@ -1,96 +1,115 @@
 ﻿@model IEnumerable<Frontend_Sistema_Votaciones.Models.EmpleadoViewModel>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Empleados";
 }
 
-<h1>Index</h1>
+<header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
+    <h2>Listado de @ViewData["Title"]</h2>
+    <a href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
+        <i class="bi bi-house-door-fill"></i>
+        Inicio
+    </a>
+</header>
+<div class="card m-2 mt-4 p-3" style="overflow-x: auto">
+    <header class="mb-4">
+        <a id="btnNuevo" asp-action="Create" class="btn btn-outline-primary" style="max-height: 40px; max-width: 150px;" data-toggle="modal" data-target="#modal">
+            <i class="bi bi-plus"></i>
+            Nuevo
+        </a>
+    </header>
+    <table id="dtEmpleado" class="table datatable display" style="width: 100%;">
+        <thead style="color: #78e7ff;">
+            <tr style="background: rgb(0,0,0)">
+                <th>
+                    @Html.DisplayNameFor(model => model.Empl_Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Vota_NombreCompleto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Vota_DNI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Part_Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Carg_Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Sede_Descripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mesa_Id)
+                </th>
+          
+                <th>
+                    @Html.DisplayNameFor(model => model.Mesa_Numero)
+                </th>
+           
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Empl_UsuarioCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Empl_FechaCreacion)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Empl_UsuarioModifica)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Empl_FechaModifica)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Empl_Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Part_Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Carg_Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Empl_Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dept_Codigo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sede_Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mesa_Id)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empl_UsuarioCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empl_FechaCreacion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empl_UsuarioModifica)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empl_FechaModifica)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empl_Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Part_Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Carg_Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empl_Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dept_Codigo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sede_Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mesa_Id)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empl_Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vota_NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vota_DNI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Part_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carg_Descripcion)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sede_Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mesa_Numero)
+                </td>
+          
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mesa_Numero)
+                </td>
+         
+
+
+                <td style="width: 5%">
+                    <div class="w-100" style="max-width: 250px">
+                        <div class="d-flex w-100" style="gap: 5px;">
+                            <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action(" Edit", new { Alca_Id=item.Empl_Id })">
+                                <i class="bi bi-pencil"></i>
+                                Editar
+                            </a>
+                            <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action(" Details", new { Alca_Id=item.Empl_Id })">
+                                <i class="bi bi-eye"></i>
+                                Detalles
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#dtEmpleado').DataTable();
+        });
+    </script>
 }
-    </tbody>
-</table>

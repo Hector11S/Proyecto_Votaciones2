@@ -18,7 +18,7 @@ namespace Sistema_Votaciones.Common.Models
         public DateTime? Pres_FechaModifica { get; set; }
         public bool? Pres_Estado { get; set; }
         public string Vota_NombreCompleto { get; set; }
-
+        public string Vota_DNI { get; set; }
         public string Muni_Codigo { get; set; }
         public string Dept_Codigo { get; set; }
         public string Muni_Descripcion { get; set; }
