@@ -1,0 +1,40 @@
+﻿@model Frontend_Sistema_Votaciones.Models.CargoViewModel
+
+
+@{
+    ViewData["Title"] = "tbCargos".Substring(2);
+    ViewData["ViewName"] = "_Create".Substring(1);
+}
+<h1 class="text-primary">Crear </h1>
+<h4 class="text-primary">@ViewData["Title"]</h4>
+<hr class="border border-primary"/>
+<div>
+    <div>
+        <form asp-action="@ViewData["ViewName"]">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="d-flex flex-wrap justify-content-around">
+                <div class="form-group col-sm-5 mb-4">
+                    <label asp-for="Carg_Descripcion" class="control-label"></label>
+                    <input asp-for="Carg_Descripcion" id="Carg_Descripcion_Create" class="form-control" />
+                    <span asp-validation-for="Carg_Descripcion" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group d-flex justify-content-end">
+                <div class="form-row">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-outline-primary">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+    const txtCarg_Descripcion = document.getElementById("Carg_Descripcion_Create");
+    txtCarg_Descripcion.addEventListener("input", () => {
+        const val = txtCarg_Descripcion.value.replace(/[^a-zA-Z]/g, '');
+        txtCarg_Descripcion.value = val;
+    })
+</script>

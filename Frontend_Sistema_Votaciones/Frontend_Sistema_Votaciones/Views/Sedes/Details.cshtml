@@ -1,0 +1,101 @@
+﻿@model Frontend_Sistema_Votaciones.Models.SedesViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Detalles</h1>
+
+
+<div class="card mt-3">
+    <div class="card-header text-center">
+        Información de la Sede
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <div class="col-sm-6">
+                <dl>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Sede_Id)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Sede_Id)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Sede_Descripcion)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Sede_Descripcion)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Muni_Codigo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Muni_Codigo)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Muni_Descripcion)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Muni_Descripcion)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Dept_Codigo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Dept_Codigo)
+                    </dd>
+                </dl>
+            </div>
+        </dl>
+    </div>
+</div>
+
+<hr />
+<div>
+    <a class="btn btn-primary" href="@Url.Action("_Edit", new { id = Model.Sede_Id })">Editar</a>
+    <a class="btn btn-secondary" href="@Url.Action("Index")">Regresar</a>
+</div>
+
+<hr />
+<div class="card">
+    <div class="card-header text-center">
+        Auditoría
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Sede_UsuarioCreacion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Sede_UsuarioCreacion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Sede_FechaCreacion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Sede_FechaCreacion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Sede_UsuarioModifica)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Sede_UsuarioModifica)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Sede_FechaModifica)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Sede_FechaModifica)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Sede_Estado)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Sede_Estado)
+            </dd>
+        </dl>
+    </div>
+    </dl>
+</div>

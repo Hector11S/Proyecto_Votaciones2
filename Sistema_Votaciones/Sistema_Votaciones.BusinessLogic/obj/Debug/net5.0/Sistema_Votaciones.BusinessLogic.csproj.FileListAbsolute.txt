@@ -1,0 +1,119 @@
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.deps.json
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfo.cs
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CopyComplete
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\LAB1\source\repos\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.deps.json
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfo.cs
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CopyComplete
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\LAB1\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.deps.json
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfo.cs
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CopyComplete
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\HP GAMING JAFET\Documents\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.deps.json
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfo.cs
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CopyComplete
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\Downloads\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.deps.json
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfo.cs
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CopyComplete
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.deps.json
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.AssemblyReference.cache
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfoInputs.cache
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfo.cs
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CopyComplete
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\repositorio\Proyecto_Votaciones2\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.deps.json
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.dll
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.dll
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.DataAcess.pdb
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\bin\Debug\net5.0\Sistema_Votaciones.Entities.pdb
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.AssemblyReference.cache
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfoInputs.cache
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.AssemblyInfo.cs
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.csproj.CopyComplete
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\ref\Sistema_Votaciones.BusinessLogic.dll
+C:\Users\test\OneDrive\Escritorio\Sistema_Votaciones\Sistema_Votaciones.BusinessLogic\obj\Debug\net5.0\Sistema_Votaciones.BusinessLogic.pdb

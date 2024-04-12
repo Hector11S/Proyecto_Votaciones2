@@ -212,5 +212,29 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             return RedirectToAction("Edit", "Empleado", new { Empl_Id = item.Empl_Id });
         }
+
+        [HttpGet("[controller]/ObtenerSedesPorMunicipio/{Muni_Codigo}")]
+        public async Task<IActionResult> ObtenerSedesPorMunicipio(string Muni_Codigo)
+        {
+            try
+            {
+                var response = await _empleadoServicios.ObtenerSedesPorMunicipio(Muni_Codigo);
+                if (response.Success)
+                {
+                    var sedes = (IEnumerable<SedesViewModel>)response.Data;
+                    return Json(new { sedes = sedes, message = response.Message });
+                }
+                else
+                {
+                    return Json(new { message = response.Message });
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { message = "Error al obtener las sedes por municipio" });
+            }
+        }
+
+
     }
 }

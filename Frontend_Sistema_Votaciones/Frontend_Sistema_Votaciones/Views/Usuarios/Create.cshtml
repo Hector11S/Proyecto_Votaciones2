@@ -1,0 +1,280 @@
+﻿@model Frontend_Sistema_Votaciones.Models.UsuariosViewModel
+
+@{
+    var Vota_DNI = Model != null ? Model.Vota_DNI : null;
+    var Vota_NombreCompleto = Model != null ? Model.Vota_NombreCompleto : null;
+    var Usua_Usuario = Model != null ? Model.Usua_Usuario : null;
+    var Usua_Contra = Model != null ? Model.Usua_Contra : null;
+    var Usua_Admin = Model != null ? Model.Usua_Admin : false;
+    var Usua_ContraConfirmar = Model != null ? Model.Usua_ContraConfirmar : null;
+    var Usua_Imagen = Model != null ? Model.Usua_Imagen : "https://votacionesblobstorage.blob.core.windows.net/main/Usuario_0.png";
+    var Usua_Id = Model != null ? Model.Usua_Id : 0;
+    var Empl_Id = Model != null ? Model.Empl_Id : 0;
+    var Rol_Id = Model != null ? Model.Rol_Id : 0;
+    var roles = ViewBag.Roles;
+    ViewData["Title"] = "Create";
+}
+
+<header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
+    <h2>Añadir nuevo usuario</h2>
+    <a href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
+        <i class="bi bi-house-door-fill"></i>
+        Inicio
+    </a>
+</header>
+<div class="card m-2 mt-4 p-3" style="overflow-x: auto">
+    <div class="row">
+        <div class="col">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="d-flex flex-wrap justify-content-around">
+                    <div class="form-group col-sm-5 mb-4">
+                        <label asp-for="Usua_Usuario" style="color: #3dbdd9"></label>
+                        <input asp-for="Usua_Usuario" value="@Usua_Usuario" type="text" class="form-control" />
+                        <span asp-validation-for="Usua_Usuario" class="text-danger"></span>
+                    </div>
+                    <div class="form-check form-switch col-sm-5 mb-4" style=" max-width: 50%; margin-top: 20px; padding-left: 3rem;">
+                        <label asp-for="Usua_Admin" style="color: #3dbdd9"></label>
+                        <input asp-for="Usua_Admin" class="form-check-input" type="checkbox">
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap justify-content-around">
+                    <div class="form-group col-sm-5 mb-4">
+                        <label class="mb-2" style="color: #3dbdd9">Buscar por numero de identidad:</label>
+                        <input asp-for="Empl_Id" value="@Empl_Id" type="hidden" class="form-control" />
+                        <input asp-for="Vota_DNI" value="@Vota_DNI" type="text" class="form-control" />
+                        <span asp-validation-for="Vota_DNI" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-5 mb-4">
+                        <label class="mb-2" style="color: #3dbdd9">Miembro del partido político:</label>
+                        <input asp-for="Vota_NombreCompleto" value="@Vota_NombreCompleto" class="form-control" disabled />
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap justify-content-around">
+                    <div class="form-group col-sm-5 mb-4">
+                        <label asp-for="Usua_Contra" class="mb-2" style="color: #3dbdd9"></label>
+                        <input asp-for="Usua_Contra" value="@Usua_Contra" type="password" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-sm-5 mb-4">
+                        <label asp-for="Usua_ContraConfirmar" class="mb-2" style="color: #3dbdd9"></label>
+                        <input asp-for="Usua_ContraConfirmar" value="@Usua_ContraConfirmar" type="password" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap justify-content-around">
+                    <div class="form-group col-sm-5 mb-4">
+                        <label class="mb-2" style="color: #3dbdd9">Rol asignado:</label>
+                        <select class="form-select" asp-for="Rol_Id">
+                            <option>-- Rol --</option>
+                            @if (roles != null)
+                            {
+                                foreach (var item in roles)
+                                {
+                                    <option value="@item.Rol_Id">@item.Rol_Descripcion</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group col-sm-5 mb-4">
+                        <label class="mb-2" style="color: #3dbdd9">Foto de perfil: </label>
+                        <input asp-for="Usua_Imagen" value="@Usua_Imagen" type="hidden" class="form-control" />
+                        <input id="inputFileUsuario" type="file" class="form-control" />
+                        <span asp-validation-for="Usua_Imagen" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center mt-4 align-items-center">
+                    <img id="imgUsua_Imagen" src="@Usua_Imagen" class="rounded-circle" style="max-width: 150px; max-height: 150px;" />
+                </div>
+                <div class="d-flex justify-content-end mt-4 align-items-center" style="gap: 10px;">
+                    <button type="submit" class="btn btn-primary" onclick="guardarArreglos()"><i class="bi bi-floppy"></i> Guardar</button>
+                    <a asp-action="Index" class="btn btn-outline-primary"><i class="bi bi-x"></i> Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const txtNombreVotante = document.getElementById("Vota_NombreCompleto");
+        const imgUsua_Imagen = document.getElementById("imgUsua_Imagen");
+
+        let rolesJS = [];
+
+        function llenarSelectsDesdeElSessionStorage() {
+            txtNombreVotante.setAttribute("disabled", "disabled");
+            const rolesJSON = sessionStorage.getItem('rolesJS');
+
+            rolesJS = JSON.parse(rolesJSON);
+
+            console.log(rolesJS, "rolesJS")
+
+            llenarSelect('Rol_Id', rolesJS);
+        }
+
+        function llenarSelect(selectId, options) {
+            const selectElement = document.getElementById(selectId);
+            options.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option.Rol_Id;
+                optionElement.textContent = option.Rol_Descripcion;
+                selectElement.appendChild(optionElement);
+                @if (roles == null)
+                {
+                    if (Rol_Id != 0)
+                    {
+                        <text>
+                        if (option.Rol_Id === "@Rol_Id") {
+                            selectElement.value = option.Rol_Id;
+                        }
+                        </text>
+                    }
+                }
+            });
+        }
+
+        @if (roles != null)
+        {
+            foreach (var item in roles)
+            {
+                <text>
+                rolesJS.push({
+                    Rol_Id: '@item.Rol_Id',
+                    Rol_Descripcion: '@Html.Raw(item.Rol_Descripcion)'
+                });
+                </text>
+            }
+        }
+        else {
+            <text>
+            llenarSelectsDesdeElSessionStorage();
+            </text>
+        }
+
+
+        function guardarArreglos() {
+            txtNombreVotante.removeAttribute("disabled");
+
+            const rolesJSON = JSON.stringify(rolesJS);
+
+            sessionStorage.setItem('rolesJS', rolesJSON);
+        }
+
+        const txtUsuario = document.getElementById("Usua_Usuario");
+        console.log(txtUsuario, "txtUsuario")
+        txtUsuario.addEventListener("input", () => {
+            const val = txtUsuario.value.replace(/[^a-zA-Z0-9]/g, '');
+            txtUsuario.value = val;
+        })
+        const txtDNI = document.getElementById("Vota_DNI");
+        txtDNI.addEventListener("blur", () => {
+            if (txtDNI.value.length !== 13 && txtDNI.value.length > 0) {
+                iziToast.warning({
+                    title: 'Identidad incorrecta',
+                    message: "La identidad debe ser de 13 digitos y no debe llevar guiones",
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            }
+        })
+        txtDNI.addEventListener("input", () => {
+            const val = txtDNI.value.replace(/[^0-9]/g, '');
+            txtDNI.value = val;
+            if (txtDNI.value.length === 13) {
+                $.ajax({
+                    url: `/Usuarios/ObtenerVotantePorDNI/${txtDNI.value}`,
+                    method: "GET",
+                    success: function (response) {
+                        console.log(response, "ObtenerVotantePorDNI");
+                        if (response.empleado) {
+                            $('#Empl_Id').val(response.empleado.empl_Id);
+                            txtNombreVotante.value = response.empleado.vota_NombreCompleto;
+                        } else {
+                            iziToast.warning({
+                                title: 'No encontrado',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                            $('#Empl_Id').val("");
+                            txtNombreVotante.value = "";
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error("Error al buscar votant por el DNI:", errorThrown);
+                    }
+                });
+            } else {
+                $('#Empl_Id').val("");
+                txtNombreVotante.value = "";
+            }
+        })
+
+        const inputFileUsuario = document.getElementById("inputFileUsuario");
+        const Usua_Id = document.getElementById("Usua_Id");
+        const Usua_Imagen = document.getElementById("Usua_Imagen");
+        inputFileUsuario.addEventListener("change", () => {
+            if (Usua_Id.value) {
+                if (inputFileUsuario.files[0]) {
+                    const formData = new FormData();
+                    formData.append("Imagen", inputFileUsuario.files[0])
+                    formData.append("Usua_Id", Usua_Id.value)
+                    $.ajax({
+                        url: `/Usuarios/SubirImagen`,
+                        method: "POST",
+                        contentType: false,
+                        data: formData,
+                        processData: false,
+                        success: function (response) {
+                            if (response.urlImagen) {
+                                iziToast.success({
+                                    title: 'Éxito',
+                                    message: response.message,
+                                    position: 'topRight',
+                                    transitionIn: 'flipInX',
+                                    transitionOut: 'flipOutX'
+                                });
+                                Usua_Imagen.value = response.urlImagen;
+                                imgUsua_Imagen.setAttribute("src", response.urlImagen);
+                                imgUsua_Imagen.classList.remove("d-none");
+                            } else {
+                                iziToast.error({
+                                    title: 'Error',
+                                    message: response.message,
+                                    position: 'topRight',
+                                    transitionIn: 'flipInX',
+                                    transitionOut: 'flipOutX'
+                                });
+                            } 
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.error(`Error al cargar la imagen del alcalde`, errorThrown);
+                        }
+                    });
+                } else {
+                    iziToast.error({
+                        title: 'Error al seleccionar la imagen',
+                        message: "Por favor seleccione nuevamente la imagen",
+                        position: 'topRight',
+                        transitionIn: 'flipInX',
+                        transitionOut: 'flipOutX'
+                    });
+                }
+            } else {
+                iziToast.warning({
+                    title: 'Falta el miembro del partido',
+                    message: "Por favor ingrese el DNI de un miembro de partido",
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+                inputFileUsuario.value = "";
+            }
+        })
+    </script>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</div>

@@ -14,115 +14,118 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
-
-<h4>EmpleadoViewModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-
-            <div class="form-group col-sm-5 mb-4">
-                <label for="Part_Id" class="control-label">Partido</label>
-                <select asp-for="Part_Id" id="Part_Id_Create" class="form-select">
-                    <option value="">-- Partidos --</option>
-                    @foreach (var item in Partidos)
-                    {
-                        <option value="@item.Part_Id">@item.Part_Descripcion</option>
-                    }
-                </select>
-                <span asp-validation-for="Part_Id" class="text-danger"></span>
-            </div>
-            <div class="form-group col-sm-5 mb-4">
-                <label for="Carg_Id" class="control-label">Cargo</label>
-                <select asp-for="Carg_Id" id="Carg_Id_Create" class="form-select">
-                    <option value="">-- Cargo --</option>
-                    @foreach (var item in Cargos)
-                    {
-                        <option value="@item.Carg_Id">@item.Carg_Descripcion</option>
-                    }
-                </select>
-                <span asp-validation-for="Carg_Id" class="text-danger"></span>
-            </div>
-
-            <div class="row mt-3">
-                <div class="form-group col">
-                    <label class="mb-2" style="color: #3dbdd9">Buscar por numero de identidad:</label>
-                    <input asp-for="Empl_Id" value="@Empl_Id" type="hidden" class="form-control" />
-                    <input asp-for="Vota_DNI" value="@Vota_DNI" type="text" class="form-control" />
-                    <span asp-validation-for="Empl_Id" class="text-danger"></span>
+<header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
+    <h2>Añadir nuevo Empleado</h2>
+    <a href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
+        <i class="bi bi-house-door-fill"></i>
+        Inicio
+    </a>
+</header>
+<div class="card m-2 mt-4 p-3" style="overflow-x: auto">
+    <div class="row">
+        <div class="col">
+            <form asp-action="Create">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group mb-4">
+                            <label for="Part_Id" class="control-label">Partido</label>
+                            <select asp-for="Part_Id" id="Part_Id_Create" class="form-select">
+                                <option value="">-- Partidos --</option>
+                                @foreach (var item in Partidos)
+                                {
+                                    <option value="@item.Part_Id">@item.Part_Descripcion</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Part_Id" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="Carg_Id" class="control-label">Cargo</label>
+                            <select asp-for="Carg_Id" id="Carg_Id_Create" class="form-select">
+                                <option value="">-- Cargo --</option>
+                                @foreach (var item in Cargos)
+                                {
+                                    <option value="@item.Carg_Id">@item.Carg_Descripcion</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Carg_Id" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group mb-4">
+                            <label for="Sede_Id" class="control-label">Sedes</label>
+                            <select asp-for="Sede_Id" id="Sede_Id_Create" class="form-select">
+                                <option value="">-- Sedes --</option>
+                                @foreach (var item in Sedes)
+                                {
+                                    <option value="@item.Sede_Id">@item.Sede_Descripcion</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Sede_Id" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="Mesa_Id" class="control-label">Numero de Mesa</label>
+                            <select asp-for="Mesa_Id" id="Mesa_Id_Create" class="form-select">
+                                <option value="">-- Numero de Mesa --</option>
+                                @foreach (var item in Mesas)
+                                {
+                                    <option value="@item.Mesa_Id">@item.Mesa_Numero</option>
+                                }
+                            </select>
+                            <span asp-validation-for="Mesa_Id" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group col">
-                    <label class="mb-2" style="color: #3dbdd9">Nombre completo:</label>
-                    <input asp-for="Vota_NombreCompleto" value="@Vota_NombreCompleto" class="form-control" disabled />
-                    <span class="text-danger"></span>
+
+                <div class="row mt-3">
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Buscar por numero de identidad:</label>
+                        <input asp-for="Empl_Id" value="@Empl_Id" type="hidden" class="form-control" />
+                        <input asp-for="Vota_DNI" value="@Vota_DNI" type="text" class="form-control" />
+                        <span asp-validation-for="Empl_Id" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Nombre completo:</label>
+                        <input asp-for="Vota_NombreCompleto" value="@Vota_NombreCompleto" class="form-control" disabled />
+                        <span class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="form-group col">
-                    <label class="mb-2" style="color: #3dbdd9">Departamento: </label>
-                    <select id="ddlDepartamentos" class="form-select">
-                        <option value="">-- Departamento --</option>
-                        @if (departamentos != null)
-                        {
-                            foreach (var item in departamentos)
+
+                <div class="row mt-3">
+                    <div class="form-group col">
+                        <label class="mb-2" style="color: #3dbdd9">Departamento: </label>
+                        <select id="ddlDepartamentos" class="form-select">
+                            <option value="">-- Departamento --</option>
+                            @if (departamentos != null)
                             {
-                                <option value="@item.Dept_Codigo">@item.Dept_Descripcion</option>
+                                foreach (var item in departamentos)
+                                {
+                                    <option value="@item.Dept_Codigo">@item.Dept_Descripcion</option>
+                                }
                             }
-                        }
-                    </select>
-                    <span class="text-danger"></span>
+                        </select>
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group col">
+                        <label asp-for="Muni_Codigo" class="mb-2" style="color: #3dbdd9">Municipio al que se postula:</label>
+                        <select class="form-select" asp-for="Muni_Codigo">
+                            <option>-- Municipio --</option>
+                        </select>
+                        <span asp-validation-for="Muni_Codigo" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group col">
-                    <label asp-for="Muni_Codigo" class="mb-2" style="color: #3dbdd9">Municipio al que se postula:</label>
-                    <select class="form-select" asp-for="Muni_Codigo">
-                        <option>-- Municipio --</option>
-                    </select>
-                    <span asp-validation-for="Muni_Codigo" class="text-danger"></span>
-                </div>
-            </div>
-            @*<div class="form-group">
-            <label asp-for="MePS_Id" class="control-label"></label>
-            <input asp-for="MePS_Id" class="form-control" />
-            <span asp-validation-for="MePS_Id" class="text-danger"></span>
-        </div>*@
-            <div class="form-group col-sm-5 mb-4">
-                <label for="Sede_Id" class="control-label">Sedes</label>
-                <select asp-for="Sede_Id" id="Sede_Id_Create" class="form-select">
-                    <option value="">-- Sedes --</option>
-                    @foreach (var item in Sedes)
-                    {
-                        <option value="@item.Sede_Id">@item.Sede_Descripcion</option>
-                    }
-                </select>
-                <span asp-validation-for="Sede_Id" class="text-danger"></span>
-            </div>
-            <div class="form-group col-sm-5 mb-4">
-                <label for="Mesa_Id" class="control-label">Numero de Mesa</label>
-                <select asp-for="Mesa_Id" id="Mesa_Id_Create" class="form-select">
-                    <option value="">-- Numero de Mesa --</option>
-                    @foreach (var item in Mesas)
-                    {
-                        <option value="@item.Mesa_Id">@item.Mesa_Numero</option>
-                    }
-                </select>
-                <span asp-validation-for="Mesa_Id" class="text-danger"></span>
-            </div>
 
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="d-flex justify-content-end mt-4 align-items-center" style="gap: 10px;">
+                    <button type="submit" class="btn btn-primary" onclick="guardarArreglos()"><i class="bi bi-floppy"></i> Guardar</button>
+                    <a asp-action="Index" class="btn btn-outline-primary"><i class="bi bi-x"></i> Cancelar</a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 <script>
         const txtNombreVotante = document.getElementById("Vota_NombreCompleto");
-   
+
 
         let departamentosJS = [];
         let partidosJS = [];
@@ -299,7 +302,33 @@
         })
 
 
+    const ddlSedes = document.getElementById("Sede_Id_Create");
 
+    ddlMunicipios.addEventListener("change", () => {
+        const selectedMunicipio = ddlMunicipios.value;
+
+        $.ajax({
+            url: `/ObtenerSedesPorMunicipio?Muni_Codigo=${selectedMunicipio}`,
+            method: "GET",
+            success: function (response) {
+                ddlSedes.innerHTML = "";
+                const defaultOption = document.createElement("option");
+                defaultOption.text = "-- Seleccione una sede --";
+                defaultOption.value = "";
+                ddlSedes.appendChild(defaultOption);
+
+                response.forEach(sede => {
+                    const option = document.createElement("option");
+                    option.text = sede.Sede_Descripcion;
+                    option.value = sede.Sede_Id;
+                    ddlSedes.appendChild(option);
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error al obtener las sedes por municipio:", errorThrown);
+            }
+        });
+    });
 </script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
