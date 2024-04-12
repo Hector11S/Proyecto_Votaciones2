@@ -40,5 +40,7 @@ namespace Frontend_Sistema_Votaciones.Models
         [Display(Name = "Fecha modifica")]
         public DateTime? Alca_FechaModifica { get; set; }
 
+        public string Dept_Descripcion { get; set; }
+
     }
 }

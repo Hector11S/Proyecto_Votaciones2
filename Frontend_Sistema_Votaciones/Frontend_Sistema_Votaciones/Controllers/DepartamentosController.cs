@@ -76,6 +76,14 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                if (item.Dept_Codigo == null || item.Dept_Descripcion==null)
+                {
+                 
+                    TempData["AbrirModal"] = TiposDeModal.Nuevo;
+                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Advertencia"] = "Rellene Todos Los Campos";
+                    return RedirectToAction("Index");
+                }
                 item.Dept_UsuarioCreacion = 4;
                 item.Dept_FechaCreacion = DateTime.Now;
                 var result = await _departamentoServicios.CrearDepartamento(item);
@@ -120,6 +128,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                if ( item.Dept_Descripcion == null)
+                {
+                    TempData["AbrirModal"] = TiposDeModal.Editar;
+                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Advertencia"] = "Rellene Todos Los Campos";
+                    return RedirectToAction("Index");
+                }
                 item.Dept_UsuarioModifica = 4;
                 item.Dept_FechaModifica = DateTime.Now;
                 var result = await _departamentoServicios.EditarDepartamento(item);

@@ -70,6 +70,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                if (item.Esta_Descripcion == null)
+                {
+                    TempData["AbrirModal"] = TiposDeModal.Nuevo;
+                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Advertencia"] = "Rellene Todos Los Campos";
+                    return RedirectToAction("Index");
+                }
                 item.Esta_UsuarioCreacion = 4;
                 item.Esta_FechaCreacion = DateTime.Now;
                 var result = await _estadosCivilesServicios.CrearEstadosCiviles(item);
@@ -114,6 +121,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                if (item.Esta_Descripcion == null)
+                {
+                    TempData["AbrirModal"] = TiposDeModal.Editar;
+                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Advertencia"] = "Rellene Todos Los Campos";
+                    return RedirectToAction("Index");
+                }
                 item.Esta_UsuarioModifica = 4;
                 item.Esta_FechaModifica = DateTime.Now;
                 var result = await _estadosCivilesServicios.EditarEstadosCiviles(item);

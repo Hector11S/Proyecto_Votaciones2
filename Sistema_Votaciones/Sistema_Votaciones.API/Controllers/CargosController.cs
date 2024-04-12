@@ -44,7 +44,7 @@ namespace Sistema_Votaciones.API.Controllers
             _mapper.Map<tbCargos>(json);
             var modelo = new tbCargos()
             {
-                Carg_Id = json.Carg_Id,
+     
                 Carg_Descripcion = json.Carg_Descripcion,
                 Carg_UsuarioCreacion = json.Carg_UsuarioCreacion,
                 Carg_FechaCreacion = json.Carg_FechaCreacion

@@ -78,6 +78,12 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                if (item.Dept_Codigo == null || item.Muni_Codigo == null || item.Muni_Descripcion == null)
+                {
+                    TempData["Advertencia"] = "Rellene Todos Los Campos";
+                    return View(item);
+                }
+                
                 item.Muni_Codigo = item.Dept_Codigo + item.Muni_Codigo;
                 item.Muni_UsuarioCreacion = 4;
                 item.Muni_FechaCreacion = DateTime.Now;

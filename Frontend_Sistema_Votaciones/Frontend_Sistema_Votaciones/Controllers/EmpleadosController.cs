@@ -18,19 +18,28 @@ namespace Frontend_Sistema_Votaciones.Controllers
         private readonly DepartamentoServicios _departamentoServicios;
         private readonly MunicipioServicios _municipioServicios;
         private readonly PartidoServicios _partidoServicios;
+        private readonly SedesServicios _sedesServicios;
+        private readonly MesasServicios _mesasServicios;
+        private readonly CargoServicios _cargoServicios;
         private readonly IWebHostEnvironment _hostingEnviroment;
 
 
         public EmpleadosController(
             EmpleadoServicios alcaldeServicios,
             VotanteServicios votanteServicios,
+            MesasServicios mesasServicios,
+            SedesServicios sedesServicios,
             DepartamentoServicios departamentoServicios,
             MunicipioServicios municipioServicios,
             PartidoServicios partidoServicios,
+            CargoServicios cargoServicios,
             IWebHostEnvironment hostingEnviroment)
         {
             _empleadoServicios = alcaldeServicios;
             _votanteServicios = votanteServicios;
+            _cargoServicios = cargoServicios;
+            _sedesServicios = sedesServicios;
+            _mesasServicios = mesasServicios;
             _departamentoServicios = departamentoServicios;
             _municipioServicios = municipioServicios;
             _partidoServicios = partidoServicios;
@@ -127,6 +136,15 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 var partidosList = await _partidoServicios.ObtenerPartidoList();
                 ViewBag.Departamentos = departamentosList.Data;
                 ViewBag.Partidos = partidosList.Data;
+                var cargos = await _cargoServicios.ObtenerCargoList();
+                ViewBag.Cargos = cargos.Data;
+
+                var sedes = await _sedesServicios.ObtenerSedesList();
+                ViewBag.Sedes = sedes.Data;
+
+                var mesas = await _mesasServicios.ObtenerMesasList();
+                ViewBag.Mesas = mesas.Data;
+
             }
             catch (Exception ex)
             {
@@ -142,6 +160,11 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                if (item.Empl_Id == 0 || item.Carg_Id == 0 || item.Part_Id == 0 || item.MePS_Id == 0)
+                {
+                    TempData["Advertencia"] = "Rellene Todos Los Campos";
+                    return View(item);
+                }
                 item.Empl_UsuarioCreacion = 4;
                 item.Empl_FechaCreacion = DateTime.Now;
                 var result = await _empleadoServicios.CrearEmpleado(item);
@@ -175,6 +198,14 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 EmpleadoViewModel empleadoViewModel = (EmpleadoViewModel)response.Data;
                 var municipios = await _municipioServicios.ObtenerMunicipiosList(empleadoViewModel.Dept_Codigo);
                 ViewBag.Municipios = municipios.Data;
+                var cargos = await _cargoServicios.ObtenerCargoList();
+                ViewBag.Cargos = cargos.Data;
+
+                var sedes = await _sedesServicios.ObtenerSedesList();
+                ViewBag.Sedes = sedes.Data;
+
+                var mesas = await _mesasServicios.ObtenerMesasList();
+                ViewBag.Mesas = mesas.Data;
                 return View(response.Data);
             }
             catch (Exception ex)
@@ -189,6 +220,11 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                if (item.Empl_Id == 0 || item.Carg_Id == 0 || item.Part_Id == 0 || item.MePS_Id == 0)
+                {
+                    TempData["Advertencia"] = "Rellene Todos Los Campos";
+                    return View(item);
+                }
                 item.Empl_UsuarioModifica = 4;
                 item.Empl_FechaModifica = DateTime.Now;
                 var result = await _empleadoServicios.EditarEmpleado(item);

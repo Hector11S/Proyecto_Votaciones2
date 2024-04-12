@@ -178,6 +178,11 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                if( item.Alca_Id == 0 || item.Muni_Codigo == null|| item.Part_Id == 0||  item.Alca_Imagen == null)
+                {
+                    TempData["Advertencia"] = "Rellene Todos Los Campos";
+                    return View(item);
+                }
                 item.Alca_UsuarioCreacion = 4;
                 item.Alca_FechaCreacion = DateTime.Now;
                 var result = await _alcaldeServicios.CrearAlcalde(item);
@@ -225,6 +230,11 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                if (item.Alca_Id == 0 || item.Muni_Codigo == null || item.Part_Id == 0 || item.Alca_Imagen == null)
+                {
+                    TempData["Advertencia"] = "Rellene Todos Los Campos";
+                    return View(item);
+                }
                 item.Alca_UsuarioModifica = 4;
                 item.Alca_FechaModifica = DateTime.Now;
                 var result = await _alcaldeServicios.EditarAlcalde(item);

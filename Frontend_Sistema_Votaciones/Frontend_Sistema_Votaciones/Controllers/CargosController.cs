@@ -74,6 +74,14 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                if (item.Carg_Descripcion == null)
+                {
+                    TempData["AbrirModal"] = TiposDeModal.Nuevo;
+                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Advertencia"] = "Rellene Todos Los Campos";
+                    return RedirectToAction("Index");
+                }
+
                 item.Carg_UsuarioCreacion = 4;
                 item.Carg_FechaCreacion = DateTime.Now;
                 var result = await _cargosServicios.CrearCargo(item);
@@ -118,6 +126,13 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                if (item.Carg_Descripcion == null)
+                {
+                    TempData["AbrirModal"] = TiposDeModal.Editar;
+                    TempData["Item"] = JsonConvert.SerializeObject(item);
+                    TempData["Advertencia"] = "Rellene Todos Los Campos";
+                    return RedirectToAction("Index");
+                }
                 item.Carg_UsuarioModifica = 4;
                 item.Carg_FechaModifica = DateTime.Now;
                 var result = await _cargosServicios.EditarCargo(item);

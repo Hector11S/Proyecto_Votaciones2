@@ -44,7 +44,7 @@ namespace Sistema_Votaciones.API.Controllers
             _mapper.Map<tbEstadosCiviles>(json);
             var modelo = new tbEstadosCiviles()
             {
-                Esta_Id = json.Esta_Id,
+        
                 Esta_Descripcion = json.Esta_Descripcion,
                 Esta_UsuarioCreacion = json.Esta_UsuarioCreacion,
                 Esta_FechaCreacion = json.Esta_FechaCreacion
