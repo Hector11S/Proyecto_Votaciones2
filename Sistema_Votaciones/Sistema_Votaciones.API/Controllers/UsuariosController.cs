@@ -117,7 +117,7 @@ namespace Sistema_Votaciones.API.Controllers
             return Ok(list);
         }
         [HttpPut("API/[controller]/Active")]
-        public IActionResult Active(string Usua_Id)
+        public IActionResult Active(int Usua_Id)
         {
             var list = _accesoServices.ActivarDesactivarUsua(Usua_Id);
             return Ok(list);

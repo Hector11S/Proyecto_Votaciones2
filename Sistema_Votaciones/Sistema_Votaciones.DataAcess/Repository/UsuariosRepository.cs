@@ -13,7 +13,7 @@ namespace Sistema_Votaciones.DataAcess.Repository
     public partial class UsuariosRepository : IRepository<tbUsuarios>
     {
 
-        public RequestStatus Update(string id)
+        public RequestStatus Update(int id)
         {
             using (var db = new SqlConnection(VotacionesContext.ConnectionString))
             {

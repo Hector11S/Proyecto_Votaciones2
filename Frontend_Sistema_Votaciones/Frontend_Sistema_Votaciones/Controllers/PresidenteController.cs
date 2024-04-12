@@ -103,7 +103,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 if (rol != null)
                 {
                     bool autorizado = Autorizacion.Autorizar(Convert.ToInt32(rol), ControllerContext.ActionDescriptor.ControllerName);
-                    if (autorizado)
+                    if (!autorizado)
                     {
                         var model = new List<PresidenteViewModel>();
                         var list = await _presidenteServicios.ObtenerPresidenteList();
