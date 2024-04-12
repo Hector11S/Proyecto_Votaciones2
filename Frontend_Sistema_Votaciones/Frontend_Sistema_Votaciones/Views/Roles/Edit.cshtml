@@ -6,7 +6,6 @@
     var roles = ViewBag.Roles;
     var pantallas = ViewBag.Pantallas;
     var esquemas = (Dictionary<int, string>)ViewBag.Esquemas;
-    var pantallasPorRoles = ViewBag.PantallasPorRoles;
     var paroIEnumerable = ViewBag.ParoIEnumerable as IEnumerable<PantallasPorRolesViewModel>;
     ViewData["Title"] = "Roles";
     var abrirModal = TempData["AbrirModal"];
@@ -27,6 +26,10 @@
     </button>
 </header>
 <div class="card m-2 mt-4 p-3" style="overflow-x: auto">
+    <a asp-action="Index" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
+        <i class="bi bi-arrow-left-square-fill"></i>
+        Regresar
+    </a>
     <div class="d-flex align-items-center flex-column" style="min-height: 50vh; justify-content: start;">
         <form asp-action="Edit" asp-controller="Roles" method="post">
             <div style="min-width: 280px; display: flex; gap: 20px;">
@@ -58,11 +61,11 @@
                     </span>
                     @if (Rol_Id != 0)
                     {
-                <input id="checkboxSistemaElectoral" type="checkbox" style="margin-left: 10px;" class="Sist_CkBox">
+                        <input id="checkboxSistemaElectoral" type="checkbox" style="margin-left: 10px;" class="Sist_CkBox" checked>
                     }
                     else
                     {
-                        <input id="checkboxSistemaElectoral" type="checkbox" style="margin-left: 10px;" class="Sist_CkBox" disabled/>
+                        <input id="checkboxSistemaElectoral" type="checkbox" style="margin-left: 10px;" class="Sist_CkBox" checked disabled/>
                     }
                     <ul id="root" class="nested" style="border-left: 3px dashed gray; left: -26px; position: relative; top: -6px; padding-left: 0; margin-left: 32px; ">
                         @if (esquemas != null && pantallas != null)
@@ -119,21 +122,20 @@
                 </li>
             </ul>
         </div>
-</div>
+    </div>
 </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
 <script>
     const esquemasRoots = document.querySelectorAll(".esquemaRoot");
-    //let checkBoxesDentroDelEsquema = [];
+    let pantCheckedCount = 0;
     esquemasRoots.forEach(esqu => {
         const inputs = [...esqu.querySelectorAll("input")];
         if (inputs.every(input => input.checked)) {
             esqu.parentElement.querySelector("input").setAttribute("checked", "checked");
         }
     })
-    //console.log(checkBoxesDentroDelEsquema, "checkBoxesDentroDelEsquema");
 
     var toggler = document.getElementsByClassName("caret");
     var i;
@@ -149,129 +151,39 @@
         });
     }
 
-    const pantallasPorRolesJSON = JSON.parse('@Html.Raw(pantallasPorRoles)');
-    console.log(pantallasPorRolesJSON);
-
     let dropdownChangedByUser = true;
 
     const rolId = document.getElementById("Rol_Id").value;
-    console.log(rolId, "rolId")
-    $(document).ready(function () {
-        $('.Sist_CkBox').change(function () {
-            if (parseInt(rolId) !== 0) {
-                var isChecked = $(this).is(':checked');
-                var method = isChecked ? 'GET' : 'DELETE';
-                let esquemasIds = [];
-                const esquemasRoots = document.querySelectorAll(".esquemaRoot");
-                esquemasRoots.forEach(esqu => esqu.parentElement.querySelector("input").id);
-                console.log(esquemasIds, "esquemasIds");
+    console.log(rolId, "rolId");
 
-                const root = document.getElementById("root");
 
-                let count = 0;
-                for (let i = 0; i < root.children.length; i++) {
-                    $.ajax({
-                        url: `/Roles/${method === "GET" ? "Create" : "Delete"}EsquemaPorRoles?Rol_Id=${ddlRoles.value}&Esqu_Id=${esquemasIds[i]}`,
-                        method: method,
-                        success: function (response) {
-                            console.log(response, "response pantallas por roles AJAX");
-                            if (response.result === true) {
-                                count++;
-                                if (isChecked) {
-                                    console.log(i, 'i');
-                                    console.log(root.children[i].children[0].querySelector("input"), 'root.children[i - 1].children[0].querySelector("input")');
-                                    root.children[i].children[0].querySelector("input").setAttribute("checked", "checked");
-                                } else {
-                                    console.log(i, 'i');
-                                    console.log(root.children[i].children[0].querySelector("input"), 'root.children[i - 1].children[0].querySelector("input")');
-                                    root.children[i].children[0].querySelector("input").removeAttribute("checked");
-                                }
-                            }
-                        },
-                        error: function (jqXHR, textStatus, errorThrown) {
-                            console.error(`Error al asignar las pantallas al rol`, errorThrown);
-                        }
-                    });
-                }
-                if (count === 3) {
-                    iziToast.success({
-                        title: 'Exito',
-                        message: `Pantallas ${isChecked ? "activadas" : "desactivadas"}`,
-                        position: 'topRight',
-                        transitionIn: 'flipInX',
-                        transitionOut: 'flipOutX'
-                    });
-                } else {
-                    iziToast.error({
-                        title: 'Exito',
-                        message: `Ha ocurrido un error ${isChecked ? "activando" : "desactivando"} las pantallas`,
-                        position: 'topRight',
-                        transitionIn: 'flipInX',
-                        transitionOut: 'flipOutX'
-                    });
-                }
-            } else {
-                iziToast.warning({
-                    title: 'Error',
-                    message: "No hay un rol al cual vincular las pantallas",
-                    position: 'topRight',
-                    transitionIn: 'flipInX',
-                    transitionOut: 'flipOutX'
-                });
-            }
-        });
-        $('.Pant_CkBox').change(function () {
+    const sistCkBox = document.querySelector('.Sist_CkBox');
+    const pantCkBoxes = document.querySelectorAll('.Pant_CkBox');
+    const esquCkBoxes = [...document.querySelectorAll('.Esqu_CkBox')];
+
+    const checkboxes = [...document.querySelectorAll('input[type="checkbox"]')];
+
+    if (!checkboxes.every(ckBox => ckBox.checked)) {
+        sistCkBox.checked = false;
+    }
+
+    sistCkBox.addEventListener('change', function () {
+        if (sistCkBox.checked) {
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = true;
+            });
+        } else {
+            checkboxes.forEach(function (checkbox) {
+                checkbox.checked = false;
+            });
+        }
+        esquCkBoxes.forEach(ckBox => {
             if (parseInt(rolId) !== 0) {
-                var isChecked = $(this).is(':checked');
-                var method = isChecked ? 'GET' : 'DELETE';
-                var pantId = $(this).attr('id');
+                const method = ckBox.checked ? 'GET' : 'DELETE';
+                const esquId = ckBox.id;
 
                 $.ajax({
-                    url: `/Roles/${method === "GET" ? "Create" : "Delete"}PantallasPorRoles?Rol_Id=${ddlRoles.value}&Pant_Id=${pantId}`,
-                    method: method,
-                    success: function (response) {
-                        console.log(response, "response pantallas por roles AJAX");
-                        if (response.result === true) {
-                            iziToast.success({
-                                title: 'Exito',
-                                message: response.message,
-                                position: 'topRight',
-                                transitionIn: 'flipInX',
-                                transitionOut: 'flipOutX'
-                            });
-                        } else {
-                            iziToast.error({
-                                title: 'Error',
-                                message: response.message,
-                                position: 'topRight',
-                                transitionIn: 'flipInX',
-                                transitionOut: 'flipOutX'
-                            });
-                        }
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        console.error(`Error al asignar las pantallas al rol`, errorThrown);
-                    }
-                });
-            } else {
-                iziToast.warning({
-                    title: 'Error',
-                    message: "No hay un rol al cual vincular las pantallas",
-                    position: 'topRight',
-                    transitionIn: 'flipInX',
-                    transitionOut: 'flipOutX'
-                });
-            }
-        });
-        $('.Esqu_CkBox').change(function () {
-            if (parseInt(rolId) !== 0) {
-                var isChecked = $(this).is(':checked');
-                var method = isChecked ? 'GET' : 'DELETE';
-                var esquId = $(this).attr('id');
-
-
-                $.ajax({
-                    url: `/Roles/${method === "GET" ? "Create" : "Delete"}EsquemaPorRoles?Rol_Id=${ddlRoles.value}&Esqu_Id=${esquId}`,
+                    url: `/Roles/${method === "GET" ? "Create" : "Delete"}EsquemaPorRoles?Rol_Id=${rolId}&Esqu_Id=${esquId}`,
                     method: method,
                     success: function (response) {
                         console.log(response, "response esquema por roles AJAX");
@@ -283,15 +195,6 @@
                                 transitionIn: 'flipInX',
                                 transitionOut: 'flipOutX'
                             });
-                            const esquemasRoots = document.querySelectorAll(".esquemaRoot");
-                            esquemasRoots.forEach(esqu => {
-                                const inputs = [...esqu.querySelectorAll("input")];
-                                if (isChecked) {
-                                    inputs.forEach(input => input.setAttribute("checked", "checked"));
-                                } else {
-                                    inputs.forEach(input => input.removeAttribute("checked"));
-                                }
-                            })
                         } else {
                             iziToast.error({
                                 title: 'Error',
@@ -318,15 +221,117 @@
         })
     });
 
-    const ddlRoles = document.getElementById("Rol_Id");
-    ddlRoles.addEventListener("change", () => {
-        dropdownChangedByUser = true;
-        const pantallasToCheck = pantallasPorRolesJSON.filter(item => item.Rol_Id === parseInt(ddlRoles.value));
-        console.log(pantallasToCheck);
-        pantallasToCheck.forEach(pantalla => {
-            const nodeId = pantalla.Pant_Id.toString();
-            $('#ParoTreeView').jstree('check_node', nodeId);
-        });
-    });
+    esquCkBoxes.forEach(ckBox => {
+        ckBox.addEventListener('change', function () {
+            const pantCkBoxesDentroDeEsqu = ckBox.parentElement.children[2].querySelectorAll('.Pant_CkBox');
+            console.log(pantCkBoxesDentroDeEsqu)
+            if (ckBox.checked) {
+                if (esquCkBoxes.every(esquCk => esquCk.checked)) {
+                    sistCkBox.checked = true;
+                }
+                pantCkBoxesDentroDeEsqu.forEach(function (checkbox) {
+                    checkbox.checked = true;
+                });
+            } else {
+                sistCkBox.checked = false;
+                pantCkBoxesDentroDeEsqu.forEach(function (checkbox) {
+                    checkbox.checked = false;
+                });
+            }
+            if (parseInt(rolId) !== 0) {
+                const method = ckBox.checked ? 'GET' : 'DELETE';
+                const esquId = ckBox.id;
 
+                $.ajax({
+                    url: `/Roles/${method === "GET" ? "Create" : "Delete"}EsquemaPorRoles?Rol_Id=${rolId}&Esqu_Id=${esquId}`,
+                    method: method,
+                    success: function (response) {
+                        console.log(response, "response esquema por roles AJAX");
+                        if (response.result === true) {
+                            iziToast.success({
+                                title: 'Exito',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Error',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error(`Error al asignar las pantallas al rol`, errorThrown);
+                    }
+                });
+            } else {
+                iziToast.warning({
+                    title: 'Error',
+                    message: "No hay un rol al cual vincular las pantallas",
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            }
+        });
+    })
+
+    pantCkBoxes.forEach(ckBox => {
+        ckBox.addEventListener('change', function () {
+            const esqueCkBox = ckBox.parentElement.parentElement.parentElement.parentElement.children[1];
+            const pantCkBoxesDentroDeEsqu = [...esqueCkBox.parentElement.children[2].querySelectorAll('.Pant_CkBox')];
+            if (!ckBox.checked) {
+                esqueCkBox.checked = false;
+            } else {
+                if (pantCkBoxesDentroDeEsqu.every(pantCk => pantCk.checked)) {
+                    esqueCkBox.checked = true;
+                }
+            }
+            if (parseInt(rolId) !== 0) {
+                const method = ckBox.checked ? 'GET' : 'DELETE';
+                const pantId = ckBox.id;
+
+                $.ajax({
+                    url: `/Roles/${method === "GET" ? "Create" : "Delete"}PantallasPorRoles?Rol_Id=${rolId}&Pant_Id=${pantId}`,
+                    method: method,
+                    success: function (response) {
+                        console.log(response, "response pantallas por roles AJAX");
+                        if (response.result === true) {
+                            iziToast.success({
+                                title: 'Exito',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                        } else {
+                            iziToast.error({
+                                title: 'Error',
+                                message: response.message,
+                                position: 'topRight',
+                                transitionIn: 'flipInX',
+                                transitionOut: 'flipOutX'
+                            });
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.error(`Error al asignar la pantallas al rol`, errorThrown);
+                    }
+                });
+            } else {
+                iziToast.warning({
+                    title: 'Error',
+                    message: "No hay un rol al cual vincular la pantallas",
+                    position: 'topRight',
+                    transitionIn: 'flipInX',
+                    transitionOut: 'flipOutX'
+                });
+            }
+        });
+    })
 </script>

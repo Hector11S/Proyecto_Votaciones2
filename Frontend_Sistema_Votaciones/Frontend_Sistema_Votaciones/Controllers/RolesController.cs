@@ -1,5 +1,6 @@
 ﻿using Frontend_Sistema_Votaciones.Models;
 using Frontend_Sistema_Votaciones.Servicios;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -26,40 +27,31 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                var model = new List<RolesViewModel>();
-                var list = await _rolesServicios.ObtenerRolesList();
-                return View(list.Data);
-            }
-            catch (Exception)
-            {
-                return RedirectToAction("Index", "Roles");
-            }
-        }
-        [HttpGet("[controller]/Create")]
-        public async Task<IActionResult> Create()
-        {
-            try
-            {
-                var model = new RolesViewModel();
-                var rolesList = await _rolesServicios.ObtenerRolesList();
-                var pantallasList = await _pantallasServicios.ObtenerPantallasList();
-                var pantallasPorRolesList = await _pantallasPorRolesServicios.ObtenerParoList();
-                ViewBag.Roles = rolesList.Data;
-                ViewBag.Pantallas = pantallasList.Data;
-                ViewBag.PantallasPorRoles = JsonConvert.SerializeObject(pantallasPorRolesList.Data);
-
-                Dictionary<int, string> uniqueEsquemas = new Dictionary<int, string>();
-                foreach (var pantalla in (List<PantallasViewModel>)pantallasList.Data)
+                var rol = HttpContext.Session.GetInt32("Rol_Id");
+                if (rol != null)
                 {
-                    uniqueEsquemas[pantalla.Esqu_Id] = pantalla.Esqu_Descripcion;
+                    bool autorizado = Autorizacion.Autorizar(Convert.ToInt32(rol), ControllerContext.ActionDescriptor.ControllerName);
+                    if (autorizado)
+                    {
+                        var model = new List<RolesViewModel>();
+                        var list = await _rolesServicios.ObtenerRolesList();
+                        return View(list.Data);
+                    }
+                    else
+                    {
+                        TempData["Advertencia"] = "No está autorizado para acceder a esta pantalla.";
+                    }
                 }
-                ViewBag.Esquemas = uniqueEsquemas;
-                return View();
+                else
+                {
+                    TempData["Advertencia"] = "Debe iniciar sesión para acceder a esta pantalla.";
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return RedirectToAction("Index");
+                TempData["Error"] = "Error al cargar el listado.";
             }
+            return RedirectToAction("Index", "Home");
         }
         [HttpGet("[controller]/Details/{Rol_Id}")]
         public async Task<IActionResult> Details(int Rol_Id)
@@ -75,6 +67,32 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 return RedirectToAction("Index");
             }
         }
+        [HttpGet("[controller]/Create")]
+        public async Task<IActionResult> Create()
+        {
+            try
+            {
+                var model = new RolesViewModel();
+                var rolesList = await _rolesServicios.ObtenerRolesList();
+                var pantallasList = await _pantallasServicios.ObtenerPantallasList();
+                var pantallasPorRolesList = await _pantallasPorRolesServicios.ObtenerParoList();
+                ViewBag.Roles = rolesList.Data;
+                ViewBag.Pantallas = pantallasList.Data;
+                ViewBag.ParoIEnumerable = pantallasPorRolesList.Data;
+
+                Dictionary<int, string> uniqueEsquemas = new Dictionary<int, string>();
+                foreach (var pantalla in (List<PantallasViewModel>)pantallasList.Data)
+                {
+                    uniqueEsquemas[pantalla.Esqu_Id] = pantalla.Esqu_Descripcion;
+                }
+                ViewBag.Esquemas = uniqueEsquemas;
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Index");
+            }
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -84,10 +102,24 @@ namespace Frontend_Sistema_Votaciones.Controllers
             {
                 item.Rol_UsuarioCreacion = 4;
                 item.Rol_FechaCreacion = DateTime.Now;
+                var rolesList = await _rolesServicios.ObtenerRolesList();
+                var pantallasList = await _pantallasServicios.ObtenerPantallasList();
+                var pantallasPorRolesList = await _pantallasPorRolesServicios.ObtenerParoList();
+                ViewBag.Roles = rolesList.Data;
+                ViewBag.Pantallas = pantallasList.Data;
+                ViewBag.ParoIEnumerable = pantallasPorRolesList.Data;
+
+                Dictionary<int, string> uniqueEsquemas = new Dictionary<int, string>();
+                foreach (var pantalla in (List<PantallasViewModel>)pantallasList.Data)
+                {
+                    uniqueEsquemas[pantalla.Esqu_Id] = pantalla.Esqu_Descripcion;
+                }
+                ViewBag.Esquemas = uniqueEsquemas;
                 var result = await _rolesServicios.CrearRoles(item);
                 if (result.Success)
                 {
-                    item.Rol_Id = result.Id;
+                    var resultDataAsServiceResult = (ServiceResult)result.Data;
+                    item.Rol_Id = Convert.ToInt32(resultDataAsServiceResult.Id);
                     TempData["AbrirModal"] = null;
                     TempData["Exito"] = result.Message;
                 }
@@ -100,7 +132,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error al crear la mesa.";
+                TempData["Error"] = "Error al crear el rol.";
                 TempData["Item"] = JsonConvert.SerializeObject(item);
             }
             return View(item);
@@ -118,7 +150,6 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 ViewBag.Roles = rolesList.Data;
                 ViewBag.Pantallas = pantallasList.Data;
                 ViewBag.ParoIEnumerable = pantallasPorRolesList.Data;
-                ViewBag.PantallasPorRoles = JsonConvert.SerializeObject(pantallasPorRolesList.Data);
 
                 Dictionary<int, string> uniqueEsquemas = new Dictionary<int, string>();
                 foreach (var pantalla in (List<PantallasViewModel>)pantallasList.Data)

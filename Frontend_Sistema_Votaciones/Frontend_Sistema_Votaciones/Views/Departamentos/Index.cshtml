@@ -81,7 +81,13 @@
 
 <script>
     $(document).ready(function () {
-        $('#dtDepartamentos').DataTable();
+        $('#dtDepartamentos').DataTable({
+            pageLength: 10,
+            responsive: true,
+            language: {
+                url: 'lib/datatable/esLanguageDataTable.json'
+            }
+        });
         $('#modal' + '@abrirModal').modal('show');
         @if (departamento != null)
         {

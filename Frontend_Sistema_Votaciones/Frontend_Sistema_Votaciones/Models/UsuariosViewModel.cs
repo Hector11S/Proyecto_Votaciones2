@@ -17,16 +17,19 @@ namespace Frontend_Sistema_Votaciones.Models
         [Display(Name = "Empleado DNI")]
         public string Vota_DNI { get; set; }
 
-        [Display(Name = "Nombre Completo")]
+        [Display(Name = "Nombre completo")]
         public string Vota_NombreCompleto { get; set; }
         [Display(Name = "Contraseña")]
         public string Usua_Contra { get; set; }
         [Display(Name = "Confirmar contraseña")]
         public string Usua_ContraConfirmar { get; set; }
         [Display(Name = "Administrador")]
-        public bool Usua_Admin { get; set; }
         public int Empl_Id { get; set; }
+        public bool Usua_Admin { get; set; }
         public int Rol_Id { get; set; }
+
+        [Display(Name = "Rol")]
+        public string Rol_Descripcion { get; set; }
         public int Usua_UsuarioCreacion { get; set; }
         public DateTime Usua_FechaCreacion { get; set; }
         public int? Usua_UsuarioModifica { get; set; }

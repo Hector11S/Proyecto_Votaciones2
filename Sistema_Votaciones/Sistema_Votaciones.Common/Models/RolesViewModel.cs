@@ -17,6 +17,7 @@ namespace Sistema_Votaciones.Common.Models
         public DateTime? Rol_FechaModifica { get; set; }
         public bool? Rol_Estado { get; set; }
 
+
         public virtual ICollection<tbPantallasPorRoles> tbPantallasPorRoles { get; set; }
         public virtual ICollection<tbUsuarios> tbUsuarios { get; set; }
     }

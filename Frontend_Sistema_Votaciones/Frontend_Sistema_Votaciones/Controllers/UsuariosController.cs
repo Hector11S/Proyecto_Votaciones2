@@ -106,9 +106,34 @@ namespace Frontend_Sistema_Votaciones.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var model = new List<UsuariosViewModel>();
-            var list = await _usuariosServicios.ObtenerUsuariosList();
-            return View(list.Data);
+            try
+            {
+                var rol = HttpContext.Session.GetInt32("Rol_Id");
+                if (rol != null)
+                {
+                    bool autorizado = Autorizacion.Autorizar(Convert.ToInt32(rol), ControllerContext.ActionDescriptor.ControllerName);
+                    if (autorizado)
+                    {
+                        var model = new List<UsuariosViewModel>();
+                        var list = await _usuariosServicios.ObtenerUsuariosList();
+                        return View(list.Data);
+                    }
+                    else
+                    {
+                        TempData["Advertencia"] = "No está autorizado para acceder a esta pantalla.";
+                    }
+                }
+                else
+                {
+                    TempData["Advertencia"] = "Debe iniciar sesión para acceder a esta pantalla.";
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al cargar el listado.";
+            }
+            return RedirectToAction("Index", "Home");
+
         }
         [HttpGet("[controller]/Details/{Usua_Id}")]
         public async Task<IActionResult> Details(string Usua_Id)
@@ -246,7 +271,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
         //{
         //    try
         //    {
-        //        var result = await _usuariosServicios.EliminarUsuarios(Usua_Id);
+        //        var result = await _usuariosServicios.desa(Usua_Id);
         //        if (result.Success)
         //        {
         //            TempData["Exito"] = result.Message;

@@ -48,6 +48,8 @@ namespace Sistema_Votaciones.Entities.Entities
         public bool Usua_Admin { get; set; }
         public int Empl_Id { get; set; }
         public int Rol_Id { get; set; }
+        public string Rol_Descripcion { get; set; }
+
         public int Usua_UsuarioCreacion { get; set; }
         public DateTime Usua_FechaCreacion { get; set; }
         public int? Usua_UsuarioModifica { get; set; }

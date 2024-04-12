@@ -28,19 +28,10 @@
                     @Html.DisplayNameFor(model => model.Usua_Usuario)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Usua_Contra)
+                    @Html.DisplayNameFor(model => model.Vota_NombreCompleto)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Usua_Admin)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Empl_Id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Rol_Id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Usua_Activo)
+                    @Html.DisplayNameFor(model => model.Rol_Descripcion)
                 </th>
                 <th></th>
             </tr>
@@ -56,34 +47,28 @@
                         @Html.DisplayFor(modelItem => item.Usua_Usuario)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Usua_Contra)
+                        @Html.DisplayFor(modelItem => item.Vota_NombreCompleto)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Usua_Admin)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Empl_Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Rol_Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Usua_Activo)
+                        @Html.DisplayFor(modelItem => item.Rol_Descripcion)
                     </td>
                     <td style="width: 5%">
                         <div class="w-100" style="max-width: 250px">
                             <div class="d-flex w-100" style="gap: 5px;">
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Edit", new { Usua_Id=item.Usua_Id })">
+                                <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Edit", new { Usua_Id = item.Usua_Id })">
                                     <i class="bi bi-pencil"></i>
                                     Editar
                                 </a>
-                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { Usua_Id=item.Usua_Id })">
+                                <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { Usua_Id = item.Usua_Id })">
                                     <i class="bi bi-eye"></i>
                                     Detalles
                                 </a>
-                                <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Usua_Id')">
+                                @{
+                                    var usuaActivo = (bool)item.Usua_Activo ? "Activar" : "Desactivar";
+                                }
+                                <button class="d-flex align-items-center justify-content-around btn btn-outline-primary btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Usua_Id', '@usuaActivo')">
                                     <i class="bi bi-trash-fill"></i>
-                                    Eliminar
+                                    @usuaActivo
                                 </button>
                             </div>
                         </div>
@@ -96,10 +81,21 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $('#dtAlcalde').DataTable();
+            $('#dtAlcalde').DataTable({
+                pageLength: 10,
+                responsive: true,
+                language: {
+                    url: 'lib/datatable/esLanguageDataTable.json'
+                }
+            });
         });
-        function Eliminar(Dept_Codigo) {
+        function Eliminar(Dept_Codigo, activoStr) {
             $("#Usua_Id_Delete").val(Dept_Codigo);
+            if (activoStr === "Activar") {
+                document.getElementById("Usua_Text_Delete").textContent = "Desea activar el usuario?";
+            } else {
+                document.getElementById("Usua_Text_Delete").textContent = "Está seguro de querer desactivar activar el usuario?";
+            }
             localStorage.setItem("#Usua_Id_Delete", Dept_Codigo);
             $('#modalEliminar').modal('show');
         }
@@ -113,7 +109,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @Html.Partial("_Delete", new Frontend_Sistema_Votaciones.Models.AlcaldeViewModel())
+                @Html.Partial("_Delete", new Frontend_Sistema_Votaciones.Models.UsuariosViewModel())
             </div>
         </div>
     </div>

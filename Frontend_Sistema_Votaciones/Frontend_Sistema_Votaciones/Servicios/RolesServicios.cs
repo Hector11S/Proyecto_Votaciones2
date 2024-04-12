@@ -36,7 +36,6 @@ namespace Frontend_Sistema_Votaciones.Servicios
             catch (Exception ex)
             {
                 return result.Error(Helpers.GetMessage(ex));
-                throw;
             }
         }
 
@@ -61,7 +60,6 @@ namespace Frontend_Sistema_Votaciones.Servicios
             catch (Exception ex)
             {
                 return result.Error(Helpers.GetMessage(ex));
-                throw;
             }
         }
         public async Task<ServiceResult> CrearRoles(RolesViewModel item)
@@ -86,7 +84,6 @@ namespace Frontend_Sistema_Votaciones.Servicios
             catch (Exception ex)
             {
                 return result.Error(Helpers.GetMessage(ex));
-                throw;
             }
         }
         public async Task<ServiceResult> EditarRoles(RolesViewModel item)
@@ -111,7 +108,6 @@ namespace Frontend_Sistema_Votaciones.Servicios
             catch (Exception ex)
             {
                 return result.Error(Helpers.GetMessage(ex));
-                throw;
             }
         }
 

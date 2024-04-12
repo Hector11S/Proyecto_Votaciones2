@@ -77,14 +77,31 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
-                var model = new List<EmpleadoViewModel>();
-                var list = await _empleadoServicios.ObtenerEmpleadoList();
-                return View(list.Data);
+                var rol = HttpContext.Session.GetInt32("Rol_Id");
+                if (rol != null)
+                {
+                    bool autorizado = Autorizacion.Autorizar(Convert.ToInt32(rol), ControllerContext.ActionDescriptor.ControllerName);
+                    if (autorizado)
+                    {
+                        var model = new List<EmpleadoViewModel>();
+                        var list = await _empleadoServicios.ObtenerEmpleadoList();
+                        return View(list.Data);
+                    }
+                    else
+                    {
+                        TempData["Advertencia"] = "No está autorizado para acceder a esta pantalla.";
+                    }
+                }
+                else
+                {
+                    TempData["Advertencia"] = "Debe iniciar sesión para acceder a esta pantalla.";
+                }
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index", "Home");
+                TempData["Error"] = "Error al cargar el listado.";
             }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet("[controller]/Details/{Empl_Id}")]

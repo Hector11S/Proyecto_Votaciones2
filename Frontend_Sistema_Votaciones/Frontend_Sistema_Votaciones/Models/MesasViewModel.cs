@@ -11,6 +11,8 @@ namespace Frontend_Sistema_Votaciones.Models
     {
         [Display(Name = "Mesa Id")]
         public int Mesa_Id { get; set; }
+        [Display(Name = "Numero de Mesa")]
+        public int Mesa_Numero { get; set; }
         [Display(Name = "Usuario Crecaion")]
         public int Mesa_UsuarioCreacion { get; set; }
         [Display(Name = "Fecha Creacion")]
@@ -21,7 +23,5 @@ namespace Frontend_Sistema_Votaciones.Models
         public DateTime? Mesa_FechaModifica { get; set; }
         [Display(Name = "Estado")]
         public bool? Mesa_Estado { get; set; }
-        [Display(Name = "Numero de Mesa")]
-        public int Mesa_Numero { get; set; }
     }
 }
