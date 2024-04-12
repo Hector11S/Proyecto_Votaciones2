@@ -233,6 +233,7 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                return RedirectToAction("Index");
                 var model = await _usuariosServicios.ObtenerUsuario(Usua_Id);
                 return View(model.Data);
             }
