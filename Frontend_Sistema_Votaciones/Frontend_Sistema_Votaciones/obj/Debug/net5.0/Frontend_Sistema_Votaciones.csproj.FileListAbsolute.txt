@@ -408,9 +408,7 @@ C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_V
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Roles\Create.cshtml.g.cs
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Roles\Details.cshtml.g.cs
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Roles\Index.cshtml.g.cs
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Roles\_Create.cshtml.g.cs
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Roles\_Delete.cshtml.g.cs
-C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Roles\_Edit.cshtml.g.cs
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Sedes\Details.cshtml.g.cs
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Sedes\Index.cshtml.g.cs
 C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Sedes\_Create.cshtml.g.cs
@@ -842,3 +840,5 @@ C:\Users\test\OneDrive\Escritorio\Frontend_Sistema_Votaciones\Frontend_Sistema_V
 C:\Users\test\OneDrive\Escritorio\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Frontend_Sistema_Votaciones.csproj.AssemblyReference.cache
 C:\Users\test\OneDrive\Escritorio\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Partidos\Details.cshtml.g.cs
 C:\Users\test\OneDrive\Escritorio\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Usuarios\Details.cshtml.g.cs
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Partidos\Details.cshtml.g.cs
+C:\Users\test\OneDrive\Documentos\GitHub\Proyecto_Votaciones2\Frontend_Sistema_Votaciones\Frontend_Sistema_Votaciones\obj\Debug\net5.0\Razor\Views\Roles\Edit.cshtml.g.cs
