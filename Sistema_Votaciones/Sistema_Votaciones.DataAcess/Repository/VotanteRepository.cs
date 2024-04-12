@@ -71,7 +71,23 @@ namespace Sistema_Votaciones.DataAcess.Repository
 
         public RequestStatus Update(tbVotantes item)
         {
-            throw new NotImplementedException();
+            using (var db = new SqlConnection(VotacionesContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("Vota_Nombre", item.Vota_Nombre);
+                parameter.Add("Vota_Apellidos", item.Vota_Apellidos);
+                parameter.Add("Vota_DNI", item.Vota_DNI);
+                parameter.Add("Vota_YaVoto", item.Vota_YaVoto);
+                parameter.Add("Muni_Codigo", item.Muni_Codigo);
+                parameter.Add("Esta_Id", item.Esta_Id);
+                parameter.Add("Sede_Id", item.Sede_Id);
+                parameter.Add("Mesa_Id", item.Mesa_Id);
+                parameter.Add("Vota_UsuarioModifica", item.Vota_UsuarioModifica);
+                parameter.Add("Vota_FechaModifica", item.Vota_FechaModifica);
+
+                var result = db.QueryFirst(ScriptsBaseDeDatos.Vota_Editar, parameter, commandType: CommandType.StoredProcedure);
+                return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
+            }
         }
     }
 }

@@ -46,13 +46,14 @@ namespace Frontend_Sistema_Votaciones.Servicios
             var result = new ServiceResult();
             try
             {
-                var response = await _api.Get<IEnumerable<VotanteViewModel>, VotanteViewModel>(req =>
+                var response = await _api.Get<string, VotanteViewModel>(req =>
                 {
                     req.Path = $"API/Votante/Find?Vota_DNI={Vota_DNI}";
+                    //req.Content = Vota_DNI;
                 });
                 if (!response.Success)
                 {
-                    return result.FromApi(response);
+                    return result.Error("No se pudo cargar la informacion de la persona");
                 }
                 else
                 {

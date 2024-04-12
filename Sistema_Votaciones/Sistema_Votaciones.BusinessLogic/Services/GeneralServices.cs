@@ -806,7 +806,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
             }
             catch (Exception ex)
             {
-                return result.Error("Error de capa 8");
+                return result.Error("Error al crear el registro de la persona");
             }
         }
         public ServiceResult EditarVotante(tbVotantes item)
@@ -817,7 +817,7 @@ namespace Sistema_Votaciones.BusinessLogic.Services
                 var response = _votanteRepository.Update(item);
                 if (response.CodeStatus == 1)
                 {
-                    return result.Ok($"Persona {item.Muni_Codigo} editada con éxito", response);
+                    return result.Ok($"Persona {item.Vota_Id} editada con éxito", response);
                 }
                 else
                 {

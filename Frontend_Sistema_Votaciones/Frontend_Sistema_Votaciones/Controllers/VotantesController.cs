@@ -146,6 +146,27 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
+                var partidosList = await _partidoServicios.ObtenerPartidoList();
+                ViewBag.Departamentos = departamentosList.Data;
+                ViewBag.Partidos = partidosList.Data;
+
+                var estados = await _estadosCivilesServicios.ObtenerEstadosCivilesList();
+                ViewBag.estadosCiviles = estados.Data;
+
+                var sedes = await _sedesServicios.ObtenerSedesList();
+                ViewBag.Sedes = sedes.Data;
+
+                var Mesas = await _mesasServicios.ObtenerMesasList();
+                ViewBag.Mesas = Mesas.Data;
+
+                var CargosList = await _cargoServicios.ObtenerCargoList();
+                ViewBag.Cargos = CargosList.Data;
+                if (item.Vota_Nombre == null || item.Vota_Apellidos == null || item.Vota_DNI == null || item.Esta_Id == 0 || item.Muni_Codigo == null || item.Muni_Codigo.Length != 4 || item.Sede_Id == 0 || item.Mesa_Id == 0)
+                {
+                    TempData["Advertencia"] = "Por favor rellene todos los campos";
+                    return View(item);
+                }
                 item.Vota_YaVoto = false;
                 item.Vota_Permitido = false;
                 item.Vota_UsuarioCreacion = 4;
@@ -159,7 +180,6 @@ namespace Frontend_Sistema_Votaciones.Controllers
                 else
                 {
                     TempData["Advertencia"] = result.Message;
-                    return RedirectToAction("Index");
                 }
             }
             catch (Exception ex)
@@ -168,11 +188,27 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
             return View(item);
         }
-        [HttpGet("[controller]/Edit/{Vota_DNI}")]
+        //[HttpGet("[controller]/Edit/{Vota_DNI}")]
         public async Task<IActionResult> Edit(string Vota_DNI)
         {
             try
             {
+                var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
+                var partidosList = await _partidoServicios.ObtenerPartidoList();
+                ViewBag.Departamentos = departamentosList.Data;
+                ViewBag.Partidos = partidosList.Data;
+
+                var estados = await _estadosCivilesServicios.ObtenerEstadosCivilesList();
+                ViewBag.estadosCiviles = estados.Data;
+
+                var sedes = await _sedesServicios.ObtenerSedesList();
+                ViewBag.Sedes = sedes.Data;
+
+                var Mesas = await _mesasServicios.ObtenerMesasList();
+                ViewBag.Mesas = Mesas.Data;
+
+                var CargosList = await _cargoServicios.ObtenerCargoList();
+                ViewBag.Cargos = CargosList.Data;
                 var model = await _votanteServicios.ObtenerVotantePorDNI(Vota_DNI);
                 return View(model.Data);
             }
@@ -188,6 +224,27 @@ namespace Frontend_Sistema_Votaciones.Controllers
         {
             try
             {
+                var departamentosList = await _departamentoServicios.ObtenerDepartamentoList();
+                var partidosList = await _partidoServicios.ObtenerPartidoList();
+                ViewBag.Departamentos = departamentosList.Data;
+                ViewBag.Partidos = partidosList.Data;
+
+                var estados = await _estadosCivilesServicios.ObtenerEstadosCivilesList();
+                ViewBag.estadosCiviles = estados.Data;
+
+                var sedes = await _sedesServicios.ObtenerSedesList();
+                ViewBag.Sedes = sedes.Data;
+
+                var Mesas = await _mesasServicios.ObtenerMesasList();
+                ViewBag.Mesas = Mesas.Data;
+
+                var CargosList = await _cargoServicios.ObtenerCargoList();
+                ViewBag.Cargos = CargosList.Data;
+                if (item.Vota_Nombre == null || item.Vota_Apellidos == null || item.Vota_DNI == null || item.Esta_Id == 0 || item.Muni_Codigo == null || item.Muni_Codigo.Length != 4 || item.Sede_Id == 0 || item.Mesa_Id == 0)
+                {
+                    TempData["Advertencia"] = "Por favor rellene todos los campos";
+                    return View(item);
+                }
                 item.Vota_UsuarioModifica = 4;
                 item.Vota_FechaModifica = DateTime.Now;
                 var result = await _votanteServicios.EditarVotante(item);

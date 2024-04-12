@@ -16,14 +16,14 @@
 
 <header class="w-100 d-flex justify-content-between align-items-center p-2" style="background: rgb(255,255,255); min-height: 12vh;">
     <h2>Listado de @ViewData["Title"]</h2>
-    <a href="~/" class="btn btn-primary" style="max-height: 40px; max-width: 150px; min-width: 100px">
+    <a href="~/" class="btn btn-primary" style="min-height: 40px; min-width: 150px; min-width: 100px">
         <i class="bi bi-house-door-fill"></i>
         Inicio
     </a>
 </header>
 <div class="card m-2 mt-4 p-3" style="overflow-x: auto">
-    <header class="">
-        <a id="btnNuevo" asp-action="Create" class="btn btn-outline-primary" style="max-height: 40px; max-width: 150px;" data-toggle="modal" data-target="#modal">
+    <header class="mb-4">
+        <a id="btnNuevo" asp-action="Create" class="btn btn-outline-primary" style="min-height: 40px; min-width: 150px;" data-toggle="modal" data-target="#modal">
             <i class="bi bi-plus"></i>
             Nuevo
         </a>
@@ -31,38 +31,37 @@
     <table id="dtVotante" class="table datatable display mt-4" style="width: 100%;">
         <thead style="color: #78e7ff;">
             <tr style="background: rgb(0,0,0)">
-                <th>
+                <th style="min-width: 150px;">
                     @Html.DisplayNameFor(model => model.Vota_Id)
                 </th>
-                <th>
+                <th style="min-width: 150px;">
                     @Html.DisplayNameFor(model => model.Vota_Nombre)
                 </th>
-                <th>
+                <th style="min-width: 150px;">
                     @Html.DisplayNameFor(model => model.Vota_Apellidos)
                 </th>
-                <th>
+                <th style="min-width: 150px;">
                     @Html.DisplayNameFor(model => model.Vota_DNI)
                 </th>
-                <th>
+                <th style="min-width: 150px;">
                     @Html.DisplayNameFor(model => model.Vota_YaVoto)
                 </th>
-                <th>
+                <th style="min-width: 150px;">
                     @Html.DisplayNameFor(model => model.Muni_Codigo)
                 </th>
-                <th>
+                <th style="min-width: 150px;">
                     @Html.DisplayNameFor(model => model.Muni_Descripcion)
                 </th>
-  
-                <th>
+                <th style="min-width: 150px;">
                     @Html.DisplayNameFor(model => model.Esta_Descripcion)
                 </th>
-                <th>
+                <th style="min-width: 150px;">
                     @Html.DisplayNameFor(model => model.MePS_Id)
                 </th>
-                <th>
+                <th style="min-width: 150px;">
                     @Html.DisplayNameFor(model => model.Mesa_Numero)
                 </th>
-                <th>
+                <th style="min-width: 150px;">
                     @Html.DisplayNameFor(model => model.Sede_Descripcion)
                 </th>
                 <th></th>
@@ -106,20 +105,16 @@
                     @Html.DisplayFor(modelItem => item.Sede_Descripcion)
                 </td>
                 <td style="width: 5%">
-                    <div class="w-100" style="max-width: 250px">
+                    <div class="w-100" style="min-width: 250px">
                         <div class="d-flex w-100" style="gap: 5px;">
-                            <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Edit", new { id=item.Vota_Id })">
+                            <a class="d-flex align-items-center justify-content-around btn btn-outline-warning btn-sm flex-grow-1" style="min-width: 100px" href="@Url.Action("Edit", new { Vota_DNI=item.Vota_DNI })">
                                 <i class="bi bi-pencil"></i>
                                 Editar
                             </a>
-                            <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="max-width: 100px" href="@Url.Action("Details", new { id=item.Vota_Id })">
+                            <a class="d-flex align-items-center justify-content-around btn btn-outline-secondary btn-sm flex-grow-1" style="min-width: 100px" href="@Url.Action("Details", new { id=item.Vota_Id })">
                                 <i class="bi bi-eye"></i>
                                 Detalles
                             </a>
-                            <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Vota_Id')">
-                                <i class="bi bi-trash-fill"></i>
-                                Fallecida
-                            </button>
                         </div>
                     </div>
                 </td>
