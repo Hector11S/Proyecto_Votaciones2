@@ -109,7 +109,13 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $('#dtEmpleado').DataTable();
+            $('#dtEmpleado').DataTable({
+                pageLength: 10,
+                responsive: true,
+                language: {
+                    url: 'lib/datatable/esLanguageDataTable.json'
+                }
+            });
         });
     </script>
 }

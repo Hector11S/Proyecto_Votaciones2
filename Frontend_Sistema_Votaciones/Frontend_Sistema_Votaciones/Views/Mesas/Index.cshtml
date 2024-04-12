@@ -76,7 +76,13 @@
 
 <script>
     $(document).ready(function () {
-        $('#dtMesas').DataTable();
+        $('#dtMesas').DataTable({
+            pageLength: 10,
+            responsive: true,
+            language: {
+                url: 'lib/datatable/esLanguageDataTable.json'
+            }
+        });
         $('#modal' + '@abrirModal').modal('show');
         @if (itemModal != null)
         {

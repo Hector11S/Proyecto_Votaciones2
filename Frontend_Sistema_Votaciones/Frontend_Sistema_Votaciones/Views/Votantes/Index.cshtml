@@ -131,7 +131,13 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $('#dtVotante').DataTable();
+            $('#dtVotante').DataTable({
+                pageLength: 10,
+                responsive: true,
+                language: {
+                    url: 'lib/datatable/esLanguageDataTable.json'
+                }
+            });
             $('#modal' + '@abrirModal').modal('show');
             @if (departamento != null)
             {

@@ -8,7 +8,7 @@
 <h1 class="text-center">Detalles</h1>
 
 
-<div class="card mt-3">
+<div class="card m-3">
     <div class="card-header text-center">
         Información del Usuario
     </div>
@@ -22,29 +22,35 @@
                     <dd>
                         @Html.DisplayFor(model => model.Usua_Id)
                     </dd>
+                </dl>
+            </div>
+            <div>
+                <dl>
                     <dt>
                         @Html.DisplayNameFor(model => model.Usua_Usuario)
                     </dt>
                     <dd>
                         @Html.DisplayFor(model => model.Usua_Usuario)
                     </dd>
+                </dl>
+            </div>
+            <div>
+                <dl>
                     <dt>
                         @Html.DisplayNameFor(model => model.Vota_DNI)
                     </dt>
                     <dd>
                         @Html.DisplayFor(model => model.Vota_DNI)
                     </dd>
+                </dl>
+            </div>
+            <div>
+                <dl>
                     <dt>
                         @Html.DisplayNameFor(model => model.Vota_NombreCompleto)
                     </dt>
                     <dd>
                         @Html.DisplayFor(model => model.Vota_NombreCompleto)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Usua_Contra)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Usua_Contra)
                     </dd>
                 </dl>
             </div>
@@ -53,57 +59,43 @@
 </div>
 
 <hr />
-<div>
-    <a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Muni_Codigo })">Editar</a>
+<div class="mx-3">
+    <a class="btn btn-primary" href="@Url.Action("Edit", new { id = Model.Usua_Id })">Editar</a>
     <a class="btn btn-secondary" href="@Url.Action("Index")">Regresar</a>
 </div>
 
 <hr />
-<div class="card">
+<div class="card mt-3">
     <div class="card-header text-center">
         Auditoría
     </div>
     <div class="card-body">
         <dl class="row">
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Usua_ContraConfirmar)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Usua_ContraConfirmar)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Usua_Admin)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Usua_Admin)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Empl_Id)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Empl_Id)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.Rol_Id)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Rol_Id)
-            </dd>
-            <dt>
                 @Html.DisplayNameFor(model => model.Usua_UsuarioCreacion)
             </dt>
-            <dd>
+            <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Usua_UsuarioCreacion)
             </dd>
-            <dt>
+            <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Usua_FechaCreacion)
             </dt>
-            <dd>
+            <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Usua_FechaCreacion)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Usua_UsuarioModifica)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Usua_UsuarioModifica)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Usua_FechaModifica)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Usua_FechaModifica)
             </dd>
         </dl>
     </div>
-    </dl>
-</div>
 </div>
 

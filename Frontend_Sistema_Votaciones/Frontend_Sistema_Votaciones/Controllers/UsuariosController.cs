@@ -265,29 +265,29 @@ namespace Frontend_Sistema_Votaciones.Controllers
             }
         }
 
-        //[HttpPost("/[controller]/DeleteConfirmed")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed([FromForm] string Usua_Id)
-        //{
-        //    try
-        //    {
-        //        var result = await _usuariosServicios.desa(Usua_Id);
-        //        if (result.Success)
-        //        {
-        //            TempData["Exito"] = result.Message;
-        //            return RedirectToAction("Index");
-        //        }
-        //        else
-        //        {
-        //            TempData["Advertencia"] = result.Message;
-        //            return RedirectToAction("Index");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        TempData["Error"] = "Error dentro del código de la aplicación. Por favor contacte a un administrador del sistema";
-        //        return RedirectToAction("Index");
-        //    }
-        //}
+        [HttpPost("/[controller]/DeleteConfirmed")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed([FromForm] string Usua_Id)
+        {
+            try
+            {
+                var result = await _usuariosServicios.ActivarDesactivar(Usua_Id);
+                if (result.Success)
+                {
+                    TempData["Exito"] = result.Message;
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["Advertencia"] = result.Message;
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al cambiarle el estado al usuario";
+                return RedirectToAction("Index");
+            }
+        }
     }
 }

@@ -76,7 +76,13 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            $('#dtAlcalde').DataTable();
+            $('#dtAlcalde').DataTable({
+                pageLength: 10,
+                responsive: true,
+                language: {
+                    url: 'lib/datatable/esLanguageDataTable.json'
+                }
+            });
         });
     </script>
 }

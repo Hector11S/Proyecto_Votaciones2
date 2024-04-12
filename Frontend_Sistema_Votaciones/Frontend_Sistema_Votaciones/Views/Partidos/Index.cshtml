@@ -78,7 +78,13 @@
 @section Scripts {
 <script>
     $(document).ready(function () {
-        $('#dtPartido').DataTable();
+        $('#dtPartido').DataTable({
+            pageLength: 10,
+            responsive: true,
+            language: {
+                url: 'lib/datatable/esLanguageDataTable.json'
+            }
+        });
     });
     function Eliminar(Dept_Codigo) {
         $("#Part_Id_Delete").val(Dept_Codigo);

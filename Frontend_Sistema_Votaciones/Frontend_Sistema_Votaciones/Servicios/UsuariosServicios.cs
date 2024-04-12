@@ -189,5 +189,30 @@ namespace Frontend_Sistema_Votaciones.Servicios
                 throw;
             }
         }
+        public async Task<ServiceResult> ActivarDesactivar(string Usua_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Put<string, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Usuarios/Active?Usua_Id={Usua_Id}";
+                    req.Content = $"{Usua_Id}";
+                });
+                if (!response.Success)
+                {
+                    return result.Error(response.Message);
+                }
+                else
+                {
+                    return result.Ok(response.Message, response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
     }
 }

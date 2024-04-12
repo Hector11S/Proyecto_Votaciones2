@@ -88,7 +88,13 @@
 
 <script>
     $(document).ready(function () {
-        $('#dtMunicipios').DataTable();
+        $('#dtMunicipios').DataTable({
+            pageLength: 10,
+            responsive: true,
+            language: {
+                url: 'lib/datatable/esLanguageDataTable.json'
+            }
+        });
         $('#modal' + '@abrirModal').modal('show');
         @if (itemModel != null)
         {
